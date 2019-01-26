@@ -2,6 +2,12 @@
 <data xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/userGroupOption.xsd">
 	<import>
 		<categories>
+			<category name="user.teamspeak">
+				<parent>user</parent>
+			</category>
+			<category name="mod.teamspeak">
+				<parent>mod</parent>
+			</category>
 			<category name="admin.teamspeak">
 				<parent>admin</parent>
 			</category>
