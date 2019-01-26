@@ -43,7 +43,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
      * @param   string      $method     method name to execute
      * @param   array       $args       method parameters
      * @return  boolean|null
-     * @throws  TeamSpeak3Exception
+     * @throws  TeamSpeakException
      */
     public function __call($method, $args) {
         if (count($args) > 0) {
