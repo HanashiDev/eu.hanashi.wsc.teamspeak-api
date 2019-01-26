@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="eu.hanashi.wsc.teamspeak3-sync" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/package.xsd">
+    <packageinformation>
+        <packagename><![CDATA[TeamSpeak API]]></packagename>
+        <packagename language="de"><![CDATA[TeamSpeak API]]></packagename>
+        <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
+        <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
+        <version>1.0.0</version>
+        <date>2019-01-26</date>
+    </packageinformation>
+
+    <authorinformation>
+        <author><![CDATA[Hanashi]]></author>
+        <authorurl><![CDATA[https://hanashi.eu/]]></authorurl>
+    </authorinformation>
+	
+	<compatibility>
+		<api version="2017" />
+		<api version="2018" />
+	</compatibility>
+
+    <requiredpackages>
+        <requiredpackage minversion="3.0.19">com.woltlab.wcf</requiredpackage>
+    </requiredpackages>
+	
+	<excludedpackages>
+        <excludedpackage version="3.2.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+    </excludedpackages>
+
+    <instructions type="install">
+		<!-- files -->
+        <!-- <instruction type="file" /> -->
+		
+		<!-- templates -->
+		<!-- <instruction type="acpTemplate" /> -->
+		<!-- <instruction type="template" /> -->
+		
+		<!-- language -->
+        <!-- <instruction type="language"/> -->
+		
+		<!-- listener -->
+        <!-- <instruction type="eventListener" /> -->
+		<!-- <instruction type="templateListener" /> -->
+		
+		<!-- config -->
+        <!-- <instruction type="option" /> -->
+        <!-- <instruction type="userMenu" /> -->
+        <!-- <instruction type="acpMenu" /> -->
+        <!-- <instruction type="page" /> -->
+        <!-- <instruction type="sql" /> -->
+        <!-- <instruction type="userGroupOption" /> -->
+		<!-- <instruction type="cronjob" /> -->
+        <!-- <instruction type="objectType" /> -->
+    </instructions>
+</package>
