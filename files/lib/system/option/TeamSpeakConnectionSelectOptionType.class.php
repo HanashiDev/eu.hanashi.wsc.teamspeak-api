@@ -6,6 +6,15 @@ use wcf\data\teamspeak\TeamspeakList;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 
+/**
+ * custom option type for teamspeak connections
+ * name of option type: TeamSpeakConnectionSelect
+ *
+ * @author	Peter Lohse <hanashi@hanashi.eu>
+ * @copyright	Hanashi
+ * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package	WoltLabSuite\Core\System\Option
+ */
 class TeamSpeakConnectionSelectOptionType extends AbstractOptionType {
     /**
      * @inheritDoc
