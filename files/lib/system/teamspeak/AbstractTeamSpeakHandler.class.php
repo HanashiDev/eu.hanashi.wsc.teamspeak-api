@@ -11,7 +11,7 @@ use wcf\system\SingletonFactory;
 * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package	WoltLabSuite\Core\System\TeamSpeak
 */
-abstract class TeamSpeakHandler extends SingletonFactory {
+abstract class AbstractTeamSpeakHandler extends SingletonFactory {
     /**
      * ID of saved TeamSpeak connection
      * 
