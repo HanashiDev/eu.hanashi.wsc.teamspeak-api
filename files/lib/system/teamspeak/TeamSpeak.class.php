@@ -95,6 +95,8 @@ class TeamSpeak {
      * connect to TeamSpeak server query over ssh or raw connection
      */
     protected function connect() {
+        ini_set('default_socket_timeout', 5);
+        
         if ($this->queryProtocol == 'raw') {
             $this->queryObj = new RemoteFile($this->hostname, $this->port);
         } else if ($this->queryProtocol == 'ssh') {

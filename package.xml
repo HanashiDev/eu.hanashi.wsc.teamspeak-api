@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package name="eu.hanashi.wsc.teamspeak3-sync" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/package.xsd">
+<package name="eu.hanashi.wsc.teamspeak-api" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/package.xsd">
     <packageinformation>
         <packagename><![CDATA[TeamSpeak API]]></packagename>
         <packagename language="de"><![CDATA[TeamSpeak API]]></packagename>
@@ -29,14 +29,14 @@
 
     <instructions type="install">
 		<!-- files -->
-        <!-- <instruction type="file" /> -->
+        <instruction type="file" />
 		
 		<!-- templates -->
-		<!-- <instruction type="acpTemplate" /> -->
+		<instruction type="acpTemplate" />
 		<!-- <instruction type="template" /> -->
 		
 		<!-- language -->
-        <!-- <instruction type="language"/> -->
+        <instruction type="language"/>
 		
 		<!-- listener -->
         <!-- <instruction type="eventListener" /> -->
@@ -45,10 +45,10 @@
 		<!-- config -->
         <!-- <instruction type="option" /> -->
         <!-- <instruction type="userMenu" /> -->
-        <!-- <instruction type="acpMenu" /> -->
+        <instruction type="acpMenu" />
         <!-- <instruction type="page" /> -->
-        <!-- <instruction type="sql" /> -->
-        <!-- <instruction type="userGroupOption" /> -->
+        <instruction type="sql" />
+        <instruction type="userGroupOption" />
 		<!-- <instruction type="cronjob" /> -->
         <!-- <instruction type="objectType" /> -->
     </instructions>
