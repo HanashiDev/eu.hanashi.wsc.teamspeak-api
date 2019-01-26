@@ -33,23 +33,13 @@
 		
 		<!-- templates -->
 		<instruction type="acpTemplate" />
-		<!-- <instruction type="template" /> -->
 		
 		<!-- language -->
         <instruction type="language"/>
 		
-		<!-- listener -->
-        <!-- <instruction type="eventListener" /> -->
-		<!-- <instruction type="templateListener" /> -->
-		
 		<!-- config -->
-        <!-- <instruction type="option" /> -->
-        <!-- <instruction type="userMenu" /> -->
         <instruction type="acpMenu" />
-        <!-- <instruction type="page" /> -->
         <instruction type="sql" />
         <instruction type="userGroupOption" />
-		<!-- <instruction type="cronjob" /> -->
-        <!-- <instruction type="objectType" /> -->
     </instructions>
 </package>
