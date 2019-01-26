@@ -47,7 +47,8 @@
 				{foreach from=$objects item=object}
 					<tr class="jsRow">
 						<td class="columnIcon">
-							<span class="icon icon16 fa-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$object->teamspeakID}" data-confirm-message="{lang}wcf.page.teamspeakList.removeConnectionQuestion{/lang}"></span>
+							<a href="{link controller='TeamspeakEdit' id=$object->teamspeakID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon24 fa-pencil"></span></a>
+							<a href="#" class="jsDeleteButton jsTooltip" title="{lang}wcf.global.button.delete{/lang}" data-confirm-message-html="{lang __encode=true}wcf.page.teamspeakList.removeConnectionQuestion{/lang}" data-object-id="{@$object->teamspeakID}"><span class="icon icon24 fa-times"></span></a>
 							{event name='rowButtons'}
 						</td>
 						<td class="columnID">{#$object->teamspeakID}</td>

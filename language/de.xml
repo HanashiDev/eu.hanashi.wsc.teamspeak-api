@@ -19,6 +19,7 @@
 		<item name="wcf.page.teamspeakList.virtualServerPort"><![CDATA[Virtual-Server-Port]]></item>
 		<item name="wcf.page.teamspeakList.username"><![CDATA[Benutzername]]></item>
 		<item name="wcf.page.teamspeakList.creationDate"><![CDATA[Erstelldatum]]></item>
+		<item name="wcf.page.teamspeakList.removeConnectionQuestion"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Möchtest du{else}Möchten Sie{/if} diese TeamSpeak-Verbindung wirklich löschen?]]></item>
 	</category>
 	<category name="wcf.page.teamspeakAdd">
 		<item name="wcf.page.teamspeakAdd.connectionName"><![CDATA[Verbindungs-Name]]></item>
