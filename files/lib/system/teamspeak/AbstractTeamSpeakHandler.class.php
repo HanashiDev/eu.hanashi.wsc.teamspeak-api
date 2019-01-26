@@ -1,6 +1,7 @@
 <?php
 namespace wcf\system\teamspeak;
 use wcf\data\teamspeak\Teamspeak;
+use wcf\system\exception\TeamSpeakException;
 use wcf\system\SingletonFactory;
 
 /**
@@ -33,10 +34,20 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
         $teamspeak = new Teamspeak($this->teamspeakID);
         if (!$teamspeak->teamspeakID || $teamspeak->teamspeakID != $this->teamspeakID) return;
 
-        $this->tsObj = new TeamSpeak($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->queryType);
+        $this->tsObj = new \wcf\system\teamspeak\TeamSpeak($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->queryType);
         $this->tsObj->use(['port' => $teamspeak->virtualServerPort]);
         if (!empty($teamspeak->displayName)) {
-            $this->tsObj->clientupdate(['client_nickname' => $teamspeak->displayName]);
+            // Wenn Namen vergeben ist, dann hinten eine Nummer dran hängen, maximal 20 Versuche
+            for ($i = 0; $i < 20; $i++) {
+                try {
+                    $name = $teamspeak->displayName;
+                    if ($i > 0) {
+                        $name .= $i;
+                    }
+                    $this->tsObj->clientupdate(['client_nickname' => $name]);
+                    break;
+                } catch (TeamSpeakException $e) {}
+            }
         }
     }
 
