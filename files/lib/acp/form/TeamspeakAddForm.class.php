@@ -86,6 +86,13 @@ class TeamspeakAddForm extends AbstractForm {
      * @var string
      */
     protected $password;
+
+    /**
+     * display name in TeamSpeak
+     * 
+     * @var string
+     */
+    protected $displayName = 'WSC';
     
     /**
      * @inheritDoc
@@ -100,6 +107,7 @@ class TeamspeakAddForm extends AbstractForm {
         if (isset($_POST['virtualServerPort'])) $this->virtualServerPort = StringUtil::trim($_POST['virtualServerPort']);
         if (isset($_POST['username'])) $this->username = StringUtil::trim($_POST['username']);
         if (isset($_POST['password'])) $this->password = StringUtil::trim($_POST['password']);
+        if (isset($_POST['displayName'])) $this->displayName = StringUtil::trim($_POST['displayName']);
 	}
     
     /**
@@ -169,7 +177,8 @@ class TeamspeakAddForm extends AbstractForm {
 			'queryPort' => $this->queryPort,
 			'virtualServerPort' => $this->virtualServerPort,
 			'username' => $this->username,
-			'password' => $this->password,
+            'password' => $this->password,
+            'displayName' => $this->displayName,
 			'creationDate' => TIME_NOW
 		]]);
 		$action->executeAction();
@@ -194,6 +203,7 @@ class TeamspeakAddForm extends AbstractForm {
         $this->virtualServerPort = 9987;
         $this->username = 'serveradmin';
         $this->password = null;
+        $this->displayName = 'WSC';
 	}
     
     /**
@@ -211,7 +221,8 @@ class TeamspeakAddForm extends AbstractForm {
             'queryPort' => $this->queryPort,
             'virtualServerPort' => $this->virtualServerPort,
             'username' => $this->username,
-            'password' => $this->password
+            'password' => $this->password,
+            'displayName' => $this->displayName
         ]);
 	}
 }

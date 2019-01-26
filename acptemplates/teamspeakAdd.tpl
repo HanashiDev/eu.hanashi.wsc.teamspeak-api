@@ -130,6 +130,13 @@
 				{/if}
 			</dd>
 		</dl>
+		<dl{if $errorField == 'displayName'} class="formError"{/if}>
+			<dt><label for="displayName">{lang}wcf.page.teamspeakAdd.displayName{/lang}</label></dt>
+			<dd>
+				<input type="text" name="displayName" id="displayName" value="{$displayName}">
+				<small>{lang}wcf.page.teamspeakAdd.displayName.description{/lang}</small>
+			</dd>
+		</dl>
 	</section>
 	
 	<div class="formSubmit">

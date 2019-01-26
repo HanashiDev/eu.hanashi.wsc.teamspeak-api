@@ -36,6 +36,7 @@ class TeamspeakEditForm extends TeamspeakAddForm {
         $this->virtualServerPort = $this->teamspeak->virtualServerPort;
         $this->username = $this->teamspeak->username;
         $this->password = $this->teamspeak->password;
+        $this->displayName = $this->teamspeak->displayName;
     }
     /**
      * @inheritDoc
@@ -50,7 +51,8 @@ class TeamspeakEditForm extends TeamspeakAddForm {
 			'queryPort' => $this->queryPort,
 			'virtualServerPort' => $this->virtualServerPort,
 			'username' => $this->username,
-			'password' => $this->password
+            'password' => $this->password,
+            'displayName' => $this->displayName
 		]]);
 		$action->executeAction();
 		

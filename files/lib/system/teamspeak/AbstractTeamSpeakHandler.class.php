@@ -35,6 +35,9 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
 
         $this->tsObj = new TeamSpeak($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->queryType);
         $this->tsObj->use(['port' => $teamspeak->virtualServerPort]);
+        if (!empty($teamspeak->displayName)) {
+            $this->tsObj->clientupdate(['client_nickname' => $teamspeak->displayName]);
+        }
     }
 
     /**

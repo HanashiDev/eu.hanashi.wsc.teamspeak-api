@@ -40,6 +40,7 @@
 					<th>{lang}wcf.page.teamspeakList.queryPort{/lang}</th>
 					<th>{lang}wcf.page.teamspeakList.virtualServerPort{/lang}</th>
 					<th>{lang}wcf.page.teamspeakList.username{/lang}</th>
+					<th>{lang}wcf.page.teamspeakList.displayName{/lang}</th>
 					<th>{lang}wcf.page.teamspeakList.creationDate{/lang}</th>
 				</tr>
 			</thead>
@@ -58,6 +59,7 @@
 						<td class="columnText">{$object->queryPort}</td>
 						<td class="columnText">{$object->virtualServerPort}</td>
 						<td class="columnText">{$object->username}</td>
+						<td class="columnText">{$object->displayName}</td>
 						<td class="columnDate">{@$object->creationDate|time}</td>
 					</tr>
 				{/foreach}

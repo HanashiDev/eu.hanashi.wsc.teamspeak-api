@@ -18,6 +18,7 @@
 		<item name="wcf.page.teamspeakList.queryPort"><![CDATA[Query-Port]]></item>
 		<item name="wcf.page.teamspeakList.virtualServerPort"><![CDATA[Virtual-Server-Port]]></item>
 		<item name="wcf.page.teamspeakList.username"><![CDATA[Benutzername]]></item>
+		<item name="wcf.page.teamspeakList.displayName"><![CDATA[Anzeigename]]></item>
 		<item name="wcf.page.teamspeakList.creationDate"><![CDATA[Erstelldatum]]></item>
 		<item name="wcf.page.teamspeakList.removeConnectionQuestion"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Möchtest du{else}Möchten Sie{/if} diese TeamSpeak-Verbindung wirklich löschen?]]></item>
 	</category>
@@ -34,6 +35,8 @@
 		<item name="wcf.page.teamspeakAdd.virtualServerPort.description"><![CDATA[Standard-Port: 9987]]></item>
 		<item name="wcf.page.teamspeakAdd.username"><![CDATA[Benutzername]]></item>
 		<item name="wcf.page.teamspeakAdd.password"><![CDATA[Passwort]]></item>
+		<item name="wcf.page.teamspeakAdd.displayName"><![CDATA[Anzeigename]]></item>
+		<item name="wcf.page.teamspeakAdd.displayName.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Wähle{else}Wählen Sie{/if} einen Namen der im auf dem TeamSpeak-Server angezeigt werden soll. Ist dieses Feld leer, wird der Server Query standardmäßig als "serveradmin from x.x.x.x angezeigt."]]></item>
 		<item name="wcf.page.teamspeakAdd.cantConnect"><![CDATA[Konnte nicht mit dem TeamSpeak-Server verbinden.]]></item>
 		<item name="wcf.page.teamspeakAdd.invalidQueryType"><![CDATA[Kein gültiger Query-Typ.]]></item>
 		<item name="wcf.page.teamspeakAdd.numberOutOfRange"><![CDATA[Der Wert ist außerhalb des Gültigkeitsbereichs.]]></item>
