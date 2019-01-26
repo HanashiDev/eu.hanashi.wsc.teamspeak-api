@@ -1,7 +1,7 @@
 <?php
 namespace wcf\acp\form;
-use wcf\form\AbstractForm;
 use wcf\data\teamspeak\TeamspeakAction;
+use wcf\form\AbstractForm;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\exception\UserInputException;
 use wcf\system\teamspeak\TeamSpeak;
