@@ -2,7 +2,7 @@
 <package name="eu.hanashi.wsc.teamspeak-api" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/package.xsd">
     <packageinformation>
         <packagename><![CDATA[TeamSpeak API]]></packagename>
-        <packagename language="de"><![CDATA[TeamSpeak API]]></packagename>
+        <packagename language="de"><![CDATA[TeamSpeak-API]]></packagename>
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
         <version>1.0.0</version>
@@ -41,5 +41,6 @@
         <instruction type="acpMenu" />
         <instruction type="sql" />
         <instruction type="userGroupOption" />
+        <instruction type="option" />
     </instructions>
 </package>

@@ -3,7 +3,6 @@
 	<import>
 		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak">
 			<parent>wcf.acp.menu.link.configuration</parent>
-			<permissions>admin.teamspeak.canManageConnection</permissions>
 		</acpmenuitem>
 		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList">
 			<controller>wcf\acp\page\TeamspeakListPage</controller>

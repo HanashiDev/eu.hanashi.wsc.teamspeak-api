@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/language.xsd" languagecode="de">
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.teamspeak"><![CDATA[TeamSpeak]]></item>
+	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.category.user.teamspeak"><![CDATA[TeamSpeak]]></item>
 		<item name="wcf.acp.group.option.category.mod.teamspeak"><![CDATA[TeamSpeak]]></item>
@@ -8,7 +11,7 @@
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.configuration.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList"><![CDATA[TeamSpeak-Server]]></item>
+		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList"><![CDATA[Server]]></item>
 		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add"><![CDATA[TeamSpeak-Server hinzufügen]]></item>
 		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.edit"><![CDATA[TeamSpeak-Server bearbeiten]]></item>
 	</category>
