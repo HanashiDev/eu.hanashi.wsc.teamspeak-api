@@ -1,5 +1,6 @@
 <?php
 namespace wcf\system\teamspeak;
+use phpseclib\Net\SSH2;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\io\RemoteFile;
@@ -75,10 +76,6 @@ class TeamSpeak {
         $this->username = $username;
         $this->password = $password;
 
-        if ($queryProtocol == 'ssh' && !function_exists('ssh2_connect')) {
-            throw new SystemException('libssh2 extension for PHP is not installed.');
-        }
-
         $this->connect();
     }
 
@@ -98,7 +95,8 @@ class TeamSpeak {
         if ($this->queryProtocol == 'raw') {
             $this->queryObj = new RemoteFile($this->hostname, $this->port);
         } else if ($this->queryProtocol == 'ssh') {
-            $this->queryObj = ssh2_connect($this->hostname, $this->port);
+            require_once(WCF_DIR.'lib/system/api/phpseclib/autoload.php');
+            $this->queryObj = new SSH2($this->hostname, $this->port);
         }
 
         if (!$this->queryObj) {
@@ -125,20 +123,14 @@ class TeamSpeak {
         if ($this->queryProtocol == 'raw') {
             $this->execute('login client_login_name='.TeamSpeakUtil::escape($username).' client_login_password='.TeamSpeakUtil::escape($password));
         } else if ($this->queryProtocol == 'ssh') {
-            if (!ssh2_auth_password($this->queryObj, $username, $password)) {
+            if (!$this->queryObj->login($username, $password)) {
                 throw new TeamSpeakException('Authentication failed...');
             }
-            $this->queryObj = ssh2_shell($this->queryObj, 'raw');
-            if (!$this->queryObj) {
-                throw new TeamSpeakException('Opening Shell failed');
-            }
-            stream_set_blocking($this->queryObj, true);
-
-            $header = stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r");
+            $header = StringUtil::trim($this->queryObj->read("\n"));
             if ($header != 'TS3') {
                 throw new TeamSpeakException('Not a TeamSpeak server');
             }
-            $motd = stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r");
+            $motd = StringUtil::trim($this->queryObj->read("\n"));
         }
     }
     
@@ -196,12 +188,13 @@ class TeamSpeak {
      */
     protected function executeSsh($command) {
         $result = [];
-        fwrite($this->queryObj, $command . "\n");
+        $this->queryObj->write($command."\n");
+        $commandLine = $this->queryObj->read("\n");
         if ($command == 'quit') {
             return true;
         }
         do {
-            $line = stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r");
+            $line = StringUtil::trim($this->queryObj->read("\n"));
             $result[] = $line;
         } while ($line && substr($line, 0, 5) != "error");
         return $this->parseResult($result);

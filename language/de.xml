@@ -33,7 +33,7 @@
 		<item name="wcf.page.teamspeakAdd.hostname"><![CDATA[Server-Adresse]]></item>
 		<item name="wcf.page.teamspeakAdd.hostname.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die Server-Adresse oder die IP des TeamSpeak-Servers an.]]></item>
 		<item name="wcf.page.teamspeakAdd.queryType"><![CDATA[Query-Typ]]></item>
-		<item name="wcf.page.teamspeakAdd.queryType.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Wähle{else}Wählen Sie{/if} einen Server-Query-Typ aus. Wenn {if LANGUAGE_USE_INFORMAL_VARIANT}du SSH nutzt{else}Sie SSH nutzen{/if}, müssen Sie libssh2 für PHP auf {if LANGUAGE_USE_INFORMAL_VARIANT}deinen{else}Ihren{/if} Server installiert haben.]]></item>
+		<item name="wcf.page.teamspeakAdd.queryType.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Wähle{else}Wählen Sie{/if} einen Server-Query-Typ aus.]]></item>
 		<item name="wcf.page.teamspeakAdd.queryPort"><![CDATA[Query-Port]]></item>
 		<item name="wcf.page.teamspeakAdd.queryPort.description"><![CDATA[RAW-Standard-Port: 10011; SSH-Standard-Port: 10022]]></item>
 		<item name="wcf.page.teamspeakAdd.virtualServerPort"><![CDATA[Virtual-Server-Port]]></item>
