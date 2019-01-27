@@ -256,7 +256,7 @@ class TeamSpeak {
             }
         }
         if ($error['msg'] != 'ok') {
-            throw new TeamSpeakException('TeamSpeak Exception: '.$error['msg']);
+            throw new TeamSpeakException($error['msg']);
         }
         return $resultArr;
     }
