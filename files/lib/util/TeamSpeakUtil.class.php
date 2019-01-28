@@ -71,4 +71,40 @@ class TeamSpeakUtil {
 		$originalChars = ["\\", '/', ' ', '|', "\a", "\b", "\f", "\n", "\r", "\t", "\v"];
 		return str_replace($escapedChars, $originalChars, $escapedString);
     }
+
+    /**
+     * convert a string to binary
+     * 
+     * @param   string  $str    input string
+     * @return  string  binary string
+     */
+    public static function strbin($str)
+    {
+        if (!is_string($str)) return false;
+
+        $ret = '';
+        for ($i = 0; $i < strlen($str); $i++) {
+            $temp = decbin(ord($str{$i}));
+            $ret .= str_repeat("0", 8 - strlen($temp)) . $temp;
+        }
+
+        return $ret;
+    }
+
+    /**
+     * convert a client unique identifier to a client base64 uid
+     * 
+     * @param   string  $clientUID  client unique identifier
+     * @return  string  client base64 uid
+     */
+    public static function generateClientBase64UID($clientUID) {
+        $chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
+        $binaryArr = str_split(self::strbin(base64_decode($clientUID)), 4);
+
+        $ret = '';
+        foreach ($binaryArr as $binary) {
+            $ret .= $chars[bindec($binary)];
+        }
+        return $ret;
+    }
 }
