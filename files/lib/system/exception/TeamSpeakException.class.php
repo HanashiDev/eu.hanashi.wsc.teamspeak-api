@@ -19,7 +19,7 @@ class TeamSpeakException extends SystemException {
         parent::__construct((string)$message);
 
         if (ENABLE_DEBUG_MODE) {
-            \wcf\functions\exception\logThrowable($this);
+            $this->getExceptionID();
         }
     }
 }
