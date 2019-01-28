@@ -108,7 +108,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
             'overwrite' => ($overwrite ? 1 : 0),
             'resume' => ($resume ? 1 : 0)
         ]);
-        if (count($reply) != 1) {
+        if (count($reply) != 1 || empty($reply[0])) {
             throw new TeamSpeakException('could not create file');
         }
         $filetransfer = new Filetransfer($this->hostname, $reply[0]['port']);
@@ -134,7 +134,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
             'cpw' => $channelPassword,
             'seekpos' => 0
         ]);
-        if (count($reply) != 1) {
+        if (count($reply) != 1 || empty($reply[0])) {
             throw new TeamSpeakException('could not find file');
         }
         $filetransfer = new Filetransfer($this->hostname, $reply[0]['port']);
