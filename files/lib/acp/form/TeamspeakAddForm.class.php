@@ -3,6 +3,7 @@ namespace wcf\acp\form;
 use wcf\data\teamspeak\TeamspeakAction;
 use wcf\form\AbstractForm;
 use wcf\system\exception\TeamSpeakException;
+use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
 use wcf\system\teamspeak\TeamSpeak;
 use wcf\system\WCF;
@@ -159,7 +160,11 @@ class TeamspeakAddForm extends AbstractForm {
             new TeamSpeak($this->hostname, $this->queryPort, $this->username, $this->password, $this->queryType);
         } catch (TeamSpeakException $e) {
             throw new UserInputException('hostname', 'cantConnect');
-        } catch (\Exception $e) {
+        } catch (SystemException $e) {
+            // wenn Debug Modus aktiv wird exception geloggt
+            if (ENABLE_DEBUG_MODE) {
+                $e->getExceptionID();
+            }
             throw new UserInputException('hostname', 'cantConnect');
         }
 	}

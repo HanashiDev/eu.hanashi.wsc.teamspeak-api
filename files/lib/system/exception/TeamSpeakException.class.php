@@ -18,6 +18,7 @@ class TeamSpeakException extends SystemException {
     public function __construct($message = '') {
         parent::__construct((string)$message);
 
+        // wenn Debug Modus aktiv wird exception geloggt
         if (ENABLE_DEBUG_MODE) {
             $this->getExceptionID();
         }
