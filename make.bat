@@ -1,4 +1,4 @@
-#!/bin/bash
+@ECHO OFF
 del acptemplates.tar
 7z a -ttar -mx=9 acptemplates.tar .\acptemplates\*
 del files.tar
