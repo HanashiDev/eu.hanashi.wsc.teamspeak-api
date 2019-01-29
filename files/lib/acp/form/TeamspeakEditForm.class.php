@@ -3,6 +3,7 @@ namespace wcf\acp\form;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\data\teamspeak\TeamspeakAction;
 use wcf\form\AbstractForm;
+use wcf\system\exception\IllegalLinkException;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
 
@@ -38,6 +39,7 @@ class TeamspeakEditForm extends TeamspeakAddForm {
         $this->password = $this->teamspeak->password;
         $this->displayName = $this->teamspeak->displayName;
     }
+    
     /**
      * @inheritDoc
      */
@@ -59,6 +61,9 @@ class TeamspeakEditForm extends TeamspeakAddForm {
 		$this->saved();
     }
     
+    /**
+     * @inheritDoc
+     */
     public function saved() {
         AbstractForm::save();
 
