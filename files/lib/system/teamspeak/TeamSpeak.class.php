@@ -170,13 +170,14 @@ class TeamSpeak {
      * method to execute server query commands
      * 
      * @param   string  $command        Command to execute on server
+     * @param   string  $returnRaw      get raw return
      * @return  array
      */
-    protected function execute($command) {
+    public function execute($command, $returnRaw = false) {
         if ($this->queryProtocol == 'raw') {
-            return $this->executeRaw($command);
+            return $this->executeRaw($command, $returnRaw);
         } else if ($this->queryProtocol == 'ssh') {
-            return $this->executeSsh($command);
+            return $this->executeSsh($command, $returnRaw);
         }
     }
 
@@ -184,9 +185,10 @@ class TeamSpeak {
      * method to execute ssh server query commands
      * 
      * @param   string  $command        Command to execute on server
+     * @param   string  $returnRaw      get raw return
      * @return  array
      */
-    protected function executeSsh($command) {
+    protected function executeSsh($command, $returnRaw = false) {
         $result = [];
         $this->queryObj->write($command."\n");
         $commandLine = $this->queryObj->read("\n");
@@ -197,6 +199,8 @@ class TeamSpeak {
             $line = StringUtil::trim($this->queryObj->read("\n"));
             $result[] = $line;
         } while ($line && substr($line, 0, 5) != "error");
+
+        if ($returnRaw) return $result;
         return $this->parseResult($result);
     }
 
@@ -204,9 +208,10 @@ class TeamSpeak {
      * method to execute raw server query commands
      * 
      * @param   string  $command        Command to execute on server
+     * @param   string  $returnRaw      get raw return
      * @return  array
      */
-    protected function executeRaw($command) {
+    protected function executeRaw($command, $returnRaw = false) {
         $result = [];
         $this->queryObj->puts($command."\n");
         if ($command == 'quit') {
@@ -216,6 +221,8 @@ class TeamSpeak {
 			$line = StringUtil::trim($this->queryObj->gets());
             $result[] = $line;
         } while ($line && substr($line, 0, 5) != "error");
+        
+        if ($returnRaw) return $result;
         return $this->parseResult($result);
     }
 

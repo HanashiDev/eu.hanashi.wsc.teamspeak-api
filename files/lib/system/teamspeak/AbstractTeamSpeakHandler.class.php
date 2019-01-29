@@ -140,4 +140,28 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
         $filetransfer = new Filetransfer($this->hostname, $reply[0]['port']);
         return $filetransfer->download($reply[0]['ftkey'], $reply[0]['size']);
     }
+
+    /**
+     * method to create a new snapshot of TeamSpeak
+     * 
+     * @return  string
+     * @throws  TeamSpeakException
+     */
+    public function createSnapshot() {
+        $result = $this->tsObj->execute('serversnapshotcreate', true);
+        if (count($result) != 2) {
+            throw new TeamSpeakException('could not create snapshot');
+        }
+        return $result[0];
+    }
+
+    /**
+     * method to deploy a created snapshot of TeamSpeak
+     * 
+     * @param   string  $snapshot   the content of the snapshot
+     * @throws  TeamSpeakException
+     */
+    public function deploySnapshot($snapshot) {
+        $this->tsObj->execute('serversnapshotdeploy '.$snapshot);
+    }
 }
