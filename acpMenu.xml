@@ -4,6 +4,9 @@
 		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak">
 			<parent>wcf.acp.menu.link.configuration</parent>
 		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.management.teamspeak">
+			<parent>wcf.acp.menu.link.management</parent>
+		</acpmenuitem>
 		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList">
 			<controller>wcf\acp\page\TeamspeakListPage</controller>
 			<parent>wcf.acp.menu.link.configuration.teamspeak</parent>

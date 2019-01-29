@@ -46,9 +46,21 @@
 	<instructions type="update" fromversion="1.1.0">
 		<!-- files -->
         <instruction type="file"/>
+		
+		<!-- language -->
+        <instruction type="language"/>
+		
+		<!-- config -->
+        <instruction type="acpMenu" />
 	</instructions>
 	<instructions type="update" fromversion="1.2.0">
 		<!-- files -->
         <instruction type="file"/>
+		
+		<!-- language -->
+        <instruction type="language"/>
+		
+		<!-- config -->
+        <instruction type="acpMenu" />
 	</instructions>
 </package>

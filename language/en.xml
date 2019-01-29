@@ -11,6 +11,7 @@
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.configuration.teamspeak"><![CDATA[TeamSpeak]]></item>
+		<item name="wcf.acp.menu.link.management.teamspeak"><![CDATA[TeamSpeak]]></item>
 		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList"><![CDATA[Server]]></item>
 		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add"><![CDATA[add TeamSpeak server]]></item>
 		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.edit"><![CDATA[edit TeamSpeak server]]></item>
