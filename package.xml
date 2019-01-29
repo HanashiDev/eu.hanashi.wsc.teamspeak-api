@@ -5,7 +5,7 @@
         <packagename language="de"><![CDATA[TeamSpeak-API]]></packagename>
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
         <date>2019-01-28</date>
     </packageinformation>
 
@@ -44,6 +44,10 @@
         <instruction type="option" />
     </instructions>
 	<instructions type="update" fromversion="1.1.0">
+		<!-- files -->
+        <instruction type="file"/>
+	</instructions>
+	<instructions type="update" fromversion="1.2.0">
 		<!-- files -->
         <instruction type="file"/>
 	</instructions>

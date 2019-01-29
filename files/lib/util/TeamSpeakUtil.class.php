@@ -107,4 +107,14 @@ class TeamSpeakUtil {
         }
         return $ret;
     }
+
+    /**
+     * convert the negative icon ID to the real icon ID
+     * 
+     * @param   int     $iconID     negative icon id
+     * @return  int
+     */
+    public static function getCorrectIconID($iconID) {
+        return ($iconid < 0) ? (pow(2, 32))-($iconid * -1) : $iconid;
+    }
 }
