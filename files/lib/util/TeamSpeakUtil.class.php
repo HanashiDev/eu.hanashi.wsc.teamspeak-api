@@ -115,6 +115,6 @@ class TeamSpeakUtil {
      * @return  int
      */
     public static function getCorrectIconID($iconID) {
-        return ($iconid < 0) ? (pow(2, 32))-($iconid * -1) : $iconid;
+        return ($iconID < 0) ? (pow(2, 32))-($iconID * -1) : $iconID;
     }
 }
