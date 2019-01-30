@@ -88,7 +88,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
      * dont forget to use "ftinitupload" before this method
      * 
      * @param   int     $channelID          ID TeamSpeak channel to upload the file
-     * @param   mixed   $data               the content of file to upload
+     * @param   mixed   $filepath           local webserver path of this file
      * @param   string  $filename           the filename to save on TeamSpeak
      * @param   string  $path               the path on TeamSpeak to upload
      * @param   string  $channelPassword    the channel password, if channel has no password leave blank
@@ -96,8 +96,10 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
      * @param   boolean $resume             resume file upload if canceled
      * @throws  TeamSpeakException
      */
-    public function uploadFile($channelID, $data, $filename, $path = '/', $channelPassword = '', $overwrite = true, $resume = false) {
-        $size = strlen($data);
+    public function uploadFile($channelID, $filepath, $filename, $path = '/', $channelPassword = '', $overwrite = true, $resume = false) {
+        if (!file_exists($filepath)) throw new TeamSpeakException('cant find file on local storage');
+
+        $size = filesize($filepath);
 
         $reply = $this->ftinitupload([
             'clientftfid' => CryptoUtil::randomInt(1, 10000),
@@ -112,7 +114,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
             throw new TeamSpeakException('could not create file');
         }
         $filetransfer = new Filetransfer($this->hostname, $reply[0]['port']);
-        $filetransfer->upload($reply[0]['ftkey'], $data, $reply[0]['seekpos']);
+        $filetransfer->upload($reply[0]['ftkey'], $filepath, $reply[0]['seekpos']);
     }
 
     /**
@@ -162,6 +164,6 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
      * @throws  TeamSpeakException
      */
     public function deploySnapshot($snapshot) {
-        $this->tsObj->execute('serversnapshotdeploy '.$snapshot);
+        return $this->tsObj->execute('serversnapshotdeploy -mapping '.$snapshot);
     }
 }

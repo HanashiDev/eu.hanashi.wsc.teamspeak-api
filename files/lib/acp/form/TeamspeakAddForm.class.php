@@ -40,7 +40,7 @@ class TeamspeakAddForm extends AbstractForm {
      * 
      * @var string
      */
-    protected $connectionName;
+    protected $connectionName = 'Default';
 
     /**
      * hostname of teamspeak server
@@ -201,7 +201,7 @@ class TeamspeakAddForm extends AbstractForm {
 
         // reset Data
         $this->teamspeakID = null;
-        $this->connectionName = null;
+        $this->connectionName = 'Default';
         $this->hostname = 'localhost';
         $this->queryType = 'raw';
         $this->queryPort = 10011;

@@ -77,21 +77,23 @@ class Filetransfer {
      * @param   mixed   $data       the file data to upload
      * @param   int     $seek       start byte of file
      */
-    public function upload($ftkey, $data, $seek = 0) {
+    public function upload($ftkey, $filepath, $seek = 0) {
         // write file transfer key to server
         $this->sock->write($ftkey);
 
         // upload file with blocks
-        $size = strlen($data);
+        $size = filesize($filepath);
         $pack = 4096;
+        $file = new File($filepath, 'r');
+
         while ($seek < $size) {
             $rest = $size - $seek;
             $pack = $rest < $pack ? $rest : $pack;
-            $buff = substr($data, $seek, $pack);
+            $this->sock->write($file->read($rest < $pack ? $rest : $pack));
             $seek = $seek + $pack;
-            
-            $this->sock->write($buff);
         }
+
+        $file->close();
     }
 
     /**
