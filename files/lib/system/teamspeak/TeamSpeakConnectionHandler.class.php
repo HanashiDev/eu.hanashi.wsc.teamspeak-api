@@ -18,41 +18,6 @@ use wcf\util\TeamSpeakUtil;
 */
 class TeamSpeakConnectionHandler {
     /**
-     * the hostname/ip of your TeamSpeak server
-     * 
-     * @var string
-     */
-    protected $hostname;
-
-    /**
-     * the server query port of your TeamSpeak server (standard: raw = 10011; ssh = 10022)
-     * 
-     * @var int
-     */
-    protected $port;
-
-    /**
-     * Username of server query (standard: serveradmin)
-     * 
-     * @var string
-     */
-    protected $username;
-
-    /**
-     * Password of server query
-     * 
-     * @var string
-     */
-    protected $password;
-
-    /**
-     * Select the query protocol (raw = use raw server query; ssh = use ssh server query)
-     * 
-     * @var string
-     */
-    protected $queryProtocol;
-
-    /**
      * server query object
      * 
      * @var TeamSpeakRawHandler
@@ -70,32 +35,10 @@ class TeamSpeakConnectionHandler {
      * @param   string  $queryProtocol  Select the query protocol (raw = use raw server query; ssh = use ssh server query)
      */
     public function __construct($hostname, $port, $username, $password, $queryProtocol = 'raw') {
-        $this->hostname = $hostname;
-        $this->port = $port;
-        $this->queryProtocol = $queryProtocol;
-        $this->username = $username;
-        $this->password = $password;
-
-        $this->connect();
-    }
-
-    /**
-     * destruct of TeamSpeak class
-     */
-    public function __destruct() {
-        if ($this->teamSpeakHandler->queryObj) {
-            $this->execute('quit');
-        }
-    }
-
-    /**
-     * connect to TeamSpeak server query over ssh or raw connection
-     */
-    protected function connect() {
-        if ($this->queryProtocol == 'raw') {
-            $this->teamSpeakHandler = new TeamSpeakRawHandler($this->hostname, $this->port, $this->username, $this->password);
-        } else if ($this->queryProtocol == 'ssh') {
-            $this->teamSpeakHandler = new TeamSpeakSshHandler($this->hostname, $this->port, $this->username, $this->password);
+        if ($queryProtocol == 'raw') {
+            $this->teamSpeakHandler = new TeamSpeakRawHandler($hostname, $port, $username, $password);
+        } else if ($queryProtocol == 'ssh') {
+            $this->teamSpeakHandler = new TeamSpeakSshHandler($hostname, $port, $username, $password);
         }
     }
     

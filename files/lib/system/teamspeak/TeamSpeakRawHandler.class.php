@@ -64,6 +64,15 @@ class TeamSpeakRawHandler implements ITeamSpeakHandler {
     /**
      * @inheritDoc
      */
+    public function __destruct() {
+        if ($this->queryObj) {
+            $this->execute('quit');
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function connect() {
         $this->queryObj = new RemoteFile($this->hostname, $this->port);
 

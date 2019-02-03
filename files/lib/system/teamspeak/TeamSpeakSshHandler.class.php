@@ -47,7 +47,7 @@ class TeamSpeakSshHandler implements ITeamSpeakHandler {
      * 
      * @var SSH2
      */
-    public $queryObj;
+    protected $queryObj;
 
     /**
      * @inheritDoc
@@ -59,6 +59,15 @@ class TeamSpeakSshHandler implements ITeamSpeakHandler {
         $this->password = $password;
 
         $this->connect();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function __destruct() {
+        if ($this->queryObj) {
+            $this->execute('quit');
+        }
     }
 
     /**
@@ -95,12 +104,13 @@ class TeamSpeakSshHandler implements ITeamSpeakHandler {
      */
     public function execute($command) {
         $result = [];
-        $this->queryObj->puts($command."\n");
+        $this->queryObj->write($command."\n");
+        $commandLine = $this->queryObj->read("\n");
         if ($command == 'quit') {
-            return true;
+            return [];
         }
         do {
-			$line = StringUtil::trim($this->queryObj->gets());
+            $line = StringUtil::trim($this->queryObj->read("\n"));
             $result[] = $line;
         } while ($line && substr($line, 0, 5) != "error");
         

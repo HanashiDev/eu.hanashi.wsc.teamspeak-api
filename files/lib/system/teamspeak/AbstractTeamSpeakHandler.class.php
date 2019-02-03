@@ -136,11 +136,16 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
             'cpw' => $channelPassword,
             'seekpos' => 0
         ]);
-        if (count($reply) != 1 || empty($reply[0])) {
+        if (count($reply) < 1 || count($reply) > 2 || empty($reply[0])) {
             throw new TeamSpeakException('could not find file');
         }
-        $filetransfer = new Filetransfer($this->hostname, $reply[0]['port']);
-        return $filetransfer->download($reply[0]['ftkey'], $reply[0]['size']);
+        
+        $replyTmp = $reply[0];
+        if (count($reply) == 2) {
+            $replyTmp = $reply[1];
+        }
+        $filetransfer = new Filetransfer($this->hostname, $replyTmp['port']);
+        return $filetransfer->download($replyTmp['ftkey'], $replyTmp['size']);
     }
 
     /**

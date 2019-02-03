@@ -13,6 +13,11 @@ interface ITeamSpeakHandler {
     public function __construct($hostname, $port, $username, $password);
 
     /**
+     * destruct of TeamSpeak class
+     */
+    public function __destruct();
+
+    /**
      * connect to TeamSpeak server query
      */
     public function connect();
@@ -24,7 +29,7 @@ interface ITeamSpeakHandler {
      * @param   string  $returnRaw      get raw return
      * @return  array
      */
-    public function execute($command, $returnRaw = false);
+    public function execute($command);
 
     /**
      * Authenticates with the TeamSpeak Server instance using given ServerQuery login credentials.
