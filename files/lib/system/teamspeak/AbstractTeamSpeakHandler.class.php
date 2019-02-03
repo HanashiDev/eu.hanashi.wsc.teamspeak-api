@@ -43,7 +43,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
         if (!$teamspeak->teamspeakID || $teamspeak->teamspeakID != $this->teamspeakID) return;
 
         $this->hostname = $teamspeak->hostname;
-        $this->tsObj = new \wcf\system\teamspeak\TeamSpeak($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->queryType);
+        $this->tsObj = new \wcf\system\teamspeak\TeamSpeakConnectionHandler($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->queryType);
         $this->tsObj->use(['port' => $teamspeak->virtualServerPort]);
         if (!empty($teamspeak->displayName)) {
             // Wenn Namen vergeben ist, dann hinten eine Nummer dran hängen, maximal 20 Versuche

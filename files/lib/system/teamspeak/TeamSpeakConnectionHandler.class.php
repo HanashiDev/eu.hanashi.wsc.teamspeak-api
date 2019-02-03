@@ -16,7 +16,7 @@ use wcf\util\TeamSpeakUtil;
 * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package	WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeak {
+class TeamSpeakConnectionHandler {
     /**
      * the hostname/ip of your TeamSpeak server
      * 
@@ -55,10 +55,10 @@ class TeamSpeak {
     /**
      * server query object
      * 
-     * @var RemoteFile
-     * @var ressource
+     * @var TeamSpeakRawHandler
+     * @var TeamSpeakSshHandler
      */
-    protected $queryObj;
+    protected $teamSpeakHandler;
 
     /**
      * construct for TeamSpeak class
@@ -83,7 +83,7 @@ class TeamSpeak {
      * destruct of TeamSpeak class
      */
     public function __destruct() {
-        if ($this->queryObj) {
+        if ($this->teamSpeakHandler->queryObj) {
             $this->execute('quit');
         }
     }
@@ -93,44 +93,9 @@ class TeamSpeak {
      */
     protected function connect() {
         if ($this->queryProtocol == 'raw') {
-            $this->queryObj = new RemoteFile($this->hostname, $this->port);
+            $this->teamSpeakHandler = new TeamSpeakRawHandler($this->hostname, $this->port, $this->username, $this->password);
         } else if ($this->queryProtocol == 'ssh') {
-            require_once(WCF_DIR.'lib/system/api/phpseclib/autoload.php');
-            $this->queryObj = new SSH2($this->hostname, $this->port);
-        }
-
-        if (!$this->queryObj) {
-            throw new TeamSpeakException('Connection failed');
-        }
-        if ($this->queryProtocol == 'raw') {
-            if (StringUtil::trim($this->queryObj->gets()) != 'TS3') {
-                throw new TeamSpeakException('Not a TeamSpeak server');
-            }
-            $motd = $this->queryObj->gets();
-        }
-
-        // login to server query
-        $this->login($this->username, $this->password);
-    }
-
-    /**
-     * Authenticates with the TeamSpeak Server instance using given ServerQuery login credentials.
-     * 
-     * @param   string  $username       Username of server query (standard: serveradmin)
-     * @param   string  $password       Password of server query
-     */
-    public function login($username, $password) {
-        if ($this->queryProtocol == 'raw') {
-            $this->execute('login client_login_name='.TeamSpeakUtil::escape($username).' client_login_password='.TeamSpeakUtil::escape($password));
-        } else if ($this->queryProtocol == 'ssh') {
-            if (!$this->queryObj->login($username, $password)) {
-                throw new TeamSpeakException('Authentication failed...');
-            }
-            $header = StringUtil::trim($this->queryObj->read("\n"));
-            if ($header != 'TS3') {
-                throw new TeamSpeakException('Not a TeamSpeak server');
-            }
-            $motd = StringUtil::trim($this->queryObj->read("\n"));
+            $this->teamSpeakHandler = new TeamSpeakSshHandler($this->hostname, $this->port, $this->username, $this->password);
         }
     }
     
@@ -174,54 +139,7 @@ class TeamSpeak {
      * @return  array
      */
     public function execute($command, $returnRaw = false) {
-        if ($this->queryProtocol == 'raw') {
-            return $this->executeRaw($command, $returnRaw);
-        } else if ($this->queryProtocol == 'ssh') {
-            return $this->executeSsh($command, $returnRaw);
-        }
-    }
-
-    /**
-     * method to execute ssh server query commands
-     * 
-     * @param   string  $command        Command to execute on server
-     * @param   string  $returnRaw      get raw return
-     * @return  array
-     */
-    protected function executeSsh($command, $returnRaw = false) {
-        $result = [];
-        $this->queryObj->write($command."\n");
-        $commandLine = $this->queryObj->read("\n");
-        if ($command == 'quit') {
-            return true;
-        }
-        do {
-            $line = StringUtil::trim($this->queryObj->read("\n"));
-            $result[] = $line;
-        } while ($line && substr($line, 0, 5) != "error");
-
-        if ($returnRaw) return $result;
-        return $this->parseResult($result);
-    }
-
-    /**
-     * method to execute raw server query commands
-     * 
-     * @param   string  $command        Command to execute on server
-     * @param   string  $returnRaw      get raw return
-     * @return  array
-     */
-    protected function executeRaw($command, $returnRaw = false) {
-        $result = [];
-        $this->queryObj->puts($command."\n");
-        if ($command == 'quit') {
-            return true;
-        }
-        do {
-			$line = StringUtil::trim($this->queryObj->gets());
-            $result[] = $line;
-        } while ($line && substr($line, 0, 5) != "error");
-        
+        $result = $this->teamSpeakHandler->execute($command);
         if ($returnRaw) return $result;
         return $this->parseResult($result);
     }
