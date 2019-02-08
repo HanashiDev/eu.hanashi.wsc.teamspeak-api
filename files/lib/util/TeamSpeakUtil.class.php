@@ -35,13 +35,14 @@ class TeamSpeakUtil {
      * @param   string  $childColumnName    column name of child id
      * @return  array
      */
-    public static function getChilds($array, $searchKey, $searchValue, $childColumnName = 'cid') {
+    public static function getChilds($array, $searchKey, $searchValue, $childColumnName = 'cid', $level = 1) {
 		$childKeys = array_keys(array_column($array, $searchKey), $searchValue);
 		$childs = [];
 		
 		foreach ($childKeys as $childKey) {
 			$child = $array[$childKey];
-			$child['childs'] = self::getChilds($array, $searchKey, $child[$childColumnName], $childColumnName);
+            $child['childs'] = self::getChilds($array, $searchKey, $child[$childColumnName], $childColumnName, $level + 1);
+            $child['level'] = $level;
 			$childs[] = $child;
 		}
 		
