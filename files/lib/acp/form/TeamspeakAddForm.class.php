@@ -5,7 +5,7 @@ use wcf\form\AbstractForm;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
-use wcf\system\teamspeak\TeamSpeak;
+use wcf\system\teamspeak\TeamSpeakConnectionHandler;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
 
@@ -157,7 +157,7 @@ class TeamspeakAddForm extends AbstractForm {
         }
 
         try {
-            new TeamSpeak($this->hostname, $this->queryPort, $this->username, $this->password, $this->queryType);
+            new TeamSpeakConnectionHandler($this->hostname, $this->queryPort, $this->username, $this->password, $this->queryType);
         } catch (TeamSpeakException $e) {
             throw new UserInputException('hostname', 'cantConnect');
         } catch (SystemException $e) {
