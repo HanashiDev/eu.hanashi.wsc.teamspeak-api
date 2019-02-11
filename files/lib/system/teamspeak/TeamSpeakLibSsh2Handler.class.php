@@ -103,19 +103,11 @@ class TeamSpeakLibSsh2Handler implements ITeamSpeakHandler {
         }
         stream_set_blocking($this->queryObj, true);
 
-        $header = StringUtil::trim($this->read());
+        $header = StringUtil::trim(stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r"));
         if ($header != 'TS3') {
             throw new TeamSpeakException('Not a TeamSpeak server');
         }
-        $motd = StringUtil::trim($this->read());
-    }
-
-    public function read() {
-        return stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r");
-    }
-
-    public function write($line) {
-        fwrite($this->queryObj, $line . "\n");
+        $motd = StringUtil::trim(stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r"));
     }
 
     /**
@@ -123,13 +115,12 @@ class TeamSpeakLibSsh2Handler implements ITeamSpeakHandler {
      */
     public function execute($command) {
         $result = [];
-        $this->write($command);
-        $commandLine = $this->read();
+        fwrite($this->queryObj, $command . "\n");
         if ($command == 'quit') {
             return [];
         }
         do {
-            $line = StringUtil::trim($this->read());
+            $line = StringUtil::trim(stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r"));
             $result[] = $line;
         } while ($line && substr($line, 0, 5) != "error");
         
