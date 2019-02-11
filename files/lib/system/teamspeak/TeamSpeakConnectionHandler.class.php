@@ -38,11 +38,11 @@ class TeamSpeakConnectionHandler {
         if ($queryProtocol == 'raw') {
             $this->teamSpeakHandler = new TeamSpeakRawHandler($hostname, $port, $username, $password);
         } else if ($queryProtocol == 'ssh') {
-            if (function_exists('ssh2_connect') && function_exists('ssh2_auth_password') && function_exists('ssh2_shell')) {
-                $this->teamSpeakHandler = new TeamSpeakLibSsh2Handler($hostname, $port, $username, $password);
-            } else {
+            // if (function_exists('ssh2_connect') && function_exists('ssh2_auth_password') && function_exists('ssh2_shell')) {
+            //     $this->teamSpeakHandler = new TeamSpeakLibSsh2Handler($hostname, $port, $username, $password);
+            // } else {
                 $this->teamSpeakHandler = new TeamSpeakSshHandler($hostname, $port, $username, $password);
-            }
+            // }
         }
     }
     
