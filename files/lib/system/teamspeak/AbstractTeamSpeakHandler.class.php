@@ -136,7 +136,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory {
             'cpw' => $channelPassword,
             'seekpos' => 0
         ]);
-        if (count($reply) < 1 || count($reply) > 2 || empty($reply[0])) {
+        if (count($reply) < 1 || count($reply) > 2 || empty($reply[0]) || empty($replyTmp[0]['port'])) {
             throw new TeamSpeakException('could not find file');
         }
         
