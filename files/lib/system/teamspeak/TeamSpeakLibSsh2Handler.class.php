@@ -1,5 +1,6 @@
 <?php
 namespace wcf\system\teamspeak;
+use wcf\system\exception\ErrorException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
 use wcf\util\TeamSpeakUtil;
@@ -80,7 +81,11 @@ class TeamSpeakLibSsh2Handler implements ITeamSpeakHandler {
      * @inheritDoc
      */
     public function connect() {
-        $this->connection = ssh2_connect($this->hostname, $this->port);
+        try {
+            $this->connection = ssh2_connect($this->hostname, $this->port);
+        } catch (ErrorException $e) {
+            throw new TeamSpeakException('Connection failed');
+        }
 
         if (!$this->connection) {
             throw new TeamSpeakException('Connection failed');

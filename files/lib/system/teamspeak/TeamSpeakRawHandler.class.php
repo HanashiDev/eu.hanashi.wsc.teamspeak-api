@@ -1,5 +1,6 @@
 <?php
 namespace wcf\system\teamspeak;
+use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\io\RemoteFile;
 use wcf\util\StringUtil;
@@ -74,7 +75,11 @@ class TeamSpeakRawHandler implements ITeamSpeakHandler {
      * @inheritDoc
      */
     public function connect() {
-        $this->queryObj = new RemoteFile($this->hostname, $this->port);
+        try {
+            $this->queryObj = new RemoteFile($this->hostname, $this->port);
+        } catch (SystemException $e) {
+            throw new TeamSpeakException('Connection failed');
+        }
 
         if (!$this->queryObj) {
             throw new TeamSpeakException('Connection failed');

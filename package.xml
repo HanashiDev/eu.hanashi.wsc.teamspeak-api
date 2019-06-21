@@ -5,13 +5,13 @@
         <packagename language="de"><![CDATA[TeamSpeak-API]]></packagename>
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
-        <version>1.5.2</version>
-        <date>2019-03-10</date>
+        <version>1.5.3</version>
+        <date>2019-06-21</date>
     </packageinformation>
 
     <authorinformation>
         <author><![CDATA[Hanashi]]></author>
-        <authorurl><![CDATA[https://hanashi.eu/]]></authorurl>
+        <authorurl><![CDATA[https://hanashi.dev/]]></authorurl>
     </authorinformation>
 	
 	<compatibility>
@@ -22,10 +22,6 @@
     <requiredpackages>
         <requiredpackage minversion="3.0.19">com.woltlab.wcf</requiredpackage>
     </requiredpackages>
-	
-	<excludedpackages>
-        <excludedpackage version="3.2.0 Alpha 1">com.woltlab.wcf</excludedpackage>
-    </excludedpackages>
 
     <instructions type="install">
 		<!-- files -->
@@ -43,11 +39,7 @@
         <instruction type="userGroupOption" />
         <instruction type="option" />
     </instructions>
-	<instructions type="update" fromversion="1.5.0">
-		<!-- files -->
-        <instruction type="file"/>
-	</instructions>
-	<instructions type="update" fromversion="1.5.1">
+	<instructions type="update" fromversion="1.5.2">
 		<!-- files -->
         <instruction type="file"/>
 	</instructions>
