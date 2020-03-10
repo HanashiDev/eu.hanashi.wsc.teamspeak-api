@@ -120,6 +120,9 @@ class TeamSpeakConnectionHandler {
                 }
             }
         }
+        if (empty($error['msg'])) {
+            throw new TeamSpeakException('Unknown teamspeak result: '.print_r($result, true));
+        }
         if ($error['msg'] != 'ok') {
             throw new TeamSpeakException($error['msg']);
         }

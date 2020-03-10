@@ -5,8 +5,8 @@
         <packagename language="de"><![CDATA[TeamSpeak-API]]></packagename>
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
-        <version>1.5.4</version>
-        <date>2019-07-13</date>
+        <version>1.5.5</version>
+        <date>2020-03-10</date>
     </packageinformation>
 
     <authorinformation>
@@ -20,7 +20,7 @@
 	</compatibility>
 
     <requiredpackages>
-        <requiredpackage minversion="3.0.19">com.woltlab.wcf</requiredpackage>
+        <requiredpackage minversion="3.0.0">com.woltlab.wcf</requiredpackage>
     </requiredpackages>
 
     <instructions type="install">
@@ -39,8 +39,8 @@
         <instruction type="userGroupOption" />
         <instruction type="option" />
     </instructions>
-	<instructions type="update" fromversion="1.5.3">
-		<!-- config -->
-        <instruction type="sql">update_1.5.4.sql</instruction>
+	<instructions type="update" fromversion="1.5.4">
+		<!-- files -->
+        <instruction type="file" />
 	</instructions>
 </package>
