@@ -43,4 +43,8 @@
 		<!-- files -->
         <instruction type="file" />
 	</instructions>
+	<instructions type="update" fromversion="1.5.4">
+		<!-- files -->
+        <instruction type="file" />
+	</instructions>
 </package>
