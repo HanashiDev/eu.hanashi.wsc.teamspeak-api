@@ -1,6 +1,7 @@
 <?php
 namespace wcf\system\teamspeak;
 use phpseclib\Net\SSH2;
+use wcf\system\exception\ErrorException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
 use wcf\util\TeamSpeakUtil;
@@ -89,8 +90,12 @@ class TeamSpeakSshHandler implements ITeamSpeakHandler {
      * @inheritDoc
      */
     public function login($username, $password) {
-        if (!$this->queryObj->login($username, $password)) {
-            throw new TeamSpeakException('Authentication failed...');
+        try {
+            if (!$this->queryObj->login($username, $password)) {
+                throw new TeamSpeakException('Authentication failed...');
+            }
+        } catch (ErrorException $e) {
+            throw new TeamSpeakException('Connection failed');
         }
         $header = StringUtil::trim($this->queryObj->read("\n"));
         if ($header != 'TS3') {
