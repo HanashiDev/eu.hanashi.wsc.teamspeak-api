@@ -85,7 +85,7 @@ class TeamSpeakUtil {
 
         $ret = '';
         for ($i = 0; $i < strlen($str); $i++) {
-            $temp = decbin(ord($str{$i}));
+            $temp = decbin(ord($str[$i]));
             $ret .= str_repeat("0", 8 - strlen($temp)) . $temp;
         }
 
