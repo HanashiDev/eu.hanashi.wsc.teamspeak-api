@@ -14,7 +14,7 @@ use wcf\util\TeamSpeakUtil;
 * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package	WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeakRawHandler implements ITeamSpeakHandler {
+class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler {
     /**
      * the hostname/ip of your TeamSpeak server
      * 

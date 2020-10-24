@@ -13,7 +13,7 @@ use wcf\util\TeamSpeakUtil;
 * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package	WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeakLibSsh2Handler implements ITeamSpeakHandler {
+class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
     /**
      * the hostname/ip of your TeamSpeak server
      * 

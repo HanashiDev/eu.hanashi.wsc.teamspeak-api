@@ -57,6 +57,8 @@
 				<select id="queryType" name="queryType" required>
                     <option value="raw"{if $queryType == 'raw'} selected{/if}>raw</option>
                     <option value="ssh"{if $queryType == 'ssh'} selected{/if}>ssh</option>
+                    <option value="http"{if $queryType == 'http'} selected{/if}>http</option>
+                    <option value="https"{if $queryType == 'https'} selected{/if}>https</option>
                 </select>
 				{if $errorField == 'queryType'}
 					<small class="innerError">
@@ -87,7 +89,15 @@
 			</dd>
 		</dl>
 		<dl{if $errorField == 'virtualServerPort'} class="formError"{/if}>
-			<dt><label for="virtualServerPort">{lang}wcf.page.teamspeakAdd.virtualServerPort{/lang}</label></dt>
+			<dt>
+				<label for="virtualServerPort" id="virtualServerPortLanguage">
+					{if $queryType == 'http' || $queryType == 'https'}
+						{lang}wcf.page.teamspeakAdd.virtualServerID{/lang}
+					{else}
+						{lang}wcf.page.teamspeakAdd.virtualServerPort{/lang}
+					{/if}
+				</label>
+			</dt>
 			<dd>
 				<input type="number" name="virtualServerPort" id="virtualServerPort" value="{$virtualServerPort}" min="1" max="65535" required>
 				{if $errorField == 'virtualServerPort'}
@@ -101,10 +111,16 @@
 						{/if}
 					</small>
 				{/if}
-                <small>{lang}wcf.page.teamspeakAdd.virtualServerPort.description{/lang}</small>
+                <small id="virtualServerPortDescriptionLanguage">
+					{if $queryType == 'http' || $queryType == 'https'}
+						{lang}wcf.page.teamspeakAdd.virtualServerID.description{/lang}
+					{else}
+						{lang}wcf.page.teamspeakAdd.virtualServerPort.description{/lang}
+					{/if}
+				</small>
 			</dd>
 		</dl>
-		<dl{if $errorField == 'username'} class="formError"{/if}>
+		<dl{if $errorField == 'username'} class="formError"{/if} id="usernameWrapper"{if $queryType == 'http' || $queryType == 'https'} style="display: none;"{/if}>
 			<dt><label for="username">{lang}wcf.page.teamspeakAdd.username{/lang}</label></dt>
 			<dd>
 				<input type="text" name="username" id="username" value="{$username}" required>
@@ -118,7 +134,15 @@
 			</dd>
 		</dl>
 		<dl{if $errorField == 'password'} class="formError"{/if}>
-			<dt><label for="password">{lang}wcf.page.teamspeakAdd.password{/lang}</label></dt>
+			<dt>
+				<label for="password" id="passwordLanguage">
+					{if $queryType == 'http' || $queryType == 'https'}
+						{lang}wcf.page.teamspeakAdd.apiKey{/lang}
+					{else}
+						{lang}wcf.page.teamspeakAdd.password{/lang}
+					{/if}
+				</label>
+			</dt>
 			<dd>
 				<input type="password" name="password" id="password" value="{$password}" required>
 				{if $errorField == 'username'}
@@ -130,7 +154,7 @@
 				{/if}
 			</dd>
 		</dl>
-		<dl{if $errorField == 'displayName'} class="formError"{/if}>
+		<dl{if $errorField == 'displayName'} class="formError"{/if} id="displayNameWrapper"{if $queryType == 'http' || $queryType == 'https'} style="display: none;"{/if}>
 			<dt><label for="displayName">{lang}wcf.page.teamspeakAdd.displayName{/lang}</label></dt>
 			<dd>
 				<input type="text" name="displayName" id="displayName" value="{$displayName}">
@@ -144,5 +168,19 @@
 		{@SECURITY_TOKEN_INPUT_TAG}
 	</div>
 </form>
+
+<script data-relocate="true">
+	require(["Hanashi/TeamSpeak/ServerAdd", "Language"], function(ServerAdd, Language) {
+		Language.addObject({
+			'wcf.page.teamspeakAdd.virtualServerPort': '{lang}wcf.page.teamspeakAdd.virtualServerPort{/lang}',
+			'wcf.page.teamspeakAdd.virtualServerPort.description': '{lang}wcf.page.teamspeakAdd.virtualServerPort.description{/lang}',
+			'wcf.page.teamspeakAdd.virtualServerID': '{lang}wcf.page.teamspeakAdd.virtualServerID{/lang}',
+			'wcf.page.teamspeakAdd.virtualServerID.description': '{lang}wcf.page.teamspeakAdd.virtualServerID.description{/lang}',
+			'wcf.page.teamspeakAdd.password': '{lang}wcf.page.teamspeakAdd.password{/lang}',
+			'wcf.page.teamspeakAdd.apiKey': '{lang}wcf.page.teamspeakAdd.apiKey{/lang}'
+		});
+		new ServerAdd();
+	});
+</script>
 
 {include file='footer'}
