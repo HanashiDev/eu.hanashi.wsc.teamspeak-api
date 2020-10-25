@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/language.xsd" languagecode="en">
+	<category name="wcf.acp.teamSpeakSelectOptionType">
+		<item name="wcf.acp.teamSpeakSelectOptionType.noBot"><![CDATA[You haven't added a TeamSpeak server yet. You can do this under <a href="{link controller="TeamspeakAdd"}{/link}">add TeamSpeak server</a>.]]></item>
+	</category>
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.teamspeak"><![CDATA[TeamSpeak]]></item>
 	</category>

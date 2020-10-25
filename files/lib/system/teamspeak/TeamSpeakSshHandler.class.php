@@ -67,7 +67,11 @@ class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler {
      */
     public function __destruct() {
         if ($this->queryObj) {
-            $this->execute('quit');
+            try {
+                $this->execute('quit');
+            } catch (ErrorException $e) {
+                // do nothing
+            }
         }
     }
 

@@ -5,8 +5,8 @@
         <packagename language="de"><![CDATA[TeamSpeak-API]]></packagename>
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
-        <version>2.0.0</version>
-        <date>2020-10-24</date>
+        <version>2.1.0</version>
+        <date>2020-10-26</date>
     </packageinformation>
 
     <authorinformation>
@@ -39,7 +39,7 @@
         <instruction type="userGroupOption" />
         <instruction type="option" />
     </instructions>
-	<instructions type="update" fromversion="1.5.7">
+	<instructions type="update" fromversion="2.0.0">
 		<!-- files -->
         <instruction type="file" />
 		
@@ -48,8 +48,5 @@
 		
 		<!-- language -->
         <instruction type="language"/>
-		
-		<!-- config -->
-        <instruction type="sql">sql/update_2.0.0.sql</instruction>
 	</instructions>
 </package>
