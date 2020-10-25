@@ -124,7 +124,15 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler {
 	public function call($method, $args) {
 		$command = $method;
 		if (count($args)) {
-			$command = $command . '?' . http_build_query($args[0], null, '&');
+			$arguments = [];
+			foreach ($args[0] as $key => $value) {
+				if (is_numeric($key)) {
+					$arguments[] = $value;
+				} else {
+					$arguments[] = urlencode($key).'='.urlencode($value);
+				}
+			}
+			$command = $command . '?' . implode('&', $arguments);
 		}
 		$result = $this->execute($command);
 		return $this->parseResult($result);
