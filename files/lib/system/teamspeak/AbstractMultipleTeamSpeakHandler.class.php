@@ -10,22 +10,22 @@ abstract class AbstractMultipleTeamSpeakHandler extends SingletonFactory {
 	 *
 	 * @var array
 	 */
-	protected $teamspeakIDs;
+	protected $teamspeakIDs = [];
 	
 	/**
 	 * list of teamspeaks
 	 *
 	 * @var array
 	 */
-	protected $teamspeaks;
+	protected $teamspeaks = [];
 	
 	/**
 	 * @inheritDoc
 	 */
 	public function init() {
-		if (empty($this->teamspeakIDs)) {
-			throw new TeamSpeakException('no teamspeak id selected');
-		}
+		parent::init();
+
+		if (empty($this->teamspeakIDs)) return;
 		
 		$teamspeakList = new TeamSpeakList();
 		$teamspeakList->setObjectIDs($this->teamspeakIDs);
