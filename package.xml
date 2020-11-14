@@ -6,22 +6,21 @@
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
         <version>2.1.0</version>
-        <date>2020-11-09</date>
+        <date>2020-11-14</date>
     </packageinformation>
 
     <authorinformation>
         <author><![CDATA[Hanashi]]></author>
         <authorurl><![CDATA[https://hanashi.dev/]]></authorurl>
     </authorinformation>
-	
-	<compatibility>
-		<api version="2017" />
-		<api version="2018" />
-	</compatibility>
 
     <requiredpackages>
         <requiredpackage minversion="3.0.0">com.woltlab.wcf</requiredpackage>
     </requiredpackages>
+
+    <excludedpackages>
+        <excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+    </excludedpackages>
 
     <instructions type="install">
 		<!-- files -->
