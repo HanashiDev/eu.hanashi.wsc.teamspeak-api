@@ -27,7 +27,7 @@ define(["Language"], function(Language) {
 			}
 
 			if (e.target.value == 'raw') {
-				elById('queryPort').value = '9987';
+				elById('queryPort').value = '10011';
 			} else if (e.target.value == 'ssh') {
 				elById('queryPort').value = '10022';
 			} else if (e.target.value == 'http') {
