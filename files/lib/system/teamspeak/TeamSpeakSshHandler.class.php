@@ -14,7 +14,7 @@ use wcf\util\TeamSpeakUtil;
 * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package	WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeakSshHandler implements ITeamSpeakHandler {
+class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler {
     /**
      * the hostname/ip of your TeamSpeak server
      * 
@@ -67,7 +67,11 @@ class TeamSpeakSshHandler implements ITeamSpeakHandler {
      */
     public function __destruct() {
         if ($this->queryObj) {
-            $this->execute('quit');
+            try {
+                $this->execute('quit');
+            } catch (ErrorException $e) {
+                // do nothing
+            }
         }
     }
 

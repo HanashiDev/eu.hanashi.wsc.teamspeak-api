@@ -38,4 +38,27 @@ interface ITeamSpeakHandler {
      * @param   string  $password       Password of server query
      */
     public function login($username, $password);
+    
+    /**
+     * execute a command from server query
+     * 
+     * Example:
+     * <code>
+     * $ts->use(['port' => 9987, '-virtual'])
+     * </code>
+     * 
+     * @param   string  $method     method name
+     * @param   array   $args       paramaeter
+     * @return  array|null
+     */
+    public function call($method, $args);
+
+    /**
+     * parse the results from TeamSpeak
+     * 
+     * @param   array   $result         result of TeamSpeak server query
+     * @return  array
+     * @throws  TeamSpeakException
+     */
+    public function parseResult($result);
 }

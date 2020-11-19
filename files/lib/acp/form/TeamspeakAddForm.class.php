@@ -123,7 +123,7 @@ class TeamspeakAddForm extends AbstractForm {
         if (empty($this->hostname)) {
             throw new UserInputException('hostname');
         }
-        if (!in_array($this->queryType, ['raw', 'ssh'])) {
+        if (!in_array($this->queryType, ['raw', 'ssh', 'http', 'https'])) {
             throw new UserInputException('queryType', 'invalid');
         }
 
@@ -149,7 +149,7 @@ class TeamspeakAddForm extends AbstractForm {
             throw new UserInputException('virtualServerPort', 'invalid');
         }
 
-        if (empty($this->username)) {
+        if (empty($this->username) && !in_array($this->queryType, ['http', 'https'])) {
             throw new UserInputException('username');
         }
         if (empty($this->password)) {
@@ -157,7 +157,10 @@ class TeamspeakAddForm extends AbstractForm {
         }
 
         try {
-            new TeamSpeakConnectionHandler($this->hostname, $this->queryPort, $this->username, $this->password, $this->queryType);
+            $tsConnection = new TeamSpeakConnectionHandler($this->hostname, $this->queryPort, $this->username, $this->password, $this->virtualServerPort, $this->queryType);
+            if (in_array($this->queryType, ['http', 'https'])) {
+                $tsConnection->serverinfo();
+            }
         } catch (TeamSpeakException $e) {
             throw new UserInputException('hostname', 'cantConnect');
         } catch (SystemException $e) {

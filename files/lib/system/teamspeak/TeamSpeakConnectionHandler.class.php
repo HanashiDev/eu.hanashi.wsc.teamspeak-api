@@ -5,6 +5,7 @@ use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\io\RemoteFile;
 use wcf\system\WCF;
+use wcf\util\JSON;
 use wcf\util\StringUtil;
 use wcf\util\TeamSpeakUtil;
 
@@ -22,8 +23,18 @@ class TeamSpeakConnectionHandler {
      * 
      * @var TeamSpeakRawHandler
      * @var TeamSpeakSshHandler
+     * @var TeamSpeakLibSsh2Handler
+     * @var TeamSpeakHttpHandler
+     * @var TeamSpeakHttpsHandler
      */
     protected $teamSpeakHandler;
+    
+    /**
+     * query protocol
+     *
+     * @var string
+     */
+    protected $queryProtocol;
 
     /**
      * construct for TeamSpeak class
@@ -32,9 +43,12 @@ class TeamSpeakConnectionHandler {
      * @param   int     $port           the server query port of your TeamSpeak server (standard: raw = 10011; ssh = 10022)
      * @param   string  $username       Username of server query (standard: serveradmin)
      * @param   string  $password       Password of server query
+     * @param   int     $virtualServerPort  virtual server port or id
      * @param   string  $queryProtocol  Select the query protocol (raw = use raw server query; ssh = use ssh server query)
      */
-    public function __construct($hostname, $port, $username, $password, $queryProtocol = 'raw') {
+    public function __construct($hostname, $port, $username, $password, $virtualServerPort, $queryProtocol = 'raw') {
+        $this->queryProtocol = $queryProtocol;
+
         if ($queryProtocol == 'raw') {
             $this->teamSpeakHandler = new TeamSpeakRawHandler($hostname, $port, $username, $password);
         } else if ($queryProtocol == 'ssh') {
@@ -43,6 +57,12 @@ class TeamSpeakConnectionHandler {
             } else {
                 $this->teamSpeakHandler = new TeamSpeakSshHandler($hostname, $port, $username, $password);
             }
+        } else if ($queryProtocol == 'http') {
+            $this->teamSpeakHandler = new TeamSpeakHttpHandler($hostname, $port, $username, $password);
+            $this->teamSpeakHandler->setVirtualServerID($virtualServerPort);
+        } else if ($queryProtocol == 'https') {
+            $this->teamSpeakHandler = new TeamSpeakHttpsHandler($hostname, $port, $username, $password);
+            $this->teamSpeakHandler->setVirtualServerID($virtualServerPort);
         }
     }
     
@@ -59,90 +79,6 @@ class TeamSpeakConnectionHandler {
      * @return  array|null
      */
     public function __call($method, $args) {
-        $command = $method;
-        if (count($args) > 0) {
-            foreach ($args as $arg) {
-                if (is_array($arg)) {
-                    foreach ($arg as $key => $val) {
-                        if (is_numeric($key)) {
-                            $command .= ' '.$val;
-                        } else {
-                            $command .= ' '.$key.'='.TeamSpeakUtil::escape($val);
-                        }
-                    }
-                } else {
-                    $command .= ' '.$arg;
-                }
-            }
-        }
-        return $this->execute($command);
-    }
-
-    /**
-     * method to execute server query commands
-     * 
-     * @param   string  $command        Command to execute on server
-     * @param   string  $returnRaw      get raw return
-     * @return  array
-     */
-    public function execute($command, $returnRaw = false) {
-        $result = $this->teamSpeakHandler->execute($command);
-        if ($returnRaw) return $result;
-        return $this->parseResult($result);
-    }
-
-    /**
-     * parse the results from TeamSpeak
-     * 
-     * @param   array   $result         result of TeamSpeak server query
-     * @return  array
-     * @throws  TeamSpeakException
-     */
-    protected function parseResult($result) {
-        $resultArr = [];
-        $error = [];
-
-        foreach ($result as $resultPart) {
-            $resultSplitted = explode('|', $resultPart);
-            foreach ($resultSplitted as $resultRow) {
-                $row = [];
-                $rowSplitted = explode(' ', $resultRow);
-                if (count($rowSplitted) == 0) {
-                    continue;
-                }
-                if ($rowSplitted[0] == 'error') {
-                    $error = $this->parseRow($rowSplitted);
-                } else {
-                    $row = $this->parseRow($rowSplitted);
-                    if (count($row) > 0) {
-                        $resultArr[] = $row;
-                    }
-                }
-            }
-        }
-        if (empty($error['msg'])) {
-            throw new TeamSpeakException('Unknown teamspeak result: '.print_r($result, true));
-        }
-        if ($error['msg'] != 'ok') {
-            throw new TeamSpeakException($error['msg']);
-        }
-        return $resultArr;
-    }
-
-    /**
-     * parse reply row
-     * 
-     * @param   array       $row        Row of result
-     * @return  array
-     */
-    protected function parseRow($row) {
-        $rowArr = [];
-        foreach ($row as $column) {
-            $columnSplitted = explode('=', $column, 2);
-            if (count($columnSplitted) > 1) {
-                $rowArr[$columnSplitted[0]] = TeamSpeakUtil::unescape($columnSplitted[1]);
-            }
-        }
-        return $rowArr;
+        return $this->teamSpeakHandler->call($method, $args);
     }
 }
