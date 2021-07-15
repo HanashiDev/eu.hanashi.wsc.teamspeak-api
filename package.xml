@@ -6,11 +6,11 @@
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
         <version>2.1.1</version>
-        <date>2020-11-19</date>
+        <date>2021-07-15</date>
     </packageinformation>
 
     <authorinformation>
-        <author><![CDATA[Hanashi]]></author>
+        <author><![CDATA[Hanashi Development]]></author>
         <authorurl><![CDATA[https://hanashi.dev/]]></authorurl>
     </authorinformation>
 

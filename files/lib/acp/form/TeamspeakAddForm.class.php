@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\acp\form;
+
 use wcf\data\teamspeak\TeamspeakAction;
 use wcf\form\AbstractForm;
 use wcf\system\exception\TeamSpeakException;
@@ -12,17 +14,18 @@ use wcf\util\StringUtil;
 /**
 * form page to create a new teamspeak connection
 *
-* @author	Peter Lohse <hanashi@hanashi.eu>
-* @copyright	Hanashi
-* @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package	WoltLabSuite\Core\Acp\Form
+* @author   Peter Lohse <hanashi@hanashi.eu>
+* @copyright    Hanashi
+* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+* @package  WoltLabSuite\Core\Acp\Form
 */
-class TeamspeakAddForm extends AbstractForm {
+class TeamspeakAddForm extends AbstractForm
+{
     /**
      * @inheritDoc
      */
-	public $neededPermissions = ['admin.teamspeak.canManageConnection'];
-    
+    public $neededPermissions = ['admin.teamspeak.canManageConnection'];
+
     /**
      * @inheritDoc
      */
@@ -30,21 +33,21 @@ class TeamspeakAddForm extends AbstractForm {
 
     /**
      * TeamSpeak database ID
-     * 
+     *
      * @var int
      */
     protected $teamspeakID;
-    
+
     /**
      * custom name for teamspeak connection
-     * 
+     *
      * @var string
      */
     protected $connectionName = 'Default';
 
     /**
      * hostname of teamspeak server
-     * 
+     *
      * @var string
      */
     protected $hostname = 'localhost';
@@ -52,7 +55,7 @@ class TeamspeakAddForm extends AbstractForm {
     /**
      * query type for connect to teamspeak server (raw or ssh)
      * default: raw
-     * 
+     *
      * @var string
      */
     protected $queryType;
@@ -61,7 +64,7 @@ class TeamspeakAddForm extends AbstractForm {
      * teamspeak server query port
      * raw port: 10011
      * ssh port: 10022
-     * 
+     *
      * @var int
      */
     protected $queryPort = 10011;
@@ -69,54 +72,72 @@ class TeamspeakAddForm extends AbstractForm {
     /**
      * port of virtal server
      * default port: 9987
-     * 
+     *
      * @var int
      */
     protected $virtualServerPort = 9987;
 
     /**
      * username of server query
-     * 
+     *
      * @var string
      */
     protected $username = 'serveradmin';
 
     /**
      * server query password
-     * 
+     *
      * @var string
      */
     protected $password;
 
     /**
      * display name in TeamSpeak
-     * 
+     *
      * @var string
      */
     protected $displayName = 'WSC';
-    
+
     /**
      * @inheritDoc
      */
-	public function readFormParameters() {
+    public function readFormParameters()
+    {
         parent::readFormParameters();
-        
-        if (isset($_POST['connectionName'])) $this->connectionName = StringUtil::trim($_POST['connectionName']);
-        if (isset($_POST['hostname'])) $this->hostname = StringUtil::trim($_POST['hostname']);
-        if (isset($_POST['queryType'])) $this->queryType = StringUtil::trim($_POST['queryType']);
-        if (isset($_POST['queryPort'])) $this->queryPort = StringUtil::trim($_POST['queryPort']);
-        if (isset($_POST['virtualServerPort'])) $this->virtualServerPort = StringUtil::trim($_POST['virtualServerPort']);
-        if (isset($_POST['username'])) $this->username = StringUtil::trim($_POST['username']);
-        if (isset($_POST['password'])) $this->password = StringUtil::trim($_POST['password']);
-        if (isset($_POST['displayName'])) $this->displayName = StringUtil::trim($_POST['displayName']);
-	}
-    
+
+        if (isset($_POST['connectionName'])) {
+            $this->connectionName = StringUtil::trim($_POST['connectionName']);
+        }
+        if (isset($_POST['hostname'])) {
+            $this->hostname = StringUtil::trim($_POST['hostname']);
+        }
+        if (isset($_POST['queryType'])) {
+            $this->queryType = StringUtil::trim($_POST['queryType']);
+        }
+        if (isset($_POST['queryPort'])) {
+            $this->queryPort = StringUtil::trim($_POST['queryPort']);
+        }
+        if (isset($_POST['virtualServerPort'])) {
+            $this->virtualServerPort = StringUtil::trim($_POST['virtualServerPort']);
+        }
+        if (isset($_POST['username'])) {
+            $this->username = StringUtil::trim($_POST['username']);
+        }
+        if (isset($_POST['password'])) {
+            $this->password = StringUtil::trim($_POST['password']);
+        }
+        if (isset($_POST['displayName'])) {
+            $this->displayName = StringUtil::trim($_POST['displayName']);
+        }
+    }
+
     /**
      * @inheritDoc
      */
-	public function validate() {
+    public function validate()
+    {
         parent::validate();
-        
+
         if (empty($this->connectionName)) {
             throw new UserInputException('connectionName');
         }
@@ -170,36 +191,38 @@ class TeamspeakAddForm extends AbstractForm {
             }
             throw new UserInputException('hostname', 'cantConnect');
         }
-	}
-    
+    }
+
     /**
      * @inheritDoc
      */
-	public function save() {
+    public function save()
+    {
         parent::save();
-        
+
         $action = new TeamspeakAction([], 'create', ['data' => [
-			'connectionName' => $this->connectionName,
-			'hostname' => $this->hostname,
-			'queryType' => $this->queryType,
-			'queryPort' => $this->queryPort,
-			'virtualServerPort' => $this->virtualServerPort,
-			'username' => $this->username,
+            'connectionName' => $this->connectionName,
+            'hostname' => $this->hostname,
+            'queryType' => $this->queryType,
+            'queryPort' => $this->queryPort,
+            'virtualServerPort' => $this->virtualServerPort,
+            'username' => $this->username,
             'password' => $this->password,
             'displayName' => $this->displayName,
-			'creationDate' => TIME_NOW
-		]]);
-		$action->executeAction();
-		
-		$this->saved();
-	}
-    
+            'creationDate' => TIME_NOW
+        ]]);
+        $action->executeAction();
+
+        $this->saved();
+    }
+
     /**
      * @inheritDoc
      */
-	public function saved() {		
-		parent::saved();
-		
+    public function saved()
+    {
+        parent::saved();
+
         WCF::getTPL()->assign('success', true);
 
         // reset Data
@@ -212,14 +235,15 @@ class TeamspeakAddForm extends AbstractForm {
         $this->username = 'serveradmin';
         $this->password = null;
         $this->displayName = 'WSC';
-	}
-    
+    }
+
     /**
      * @inheritDoc
      */
-	public function assignVariables() {
+    public function assignVariables()
+    {
         parent::assignVariables();
-        
+
         WCF::getTPL()->assign([
             'action' => 'add',
             'teamspeakID' => $this->teamspeakID,
@@ -232,5 +256,5 @@ class TeamspeakAddForm extends AbstractForm {
             'password' => $this->password,
             'displayName' => $this->displayName
         ]);
-	}
+    }
 }

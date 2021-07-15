@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\system\option;
+
 use wcf\data\option\Option;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\data\teamspeak\TeamspeakList;
@@ -10,32 +12,35 @@ use wcf\system\WCF;
  * custom option type for teamspeak connections
  * name of option type: TeamSpeakConnectionSelect
  *
- * @author	Peter Lohse <hanashi@hanashi.eu>
- * @copyright	Hanashi
- * @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
- * @package	WoltLabSuite\Core\System\Option
+ * @author  Peter Lohse <hanashi@hanashi.eu>
+ * @copyright   Hanashi
+ * @license Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package WoltLabSuite\Core\System\Option
  */
-class TeamSpeakConnectionSelectOptionType extends AbstractOptionType {
+class TeamSpeakConnectionSelectOptionType extends AbstractOptionType
+{
     /**
      * @inheritDoc
      */
-    public function getFormElement(Option $option, $value) {
+    public function getFormElement(Option $option, $value)
+    {
         $teamspeakList = new TeamspeakList();
         $teamspeakList->sqlOrderBy = 'connectionName ASC';
         $teamspeakList->readObjects();
 
         WCF::getTPL()->assign([
-			'teamspeakList' => $teamspeakList,
-			'option' => $option,
-			'value' => $value
-		]);
+            'teamspeakList' => $teamspeakList,
+            'option' => $option,
+            'value' => $value
+        ]);
         return WCF::getTPL()->fetch('teamSpeakConnectionSelectOptionType');
     }
 
     /**
      * @inheritDoc
      */
-    public function validate(Option $option, $newValue) {
+    public function validate(Option $option, $newValue)
+    {
         if (!empty($newValue)) {
             $teamspeak = new Teamspeak($newValue);
             if (!$teamspeak->teamspeakID) {

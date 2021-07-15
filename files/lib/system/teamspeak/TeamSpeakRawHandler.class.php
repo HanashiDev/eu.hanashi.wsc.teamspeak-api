@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\system\teamspeak;
+
 use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\io\RemoteFile;
@@ -9,43 +11,44 @@ use wcf\util\TeamSpeakUtil;
 /**
 * Api for connection with TeamSpeak raw server query.
 *
-* @author	Peter Lohse <hanashi@hanashi.eu>
-* @copyright	Hanashi
-* @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package	WoltLabSuite\Core\System\TeamSpeak
+* @author   Peter Lohse <hanashi@hanashi.eu>
+* @copyright    Hanashi
+* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+* @package  WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler {
+class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
+{
     /**
      * the hostname/ip of your TeamSpeak server
-     * 
+     *
      * @var string
      */
     protected $hostname;
 
     /**
      * the server query port of your TeamSpeak server (standard: raw = 10011; ssh = 10022)
-     * 
+     *
      * @var int
      */
     protected $port;
 
     /**
      * Username of server query (standard: serveradmin)
-     * 
+     *
      * @var string
      */
     protected $username;
 
     /**
      * Password of server query
-     * 
+     *
      * @var string
      */
     protected $password;
 
     /**
      * server query object
-     * 
+     *
      * @var SSH2
      */
     public $queryObj;
@@ -53,7 +56,8 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function __construct($hostname, $port, $username, $password) {
+    public function __construct($hostname, $port, $username, $password)
+    {
         $this->hostname = $hostname;
         $this->port = $port;
         $this->username = $username;
@@ -65,7 +69,8 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function __destruct() {
+    public function __destruct()
+    {
         if ($this->queryObj) {
             $this->execute('quit');
         }
@@ -74,7 +79,8 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function connect() {
+    public function connect()
+    {
         try {
             $this->queryObj = new RemoteFile($this->hostname, $this->port);
         } catch (SystemException $e) {
@@ -97,24 +103,26 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function login($username, $password) {
-        $this->execute('login client_login_name='.TeamSpeakUtil::escape($username).' client_login_password='.TeamSpeakUtil::escape($password));
+    public function login($username, $password)
+    {
+        $this->execute('login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password=' . TeamSpeakUtil::escape($password));
     }
 
     /**
      * @inheritDoc
      */
-    public function execute($command) {
+    public function execute($command)
+    {
         $result = [];
-        $this->queryObj->puts($command."\n");
+        $this->queryObj->puts($command . "\n");
         if ($command == 'quit') {
             return true;
         }
         do {
-			$line = StringUtil::trim($this->queryObj->gets());
+            $line = StringUtil::trim($this->queryObj->gets());
             $result[] = $line;
         } while ($line && substr($line, 0, 5) != "error");
-        
+
         return $result;
     }
 }

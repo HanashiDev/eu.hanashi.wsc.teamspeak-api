@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\data\teamspeak;
+
 use wcf\data\DatabaseObject;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\teamspeak\ITeamSpeakHandler;
@@ -9,35 +11,37 @@ use wcf\system\WCF;
 /**
 * TeamSpeak data class
 *
-* @author	Peter Lohse <hanashi@hanashi.eu>
-* @copyright	Hanashi
-* @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package	WoltLabSuite\Core\Data\TeamSpeak
+* @author   Peter Lohse <hanashi@hanashi.eu>
+* @copyright    Hanashi
+* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+* @package  WoltLabSuite\Core\Data\TeamSpeak
 */
-class Teamspeak extends DatabaseObject {
+class Teamspeak extends DatabaseObject
+{
     /**
      * @inheritDoc
      */
     protected static $databaseTableName = 'teamspeak';
-    
+
     /**
      * @inheritDoc
      */
     protected static $databaseTableIndexName = 'teamspeakID';
-    
+
     /**
      * teamspeak connection
      *
      * @var ITeamSpeakHandler
      */
     protected $connection;
-    
+
     /**
      * getConnection
      *
      * @return ITeamSpeakHandler
      */
-    public function getConnection() {
+    public function getConnection()
+    {
         if ($this->connection === null) {
             $this->connection = new TeamSpeakConnectionHandler($this->hostname, $this->queryPort, $this->username, $this->password, $this->virtualServerPort, $this->queryType);
             if (!in_array($this->queryType, ['http', 'https'])) {
@@ -52,7 +56,8 @@ class Teamspeak extends DatabaseObject {
                             }
                             $this->connection->clientupdate(['client_nickname' => $name]);
                             break;
-                        } catch (TeamSpeakException $e) {}
+                        } catch (TeamSpeakException $e) {
+                        }
                     }
                 }
             }

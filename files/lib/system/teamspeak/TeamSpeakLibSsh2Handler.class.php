@@ -1,5 +1,7 @@
 <?php
+
 namespace wcf\system\teamspeak;
+
 use wcf\system\exception\ErrorException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
@@ -8,50 +10,51 @@ use wcf\util\TeamSpeakUtil;
 /**
 * Api for connection with TeamSpeak ssh server query with libssh2.
 *
-* @author	Peter Lohse <hanashi@hanashi.eu>
-* @copyright	Hanashi
-* @license	Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package	WoltLabSuite\Core\System\TeamSpeak
+* @author   Peter Lohse <hanashi@hanashi.eu>
+* @copyright    Hanashi
+* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+* @package  WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
+class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
+{
     /**
      * the hostname/ip of your TeamSpeak server
-     * 
+     *
      * @var string
      */
     protected $hostname;
 
     /**
      * the server query port of your TeamSpeak server (standard: raw = 10011; ssh = 10022)
-     * 
+     *
      * @var int
      */
     protected $port;
 
     /**
      * Username of server query (standard: serveradmin)
-     * 
+     *
      * @var string
      */
     protected $username;
 
     /**
      * Password of server query
-     * 
+     *
      * @var string
      */
     protected $password;
 
     /**
      * SSH2 connection ressource
-     * 
+     *
      * @var resource
      */
     protected $connection;
 
     /**
      * server query object
-     * 
+     *
      * @var resource
      */
     protected $queryObj;
@@ -59,7 +62,8 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function __construct($hostname, $port, $username, $password) {
+    public function __construct($hostname, $port, $username, $password)
+    {
         $this->hostname = $hostname;
         $this->port = $port;
         $this->username = $username;
@@ -71,7 +75,8 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function __destruct() {
+    public function __destruct()
+    {
         if ($this->queryObj) {
             $this->execute('quit');
         }
@@ -80,7 +85,8 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function connect() {
+    public function connect()
+    {
         try {
             $this->connection = ssh2_connect($this->hostname, $this->port);
         } catch (ErrorException $e) {
@@ -98,7 +104,8 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function login($username, $password) {
+    public function login($username, $password)
+    {
         if (!ssh2_auth_password($this->connection, $username, $password)) {
             throw new TeamSpeakException('Authentication failed...');
         }
@@ -118,7 +125,8 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
     /**
      * @inheritDoc
      */
-    public function execute($command) {
+    public function execute($command)
+    {
         $result = [];
         fwrite($this->queryObj, $command . "\n");
         if ($command == 'quit') {
@@ -128,7 +136,7 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler {
             $line = StringUtil::trim(stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r"));
             $result[] = $line;
         } while ($line && substr($line, 0, 5) != "error");
-        
+
         return $result;
     }
 }
