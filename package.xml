@@ -34,9 +34,9 @@
 		
 		<!-- config -->
         <instruction type="acpMenu" />
-        <instruction type="sql" />
         <instruction type="userGroupOption" />
         <instruction type="option" />
+        <instruction type="script">acp/install_eu.hanashi.wsc.teamspeak-api_3.0.0.php</instruction>
     </instructions>
 	<instructions type="update" fromversion="2.1.1">
 		<!-- files -->
