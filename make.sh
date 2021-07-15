@@ -1,6 +1,6 @@
 #!/bin/bash
 PACKAGE_NAME=eu.hanashi.wsc.teamspeak-api
-PACKAGE_TYPES=(acptemplates files templates)
+PACKAGE_TYPES=(acptemplates files)
 
 # rm -rf files/js/*
 # tsc --build
