@@ -22,7 +22,7 @@ $tables = [
                 ->enumValues(['raw','ssh','http','https'])
                 ->notNull(),
             MediumintDatabaseTableColumn::create('queryPort')
-                ->length(5)    
+                ->length(5)
                 ->notNull(),
             MediumintDatabaseTableColumn::create('virtualServerPort')
                 ->length(5)
