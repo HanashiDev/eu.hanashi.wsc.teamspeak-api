@@ -134,6 +134,9 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
                 }
                 $error[$errorColumns[0]] = TeamSpeakUtil::unescape($errorColumns[1]);
             }
+            if (!empty($error['msg']) && $error['msg'] == 'ok') {
+                return false;
+            }
             return $error;
         }
         return false;
