@@ -5,7 +5,7 @@
         <packagename language="de"><![CDATA[TeamSpeak-API]]></packagename>
         <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
-        <version>2.1.1</version>
+        <version>3.0.0</version>
         <date>2021-07-15</date>
     </packageinformation>
 
@@ -15,7 +15,7 @@
     </authorinformation>
 
     <requiredpackages>
-        <requiredpackage minversion="3.0.0">com.woltlab.wcf</requiredpackage>
+        <requiredpackage minversion="5.3.0">com.woltlab.wcf</requiredpackage>
     </requiredpackages>
 
     <excludedpackages>
@@ -34,12 +34,18 @@
 		
 		<!-- config -->
         <instruction type="acpMenu" />
-        <instruction type="sql" />
         <instruction type="userGroupOption" />
         <instruction type="option" />
+        <instruction type="script">acp/install_eu.hanashi.wsc.teamspeak-api_3.0.0.php</instruction>
     </instructions>
-	<instructions type="update" fromversion="2.1.0">
+	<instructions type="update" fromversion="2.1.1">
 		<!-- files -->
         <instruction type="file" />
+		
+		<!-- templates -->
+		<instruction type="acpTemplate" />
+		
+		<!-- language -->
+        <instruction type="language"/>
 	</instructions>
 </package>

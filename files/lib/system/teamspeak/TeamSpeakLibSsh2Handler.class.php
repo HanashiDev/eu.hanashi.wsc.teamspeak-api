@@ -5,7 +5,6 @@ namespace wcf\system\teamspeak;
 use wcf\system\exception\ErrorException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
-use wcf\util\TeamSpeakUtil;
 
 /**
 * Api for connection with TeamSpeak ssh server query with libssh2.

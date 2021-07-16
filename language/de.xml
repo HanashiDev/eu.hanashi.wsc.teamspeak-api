@@ -50,6 +50,7 @@
 		<item name="wcf.page.teamspeakAdd.displayName"><![CDATA[Anzeigename]]></item>
 		<item name="wcf.page.teamspeakAdd.displayName.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Wähle{else}Wählen Sie{/if} einen Namen der im auf dem TeamSpeak-Server angezeigt werden soll. Ist dieses Feld leer, wird der Server Query standardmäßig als "serveradmin from x.x.x.x angezeigt."]]></item>
 		<item name="wcf.page.teamspeakAdd.cantConnect"><![CDATA[Konnte nicht mit dem TeamSpeak-Server verbinden.]]></item>
+		<item name="wcf.page.teamspeakAdd.cantConnectDynamic"><![CDATA[Konnte nicht mit dem TeamSpeak-Server verbinden.<br>(TeamSpeak-Meldung: {$msg})]]></item>
 		<item name="wcf.page.teamspeakAdd.invalidQueryType"><![CDATA[Kein gültiger Query-Typ.]]></item>
 		<item name="wcf.page.teamspeakAdd.numberOutOfRange"><![CDATA[Der Wert ist außerhalb des Gültigkeitsbereichs.]]></item>
 		<item name="wcf.page.teamspeakAdd.notANumber"><![CDATA[Das ist keine gültige Nummer.]]></item>

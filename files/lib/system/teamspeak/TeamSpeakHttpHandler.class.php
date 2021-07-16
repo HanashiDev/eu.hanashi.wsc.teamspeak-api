@@ -2,13 +2,14 @@
 
 namespace wcf\system\teamspeak;
 
-use wcf\system\exception\HTTPNotFoundException;
-use wcf\system\exception\HTTPServerErrorException;
-use wcf\system\exception\HTTPUnauthorizedException;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\RequestOptions;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
-use wcf\util\exception\HTTPException;
-use wcf\util\HTTPRequest;
+use wcf\system\io\HttpFactory;
 use wcf\util\JSON;
 
 /**
@@ -57,6 +58,11 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
     protected $protocol = 'http';
 
     /**
+     * @var ClientInterface
+     */
+    private $httpClient;
+
+    /**
      * @inheritDoc
      */
     public function __construct($hostname, $port, $username, $password)
@@ -93,6 +99,17 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         // nothing to do
     }
 
+    final protected function getHttpClient(): ClientInterface
+    {
+        if (!$this->httpClient) {
+            $this->httpClient = HttpFactory::makeClient([
+                RequestOptions::TIMEOUT => 2
+            ]);
+        }
+
+        return $this->httpClient;
+    }
+
     /**
      * @inheritDoc
      */
@@ -100,21 +117,23 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
     {
         $url = $this->protocol . '://' . $this->hostname . ':' . $this->port . '/' . $this->virtualServerID . '/' . $command;
 
-        $request = new HTTPRequest($url);
-        $request->addHeader('x-api-key', $this->apiKey);
+        $headers = [
+            'x-api-key' => $this->apiKey
+        ];
+
+        $request = new Request('GET', $url, $headers);
         try {
-            $request->execute();
-            $reply = $request->getReply();
-            return $reply['body'];
-        } catch (HTTPNotFoundException $e) {
-            return '';
-        } catch (HTTPServerErrorException $e) {
-            return '';
-        } catch (HTTPUnauthorizedException $e) {
-            return '';
-        } catch (SystemException $e) {
-            return '';
-        } catch (HTTPException $e) {
+            $response = $this->getHttpClient()->send($request);
+            return (string)$response->getBody();
+        } catch (BadResponseException $e) {
+            if (\ENABLE_DEBUG_MODE) {
+                \wcf\functions\exception\logThrowable($e);
+            }
+            return (string)$e->getResponse()->getBody();
+        } catch (GuzzleException $e) {
+            if (\ENABLE_DEBUG_MODE) {
+                \wcf\functions\exception\logThrowable($e);
+            }
             return '';
         }
     }

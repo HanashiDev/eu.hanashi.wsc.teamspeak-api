@@ -33,4 +33,16 @@ class TeamspeakAction extends AbstractDatabaseObjectAction
      * @inheritDoc
      */
     protected $requireACP = ['create', 'delete', 'update'];
+
+    /**
+     * @inheritDoc
+     */
+    public function update()
+    {
+        if (isset($this->parameters['data']['password']) && empty($this->parameters['data']['password'])) {
+            unset($this->parameters['data']['password']);
+        }
+
+        parent::update();
+    }
 }
