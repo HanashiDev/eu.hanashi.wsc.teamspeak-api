@@ -50,6 +50,7 @@
 		<item name="wcf.page.teamspeakAdd.displayName"><![CDATA[Displayname]]></item>
 		<item name="wcf.page.teamspeakAdd.displayName.description"><![CDATA[Select a name to be displayed on the TeamSpeak server. If this field is empty, the server query is displayed by default as "serveradmin from x.x.x.x".]]></item>
 		<item name="wcf.page.teamspeakAdd.cantConnect"><![CDATA[Could not connect to the TeamSpeak server.]]></item>
+		<item name="wcf.page.teamspeakAdd.cantConnectDynamic"><![CDATA[Could not connect to the TeamSpeak server.<br>(TeamSpeak error: {$msg})]]></item>
 		<item name="wcf.page.teamspeakAdd.invalidQueryType"><![CDATA[No valid query type.]]></item>
 		<item name="wcf.page.teamspeakAdd.numberOutOfRange"><![CDATA[The value is out of range.]]></item>
 		<item name="wcf.page.teamspeakAdd.notANumber"><![CDATA[That's not a valid number.]]></item>

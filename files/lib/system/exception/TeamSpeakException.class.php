@@ -10,7 +10,7 @@ namespace wcf\system\exception;
 * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package  WoltLabSuite\Core\System\Exception
 */
-class TeamSpeakException extends SystemException
+class TeamSpeakException extends \Exception
 {
 
 }
