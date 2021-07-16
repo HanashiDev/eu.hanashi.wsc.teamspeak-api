@@ -54,7 +54,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                         ->value('localhost')
                         ->maximumLength(50)
                         ->required()
-                        ->addValidator(new FormFieldValidator('hostnameCheck', function(TextFormField $field) {
+                        ->addValidator(new FormFieldValidator('hostnameCheck', function (TextFormField $field) {
                             /** @var IntegerFormField $queryPortField */
                             $queryPortField = $field->getDocument()->getNodeById('queryPort');
                             /** @var TextFormField $usernameField */
