@@ -118,7 +118,7 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
 
     protected function getError(array $replyLines)
     {
-        foreach($replyLines as $replyLine) {
+        foreach ($replyLines as $replyLine) {
             if (!StringUtil::startsWith($replyLine, 'error')) {
                 continue;
             }
