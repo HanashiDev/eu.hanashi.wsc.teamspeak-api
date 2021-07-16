@@ -73,7 +73,7 @@ class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
         if ($this->queryObj) {
             try {
                 $this->execute('quit');
-            } catch (ErrorException $e) {
+            } catch (\Exception $e) {
                 // do nothing
             }
         }
