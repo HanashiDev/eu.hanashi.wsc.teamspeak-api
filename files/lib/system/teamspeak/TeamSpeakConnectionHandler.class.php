@@ -2,15 +2,6 @@
 
 namespace wcf\system\teamspeak;
 
-use phpseclib\Net\SSH2;
-use wcf\system\exception\SystemException;
-use wcf\system\exception\TeamSpeakException;
-use wcf\system\io\RemoteFile;
-use wcf\system\WCF;
-use wcf\util\JSON;
-use wcf\util\StringUtil;
-use wcf\util\TeamSpeakUtil;
-
 /**
 * Api for connection with TeamSpeak server query.
 *

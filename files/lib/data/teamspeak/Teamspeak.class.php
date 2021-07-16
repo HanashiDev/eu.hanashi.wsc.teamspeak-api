@@ -6,7 +6,6 @@ use wcf\data\DatabaseObject;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\teamspeak\ITeamSpeakHandler;
 use wcf\system\teamspeak\TeamSpeakConnectionHandler;
-use wcf\system\WCF;
 
 /**
 * TeamSpeak data class
