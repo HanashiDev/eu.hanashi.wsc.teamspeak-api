@@ -2,7 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
-use phpseclib\Net\SSH2;
+use phpseclib3\Net\SSH2;
 use wcf\system\exception\ErrorException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
