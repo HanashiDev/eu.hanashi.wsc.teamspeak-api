@@ -28,8 +28,7 @@ $tables = [
                 ->length(5)
                 ->notNull(),
             VarcharDatabaseTableColumn::create('username')
-                ->length(30)
-                ->notNull(),
+                ->length(30),
             VarcharDatabaseTableColumn::create('password')
                 ->length(50)
                 ->notNull(),
