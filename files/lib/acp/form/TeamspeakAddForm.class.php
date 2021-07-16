@@ -132,7 +132,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                     TextFormField::create('displayName')
                         ->label('wcf.page.teamspeakAdd.displayName')
                         ->description('wcf.page.teamspeakAdd.displayName.description')
-                        ->value('WSC')
+                        ->value('WoltLab Suite')
                         ->required()
                 ])
         );
