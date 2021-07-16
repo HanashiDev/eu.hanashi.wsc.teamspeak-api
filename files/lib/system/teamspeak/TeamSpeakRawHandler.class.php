@@ -105,7 +105,37 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
      */
     public function login($username, $password)
     {
-        $this->execute('login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password=' . TeamSpeakUtil::escape($password));
+        $replyLines = $this->execute('login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password=' . TeamSpeakUtil::escape($password));
+        $error = $this->getError($replyLines);
+        if ($error !== false && !empty($error['msg'])) {
+            $msg = $error['msg'];
+            if (!empty($error['extra_msg'])) {
+                $msg .= ' - ' . $error['extra_msg'];
+            }
+            throw new TeamSpeakException($msg);
+        }
+    }
+
+    protected function getError(array $replyLines) {
+        foreach($replyLines as $replyLine) {
+            if (!StringUtil::startsWith($replyLine, 'error')) {
+                continue;
+            }
+            $errorRows = explode(' ', $replyLine);
+            $error = [];
+            foreach ($errorRows as $errorRow) {
+                if ($errorRow == 'error') {
+                    continue;
+                }
+                $errorColumns = explode('=', $errorRow, 2);
+                if (count($errorColumns) != 2) {
+                    continue;
+                }
+                $error[$errorColumns[0]] = TeamSpeakUtil::unescape($errorColumns[1]);
+            }
+            return $error;
+        }
+        return false;
     }
 
     /**
