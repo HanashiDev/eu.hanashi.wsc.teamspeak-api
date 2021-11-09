@@ -1,58 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/language.xsd" languagecode="de">
-	<category name="wcf.acp.teamSpeakSelectOptionType">
-		<item name="wcf.acp.teamSpeakSelectOptionType.noBot"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} noch keinen TeamSpeak-Server hinzugefügt. Dies {if LANGUAGE_USE_INFORMAL_VARIANT}kannst du{else}können Sie{/if} unter <a href="{link controller="TeamspeakAdd"}{/link}">TeamSpeak-Server hinzufügen</a> erledigen.]]></item>
+	<category name="wcf.acp.minecraftSelectOptionType">
+		<item name="wcf.acp.minecraftSelectOptionType.noBot"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} noch keinen Minecraft-Server hinzugefügt. Dies {if LANGUAGE_USE_INFORMAL_VARIANT}kannst du{else}können Sie{/if} unter <a href="{link controller="MinecraftAdd"}{/link}">Minecraft-Server hinzufügen</a> erledigen.]]></item>
 	</category>
 	<category name="wcf.acp.option">
-		<item name="wcf.acp.option.category.teamspeak"><![CDATA[TeamSpeak]]></item>
+		<item name="wcf.acp.option.category.minecraft"><![CDATA[Minecraft]]></item>
 	</category>
 	<category name="wcf.acp.group">
-		<item name="wcf.acp.group.option.category.user.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.group.option.category.mod.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.group.option.category.admin.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.group.option.admin.teamspeak.canManageConnection"><![CDATA[Kann Server-Query-Verbindungen verwalten]]></item>
+		<item name="wcf.acp.group.option.category.user.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.group.option.category.mod.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.group.option.category.admin.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.group.option.admin.minecraft.canManageConnection"><![CDATA[Kann Server-RCON-Verbindungen verwalten]]></item>
 	</category>
 	<category name="wcf.acp.menu">
-		<item name="wcf.acp.menu.link.configuration.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.menu.link.management.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList"><![CDATA[Server]]></item>
-		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add"><![CDATA[TeamSpeak-Server hinzufügen]]></item>
-		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.edit"><![CDATA[TeamSpeak-Server bearbeiten]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.menu.link.management.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList"><![CDATA[Server]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.add"><![CDATA[Minecraft-Server hinzufügen]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.edit"><![CDATA[Minecraft-Server bearbeiten]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftConsole"><![CDATA[Konsole]]></item>
 	</category>
-	<category name="wcf.page.teamspeakList">
-		<item name="wcf.page.teamspeakList.teamspeakID"><![CDATA[ID]]></item>
-		<item name="wcf.page.teamspeakList.connectionName"><![CDATA[Verbindungs-Name]]></item>
-		<item name="wcf.page.teamspeakList.hostname"><![CDATA[Server-Adresse]]></item>
-		<item name="wcf.page.teamspeakList.queryType"><![CDATA[Query-Typ]]></item>
-		<item name="wcf.page.teamspeakList.queryPort"><![CDATA[Query-Port]]></item>
-		<item name="wcf.page.teamspeakList.virtualServerPort"><![CDATA[Virtual-Server-Port]]></item>
-		<item name="wcf.page.teamspeakList.username"><![CDATA[Benutzername]]></item>
-		<item name="wcf.page.teamspeakList.displayName"><![CDATA[Anzeigename]]></item>
-		<item name="wcf.page.teamspeakList.creationDate"><![CDATA[Erstelldatum]]></item>
-		<item name="wcf.page.teamspeakList.removeConnectionQuestion"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Möchtest du{else}Möchten Sie{/if} diese TeamSpeak-Verbindung wirklich löschen?]]></item>
+	<category name="wcf.page.minecraftList">
+		<item name="wcf.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
+		<item name="wcf.page.minecraftList.connectionName"><![CDATA[Verbindungs-Name]]></item>
+		<item name="wcf.page.minecraftList.hostname"><![CDATA[Server-Adresse]]></item>
+		<item name="wcf.page.minecraftList.rconPort"><![CDATA[RCON-Port]]></item>
+		<item name="wcf.page.minecraftList.username"><![CDATA[Benutzername]]></item>
+		<item name="wcf.page.minecraftList.creationDate"><![CDATA[Erstelldatum]]></item>
+		<item name="wcf.page.minecraftList.removeConnectionQuestion"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Möchtest du{else}Möchten Sie{/if} diese Minecraft-Verbindung wirklich löschen?]]></item>
 	</category>
-	<category name="wcf.page.teamspeakAdd">
-		<item name="wcf.page.teamspeakAdd.connectionName"><![CDATA[Verbindungs-Name]]></item>
-		<item name="wcf.page.teamspeakAdd.connectionName.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} einen Verbindungsnamen ein um die Verbindung in der Übersicht wieder identifizieren zu können.]]></item>
-		<item name="wcf.page.teamspeakAdd.hostname"><![CDATA[Server-Adresse]]></item>
-		<item name="wcf.page.teamspeakAdd.hostname.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die Server-Adresse oder die IP des TeamSpeak-Servers an.]]></item>
-		<item name="wcf.page.teamspeakAdd.queryType"><![CDATA[Query-Typ]]></item>
-		<item name="wcf.page.teamspeakAdd.queryType.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Wähle{else}Wählen Sie{/if} einen Server-Query-Typ aus.]]></item>
-		<item name="wcf.page.teamspeakAdd.queryPort"><![CDATA[Query-Port]]></item>
-		<item name="wcf.page.teamspeakAdd.queryPort.description"><![CDATA[RAW-Standard-Port: 10011; SSH-Standard-Port: 10022; HTTP-Standard-Port: 10080; HTTPS-Standard-Port: 10443]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerPort"><![CDATA[Virtual-Server-Port]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerPort.description"><![CDATA[Standard-Port: 9987]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerID"><![CDATA[Virtual-Server-ID]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerID.description"><![CDATA[Standard-ID: 1]]></item>
-		<item name="wcf.page.teamspeakAdd.username"><![CDATA[Benutzername]]></item>
-		<item name="wcf.page.teamspeakAdd.password"><![CDATA[Passwort]]></item>
-		<item name="wcf.page.teamspeakAdd.apiKey"><![CDATA[API-Key]]></item>
-		<item name="wcf.page.teamspeakAdd.displayName"><![CDATA[Anzeigename]]></item>
-		<item name="wcf.page.teamspeakAdd.displayName.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Wähle{else}Wählen Sie{/if} einen Namen der im auf dem TeamSpeak-Server angezeigt werden soll. Ist dieses Feld leer, wird der Server Query standardmäßig als "serveradmin from x.x.x.x angezeigt."]]></item>
-		<item name="wcf.page.teamspeakAdd.cantConnect"><![CDATA[Konnte nicht mit dem TeamSpeak-Server verbinden.]]></item>
-		<item name="wcf.page.teamspeakAdd.cantConnectDynamic"><![CDATA[Konnte nicht mit dem TeamSpeak-Server verbinden.<br>(TeamSpeak-Meldung: {$msg})]]></item>
-		<item name="wcf.page.teamspeakAdd.invalidQueryType"><![CDATA[Kein gültiger Query-Typ.]]></item>
-		<item name="wcf.page.teamspeakAdd.numberOutOfRange"><![CDATA[Der Wert ist außerhalb des Gültigkeitsbereichs.]]></item>
-		<item name="wcf.page.teamspeakAdd.notANumber"><![CDATA[Das ist keine gültige Nummer.]]></item>
+	<category name="wcf.global.button">
+		<item name="wcf.global.button.console"><![CDATA[Konsole]]></item>
+	</category>
+	<category name="wcf.page.minecraftAdd">
+		<item name="wcf.page.minecraftAdd.connectionName"><![CDATA[Verbindungs-Name]]></item>
+		<item name="wcf.page.minecraftAdd.connectionName.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} einen Verbindungsnamen ein um die Verbindung in der Übersicht wieder identifizieren zu können.]]></item>
+		<item name="wcf.page.minecraftAdd.hostname"><![CDATA[Server-Adresse]]></item>
+		<item name="wcf.page.minecraftAdd.hostname.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die Server-Adresse oder die IP des Minecraft-Servers an.]]></item>
+		<item name="wcf.page.minecraftAdd.rconPort"><![CDATA[RCON-Port]]></item>
+		<item name="wcf.page.minecraftAdd.rconPort.description"><![CDATA[Standard-Port: 25575]]></item>
+		<item name="wcf.page.minecraftAdd.password"><![CDATA[Passwort]]></item>
+		<item name="wcf.page.minecraftAdd.cantConnect"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.]]></item>
+		<item name="wcf.page.minecraftAdd.cantConnectDynamic"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.<br>(Minecraft-Meldung: {$msg})]]></item>
+		<item name="wcf.page.minecraftAdd.numberOutOfRange"><![CDATA[Der Wert ist außerhalb des Gültigkeitsbereichs.]]></item>
+		<item name="wcf.page.minecraftAdd.notANumber"><![CDATA[Das ist keine gültige Nummer.]]></item>
+	</category>
+	<category name="wcf.page.minecraftConsole">
+		<item name="wcf.page.minecraftConsole.description"><![CDATA[Der Befehl, der ausgeführt werden soll.]]></item>
+		<item name="wcf.page.minecraftConsole.cantConnect"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.]]></item>
+		<item name="wcf.page.minecraftConsole.commandListDefault"><![CDATA[Liste aller Minecraft Befehle.]]></item>
+		<item name="wcf.page.minecraftConsole.commandListBukkit"><![CDATA[Liste aller Bukkit Befehle.]]></item>
+		<item name="wcf.page.minecraftConsole.commandListSpigot"><![CDATA[Liste aller Spigot Befehle.]]></item>
+		<item name="wcf.page.minecraftConsole.commandListBungeeCord"><![CDATA[Liste aller BungeeCord Befehle.]]></item>
 	</category>
 </language>

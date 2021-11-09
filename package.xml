@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package name="eu.hanashi.wsc.teamspeak-api" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/package.xsd">
+<package name="de.xxschrarndxx.wsc.minecraft-api" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/package.xsd">
     <packageinformation>
-        <packagename><![CDATA[TeamSpeak API]]></packagename>
-        <packagename language="de"><![CDATA[TeamSpeak-API]]></packagename>
-        <packagedescription><![CDATA[API for TeamSpeak server query.]]></packagedescription>
-        <packagedescription language="de"><![CDATA[API für TeamSpeak Serverquery.]]></packagedescription>
-        <version>3.0.1</version>
-        <date>2021-07-16</date>
+        <packagename><![CDATA[Minecraft API]]></packagename>
+        <packagename language="de"><![CDATA[Minecraft-API]]></packagename>
+        <packagedescription><![CDATA[API for Minecraft RCON. Based on <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
+        <packagedescription language="de"><![CDATA[API für Minecraft RCON. Basierend auf der Arbeit <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
+        <version>0.0.1</version>
+        <date>2021-11-08</date>
     </packageinformation>
 
     <authorinformation>
-        <author><![CDATA[Hanashi Development]]></author>
-        <authorurl><![CDATA[https://hanashi.dev/]]></authorurl>
+        <author><![CDATA[xXSchrandXx]]></author>
     </authorinformation>
 
     <requiredpackages>
@@ -36,10 +35,6 @@
         <instruction type="acpMenu" />
         <instruction type="userGroupOption" />
         <instruction type="option" />
-        <instruction type="script">acp/install_eu.hanashi.wsc.teamspeak-api_3.0.0.php</instruction>
+        <instruction type="script">acp/install_de.xxschrandxx.wsc.minecraft-api_0.0.1.php</instruction>
     </instructions>
-	<instructions type="update" fromversion="3.0.0">
-		<!-- files -->
-        <instruction type="file" />
-	</instructions>
 </package>

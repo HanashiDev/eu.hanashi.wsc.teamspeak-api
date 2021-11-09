@@ -2,19 +2,19 @@
 <data xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/userGroupOption.xsd">
 	<import>
 		<categories>
-			<category name="user.teamspeak">
+			<category name="user.minecraft">
 				<parent>user</parent>
 			</category>
-			<category name="mod.teamspeak">
+			<category name="mod.minecraft">
 				<parent>mod</parent>
 			</category>
-			<category name="admin.teamspeak">
+			<category name="admin.minecraft">
 				<parent>admin</parent>
 			</category>
 		</categories>
 		<options>
-            <option name="admin.teamspeak.canManageConnection">
-				<categoryname>admin.teamspeak</categoryname>
+            <option name="admin.minecraft.canManageConnection">
+				<categoryname>admin.minecraft</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
 				<admindefaultvalue>1</admindefaultvalue>

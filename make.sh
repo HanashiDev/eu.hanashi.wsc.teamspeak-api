@@ -1,5 +1,5 @@
 #!/bin/bash
-PACKAGE_NAME=eu.hanashi.wsc.teamspeak-api
+PACKAGE_NAME=eu.hanashi.wsc.minecraft-api
 PACKAGE_TYPES=(acptemplates files)
 
 rm -rf files/js/*
@@ -12,7 +12,7 @@ do
 done
 
 rm -rf ${PACKAGE_NAME}.tar ${PACKAGE_NAME}.tar.gz
-7z a -ttar -mx=9 ${PACKAGE_NAME}.tar ./* -x!acptemplates -x!files -x!templates -x!${PACKAGE_NAME}.tar -x!${PACKAGE_NAME}.tar.gz -x!.git -x!.gitignore -x!make.sh -x!make.bat -x!.phpcs.xml -x!.github -x!ts -x!node_modules -x!package-lock.json -x!package.json -x!tsconfig.json -x!.php_cs.dist -x!global.d.ts -x!.vscode
+7z a -ttar -mx=9 ${PACKAGE_NAME}.tar ./* -x!acptemplates -x!files -x!templates -x!${PACKAGE_NAME}.tar -x!${PACKAGE_NAME}.tar.gz -x!.git -x!.gitignore -x!make.sh -x!make.bat -x!.github
 7z a ${PACKAGE_NAME}.tar.gz ${PACKAGE_NAME}.tar
 rm -rf ${PACKAGE_NAME}.tar
 
