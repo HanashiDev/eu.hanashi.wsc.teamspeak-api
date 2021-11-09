@@ -47,30 +47,49 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
     /**
      * @inheritDoc
      */
-    public function __destruct() { }
+    public function __destruct()
+    {
+
+    }
 
     /**
      * @inheritDoc
      */
-    public function connect() { }
+    public function connect()
+    {
+
+    }
 
     /**
      * @inheritDoc
      */
-    public function login($password) { }
+    public function login($password)
+    {
+
+    }
 
     /**
      * @inheritDoc
      */
-    public function parseResult() { }
+    public function parseResult()
+    {
+
+    }
 
     /**
      * @inheritDoc
      */
-    public function execute($command) { }
+    public function execute($command)
+    {
+
+    }
 
     /**
      * @inheritDoc
      */
-    public function call($command) { }
+    public function call($command)
+    {
+
+    }
+
 }

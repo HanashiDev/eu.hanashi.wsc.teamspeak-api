@@ -33,17 +33,17 @@ class MinecraftConsolePage extends AbstractPage
      * @inheritDoc
      */
     public $minecraft;
-    
+
     /**
      * @inheritDoc
      */
     public $error = false;
-    
+
     /**
      * @inheritDoc
      */
     public $command;
-    
+
     /**
      * @inheritDoc
      */
@@ -67,7 +67,7 @@ class MinecraftConsolePage extends AbstractPage
         if (!$this->minecraft->minecraftID) {
             throw new IllegalLinkException();
         }
-        
+
         try {
             $this->minecraft->getConnection();
         } catch (MinecraftException $e) {
@@ -92,20 +92,20 @@ class MinecraftConsolePage extends AbstractPage
                 $this->error = true;
             }
         }
-
     }
 
     /**
      * @inheritDoc
      */
-    public function assignVariables() {
+    public function assignVariables()
+    {
         parent::assignVariables();
 
         WCF::getTPL()->assign([
             'minecraftID' => $this->minecraft->minecraftID,
             'connectionName' => $this->minecraft->connectionName,
             'response' => $this->response,
-			'error' => $this->error
+            'error' => $this->error
         ]);
     }
 

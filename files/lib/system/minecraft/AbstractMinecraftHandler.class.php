@@ -47,7 +47,6 @@ abstract class AbstractMinecraftHandler extends SingletonFactory
 
         $this->hostname = $minecraft->hostname;
         $this->mcObj = new MinecraftConnectionHandler($minecraft->hostname, $minecraft->rconPort, $minecraft->password);
-
     }
 
     /**
@@ -57,5 +56,4 @@ abstract class AbstractMinecraftHandler extends SingletonFactory
     {
         return $this->mcObj;
     }
-
 }
