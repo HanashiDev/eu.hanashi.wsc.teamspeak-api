@@ -2,6 +2,13 @@
 
 namespace wcf\system\minecraft;
 
+/**
+ * MinecraftRCONHandler abstract class
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Minecraft
+ */
 abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
 {
 
@@ -13,7 +20,7 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
     protected $hostname;
 
     /**
-     * the server rcon port of your Minecraft server (standard: raw = 10011; ssh = 10022)
+     * the server rcon port of your Minecraft server (standard = 25575)
      *
      * @var int
      */

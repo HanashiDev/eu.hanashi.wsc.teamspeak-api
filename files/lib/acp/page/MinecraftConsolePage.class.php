@@ -9,6 +9,13 @@ use wcf\system\minecraft\MinecraftConnectionHandler;
 use wcf\data\minecraft\Minecraft;
 use wcf\page\AbstractPage;
 
+/**
+ * MinecraftConsole Page class
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\Acp\Page
+ */
 class MinecraftConsolePage extends AbstractPage
 {
 

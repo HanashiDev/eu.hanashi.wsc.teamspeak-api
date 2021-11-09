@@ -6,6 +6,13 @@ use wcf\data\minecraft\MinecraftList;
 use wcf\system\exception\MinecraftException;
 use wcf\system\SingletonFactory;
 
+/**
+ * MultipleMinecraftHandler abstract class
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Minecraft
+ */
 abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
 {
 

@@ -9,8 +9,13 @@ use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 
 /**
- * custom option type for minecraft connections
- * name of option type: MinecraftConnectionSelect
+ * MinecraftConnectionSelect OptionType class
+ * Custom option type for minecraft connections
+ * Name of option type: MinecraftConnectionSelect
+ * 
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Option
  */
 class MinecraftConnectionSelectOptionType extends AbstractOptionType
 {

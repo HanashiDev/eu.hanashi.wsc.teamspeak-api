@@ -10,8 +10,13 @@ use wcf\util\ArrayUtil;
 use wcf\util\StringUtil;
 
 /**
- * custom option type for multiple minecraft connections
- * name of option type: MinecraftConnectionMultiSelect
+ * MinecraftConnectionMultiSelect OptionType class
+ * Custom option type for multiple minecraft connections
+ * Name of option type: MinecraftConnectionMultiSelect
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Option
  */
 class MinecraftConnectionMultiSelectOptionType extends AbstractOptionType
 {

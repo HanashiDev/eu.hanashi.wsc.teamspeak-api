@@ -4,11 +4,24 @@ namespace wcf\system\minecraft;
 
 use wcf\system\exception\MinecraftException;
 
+/**
+ * MinecraftHandler class
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Minecraft
+ */
 class MinecraftHandler extends AbstractMinecraftRCONHandler
 {
 
+    /**
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
+     */
     private $fsock;
 
+    /**
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
+     */
     private $_Id;
 
     /**
@@ -19,8 +32,8 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
      * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     public function connect() {
         $this->fsock = @fsockopen($this->hostname,$this->port, $errno, $errstr, 30);
@@ -36,8 +49,8 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
      * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     public function login($password) {
         $PackID = $this->write(3,$password);
@@ -51,7 +64,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     public function set_timeout(&$res,$s,$m=0) {
         if (version_compare(phpversion(),'4.3.0','<')) {
@@ -61,8 +74,9 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
      * Writes the packat.
+     * 
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      * 
      * @param   array $cmd
      * @param   string $s1
@@ -87,8 +101,8 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
      * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     private function packetRead() {
         //Declare the return array
@@ -111,8 +125,8 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
      * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     public function parseResult() {
         $Packets = $this->packetRead();
@@ -133,16 +147,16 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
      * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     public function execute($command) {
         $this->write(2,$command);
     }
 
     /**
-     * Based on https://gist.github.com/tehbeard/1292348
      * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     public function call($command)
     {

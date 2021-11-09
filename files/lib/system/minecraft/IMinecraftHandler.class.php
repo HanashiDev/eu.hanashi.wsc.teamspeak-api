@@ -2,10 +2,17 @@
 
 namespace wcf\system\minecraft;
 
+/**
+ * MinecraftHandler interface
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Minecraft
+ */
 interface IMinecraftHandler
 {
     /**
-     * construct for Minecraft class
+     * Construct for Minecraft class
      *
      * @param   string  $hostname       the hostname/ip of your Minecraft server
      * @param   int     $port           the server rcon port of your Minecraft server (standard = 25575)
@@ -14,17 +21,17 @@ interface IMinecraftHandler
     public function __construct($hostname, $port, $password);
 
     /**
-     * destruct of Minecraft class
+     * Destruct of Minecraft class
      */
     public function __destruct();
 
     /**
-     * connect to Minecraft server rcon
+     * Connect to Minecraft server rcon
      */
     public function connect();
 
     /**
-     * method to execute server rcon commands
+     * Method to execute server rcon commands
      *
      * @param   string  $command        Command to execute on server
      * @return  array
@@ -39,7 +46,7 @@ interface IMinecraftHandler
     public function login($password);
 
     /**
-     * execute a command from server rcon
+     * Execute a command from server rcon
      *
      * Example:
      * <code>
@@ -52,7 +59,7 @@ interface IMinecraftHandler
     public function call($command);
 
     /**
-     * parse the results from Minecraft
+     * Parse the results from Minecraft
      *
      * @return  array
      * @throws  MinecraftException

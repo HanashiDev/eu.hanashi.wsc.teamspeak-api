@@ -2,17 +2,24 @@
 
 namespace wcf\system\minecraft;
 
+/**
+ * MinecraftConnectionHandler class
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Minecraft
+ */
 class MinecraftConnectionHandler
 {
     /**
-     * server rcon object
+     * Server rcon object
      *
      * @var MinecraftHandler
      */
     protected $minecraftHandler;
 
     /**
-     * construct for Minecraft class
+     * Construct for Minecraft class
      *
      * @param   string  $hostname       the hostname/ip of your Minecraft server
      * @param   int     $port           the server rcon port of your Minecraft server (standard = 25575)
@@ -25,7 +32,7 @@ class MinecraftConnectionHandler
     }
 
     /**
-     * execute a command from server rcon
+     * Execute a command from server rcon
      *
      * Example:
      * <code>

@@ -13,6 +13,13 @@ use wcf\system\form\builder\field\validation\FormFieldValidator;
 use wcf\system\minecraft\SecretFormField;
 use wcf\system\minecraft\MinecraftConnectionHandler;
 
+/**
+ * MinecraftAdd Form class
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\Acp\Form
+ */
 class MinecraftAddForm extends AbstractFormBuilderForm
 {
     /**

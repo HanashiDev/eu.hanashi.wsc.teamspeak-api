@@ -5,6 +5,13 @@ namespace wcf\system\minecraft;
 use wcf\data\minecraft\Minecraft;
 use wcf\system\SingletonFactory;
 
+/**
+ * MinecraftHandler abstract class
+ *
+ * @author   xXSchrandXx
+ * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
+ * @package  WoltLabSuite\Core\System\Minecraft
+ */
 abstract class AbstractMinecraftHandler extends SingletonFactory
 {
     /**
@@ -39,7 +46,7 @@ abstract class AbstractMinecraftHandler extends SingletonFactory
         }
 
         $this->hostname = $minecraft->hostname;
-        $this->mcObj = new \wcf\system\minecraft\MinecraftConnectionHandler($minecraft->hostname, $minecraft->rconPort, $minecraft->password);
+        $this->mcObj = new MinecraftConnectionHandler($minecraft->hostname, $minecraft->rconPort, $minecraft->password);
 
     }
 
