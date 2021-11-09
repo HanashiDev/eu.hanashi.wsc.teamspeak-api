@@ -44,7 +44,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
             throw new MinecraftException();
         }
 
-        $this->set_timeout($this->fsock, 2, 500);
+        $this->setTimeout($this->fsock, 2, 500);
 
         // login to server rcon
         $this->login($this->password);
@@ -69,7 +69,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     /**
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function set_timeout(&$res, $s, $m = 0)
+    public function setTimeout(&$res, $s, $m = 0)
     {
         if (version_compare(phpversion(), '4.3.0', '<')) {
             return socket_set_timeout($res, $s, $m);
