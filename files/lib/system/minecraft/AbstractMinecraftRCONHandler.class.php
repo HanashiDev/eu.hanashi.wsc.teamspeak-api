@@ -36,7 +36,8 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
     /**
      * @inheritDoc
      */
-    public function __construct($hostname, $port, $password) {
+    public function __construct($hostname, $port, $password)
+    {
         $this->hostname = $hostname;
         $this->port = $port;
         $this->password = $password;
@@ -49,7 +50,6 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function __destruct()
     {
-
     }
 
     /**
@@ -57,7 +57,6 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function connect()
     {
-
     }
 
     /**
@@ -65,7 +64,6 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function login($password)
     {
-
     }
 
     /**
@@ -73,7 +71,6 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function parseResult()
     {
-
     }
 
     /**
@@ -81,7 +78,6 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function execute($command)
     {
-
     }
 
     /**
@@ -89,7 +85,5 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function call($command)
     {
-
     }
-
 }

@@ -74,12 +74,12 @@ class MinecraftConsolePage extends AbstractPage
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
             }
-			$this->error = true;
+            $this->error = true;
         } catch (\Exception $e) {
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
             }
-			$this->error = true;
+            $this->error = true;
         }
 
         if (isset($_POST['command'])) {
@@ -108,5 +108,4 @@ class MinecraftConsolePage extends AbstractPage
             'error' => $this->error
         ]);
     }
-
 }

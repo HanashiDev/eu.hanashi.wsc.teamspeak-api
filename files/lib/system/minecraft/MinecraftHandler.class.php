@@ -69,7 +69,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     /**
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function set_timeout(&$res, $s, $m=0)
+    public function set_timeout(&$res, $s, $m = 0)
     {
         if (version_compare(phpversion(), '4.3.0', '<')) {
             return socket_set_timeout($res, $s, $m);
@@ -79,15 +79,15 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
 
     /**
      * Writes the packat.
-     * 
+     *
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
-     * 
+     *
      * @param   array $cmd
      * @param   string $s1
      * @param   string $s2
      * @return  int packet identificator
      */
-    private function write($cmd, $s1='', $s2='')
+    private function write($cmd, $s1 = '', $s2 = '')
     {
         // Get and increment the packet id
         $id = ++$this->_Id;
@@ -119,13 +119,12 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
             //Work around valve breaking the protocol
             if ($size["Size"] > 4096) {
                 //pad with 8 nulls
-                $packet = "\x00\x00\x00\x00\x00\x00\x00\x00".fread($this->fsock, 4096);
-            }
-            else {
+                $packet = "\x00\x00\x00\x00\x00\x00\x00\x00" . fread($this->fsock, 4096);
+            } else {
                 //Read the packet back
-                $packet = fread($this->fsock,$size["Size"]);
+                $packet = fread($this->fsock, $size["Size"]);
             }
-            array_push($retarray,unpack("V1ID/V1Response/a*S1/a*S2", $packet));
+            array_push($retarray, unpack("V1ID/V1Response/a*S1/a*S2", $packet));
         }
         return $retarray;
     }
@@ -138,7 +137,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
     {
         $Packets = $this->packetRead();
 
-        foreach($Packets as $pack) {
+        foreach ($Packets as $pack) {
             if (isset($ret[$pack['ID']])) {
                 $ret[$pack['ID']]['S1'] .= $pack['S1'];
                 $ret[$pack['ID']]['S2'] .= $pack['S1'];
@@ -174,5 +173,4 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
 
         return $ret[$this->_Id]['S1'];
     }
-
 }
