@@ -109,7 +109,7 @@ try {
 </h3>
 <p>Damit der Minecraft-Server Befehle empfangen kann, muss in der server.properties folgende Einstellungen vorgenommen werden.</p>
 
-```
+``` PROPERTIES
 enable-rcon=true
 rcon.password=<your password>
 rcon.port=<1-65535>
