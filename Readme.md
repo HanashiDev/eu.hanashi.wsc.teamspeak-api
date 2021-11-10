@@ -1,4 +1,4 @@
-<p>Languages: [German](#----german) | [English](#----english)</p>
+Languages: [German](#----german) | [English](#----english)
 <h1>
     English
 </h1>
