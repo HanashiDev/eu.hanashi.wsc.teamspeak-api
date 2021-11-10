@@ -21,11 +21,12 @@
 	Minecraft server
 </h3>
 <p>In order for the Minecraft server to receive commands, the following settings must be made in the server.properties.</p>
-```
+
+``` PROPERTIES
 enable-rcon=true
 rcon.password=<your password>
 rcon.port=<1-65535>
-​```
+```
 <h3>
 	BungeeCord-Server
 </h3>
@@ -34,7 +35,9 @@ rcon.port=<1-65535>
 	ACP
 </h3>
 <p>After RCON has been activated on the server and it is "running", it can be added in the ACP.</p>
-<p>![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)</p>
+
+![ServerAdd.png](https://raw.github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/master/pictures/ServerAdd.png)
+
 <h2>
 	Support
 </h2>
@@ -42,6 +45,7 @@ rcon.port=<1-65535>
 <h2>
 	Example
 </h2>
+
 ``` PHP
 use wcf\data\minecraft\​Minecraft;
 
@@ -81,6 +85,7 @@ try {
     }
 }
 ```
+
 <h1>
     German
 </h1>
@@ -103,6 +108,7 @@ try {
 	Minecraft-Server
 </h3>
 <p>Damit der Minecraft-Server Befehle empfangen kann, muss in der server.properties folgende Einstellungen vorgenommen werden.</p>
+
 ```
 enable-rcon=true
 rcon.password=<your password>
@@ -116,7 +122,8 @@ rcon.port=<1-65535>
 	ACP
 </h3>
 <p>Nachdem RCON auf dem Server aktiviert wurde und dieser "läuft", kann man ihn im ACP hinzufügen.</p>
-<p>![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)</p>
+
+![ServerAdd.png](https://raw.github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/master/pictures/ServerAdd.png)
 <h2>
 	Support
 </h2>
@@ -124,6 +131,7 @@ rcon.port=<1-65535>
 <h2>
 	Benutzung
 </h2>
+
 ``` PHP
 use wcf\data\minecraft\​Minecraft;
 
