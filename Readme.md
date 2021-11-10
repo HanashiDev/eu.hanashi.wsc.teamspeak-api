@@ -21,7 +21,7 @@
 	Minecraft server
 </h3>
 <p>In order for the Minecraft server to receive commands, the following settings must be made in the server.properties.</p>
-``` PROPERTIES
+```
 enable-rcon=true
 rcon.password=<your password>
 rcon.port=<1-65535>
@@ -34,7 +34,7 @@ rcon.port=<1-65535>
 	ACP
 </h3>
 <p>After RCON has been activated on the server and it is "running", it can be added in the ACP.</p>
-![alt text](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)
+![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)
 <h2>
 	Support
 </h2>
@@ -74,19 +74,16 @@ $minecraft = new Minecraft($id);
 $response = null;
 
 try {
-    ​​$response = $minecraft-&gt;getConnection()-&gt;call($command);
+    ​​$response = $minecraft->getConnection()->call($command);
 } catch (MinecraftException $e) {
     if (\ENABLE_DEBUG_MODE) {
         \wcf\functions\exception\logThrowable($e);
     }
 }
 ```
-
 <h1>
     German
 </h1>
-
-
 <h2>
 	Allgemeines
 </h2>
@@ -106,7 +103,7 @@ try {
 	Minecraft-Server
 </h3>
 <p>Damit der Minecraft-Server Befehle empfangen kann, muss in der server.properties folgende Einstellungen vorgenommen werden.</p>
-``` PROPERTIES
+```
 enable-rcon=true
 rcon.password=<your password>
 rcon.port=<1-65535>
@@ -119,7 +116,7 @@ rcon.port=<1-65535>
 	ACP
 </h3>
 <p>Nachdem RCON auf dem Server aktiviert wurde und dieser "läuft", kann man ihn im ACP hinzufügen.</p>
-![alt text](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)
+![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)
 <h2>
 	Support
 </h2>
@@ -159,7 +156,7 @@ $minecraft = new Minecraft($id);
 $response = null;
 
 try {
-    ​​$response = $minecraft-&gt;getConnection()-&gt;call($command);
+    ​​$response = $minecraft->getConnection()->call($command);
 } catch (MinecraftException $e) {
     if (\ENABLE_DEBUG_MODE) {
         \wcf\functions\exception\logThrowable($e);
