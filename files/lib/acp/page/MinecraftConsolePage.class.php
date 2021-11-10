@@ -49,6 +49,8 @@ class MinecraftConsolePage extends AbstractPage
      */
     public $response;
 
+    public $connection;
+
     /**
      * @inheritDoc
      */
@@ -69,7 +71,7 @@ class MinecraftConsolePage extends AbstractPage
         }
 
         try {
-            $this->minecraft->getConnection();
+            $this->connection = $this->minecraft->getConnection();
         } catch (MinecraftException $e) {
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
@@ -84,7 +86,7 @@ class MinecraftConsolePage extends AbstractPage
 
         if (isset($_POST['command'])) {
             try {
-                $this->response = $this->minecraft->getConnection()->call($_POST['command']);
+                $this->response = $this->connection->call($_POST['command']);
             } catch (MinecraftException $e) {
                 if (\ENABLE_DEBUG_MODE) {
                     \wcf\functions\exception\logThrowable($e);
