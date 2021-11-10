@@ -1,7 +1,8 @@
+[English](#----english) [German](#----german)
+
 <h1>
     English
 </h1>
-
 <h2>
 	General
 </h2>
@@ -85,7 +86,6 @@ try {
     }
 }
 ```
-
 <h1>
     German
 </h1>
