@@ -34,7 +34,7 @@ rcon.port=<1-65535>
 	ACP
 </h3>
 <p>After RCON has been activated on the server and it is "running", it can be added in the ACP.</p>
-![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)
+<p>![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)</p>
 <h2>
 	Support
 </h2>
@@ -116,7 +116,7 @@ rcon.port=<1-65535>
 	ACP
 </h3>
 <p>Nachdem RCON auf dem Server aktiviert wurde und dieser "läuft", kann man ihn im ACP hinzufügen.</p>
-![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)
+<p>![ServerAdd.png](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/blob/master/pictures/ServerAdd.png?raw=true)</p>
 <h2>
 	Support
 </h2>
