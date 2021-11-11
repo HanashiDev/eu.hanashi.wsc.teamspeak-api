@@ -72,6 +72,13 @@ class MinecraftAddForm extends AbstractFormBuilderForm
 
                             try {
                                 $mc = new MinecraftConnectionHandler($field->getSaveValue(), $rconPortField->getSaveValue(), $password);
+                                $login = $mc->login();
+                                print_r($login);
+                                if (! $login) {
+                                    $field->addValidationError(
+                                        new FormFieldValidationError('wrongPassword', 'wcf.page.minecraftAdd.cantConnect')
+                                    );
+                                }
                             } catch (MinecraftException $e) {
                                 if (\ENABLE_DEBUG_MODE) {
                                     \wcf\functions\exception\logThrowable($e);

@@ -46,8 +46,11 @@
 		<item name="wcf.page.minecraftAdd.notANumber"><![CDATA[Das ist keine gültige Nummer.]]></item>
 	</category>
 	<category name="wcf.page.minecraftConsole">
-		<item name="wcf.page.minecraftConsole.description"><![CDATA[Der Befehl, der ausgeführt werden soll.]]></item>
-		<item name="wcf.page.minecraftConsole.cantConnect"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.]]></item>
+		<item name="wcf.page.minecraftConsole.response"><![CDATA[Antwort des Servers:]]></item>
+		<item name="wcf.page.minecraftConsole.command"><![CDATA[Befehl:]]></item>
+		<item name="wcf.page.minecraftConsole.command.description"><![CDATA[Der Befehl, der ausgeführt werden soll.]]></item>
+		<item name="wcf.page.minecraftConsole.error.cantConnect"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.]]></item>
+		<item name="wcf.page.minecraftConsole.error.cantRead"><![CDATA[Konnte die Antwort des Minecraft-Servers nicht entziffern.]]></item>
 		<item name="wcf.page.minecraftConsole.commandListDefault"><![CDATA[Liste aller Minecraft Befehle.]]></item>
 		<item name="wcf.page.minecraftConsole.commandListBukkit"><![CDATA[Liste aller Bukkit Befehle.]]></item>
 		<item name="wcf.page.minecraftConsole.commandListSpigot"><![CDATA[Liste aller Spigot Befehle.]]></item>

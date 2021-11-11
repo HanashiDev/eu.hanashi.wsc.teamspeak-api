@@ -45,25 +45,22 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
         }
 
         $this->setTimeout($this->fsock, 2, 500);
-
-        // login to server rcon
-        $this->login($this->password);
     }
 
     /**
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function login($password)
+    public function login()
     {
-        $PackID = $this->write(3, $password);
+        $PackID = $this->write(3, $this->password);
 
         // Real response (id: -1 = failure)
         $ret = $this->packetRead();
-        if ($ret[0]['ID'] == -1) {
-            return false;
+        if ($ret[0]['ID'] == 1) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -171,6 +168,6 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
 
         $ret = $this->parseResult();
 
-        return $ret[$this->_Id]['S1'];
+        return $ret[$this->_Id];
     }
 }

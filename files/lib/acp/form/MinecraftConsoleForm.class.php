@@ -1,22 +1,22 @@
 <?php
 
-namespace wcf\acp\page;
+namespace wcf\acp\form;
 
 use wcf\system\WCF;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\MinecraftException;
 use wcf\system\minecraft\MinecraftConnectionHandler;
 use wcf\data\minecraft\Minecraft;
-use wcf\page\AbstractPage;
+use wcf\form\AbstractForm;
 
 /**
- * MinecraftConsole Page class
+ * MinecraftConsole Form class
  *
  * @author   xXSchrandXx
  * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
- * @package  WoltLabSuite\Core\Acp\Page
+ * @package  WoltLabSuite\Core\Acp\Form
  */
-class MinecraftConsolePage extends AbstractPage
+class MinecraftConsoleForm extends AbstractForm
 {
 
     /**
@@ -37,11 +37,6 @@ class MinecraftConsolePage extends AbstractPage
     /**
      * @inheritDoc
      */
-    public $error = false;
-
-    /**
-     * @inheritDoc
-     */
     public $command;
 
     /**
@@ -49,6 +44,9 @@ class MinecraftConsolePage extends AbstractPage
      */
     public $response;
 
+    /**
+     * The MinecraftConnectionHandler for the Action. 
+     */
     public $connection;
 
     /**
@@ -64,38 +62,58 @@ class MinecraftConsolePage extends AbstractPage
         if (!isset($minecraftID)) {
             throw new IllegalLinkException();
         }
-
         $this->minecraft = new Minecraft($minecraftID);
         if (!$this->minecraft->minecraftID) {
             throw new IllegalLinkException();
         }
-
         try {
             $this->connection = $this->minecraft->getConnection();
+            $this->connection->login();
         } catch (MinecraftException $e) {
+            $this->errorType = 'cantConnect';
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
             }
-            $this->error = true;
         } catch (\Exception $e) {
+            $this->errorType = 'cantConnect';
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
-            }
-            $this->error = true;
-        }
-
-        if (isset($_POST['command'])) {
-            try {
-                $this->response = $this->connection->call($_POST['command']);
-            } catch (MinecraftException $e) {
-                if (\ENABLE_DEBUG_MODE) {
-                    \wcf\functions\exception\logThrowable($e);
-                }
-                $this->error = true;
             }
         }
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function readFormParameters()
+    {
+        if (isset($_POST['command'])) {
+            $tmpResponse = [];
+            try {
+                $tmpResponse = $this->connection->call($_POST['command']);
+            } catch (MinecraftException $e) {
+                $this->errorType = 'cantConnect';
+                if (\ENABLE_DEBUG_MODE) {
+                    \wcf\functions\exception\logThrowable($e);
+                }
+            }
+            if (empty($tmpResponse)) {
+                $this->errorType = 'cantConnect';
+            }
+            else {
+                if ($tmpResponse['Response'] == 0 ) {
+                    $this->response = $tmpResponse['S1'];
+                    if (!empty($tmpResponse['S2'])) {
+                        $this->response = $this->response . '\n' . $tmpResponse['S2'];
+                    }
+                }
+                else {
+                    $this->errorType = 'cantRead';
+                }
+            }
+        }
+    }
+    
     /**
      * @inheritDoc
      */
@@ -107,7 +125,6 @@ class MinecraftConsolePage extends AbstractPage
             'minecraftID' => $this->minecraft->minecraftID,
             'connectionName' => $this->minecraft->connectionName,
             'response' => $this->response,
-            'error' => $this->error
         ]);
     }
 }

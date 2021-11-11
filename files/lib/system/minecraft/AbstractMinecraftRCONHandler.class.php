@@ -62,7 +62,7 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
     /**
      * @inheritDoc
      */
-    public function login($password)
+    public function login()
     {
     }
 

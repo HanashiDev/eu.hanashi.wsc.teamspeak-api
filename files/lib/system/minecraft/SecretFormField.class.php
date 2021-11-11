@@ -98,6 +98,6 @@ class SecretFormField extends AbstractFormField implements
      */
     protected static function getDefaultId()
     {
-        return 'haSecret';
+        return 'secret';
     }
 }

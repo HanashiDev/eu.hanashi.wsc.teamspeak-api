@@ -16,7 +16,7 @@ class MinecraftConnectionHandler
      *
      * @var MinecraftHandler
      */
-    protected $minecraftHandler;
+    public $minecraftHandler;
 
     /**
      * Construct for Minecraft class
@@ -27,8 +27,16 @@ class MinecraftConnectionHandler
      */
     public function __construct($hostname, $port, $password)
     {
-
         $this->minecraftHandler = new MinecraftHandler($hostname, $port, $password);
+    }
+
+    /**
+     * Logs the RCON in.
+     * @return bool
+     */
+    public function login()
+    {
+        return $this->minecraftHandler->login();
     }
 
     /**

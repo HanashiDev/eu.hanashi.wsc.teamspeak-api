@@ -41,9 +41,9 @@ interface IMinecraftHandler
     /**
      * Authenticates with the Minecraft Server instance using given ServerRCON login credentials.
      *
-     * @param   string  $password       Password of server rcon
+     * @return bool
      */
-    public function login($password);
+    public function login();
 
     /**
      * Execute a command from server rcon
