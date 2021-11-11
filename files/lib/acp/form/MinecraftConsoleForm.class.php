@@ -45,7 +45,8 @@ class MinecraftConsoleForm extends AbstractForm
     public $response;
 
     /**
-     * The MinecraftConnectionHandler for the Action. 
+     * The MinecraftConnectionHandler for the Action.
+     * @var MinecraftConnectionHandler
      */
     public $connection;
 
@@ -99,21 +100,19 @@ class MinecraftConsoleForm extends AbstractForm
             }
             if (empty($tmpResponse)) {
                 $this->errorType = 'cantConnect';
-            }
-            else {
-                if ($tmpResponse['Response'] == 0 ) {
+            } else {
+                if ($tmpResponse['Response'] == 0) {
                     $this->response = $tmpResponse['S1'];
                     if (!empty($tmpResponse['S2'])) {
                         $this->response = $this->response . '\n' . $tmpResponse['S2'];
                     }
-                }
-                else {
+                } else {
                     $this->errorType = 'cantRead';
                 }
             }
         }
     }
-    
+
     /**
      * @inheritDoc
      */
