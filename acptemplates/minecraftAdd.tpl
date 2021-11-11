@@ -15,13 +15,4 @@
 
 {@$form->getHtml()}
 
-<script data-relocate="true">
-	require(["Hanashi/Minecraft/ServerAdd", "Language"], function(ServerAdd, Language) {
-		Language.addObject({
-			'wcf.page.minecraftAdd.password': '{lang}wcf.page.minecraftAdd.password{/lang}',
-		});
-		new ServerAdd.default();
-	});
-</script>
-
 {include file='footer'}
