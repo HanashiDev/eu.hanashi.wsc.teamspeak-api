@@ -48,37 +48,55 @@ rcon.port=<1-65535>
 
 ``` PHP
 use wcf\data\minecraft\​Minecraft;
+use wcf\system\exception\MinecraftException;
 
 /**
- * ID des Minecraft-Eintrages im ACP.
+ * ID of the Minecraft-Entry in the ACP.
  * 
  * @var int
  */
 $id = 1;
 
 /**
- * Befehl für den Server.
+ * Command to execute.
  *
  * @var string
  */
-$command = "say Hallo Welt";
+$command = "say Hello world";
 
 /**
- * DatabaseObject der Minecraft-ID.
+ * DatabaseObject from the Minecraft-ID.
  * 
  * @var Minecraft
  */
 $minecraft = new Minecraft($id);
 
 /**
- * Antwort auf den gesendeten Befehl.
+ * ConnectionHandler for the Minecraft-Servers.
+ * 
+ * @var MinecraftConnectionHandler
+ */
+$connection = $minecraft->getConnection();
+
+/**
+ * Weather the MinecraftConnectionHandler could login.
+ * 
+ * @var bool
+ */
+$isLoggedin = false;
+
+/**
+ * Response for the command.
  * 
  * @var array
  */
 $response = null;
 
 try {
-    ​​$response = $minecraft->getConnection()->call($command);
+    $isLoggedin = $connection->login();
+	if (!$isLoggedin) {
+        ​​$response = $connection->call($command);
+	}
 } catch (MinecraftException $e) {
     if (\ENABLE_DEBUG_MODE) {
         \wcf\functions\exception\logThrowable($e);
@@ -133,6 +151,7 @@ rcon.port=<1-65535>
 
 ``` PHP
 use wcf\data\minecraft\​Minecraft;
+use wcf\system\exception\MinecraftException;
 
 /**
  * ID des Minecraft-Eintrages im ACP.
@@ -156,6 +175,20 @@ $command = "say Hallo Welt";
 $minecraft = new Minecraft($id);
 
 /**
+ * ConnectionHandler des Minecraft-Servers.
+ * 
+ * @var MinecraftConnectionHandler
+ */
+$connection = $minecraft->getConnection();
+
+/**
+ * Ob der MinecraftConnectionHandler sich einloggen konnte.
+ * 
+ * @var bool
+ */
+$isLoggedin = false;
+
+/**
  * Antwort auf den gesendeten Befehl.
  * 
  * @var array
@@ -163,7 +196,10 @@ $minecraft = new Minecraft($id);
 $response = null;
 
 try {
-    ​​$response = $minecraft->getConnection()->call($command);
+    $isLoggedin = $connection->login();
+    if (!$isLoggedin) {
+        ​​$response = $connection->call($command);
+	}
 } catch (MinecraftException $e) {
     if (\ENABLE_DEBUG_MODE) {
         \wcf\functions\exception\logThrowable($e);
