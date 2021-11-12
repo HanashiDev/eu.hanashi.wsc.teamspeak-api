@@ -57,6 +57,7 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function connect()
     {
+        $this->login();
     }
 
     /**
@@ -85,5 +86,6 @@ abstract class AbstractMinecraftRCONHandler implements IMinecraftHandler
      */
     public function call($command)
     {
+        $this->execute($command);
     }
 }

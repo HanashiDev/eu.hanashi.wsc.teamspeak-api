@@ -69,7 +69,6 @@ class MinecraftConsoleForm extends AbstractForm
         }
         try {
             $this->connection = $this->minecraft->getConnection();
-            $this->connection->login();
         } catch (MinecraftException $e) {
             $this->errorType = 'cantConnect';
             if (\ENABLE_DEBUG_MODE) {

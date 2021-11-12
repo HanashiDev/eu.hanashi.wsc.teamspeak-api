@@ -12,7 +12,7 @@ namespace wcf\system\minecraft;
 interface IMinecraftHandler
 {
     /**
-     * Construct for Minecraft class
+     * Construct for Minecraft class and tries to connect.
      *
      * @param   string  $hostname       the hostname/ip of your Minecraft server
      * @param   int     $port           the server rcon port of your Minecraft server (standard = 25575)
@@ -26,9 +26,14 @@ interface IMinecraftHandler
     public function __destruct();
 
     /**
-     * Connect to Minecraft server rcon
+     * Connect to Minecraft server rcon and tries to login.
      */
     public function connect();
+
+    /**
+     * Authenticates with the Minecraft Server instance using given ServerRCON login credentials.
+     */
+    public function login();
 
     /**
      * Method to execute server rcon commands
@@ -37,13 +42,6 @@ interface IMinecraftHandler
      * @return  array
      */
     public function execute($command);
-
-    /**
-     * Authenticates with the Minecraft Server instance using given ServerRCON login credentials.
-     *
-     * @return bool
-     */
-    public function login();
 
     /**
      * Execute a command from server rcon

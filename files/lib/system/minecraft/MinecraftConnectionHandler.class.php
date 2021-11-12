@@ -31,15 +31,6 @@ class MinecraftConnectionHandler
     }
 
     /**
-     * Logs the RCON in.
-     * @return bool
-     */
-    public function login()
-    {
-        return $this->minecraftHandler->login();
-    }
-
-    /**
      * Execute a command from server rcon
      *
      * Example:

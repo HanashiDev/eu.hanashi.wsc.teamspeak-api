@@ -29,6 +29,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
      */
     public function __destruct()
     {
+        parent::__destruct();
         @fclose($this->fsock);
     }
 
@@ -41,10 +42,12 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
         $this->fsock = @fsockopen($this->hostname, $this->port, $errno, $errstr, 30);
 
         if (!$this->fsock) {
-            throw new MinecraftException();
+            throw new MinecraftException("Can't connect.");
         }
 
         $this->setTimeout($this->fsock, 2, 500);
+
+        parent::connect();
     }
 
     /**
@@ -58,9 +61,12 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
         // Real response (id: -1 = failure)
         $ret = $this->packetRead();
         if ($ret[0]['ID'] == 1) {
-            return true;
+            parent::login();
+            return;
         }
-        return false;
+        throw new MinecraftException("Wrong password.");
+
+        parent::login();
     }
 
     /**
@@ -132,6 +138,8 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
      */
     public function parseResult()
     {
+        parent::parseResult();
+
         $Packets = $this->packetRead();
 
         foreach ($Packets as $pack) {
@@ -164,7 +172,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
      */
     public function call($command)
     {
-        $this->execute($command);
+        parent::call($command);
 
         $ret = $this->parseResult();
 

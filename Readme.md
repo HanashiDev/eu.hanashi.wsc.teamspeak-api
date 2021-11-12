@@ -79,11 +79,11 @@ $minecraft = new Minecraft($id);
 $connection = $minecraft->getConnection();
 
 /**
- * Weather the MinecraftConnectionHandler could login.
+ * Weather the MinecraftConnectionHandler could connect.
  * 
  * @var bool
  */
-$isLoggedin = false;
+$isConnected = false;
 
 /**
  * Response for the command.
@@ -93,8 +93,8 @@ $isLoggedin = false;
 $response = null;
 
 try {
-    $isLoggedin = $connection->login();
-	if (!$isLoggedin) {
+    $isConnected = $connection->connect();
+	if (!$isConnected) {
         ​​$response = $connection->call($command);
 	}
 } catch (MinecraftException $e) {
@@ -182,11 +182,11 @@ $minecraft = new Minecraft($id);
 $connection = $minecraft->getConnection();
 
 /**
- * Ob der MinecraftConnectionHandler sich einloggen konnte.
+ * Ob der MinecraftConnectionHandler sich verbinden konnte.
  * 
  * @var bool
  */
-$isLoggedin = false;
+$isConnected = false;
 
 /**
  * Antwort auf den gesendeten Befehl.
@@ -196,8 +196,8 @@ $isLoggedin = false;
 $response = null;
 
 try {
-    $isLoggedin = $connection->login();
-    if (!$isLoggedin) {
+    $isConnected = $connection->login();
+    if (!$isConnected) {
         ​​$response = $connection->call($command);
 	}
 } catch (MinecraftException $e) {
