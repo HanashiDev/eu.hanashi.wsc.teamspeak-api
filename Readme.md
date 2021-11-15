@@ -43,8 +43,19 @@ rcon.port=<1-65535>
 </h2>
 <p>This is my first APU for WLS.If there are problems with this plugin, you can <a href="https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/issues">create an "Issue" via GitHub</a>.</p>
 <h2>
-	Example
+	Usage
 </h2>
+<h3>
+	Package name
+</h3>
+<p>Make sure that you use my typing error in the package name in the required packages.</p>
+
+``` XML
+<requiredpackage minversion="1.0.0" file="requirements/de.xxschrandxx.wsc.minecraft-api.tar.gz">de.xxschrandxx.wsc.minecraft-api</requiredpackage>
+```
+<h3>
+	API example:
+</h3>
 
 ``` PHP
 use wcf\data\minecraft\​Minecraft;
@@ -79,13 +90,6 @@ $minecraft = new Minecraft($id);
 $connection = $minecraft->getConnection();
 
 /**
- * Weather the MinecraftConnectionHandler could connect.
- * 
- * @var bool
- */
-$isConnected = false;
-
-/**
  * Response for the command.
  * 
  * @var array
@@ -93,10 +97,7 @@ $isConnected = false;
 $response = null;
 
 try {
-    $isConnected = $connection->connect();
-	if (!$isConnected) {
-        ​​$response = $connection->call($command);
-	}
+    ​​$response = $connection->call($command);
 } catch (MinecraftException $e) {
     if (\ENABLE_DEBUG_MODE) {
         \wcf\functions\exception\logThrowable($e);
@@ -146,8 +147,19 @@ rcon.port=<1-65535>
 </h2>
 <p>Dies ist meine erste API für das WLS. Wenn es Probleme mit dem Plugin gibt, könnt ihr über <a href="https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api/issues">GitHub einen "Issue" erstellen</a>.</p>
 <h2>
-	Benutzung
+	Gebrauch
 </h2>
+<h3>
+	Paketname
+</h3>
+<p>Achtet darauf, dass ihr in den benötigten Paketen meinen Schreibfehler im Paketnamen übernehmt.</p>
+
+``` XML
+<requiredpackage minversion="1.0.0" file="requirements/de.xxschrandxx.wsc.minecraft-api.tar.gz">de.xxschrandxx.wsc.minecraft-api</requiredpackage>
+```
+<h3>
+	API-Beispiel:
+</h3>
 
 ``` PHP
 use wcf\data\minecraft\​Minecraft;
@@ -182,13 +194,6 @@ $minecraft = new Minecraft($id);
 $connection = $minecraft->getConnection();
 
 /**
- * Ob der MinecraftConnectionHandler sich verbinden konnte.
- * 
- * @var bool
- */
-$isConnected = false;
-
-/**
  * Antwort auf den gesendeten Befehl.
  * 
  * @var array
@@ -196,10 +201,7 @@ $isConnected = false;
 $response = null;
 
 try {
-    $isConnected = $connection->login();
-    if (!$isConnected) {
-        ​​$response = $connection->call($command);
-	}
+    ​​$response = $connection->call($command);
 } catch (MinecraftException $e) {
     if (\ENABLE_DEBUG_MODE) {
         \wcf\functions\exception\logThrowable($e);
