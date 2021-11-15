@@ -26,6 +26,7 @@
 	<category name="wcf.page.minecraftList">
 		<item name="wcf.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
 		<item name="wcf.page.minecraftList.connectionName"><![CDATA[Connection name]]></item>
+		<item name="wcf.page.minecraftList.type"><![CDATA[Type]]></item>
 		<item name="wcf.page.minecraftList.hostname"><![CDATA[Server address]]></item>
 		<item name="wcf.page.minecraftList.rconPort"><![CDATA[RCON port]]></item>
 		<item name="wcf.page.minecraftList.username"><![CDATA[Username]]></item>
@@ -37,6 +38,8 @@
 		<item name="wcf.page.minecraftAdd.connectionName.description"><![CDATA[Enter a connection name to be able to identify the connection in the overview again.]]></item>
 		<item name="wcf.page.minecraftAdd.hostname"><![CDATA[Server address]]></item>
 		<item name="wcf.page.minecraftAdd.hostname.description"><![CDATA[Enter the server address or IP of the Minecraft server.]]></item>
+		<item name="wcf.page.minecraftAdd.type"><![CDATA[Type of server.]]></item>
+		<item name="wcf.page.minecraftAdd.type.description"><![CDATA[What kind of server is used. (Bukkit and paper are included in spigot)]]></item>
 		<item name="wcf.page.minecraftAdd.rconPort"><![CDATA[RCON port]]></item>
 		<item name="wcf.page.minecraftAdd.rconPort.description"><![CDATA[standard port: 25575]]></item>
 		<item name="wcf.page.minecraftAdd.password"><![CDATA[Password]]></item>

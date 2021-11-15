@@ -7,6 +7,7 @@ use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\MinecraftException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\IntegerFormField;
+use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
@@ -88,6 +89,12 @@ class MinecraftAddForm extends AbstractFormBuilderForm
                                 );
                             }
                         })),
+                    SingleSelectionFormField::create('type')
+                        ->label('wcf.page.minecraftAdd.type')
+                        ->description('wcf.page.minecraftAdd.type.description')
+                        ->options(['vanilla' => 'Vanilla', 'spigot' => 'Spigot', 'bungee' => 'Bungee'], false, false)
+                        ->value('vanilla')
+                        ->required(),
                     IntegerFormField::create('rconPort')
                         ->label('wcf.page.minecraftAdd.rconPort')
                         ->description('wcf.page.minecraftAdd.rconPort.description')

@@ -35,6 +35,7 @@
 					<th></th>
 					<th>{lang}wcf.page.minecraftList.minecraftID{/lang}</th>
 					<th>{lang}wcf.page.minecraftList.connectionName{/lang}</th>
+					<th>{lang}wcf.page.minecraftList.type{/lang}</th>
 					<th>{lang}wcf.page.minecraftList.hostname{/lang}</th>
 					<th>{lang}wcf.page.minecraftList.rconPort{/lang}</th>
 					<th>{lang}wcf.page.minecraftList.creationDate{/lang}</th>
@@ -51,6 +52,7 @@
 						</td>
 						<td class="columnID">{#$object->minecraftID}</td>
 						<td class="columnTitle">{$object->connectionName}</td>
+						<td class="columnText">{$object->type}</td>
 						<td class="columnText">{$object->hostname}</td>
 						<td class="columnText">{$object->rconPort}</td>
 						<td class="columnDate">{@$object->creationDate|time}</td>
