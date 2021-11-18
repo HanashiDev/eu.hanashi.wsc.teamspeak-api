@@ -28,7 +28,6 @@
 		<item name="wcf.page.minecraftList.rconPort"><![CDATA[RCON-Port]]></item>
 		<item name="wcf.page.minecraftList.username"><![CDATA[Benutzername]]></item>
 		<item name="wcf.page.minecraftList.creationDate"><![CDATA[Erstelldatum]]></item>
-		<item name="wcf.page.minecraftList.removeConnectionQuestion"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Möchtest du{else}Möchten Sie{/if} diese Minecraft-Verbindung wirklich löschen?]]></item>
 	</category>
 	<category name="wcf.global.button">
 		<item name="wcf.global.button.console"><![CDATA[Konsole]]></item>

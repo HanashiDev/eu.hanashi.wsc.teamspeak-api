@@ -1,11 +1,5 @@
 {include file='header' pageTitle='wcf.acp.menu.link.configuration.minecraft.minecraftList'}
 
-<script data-relocate="true">
-	$(function() {
-		new WCF.Action.Delete('wcf\\data\\minecraft\\MinecraftAction', $('.jsRow'));
-	});
-</script>
-
 <header class="contentHeader">
 	<div class="contentHeaderTitle">
 		<h1 class="contentTitle">{lang}wcf.acp.menu.link.configuration.minecraft.minecraftList{/lang}</h1>
@@ -29,7 +23,7 @@
 
 {if $objects|count}
 	<div class="section tabularBox">
-		<table class="table">
+		<table class="table jsObjectActionContainer" data-object-action-class-name="wcf\data\minecraft\MinecraftAction">
 			<thead>
 				<tr>
 					<th></th>
@@ -43,10 +37,10 @@
 			</thead>
 			<tbody>
 				{foreach from=$objects item=object}
-					<tr class="jsRow">
+					<tr class="jsObjectActionObject" data-object-id="{@$object->minecraftID}">
 						<td class="columnIcon">
 							<a href="{link controller='MinecraftEdit' id=$object->minecraftID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon24 fa-pencil"></span></a>
-							<a href="#" class="jsDeleteButton jsTooltip" title="{lang}wcf.global.button.delete{/lang}" data-confirm-message-html="{lang __encode=true}wcf.page.minecraftList.removeConnectionQuestion{/lang}" data-object-id="{@$object->minecraftID}"><span class="icon icon24 fa-times"></span></a>
+							{objectAction action="delete" objectTitle=$object->connectionName}
 							<a href="{link controller='MinecraftConsole' id=$object->minecraftID}{/link}" title="{lang}wcf.global.button.console{/lang}" class="jsTooltip"><span class="icon icon24 fa-terminal"></span></a>
 							{event name='rowButtons'}
 						</td>

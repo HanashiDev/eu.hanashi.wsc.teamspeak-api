@@ -31,7 +31,6 @@
 		<item name="wcf.page.minecraftList.rconPort"><![CDATA[RCON port]]></item>
 		<item name="wcf.page.minecraftList.username"><![CDATA[Username]]></item>
 		<item name="wcf.page.minecraftList.creationDate"><![CDATA[Creation date]]></item>
-		<item name="wcf.page.minecraftList.removeConnectionQuestion"><![CDATA[Do you really want to delete the server connection?]]></item>
 	</category>
 	<category name="wcf.page.minecraftAdd">
 		<item name="wcf.page.minecraftAdd.connectionName"><![CDATA[Connection name]]></item>

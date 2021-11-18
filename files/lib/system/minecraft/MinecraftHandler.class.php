@@ -149,8 +149,8 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
             } else {
                 $ret[$pack['ID']] = array(
                     'Response' => $pack['Response'],
-                    'S1' => $pack['S1'],
-                    'S2' => $pack['S2'],
+                    'S1' => rtrim($pack['S1']),
+                    'S2' => rtrim($pack['S2']),
                 );
             }
         }

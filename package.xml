@@ -5,7 +5,7 @@
         <packagename language="de"><![CDATA[Minecraft-API]]></packagename>
         <packagedescription><![CDATA[API for Minecraft RCON. Based on <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
         <packagedescription language="de"><![CDATA[API für Minecraft RCON. Basierend auf der Arbeit <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <date>2021-11-08</date>
     </packageinformation>
 
@@ -48,5 +48,9 @@
         <instruction type="language"/>
 		<!-- config -->
         <instruction type="script">acp/update_de.xxschrandxx.wsc.minecraft-api_1.0.2.php</instruction>
+    </instructions>
+    <instructions type="update" fromversion="1.0.2">
+		<!-- files -->
+        <instruction type="file" />
     </instructions>
 </package>

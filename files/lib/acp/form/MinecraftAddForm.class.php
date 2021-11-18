@@ -70,9 +70,8 @@ class MinecraftAddForm extends AbstractFormBuilderForm
                             if ($this->formAction == 'edit' && empty($password)) {
                                 $password = $this->formObject->password;
                             }
-
                             try {
-                                $mc = new MinecraftConnectionHandler($field->getSaveValue(), $rconPortField->getSaveValue(), $password);
+                                new MinecraftConnectionHandler($field->getSaveValue(), $rconPortField->getSaveValue(), $password);
                             } catch (MinecraftException $e) {
                                 if (\ENABLE_DEBUG_MODE) {
                                     \wcf\functions\exception\logThrowable($e);

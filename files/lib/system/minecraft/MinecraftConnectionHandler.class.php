@@ -19,7 +19,7 @@ class MinecraftConnectionHandler
     public $minecraftHandler;
 
     /**
-     * Construct for Minecraft class
+     * Construct for MinecraftConnectionHandler class
      *
      * @param   string  $hostname       the hostname/ip of your Minecraft server
      * @param   int     $port           the server rcon port of your Minecraft server (standard = 25575)
