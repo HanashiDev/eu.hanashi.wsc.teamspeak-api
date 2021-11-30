@@ -122,7 +122,7 @@ class MinecraftConsoleForm extends AbstractForm
         WCF::getTPL()->assign([
             'minecraftID' => $this->minecraft->minecraftID,
             'connectionName' => $this->minecraft->connectionName,
-            'response' => $this->response,
+            'response' => $this->response
         ]);
     }
 }

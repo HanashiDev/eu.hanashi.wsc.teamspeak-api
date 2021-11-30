@@ -27,7 +27,11 @@ class MinecraftConnectionHandler
      */
     public function __construct($hostname, $port, $password)
     {
-        $this->minecraftHandler = new MinecraftHandler($hostname, $port, $password);
+        if (empty(PROXY_SERVER_HTTP)) {
+            $this->minecraftHandler = new MinecraftHandler($hostname, $port, $password);
+        } else {
+            $this->minecraftHandler = new MinecraftProxyHandler($hostname, $port, $password);
+        }
     }
 
     /**

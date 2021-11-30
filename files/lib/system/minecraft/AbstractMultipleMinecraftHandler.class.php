@@ -85,6 +85,25 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
             return [];
         }
 
+        return $this->minecrafts[$minecraftID]->getConnection()->execute($command);
+    }
+
+    /**
+     * call a command
+     *
+     * @param  int $minecraftID
+     * @param  string $command
+     * @return array
+     */
+    public function call($minecraftID, $command)
+    {
+        if (empty($this->minecrafts[$minecraftID])) {
+            if (ENABLE_DEBUG_MODE) {
+                throw new MinecraftException('found no minecraft with this id');
+            }
+            return [];
+        }
+
         return $this->minecrafts[$minecraftID]->getConnection()->call($command);
     }
 }

@@ -40,6 +40,8 @@ abstract class AbstractMinecraftHandler extends SingletonFactory
      */
     public function init()
     {
+        parent::init();
+
         $minecraft = new Minecraft($this->minecraftID);
         if (!$minecraft->minecraftID || $minecraft->minecraftID != $this->minecraftID) {
             return;
