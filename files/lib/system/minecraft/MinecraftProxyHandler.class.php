@@ -37,7 +37,7 @@ class MinecraftProxyHandler extends AbstractMinecraftRCONHandler
     public function connect()
     {
         $context = stream_context_create(
-            ['ssl'=> ['verify_peer'=> false, 'verify_peer_name'=> false]]
+            ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false]]
         );
         $this->proxy = stream_socket_client(PROXY_SERVER_HTTP, $errno, $errstr, 20, STREAM_CLIENT_CONNECT, $context);
 
@@ -115,7 +115,7 @@ class MinecraftProxyHandler extends AbstractMinecraftRCONHandler
         $data = pack("V", strlen($data)) . $data;
 
         // Send packet
-        fwrite($this->proxy, $data , strlen($data));
+        fwrite($this->proxy, $data, strlen($data));
 
         // In case we want it later we'll return the packet id
         return $id;
