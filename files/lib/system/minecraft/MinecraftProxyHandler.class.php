@@ -39,7 +39,8 @@ class MinecraftProxyHandler extends AbstractMinecraftRCONHandler
         $context = stream_context_create(
             ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false]]
         );
-        $this->proxy = stream_socket_client(PROXY_SERVER_HTTP, $errno, $errstr, 20, STREAM_CLIENT_CONNECT, $context);
+        $proxyhost = str_replace(['http', 'https'], 'tcp', PROXY_SERVER_HTTP);
+        $this->proxy = stream_socket_client($proxyhost, $errno, $errstr, 20, STREAM_CLIENT_CONNECT, $context);
 
         if ($errno != 0) {
             throw new MinecraftException('Request denied, Errorcode ' . $errno . ': ' . $errstr);
