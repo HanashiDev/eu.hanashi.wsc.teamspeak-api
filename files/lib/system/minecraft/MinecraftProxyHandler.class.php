@@ -3,6 +3,7 @@
 namespace wcf\system\minecraft;
 
 use wcf\system\exception\MinecraftException;
+use wcf\util\Url;
 
 /**
  * MinecraftProxyHandler class
@@ -36,11 +37,21 @@ class MinecraftProxyHandler extends AbstractMinecraftRCONHandler
      */
     public function connect()
     {
-        $context = stream_context_create(
-            ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false]]
-        );
-        $proxyhost = str_replace(['http', 'https'], 'tcp', PROXY_SERVER_HTTP);
-        $this->proxy = stream_socket_client($proxyhost, $errno, $errstr, 20, STREAM_CLIENT_CONNECT, $context);
+
+        $proxyUrl = Url::parse(PROXY_SERVER_HTTP);
+
+        $auth = '';
+        if (!empty($proxyUrl['user']) && !empty($proxyUrl['pass'])) {
+            $auth = '[' . $proxyUrl['user'] . ':' . $proxyUrl['pass'] . '@';
+        }
+
+        $proxyString = 'tcp://' . $auth . $proxyUrl['host'] . ':' . $proxyUrl['port'];
+
+        $this->proxy = stream_socket_client($proxyString, $errno, $errstr, 20, STREAM_CLIENT_CONNECT);
+
+        if (!$this->proxy) {
+            throw new MinecraftException("Can't connect.");
+        }
 
         if ($errno != 0) {
             throw new MinecraftException('Request denied, Errorcode ' . $errno . ': ' . $errstr);
