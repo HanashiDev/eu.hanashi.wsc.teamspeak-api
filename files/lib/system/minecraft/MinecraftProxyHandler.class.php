@@ -31,6 +31,8 @@ class MinecraftProxyHandler extends AbstractMinecraftRCONHandler
         @fclose($this->proxy);
     }
 
+    public $rsp = [];
+
     /**
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
@@ -59,14 +61,37 @@ class MinecraftProxyHandler extends AbstractMinecraftRCONHandler
 
         fwrite($this->proxy, 'CONNECT ' . $this->hostname . ':' . $this->port . " HTTP/1.1\r\n\r\n");
 
-        $rsp = fread($this->proxy, 1024);
+        $this->rsp = [];
 
-        if (empty($rsp)) {
+        while (($line = @fgets($this->proxy)) !== "\r\n") {
+            if ($line === false) {
+                throw new MinecraftException('Reached end of file to early.');
+            }
+            if (preg_match('/^HTTP\/([0-9]\.[0-9]) ([0-9]{3}) (.*)\r\n$/', $line, $matches)) {
+                $this->rsp['version'] = $matches[1];
+                $this->rsp['statusCode'] = $matches[2];
+            } else {
+                $values = preg_split('/:\s*/', $line);
+                if (isset($values[1])) {
+                    $this->rsp[$values[0]] = rtrim($values[1]);
+                }
+            }
+        }
+
+        if (empty($this->rsp)) {
             throw new MinecraftException('Response empty.');
         }
 
-        if (preg_match('/^HTTP\/\d\.\d 200/', $rsp) != 1) {
-            throw new MinecraftException('Request denied, ' . $rsp);
+        if (preg_match('/(0-9)\.(0-9)/', $this->rsp['version'])) {
+            throw new MinecraftException('Unknown Version format: ' . $rsp['version']);
+        }
+
+        if ($this->rsp['version'] != '1.0' && $this->rsp['version'] != '1.1') {
+            throw new MinecraftException('Unsupporter HTTP version: ' . $rsp['version']);
+        }
+
+        if (!(200 <= $this->rsp['statusCode'] && $this->rsp['statusCode'] <= 299)) {
+            throw new MinecraftException('HTML code ' . $rsp['statusCode']);
         }
 
         $this->setTimeout($this->proxy, 2, 500);

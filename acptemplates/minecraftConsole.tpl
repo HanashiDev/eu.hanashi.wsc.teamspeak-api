@@ -13,6 +13,17 @@
 	</nav>
 </header>
 
+{if $rsp|isset}
+	<div class="info">
+		<p>Proxy-Debug:</p>
+		<ul>
+			{foreach from=$rsp key=key item=value}
+				<li>{$key}: {$value}</li>
+			{/foreach}
+		</ul>
+	</div>
+{/if}
+
 {if $errorType == 'cantConnect'}
 	<div class="error">
 		{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}

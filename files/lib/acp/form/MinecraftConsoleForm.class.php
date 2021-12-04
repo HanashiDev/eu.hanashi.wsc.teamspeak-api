@@ -44,6 +44,8 @@ class MinecraftConsoleForm extends AbstractForm
      */
     public $response;
 
+    public $rsp;
+
     /**
      * The MinecraftConnectionHandler for the Action.
      * @var MinecraftConnectionHandler
@@ -79,6 +81,9 @@ class MinecraftConsoleForm extends AbstractForm
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
             }
+        }
+        if (\ENABLE_DEBUG_MODE && isset($this->connection->minecraftHandler->rsp)) {
+            $this->rsp = $this->connection->minecraftHandler->rsp;
         }
     }
 
@@ -122,6 +127,7 @@ class MinecraftConsoleForm extends AbstractForm
         WCF::getTPL()->assign([
             'minecraftID' => $this->minecraft->minecraftID,
             'connectionName' => $this->minecraft->connectionName,
+            'rsp' => $this->rsp,
             'response' => $this->response
         ]);
     }
