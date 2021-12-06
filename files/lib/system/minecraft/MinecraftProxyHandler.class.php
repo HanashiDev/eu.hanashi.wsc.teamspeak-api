@@ -91,7 +91,7 @@ class MinecraftProxyHandler extends AbstractMinecraftRCONHandler
         }
 
         if (!(200 <= $this->rsp['statusCode'] && $this->rsp['statusCode'] <= 299)) {
-            throw new MinecraftException('HTML code ' . $rsp['statusCode']);
+            throw new MinecraftException('HTML code ' . $this->rsp['statusCode']);
         }
 
         $this->setTimeout($this->proxy, 2, 500);
