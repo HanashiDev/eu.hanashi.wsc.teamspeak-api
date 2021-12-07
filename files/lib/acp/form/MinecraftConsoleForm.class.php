@@ -108,7 +108,7 @@ class MinecraftConsoleForm extends AbstractForm
             } else {
                 if ($tmpResponse['Response'] == 0) {
                     foreach ($tmpResponse as $key => $value) {
-                        if ($key == 'Response' || $key == 'Lenght') {
+                        if ($key == 'Response' || $key == 'Length') {
                             continue;
                         }
                         if ($this->response == null) {

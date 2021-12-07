@@ -188,7 +188,7 @@ class MinecraftHandler implements IMinecraftHandler
             } else {
                 $ret[$pack['ID']] = [
                     'Response' => $pack['Response'],
-                    'Lenght'   => count($this->args[$packID])
+                    'Length'   => count($this->args[$packID])
                 ];
                 foreach ($this->args[$packID] as &$argId) {
                     $ret[$pack['ID']] += [$argId => rtrim($pack[$argId])];
