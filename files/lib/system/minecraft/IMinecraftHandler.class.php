@@ -2,6 +2,8 @@
 
 namespace wcf\system\minecraft;
 
+use wcf\system\exception\MinecraftException;
+
 /**
  * MinecraftHandler interface
  *
@@ -13,10 +15,9 @@ interface IMinecraftHandler
 {
     /**
      * Construct for Minecraft class and tries to connect.
-     *
-     * @param   string  $hostname       the hostname/ip of your Minecraft server
-     * @param   int     $port           the server rcon port of your Minecraft server (standard = 25575)
-     * @param   string  $password       Password of server rcon
+     * @param string $hostname       the hostname/ip of your Minecraft server
+     * @param int    $port           the server rcon port of your Minecraft server (standard = 25575)
+     * @param string $password       Password of server rcon
      */
     public function __construct($hostname, $port, $password);
 
@@ -27,40 +28,61 @@ interface IMinecraftHandler
 
     /**
      * Connect to Minecraft server rcon and tries to login.
+     * @throws MinecraftException
      */
     public function connect();
 
     /**
      * Authenticates with the Minecraft Server instance using given ServerRCON login credentials.
+     * @throws MinecraftException
      */
     public function login();
 
     /**
      * Method to execute server rcon commands
-     *
-     * @param   string  $command        Command to execute on server
-     * @return  array
+     * @param  string  $commands Command to execute on server
+     * @return int                  packet identificator
+     * @throws MinecraftException
      */
-    public function execute($command);
+    public function execute(string ...$commands);
+
+    /**
+     * Method to execute server rcon commands
+     * @param  array  $commands Command to execute on server
+     * @return int                  packet identificator
+     * @throws MinecraftException
+     */
+    public function executeArray(array $commands);
 
     /**
      * Execute a command from server rcon
-     *
      * Example:
      * <code>
      * $mc->call('list uuids')
      * </code>
-     *
-     * @param   string  $command     Command to execute on server
-     * @return  array|null
+     * @param  string $commands Command to execute on server
+     * @return array|null
+     * @throws MinecraftException
      */
-    public function call($command);
+    public function call(string ...$commands);
+
+    /**
+     * Execute a command from server rcon
+     * Example:
+     * <code>
+     * $mc->call('list uuids')
+     * </code>
+     * @param  array $commands Command to execute on server
+     * @return array|null
+     * @throws MinecraftException
+     */
+    public function callArray(array $commands);
 
     /**
      * Parse the results from Minecraft
-     *
-     * @return  array
-     * @throws  MinecraftException
+     * @param  int $packID
+     * @return array
+     * @throws MinecraftException
      */
-    public function parseResult();
+    public function parseResult($packID);
 }

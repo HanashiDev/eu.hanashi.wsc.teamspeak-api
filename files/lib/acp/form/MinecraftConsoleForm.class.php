@@ -94,8 +94,9 @@ class MinecraftConsoleForm extends AbstractForm
     {
         if (isset($_POST['command'])) {
             $tmpResponse = [];
+            $command = $_POST['command'];
             try {
-                $tmpResponse = $this->connection->call($_POST['command']);
+                $tmpResponse = $this->connection->call($command);
             } catch (MinecraftException $e) {
                 $this->errorType = 'cantConnect';
                 if (\ENABLE_DEBUG_MODE) {
@@ -106,9 +107,15 @@ class MinecraftConsoleForm extends AbstractForm
                 $this->errorType = 'cantConnect';
             } else {
                 if ($tmpResponse['Response'] == 0) {
-                    $this->response = $tmpResponse['S1'];
-                    if (!empty($tmpResponse['S2'])) {
-                        $this->response = $this->response . '\n' . $tmpResponse['S2'];
+                    foreach ($tmpResponse as $key => $value) {
+                        if ($key == 'Response' || $key == 'Lenght') {
+                            continue;
+                        }
+                        if ($this->response == null) {
+                            $this->response = $value;
+                        } else {
+                            $this->response .= '\n' . $value;
+                        }
                     }
                 } else {
                     $this->errorType = 'cantRead';

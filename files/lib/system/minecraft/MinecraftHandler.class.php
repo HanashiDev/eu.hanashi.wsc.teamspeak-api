@@ -11,25 +11,60 @@ use wcf\system\exception\MinecraftException;
  * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
  * @package  WoltLabSuite\Core\System\Minecraft
  */
-class MinecraftHandler extends AbstractMinecraftRCONHandler
+class MinecraftHandler implements IMinecraftHandler
 {
 
     /**
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    private $fsock;
+    protected $fsock;
 
     /**
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    private $_Id;
+    protected $packID;
+
+    /**
+     * list of packet Arguments
+     * @var array
+     */
+    protected $args;
+
+    /**
+     * the hostname/ip of your Minecraft server
+     * @var string
+     */
+    protected $hostname;
+
+    /**
+     * the server rcon port of your Minecraft server (standard = 25575)
+     * @var int
+     */
+    protected $port;
+
+    /**
+     * Password of server rcon
+     * @var string
+     */
+    protected $password;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct($hostname, $port, $password)
+    {
+        $this->hostname = $hostname;
+        $this->port = $port;
+        $this->password = $password;
+
+        $this->connect();
+    }
 
     /**
      * @inheritDoc
      */
     public function __destruct()
     {
-        parent::__destruct();
         @fclose($this->fsock);
     }
 
@@ -47,7 +82,7 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
 
         $this->setTimeout($this->fsock, 2, 500);
 
-        parent::connect();
+        $this->login();
     }
 
     /**
@@ -56,17 +91,14 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
      */
     public function login()
     {
-        $PackID = $this->write(3, $this->password);
+        $packID = $this->write(3, [0 => $this->password]);
 
         // Real response (id: -1 = failure)
-        $ret = $this->packetRead();
+        $ret = $this->packetRead($packID);
         if ($ret[0]['ID'] == 1) {
-            parent::login();
             return;
         }
         throw new MinecraftException("Wrong password.");
-
-        parent::login();
     }
 
     /**
@@ -82,21 +114,24 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
 
     /**
      * Writes the packat.
-     *
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
-     *
-     * @param   array $cmd
-     * @param   string $s1
-     * @param   string $s2
+     * @param   int   $cmd
+     * @param   array $args
      * @return  int packet identificator
      */
-    private function write($cmd, $s1 = '', $s2 = '')
+    private function write(int $cmd, array $commands)
     {
         // Get and increment the packet id
-        $id = ++$this->_Id;
+        $packID = ++$this->packID;
+
+        $this->args[$packID] = $commands;
 
         // Put our packet together
-        $data = pack("VV", $id, $cmd) . $s1 . chr(0) . $s2 . chr(0);
+        $data = pack("VV", $packID, $cmd);
+
+        foreach ($commands as $command) {
+            $data .= $command . chr(0);
+        }
 
         // Prefix the packet size
         $data = pack("V", strlen($data)) . $data;
@@ -105,14 +140,14 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
         fwrite($this->fsock, $data, strlen($data));
 
         // In case we want it later we'll return the packet id
-        return $id;
+        return $packID;
     }
 
     /**
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    private function packetRead()
+    private function packetRead($packID)
     {
         //Declare the return array
         $retarray = array();
@@ -127,7 +162,12 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
                 //Read the packet back
                 $packet = fread($this->fsock, $size["Size"]);
             }
-            array_push($retarray, unpack("V1ID/V1Response/a*S1/a*S2", $packet));
+            $unpack = "V1ID/V1Response";
+            $length = 0;
+            foreach ($this->args[$packID] as &$argId) {
+                $unpack .= "/a*" . $argId;
+            }
+            array_push($retarray, unpack($unpack, $packet));
         }
         return $retarray;
     }
@@ -136,22 +176,23 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function parseResult()
+    public function parseResult($packID)
     {
-        parent::parseResult();
-
-        $Packets = $this->packetRead();
+        $Packets = $this->packetRead($packID);
 
         foreach ($Packets as $pack) {
             if (isset($ret[$pack['ID']])) {
-                $ret[$pack['ID']]['S1'] .= $pack['S1'];
-                $ret[$pack['ID']]['S2'] .= $pack['S1'];
+                foreach ($this->args[$packID] as &$argId) {
+                    $ret[$pack['ID']][$argId] += rtrim($pack[$argId]);
+                }
             } else {
-                $ret[$pack['ID']] = array(
+                $ret[$pack['ID']] = [
                     'Response' => $pack['Response'],
-                    'S1' => rtrim($pack['S1']),
-                    'S2' => rtrim($pack['S2']),
-                );
+                    'Lenght'   => count($this->args[$packID])
+                ];
+                foreach ($this->args[$packID] as &$argId) {
+                    $ret[$pack['ID']] += [$argId => rtrim($pack[$argId])];
+                }
             }
         }
         return $ret;
@@ -161,21 +202,47 @@ class MinecraftHandler extends AbstractMinecraftRCONHandler
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function execute($command)
+    public function execute(string ...$commands)
     {
-        $this->write(2, $command);
+        if (is_array($commands)) {
+            return $this->executeArray($commands);
+        } else {
+            return $this->executeArray(array($commands));
+        }
     }
 
     /**
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function call($command)
+    public function executeArray(array $commands)
     {
-        parent::call($command);
+        return $this->write(2, $commands);
+    }
 
-        $ret = $this->parseResult();
+    /**
+     * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
+     */
+    public function call(string ...$commands)
+    {
+        if (is_array($commands)) {
+            return $this->callArray($commands);
+        } else {
+            return $this->callArray(array($commands));
+        }
+    }
 
-        return $ret[$this->_Id];
+    /**
+     * @inheritDoc
+     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
+     */
+    public function callArray(array $commands)
+    {
+        $packID = $this->executeArray($commands);
+
+        $ret = $this->parseResult($packID);
+
+        return $ret[$packID];
     }
 }
