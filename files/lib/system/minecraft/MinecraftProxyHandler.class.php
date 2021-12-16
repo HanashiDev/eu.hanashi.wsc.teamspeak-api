@@ -49,7 +49,7 @@ class MinecraftProxyHandler extends MinecraftHandler
         if (!$statusLine) {
             throw new MinecraftException('Missing status line');
         }
-           
+
         if (!\preg_match('/^HTTP\/([0-9]\.[0-9]) ([0-9]{3}) (.*)\r\n$/', $statusLine, $matches)) {
             throw new MinecraftException('Invalid status line');
         }
@@ -66,7 +66,7 @@ class MinecraftProxyHandler extends MinecraftHandler
             throw new MinecraftException(sprintf("Status code '%d' does not indicate success.", $this->proxyDebug['StatusCode']));
         }
 
-        while (($line = @fgets($this->fsock)) !== "\r\n") {
+        while (($line = @\fgets($this->fsock)) !== "\r\n") {
             if ($line === \false) {
                 throw new MinecraftException('Encountered EOF while searching for the end of proxy response headers.');
             }
