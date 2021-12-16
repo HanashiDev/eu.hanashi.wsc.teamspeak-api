@@ -13,11 +13,11 @@
 	</nav>
 </header>
 
-{if $rsp|isset}
+{if $proxyDebug|isset}
 	<div class="info">
-		<p>Proxy-Debug:</p>
+		<p>{lang}wcf.page.minecraftConsole.proxyDebug{/lang}</p>
 		<ul>
-			{foreach from=$rsp key=key item=value}
+			{foreach from=$proxyDebug key=key item=value}
 				<li>{$key}: {$value}</li>
 			{/foreach}
 		</ul>

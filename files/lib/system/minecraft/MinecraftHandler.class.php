@@ -106,10 +106,10 @@ class MinecraftHandler implements IMinecraftHandler
      */
     public function setTimeout(&$res, $s, $m = 0)
     {
-        if (version_compare(phpversion(), '4.3.0', '<')) {
-            return socket_set_timeout($res, $s, $m);
+        if (\version_compare(\phpversion(), '4.3.0', '<')) {
+            return \socket_set_timeout($res, $s, $m);
         }
-        return stream_set_timeout($res, $s, $m);
+        return \stream_set_timeout($res, $s, $m);
     }
 
     /**
@@ -127,17 +127,17 @@ class MinecraftHandler implements IMinecraftHandler
         $this->args[$packID] = $commands;
 
         // Put our packet together
-        $data = pack("VV", $packID, $cmd);
+        $data = \pack("VV", $packID, $cmd);
 
         foreach ($commands as $command) {
-            $data .= $command . chr(0);
+            $data .= $command . \chr(0);
         }
 
         // Prefix the packet size
-        $data = pack("V", strlen($data)) . $data;
+        $data = \pack("V", \strlen($data)) . $data;
 
         // Send packet
-        fwrite($this->fsock, $data, strlen($data));
+        \fwrite($this->fsock, $data, \strlen($data));
 
         // In case we want it later we'll return the packet id
         return $packID;
@@ -152,22 +152,22 @@ class MinecraftHandler implements IMinecraftHandler
         //Declare the return array
         $retarray = array();
         //Fetch the packet size
-        while ($size = @fread($this->fsock, 4)) {
-            $size = unpack('V1Size', $size);
+        while ($size = @\fread($this->fsock, 4)) {
+            $size = \unpack('V1Size', $size);
             //Work around valve breaking the protocol
             if ($size["Size"] > 4096) {
                 //pad with 8 nulls
-                $packet = "\x00\x00\x00\x00\x00\x00\x00\x00" . fread($this->fsock, 4096);
+                $packet = "\x00\x00\x00\x00\x00\x00\x00\x00" . \fread($this->fsock, 4096);
             } else {
                 //Read the packet back
-                $packet = fread($this->fsock, $size["Size"]);
+                $packet = \fread($this->fsock, $size["Size"]);
             }
             $unpack = "V1ID/V1Response";
             $length = 0;
             foreach ($this->args[$packID] as &$argId) {
                 $unpack .= "/a*" . $argId;
             }
-            array_push($retarray, unpack($unpack, $packet));
+            \array_push($retarray, \unpack($unpack, $packet));
         }
         return $retarray;
     }
@@ -183,15 +183,15 @@ class MinecraftHandler implements IMinecraftHandler
         foreach ($Packets as $pack) {
             if (isset($ret[$pack['ID']])) {
                 foreach ($this->args[$packID] as &$argId) {
-                    $ret[$pack['ID']][$argId] += rtrim($pack[$argId]);
+                    $ret[$pack['ID']][$argId] += \rtrim($pack[$argId]);
                 }
             } else {
                 $ret[$pack['ID']] = [
                     'Response' => $pack['Response'],
-                    'Length'   => count($this->args[$packID])
+                    'Length'   => \count($this->args[$packID])
                 ];
                 foreach ($this->args[$packID] as &$argId) {
-                    $ret[$pack['ID']] += [$argId => rtrim($pack[$argId])];
+                    $ret[$pack['ID']] += [$argId => \rtrim($pack[$argId])];
                 }
             }
         }
@@ -204,7 +204,7 @@ class MinecraftHandler implements IMinecraftHandler
      */
     public function execute(string ...$commands)
     {
-        if (is_array($commands)) {
+        if (\is_array($commands)) {
             return $this->executeArray($commands);
         } else {
             return $this->executeArray(array($commands));
@@ -226,7 +226,7 @@ class MinecraftHandler implements IMinecraftHandler
      */
     public function call(string ...$commands)
     {
-        if (is_array($commands)) {
+        if (\is_array($commands)) {
             return $this->callArray($commands);
         } else {
             return $this->callArray(array($commands));

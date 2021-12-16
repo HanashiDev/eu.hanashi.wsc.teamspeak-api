@@ -42,7 +42,7 @@ class MinecraftConnectionMultiSelectOptionType extends AbstractOptionType
      */
     public function validate(Option $option, $newValue)
     {
-        if (!is_array($newValue)) {
+        if (!\is_array($newValue)) {
             $newValue = [];
         }
         $newValue = ArrayUtil::toIntegerArray($newValue);
@@ -52,7 +52,7 @@ class MinecraftConnectionMultiSelectOptionType extends AbstractOptionType
         $minecraftList->readObjectIDs();
 
         foreach ($newValue as $value) {
-            if (!in_array($value, $minecraftList->objectIDs)) {
+            if (!\in_array($value, $minecraftList->objectIDs)) {
                 throw new UserInputException($option->optionName);
             }
         }
@@ -63,9 +63,9 @@ class MinecraftConnectionMultiSelectOptionType extends AbstractOptionType
      */
     public function getData(Option $option, $newValue)
     {
-        if (!is_array($newValue)) {
+        if (!\is_array($newValue)) {
             $newValue = [];
         }
-        return implode("\n", ArrayUtil::toIntegerArray(StringUtil::unifyNewlines($newValue)));
+        return \implode("\n", ArrayUtil::toIntegerArray(StringUtil::unifyNewlines($newValue)));
     }
 }

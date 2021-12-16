@@ -60,5 +60,9 @@
     <instructions type="update" fromversion="1.0.4">
 		<!-- files -->
         <instruction type="file" />
+		<!-- templates -->
+        <instruction type="acpTemplate" />
+		<!-- language -->
+        <instruction type="language"/>
     </instructions>
 </package>

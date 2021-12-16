@@ -15,7 +15,7 @@ use wcf\util\Url;
 class MinecraftProxyHandler extends MinecraftHandler
 {
     /** @var array List of proxy Responses. */
-    public $rsp = [];
+    public $proxyDebug = [];
 
     /**
      * @inheritDoc
@@ -32,7 +32,7 @@ class MinecraftProxyHandler extends MinecraftHandler
 
         $proxyString = 'tcp://' . $auth . $proxyUrl['host'] . ':' . $proxyUrl['port'];
 
-        $this->fsock = stream_socket_client($proxyString, $errno, $errstr, 20, STREAM_CLIENT_CONNECT);
+        $this->fsock = \stream_socket_client($proxyString, $errno, $errstr, 20, STREAM_CLIENT_CONNECT);
 
         if (!$this->fsock) {
             throw new MinecraftException("Can't connect.");
@@ -42,39 +42,38 @@ class MinecraftProxyHandler extends MinecraftHandler
             throw new MinecraftException('Request denied, Errorcode ' . $errno . ': ' . $errstr);
         }
 
-        fwrite($this->fsock, 'CONNECT ' . $this->hostname . ':' . $this->port . " HTTP/1.1\r\n\r\n");
+        \fwrite($this->fsock, 'CONNECT ' . $this->hostname . ':' . $this->port . " HTTP/1.1\r\n\r\n");
 
-        $this->rsp = [];
+        $statusLine = \fgets($this->fsock);
+
+        if (!$statusLine) {
+            throw new MinecraftException('Missing status line');
+        }
+           
+        if (!\preg_match('/^HTTP\/([0-9]\.[0-9]) ([0-9]{3}) (.*)\r\n$/', $statusLine, $matches)) {
+            throw new MinecraftException('Invalid status line');
+        }
+
+        $this->proxyDebug['Version'] = $matches[1];
+        $this->proxyDebug['StatusCode'] = $matches[2];
+        $this->proxyDebug['StatusMessage'] = $matches[3];
+
+        if ($this->proxyDebug['Version'] !== '1.0' && $this->proxyDebug['Version'] !== '1.1') {
+            throw new MinecraftException(sprintf("Incorrect HTTP version. Expected 1.0 or 1.1, got '%s'.", $this->proxyDebug['Version']));
+        }
+
+        if (!(200 <= $this->proxyDebug['StatusCode'] && $this->proxyDebug['StatusCode'] < 300)) {
+            throw new MinecraftException(sprintf("Status code '%d' does not indicate success.", $this->proxyDebug['StatusCode']));
+        }
 
         while (($line = @fgets($this->fsock)) !== "\r\n") {
-            if ($line === false) {
-                throw new MinecraftException('Reached end of file to early.');
+            if ($line === \false) {
+                throw new MinecraftException('Encountered EOF while searching for the end of proxy response headers.');
             }
-            if (preg_match('/^HTTP\/([0-9]\.[0-9]) ([0-9]{3}) (.*)\r\n$/', $line, $matches)) {
-                $this->rsp['version'] = $matches[1];
-                $this->rsp['statusCode'] = $matches[2];
-            } else {
-                $values = preg_split('/:\s*/', $line);
-                if (isset($values[1])) {
-                    $this->rsp[$values[0]] = rtrim($values[1]);
-                }
+            $values = \preg_split('/:\s*/', $line);
+            if (isset($values[1])) {
+                $this->proxyDebug[$values[0]] = \rtrim($values[1]);
             }
-        }
-
-        if (empty($this->rsp)) {
-            throw new MinecraftException('Response empty.');
-        }
-
-        if (preg_match('/(0-9)\.(0-9)/', $this->rsp['version'])) {
-            throw new MinecraftException('Unknown Version format: ' . $rsp['version']);
-        }
-
-        if ($this->rsp['version'] != '1.0' && $this->rsp['version'] != '1.1') {
-            throw new MinecraftException('Unsupporter HTTP version: ' . $rsp['version']);
-        }
-
-        if (!(200 <= $this->rsp['statusCode'] && $this->rsp['statusCode'] <= 299)) {
-            throw new MinecraftException('HTML code ' . $this->rsp['statusCode']);
         }
 
         $this->setTimeout($this->fsock, 2, 500);
