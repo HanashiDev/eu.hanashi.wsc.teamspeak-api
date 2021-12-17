@@ -63,7 +63,7 @@ class MinecraftProxyHandler extends MinecraftHandler
         }
 
         if (!(200 <= $this->proxyDebug['StatusCode'] && $this->proxyDebug['StatusCode'] < 300)) {
-            throw new MinecraftException(sprintf("Status code '%d' does not indicate success.", $this->proxyDebug['StatusCode']));
+            throw new MinecraftException(sprintf("Status code '%d' does not indicate success. (%s)", $this->proxyDebug['StatusCode'], $this->proxyDebug['StatusMessage']));
         }
 
         while (($line = @\fgets($this->fsock)) !== "\r\n") {

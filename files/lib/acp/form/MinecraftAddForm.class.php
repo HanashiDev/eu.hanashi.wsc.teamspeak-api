@@ -7,11 +7,11 @@ use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\MinecraftException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\IntegerFormField;
+use wcf\system\form\builder\field\PasswordFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
-use wcf\system\minecraft\SecretFormField;
 use wcf\system\minecraft\MinecraftConnectionHandler;
 
 /**
@@ -101,7 +101,7 @@ class MinecraftAddForm extends AbstractFormBuilderForm
                         ->maximum(65535)
                         ->value(25575)
                         ->required(),
-                    SecretFormField::create('password')
+                    PasswordFormField::create('password')
                         ->label('wcf.page.minecraftAdd.password')
                         ->placeholder(($this->formAction == 'edit') ? 'wcf.acp.updateServer.loginPassword.noChange' : '')
                         ->required(($this->formAction == 'edit') ? false : true),
