@@ -51,7 +51,7 @@ rcon.port=<1-65535>
 <p>Make sure that you use my typing error in the package name in the required packages.</p>
 
 ``` XML
-<requiredpackage minversion="1.0.0" file="requirements/de.xxschrandxx.wsc.minecraft-api.tar.gz">de.xxschrandxx.wsc.minecraft-api</requiredpackage>
+<requiredpackage minversion="{VERSION}">de.xxschrarndxx.wsc.minecraft-api</requiredpackage>
 ```
 <h3>
 	API example:
@@ -155,7 +155,7 @@ rcon.port=<1-65535>
 <p>Achtet darauf, dass ihr in den benötigten Paketen meinen Schreibfehler im Paketnamen übernehmt.</p>
 
 ``` XML
-<requiredpackage minversion="1.0.0" file="requirements/de.xxschrandxx.wsc.minecraft-api.tar.gz">de.xxschrandxx.wsc.minecraft-api</requiredpackage>
+<requiredpackage minversion="{VERSION}">de.xxschrarndxx.wsc.minecraft-api</requiredpackage>
 ```
 <h3>
 	API-Beispiel:
