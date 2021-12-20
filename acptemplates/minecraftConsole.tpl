@@ -26,11 +26,24 @@
 
 {if $errorType == 'cantConnect'}
 	<div class="error">
-		{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}
+		<p>{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}</p>
+		{if $errorMessage|isset}
+			<p>({$errorMessage})</p>
+		{/if}
 	</div>
 {else if $errorType == 'cantRead'}
 	<div class="error">
-		{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}
+		<p>{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}</p>
+		{if $errorMessage|isset}
+			<p>({$errorMessage})</p>
+		{/if}
+	</div>
+{else if $errorType == 'proxyError'}
+	<div class="error">
+		<p>{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}</p>
+		{if $errorMessage|isset}
+			<p>({$errorMessage})</p>
+		{/if}
 	</div>
 {else}
 	{if $response|isset}

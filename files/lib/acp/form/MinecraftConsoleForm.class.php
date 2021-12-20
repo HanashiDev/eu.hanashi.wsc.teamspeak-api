@@ -30,21 +30,29 @@ class MinecraftConsoleForm extends AbstractForm
     public $activeMenuItem = 'wcf.acp.menu.link.configuration.minecraft.minecraftList';
 
     /**
-     * @inheritDoc
+     * Minecraft
      */
     public $minecraft;
 
     /**
-     * @inheritDoc
+     * Command to execute.
      */
     public $command;
 
     /**
-     * @inheritDoc
+     * Response from server.
      */
     public $response;
 
+    /**
+     * Proxy Debug information.
+     */
     public $proxyDebug;
+
+    /**
+     * Exception Message.
+     */
+    public $errorMessage;
 
     /**
      * The MinecraftConnectionHandler for the Action.
@@ -72,12 +80,15 @@ class MinecraftConsoleForm extends AbstractForm
         try {
             $this->connection = $this->minecraft->getConnection();
         } catch (MinecraftException $e) {
-            $this->errorType = 'cantConnect';
-            if (\ENABLE_DEBUG_MODE) {
-                \wcf\functions\exception\logThrowable($e);
+            switch ($e->getCode()) {
+                case 100;
+                    $this->errorType = 'proxyError';
+                    break;
+                default:
+                    $this->errorType = 'cantConnect';
+                    break;
             }
-        } catch (\Exception $e) {
-            $this->errorType = 'cantConnect';
+            $this->errorMessage = $e->getMessage();
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
             }
@@ -99,6 +110,7 @@ class MinecraftConsoleForm extends AbstractForm
                 $tmpResponse = $this->connection->call($command);
             } catch (MinecraftException $e) {
                 $this->errorType = 'cantConnect';
+                $this->errorMessage = $e->getMessage();
                 if (\ENABLE_DEBUG_MODE) {
                     \wcf\functions\exception\logThrowable($e);
                 }
@@ -132,6 +144,7 @@ class MinecraftConsoleForm extends AbstractForm
         parent::assignVariables();
 
         WCF::getTPL()->assign([
+            'errorMessage' => $this->errorMessage,
             'minecraftID' => $this->minecraft->minecraftID,
             'connectionName' => $this->minecraft->connectionName,
             'proxyDebug' => $this->proxyDebug,

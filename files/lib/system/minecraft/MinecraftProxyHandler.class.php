@@ -47,11 +47,11 @@ class MinecraftProxyHandler extends MinecraftHandler
         $statusLine = \fgets($this->fsock);
 
         if (!$statusLine) {
-            throw new MinecraftException('Missing status line');
+            throw new MinecraftException('Missing status line', 100);
         }
 
         if (!\preg_match('/^HTTP\/([0-9]\.[0-9]) ([0-9]{3}) (.*)\r\n$/', $statusLine, $matches)) {
-            throw new MinecraftException('Invalid status line');
+            throw new MinecraftException('Invalid status line', 100);
         }
 
         $this->proxyDebug['Version'] = $matches[1];
@@ -59,16 +59,16 @@ class MinecraftProxyHandler extends MinecraftHandler
         $this->proxyDebug['StatusMessage'] = $matches[3];
 
         if ($this->proxyDebug['Version'] !== '1.0' && $this->proxyDebug['Version'] !== '1.1') {
-            throw new MinecraftException(\sprintf('Incorrect HTTP version. Expected 1.0 or 1.1, got \'%s\'.', $this->proxyDebug['Version']));
+            throw new MinecraftException(\sprintf('Incorrect HTTP version. Expected 1.0 or 1.1, got \'%s\'.', $this->proxyDebug['Version']), 100);
         }
 
         if (!(200 <= $this->proxyDebug['StatusCode'] && $this->proxyDebug['StatusCode'] < 300)) {
-            throw new MinecraftException(\sprintf('Status code \'%1$d\' does not indicate success. (%2$s)', $this->proxyDebug['StatusCode'], $this->proxyDebug['StatusMessage']));
+            throw new MinecraftException(\sprintf('Status code \'%1$d\' does not indicate success. (%2$s)', $this->proxyDebug['StatusCode'], $this->proxyDebug['StatusMessage']), 100);
         }
 
         while (($line = @\fgets($this->fsock)) !== "\r\n") {
             if ($line === \false) {
-                throw new MinecraftException('Encountered EOF while searching for the end of proxy response headers.');
+                throw new MinecraftException('Encountered EOF while searching for the end of proxy response headers.', 100);
             }
             $values = \preg_split('/:\s*/', $line);
             if (isset($values[1])) {

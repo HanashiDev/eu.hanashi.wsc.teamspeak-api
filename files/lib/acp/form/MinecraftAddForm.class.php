@@ -76,9 +76,18 @@ class MinecraftAddForm extends AbstractFormBuilderForm
                                 if (\ENABLE_DEBUG_MODE) {
                                     \wcf\functions\exception\logThrowable($e);
                                 }
-                                $field->addValidationError(
-                                    new FormFieldValidationError('cantConnect', 'wcf.page.minecraftAdd.cantConnectDynamic', ['msg' => $e->getMessage()])
-                                );
+                                switch ($e->getCode()) {
+                                    case 100;
+                                        $field->addValidationError(
+                                            new FormFieldValidationError('proxyError', 'wcf.page.minecraftAdd.proxyErrorDynamic', ['msg' => $e->getMessage()])
+                                        );
+                                        break;
+                                    default:
+                                        $field->addValidationError(
+                                            new FormFieldValidationError('cantConnect', 'wcf.page.minecraftAdd.cantConnectDynamic', ['msg' => $e->getMessage()])
+                                        );
+                                        break;
+                                }
                             } catch (\Exception $e) {
                                 if (\ENABLE_DEBUG_MODE) {
                                     \wcf\functions\exception\logThrowable($e);

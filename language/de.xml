@@ -42,8 +42,9 @@
 		<item name="wcf.page.minecraftAdd.rconPort"><![CDATA[RCON-Port]]></item>
 		<item name="wcf.page.minecraftAdd.rconPort.description"><![CDATA[Standard-Port: 25575]]></item>
 		<item name="wcf.page.minecraftAdd.password"><![CDATA[Passwort]]></item>
-		<item name="wcf.page.minecraftAdd.cantConnect"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.]]></item>
+		<item name="wcf.page.minecraftAdd.cantConnect"><![CDATA[Konnte nicht mit dem Server verbinden.]]></item>
 		<item name="wcf.page.minecraftAdd.cantConnectDynamic"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.<br>(Minecraft-Meldung: {$msg})]]></item>
+		<item name="wcf.page.minecraftAdd.proxyErrorDynamic"><![CDATA[Konnte nicht mit dem Proxy-Server verbinden.<br>(Proxy-Meldung: {$msg})]]></item>
 		<item name="wcf.page.minecraftAdd.numberOutOfRange"><![CDATA[Der Wert ist außerhalb des Gültigkeitsbereichs.]]></item>
 		<item name="wcf.page.minecraftAdd.notANumber"><![CDATA[Das ist keine gültige Nummer.]]></item>
 	</category>
@@ -54,6 +55,7 @@
 		<item name="wcf.page.minecraftConsole.command.description"><![CDATA[Der Befehl, der ausgeführt werden soll.]]></item>
 		<item name="wcf.page.minecraftConsole.error.cantConnect"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.]]></item>
 		<item name="wcf.page.minecraftConsole.error.cantRead"><![CDATA[Konnte die Antwort des Minecraft-Servers nicht entziffern.]]></item>
+		<item name="wcf.page.minecraftConsole.error.proxyError"><![CDATA[Proxyfehler. Aktiviere den Debug-Modus für mehr Proxy-Informationen.]]></item>
 		<item name="wcf.page.minecraftConsole.commandListDefault"><![CDATA[Liste aller Minecraft Befehle.]]></item>
 		<item name="wcf.page.minecraftConsole.commandListBukkit"><![CDATA[Liste aller Bukkit Befehle.]]></item>
 		<item name="wcf.page.minecraftConsole.commandListSpigot"><![CDATA[Liste aller Spigot Befehle.]]></item>
