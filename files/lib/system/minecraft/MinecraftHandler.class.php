@@ -191,7 +191,7 @@ class MinecraftHandler implements IMinecraftHandler
     public function call(string $command)
     {
         $packID = $this->execute($command);
-        
+
         $ret = $this->parseResult($packID);
 
         return $ret[$packID];
