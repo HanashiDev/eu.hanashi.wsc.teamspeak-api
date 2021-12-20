@@ -40,19 +40,11 @@ interface IMinecraftHandler
 
     /**
      * Method to execute server rcon commands
-     * @param  string  $commands Command to execute on server
+     * @param  string  $command Command to execute on server
      * @return int                  packet identificator
      * @throws MinecraftException
      */
-    public function execute(string ...$commands);
-
-    /**
-     * Method to execute server rcon commands
-     * @param  array  $commands Command to execute on server
-     * @return int                  packet identificator
-     * @throws MinecraftException
-     */
-    public function executeArray(array $commands);
+    public function execute(string $command);
 
     /**
      * Execute a command from server rcon
@@ -60,23 +52,11 @@ interface IMinecraftHandler
      * <code>
      * $mc->call('list uuids')
      * </code>
-     * @param  string $commands Command to execute on server
+     * @param  string $command Command to execute on server
      * @return array|null
      * @throws MinecraftException
      */
-    public function call(string ...$commands);
-
-    /**
-     * Execute a command from server rcon
-     * Example:
-     * <code>
-     * $mc->call('list uuids')
-     * </code>
-     * @param  array $commands Command to execute on server
-     * @return array|null
-     * @throws MinecraftException
-     */
-    public function callArray(array $commands);
+    public function call(string $command);
 
     /**
      * Parse the results from Minecraft

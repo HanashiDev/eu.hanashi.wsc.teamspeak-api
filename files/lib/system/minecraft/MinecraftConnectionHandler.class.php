@@ -39,14 +39,39 @@ class MinecraftConnectionHandler
      *
      * Example:
      * <code>
-     * $mc->call('list uuids')
+     * $mc->call('list uuids');
      * </code>
      *
-     * @param   string  $command    method name
+     * @param   string     $command    method name
      * @return  array|null
      */
     public function call($command)
     {
         return $this->minecraftHandler->call($command);
+    }
+
+    /**
+     * Execute a command from server rcon
+     *
+     * Example:
+     * <code>
+     * $commands = [
+     *     0 => 'say I am making a list of online players.'
+     *     1 => 'list uuids',
+     *     2 => 'say I made the list.'
+     * ]
+     * $mc->callArray($commands);
+     * </code>
+     *
+     * @param  array      $commands methods
+     * @return array|null
+     */
+    public function callArray($commands)
+    {
+        $ret = [];
+        foreach ($commands as $key => $value) {
+            $ret[$key] = $this->minecraftHandler->call($value);
+        }
+        return $ret;
     }
 }

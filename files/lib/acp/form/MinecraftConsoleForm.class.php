@@ -55,12 +55,6 @@ class MinecraftConsoleForm extends AbstractForm
     public $errorMessage;
 
     /**
-     * The MinecraftConnectionHandler for the Action.
-     * @var MinecraftConnectionHandler
-     */
-    public $connection;
-
-    /**
      * @inheritDoc
      */
     public function readParameters()
@@ -77,25 +71,6 @@ class MinecraftConsoleForm extends AbstractForm
         if (!$this->minecraft->minecraftID) {
             throw new IllegalLinkException();
         }
-        try {
-            $this->connection = $this->minecraft->getConnection();
-        } catch (MinecraftException $e) {
-            switch ($e->getCode()) {
-                case 100:
-                    $this->errorType = 'proxyError';
-                    break;
-                default:
-                    $this->errorType = 'cantConnect';
-                    break;
-            }
-            $this->errorMessage = $e->getMessage();
-            if (\ENABLE_DEBUG_MODE) {
-                \wcf\functions\exception\logThrowable($e);
-            }
-        }
-        if (\ENABLE_DEBUG_MODE && isset($this->connection->minecraftHandler->proxyDebug)) {
-            $this->proxyDebug = $this->connection->minecraftHandler->proxyDebug;
-        }
     }
 
     /**
@@ -107,30 +82,37 @@ class MinecraftConsoleForm extends AbstractForm
             $tmpResponse = [];
             $command = $_POST['command'];
             try {
-                $tmpResponse = $this->connection->call($command);
+                $connection = $this->minecraft->getConnection();
+                $tmpResponse = $connection->call($command);
             } catch (MinecraftException $e) {
-                $this->errorType = 'cantConnect';
+                switch ($e->getCode()) {
+                    case 100:
+                        $this->errorType = 'proxyError';
+                        break;
+                    default:
+                        $this->errorType = 'cantConnect';
+                        break;
+                }
+                $this->errorField = 'command';
                 $this->errorMessage = $e->getMessage();
                 if (\ENABLE_DEBUG_MODE) {
                     \wcf\functions\exception\logThrowable($e);
                 }
             }
+            if (\ENABLE_DEBUG_MODE && isset($connection)) {
+                if (isset($connection->minecraftHandler->proxyDebug)) {
+                    $this->proxyDebug = $connection->minecraftHandler->proxyDebug;
+                }
+            }
             if (empty($tmpResponse)) {
                 $this->errorType = 'cantConnect';
+                $this->errorField = 'command';
             } else {
                 if ($tmpResponse['Response'] == 0) {
-                    foreach ($tmpResponse as $key => $value) {
-                        if ($key == 'Response' || $key == 'Length') {
-                            continue;
-                        }
-                        if ($this->response == null) {
-                            $this->response = $value;
-                        } else {
-                            $this->response .= '\n' . $value;
-                        }
-                    }
+                    $this->response = $tmpResponse['CMD'];
                 } else {
                     $this->errorType = 'cantRead';
+                    $this->errorField = 'command';
                 }
             }
         }

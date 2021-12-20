@@ -25,12 +25,6 @@ class MinecraftHandler implements IMinecraftHandler
     protected $packID;
 
     /**
-     * list of packet Arguments
-     * @var array
-     */
-    protected $args;
-
-    /**
      * the hostname/ip of your Minecraft server
      * @var string
      */
@@ -91,7 +85,7 @@ class MinecraftHandler implements IMinecraftHandler
      */
     public function login()
     {
-        $packID = $this->write(3, [0 => $this->password]);
+        $packID = $this->write(3, $this->password);
 
         // Real response (id: -1 = failure)
         $ret = $this->packetRead($packID);
@@ -115,23 +109,17 @@ class MinecraftHandler implements IMinecraftHandler
     /**
      * Writes the packat.
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
-     * @param   int   $cmd
-     * @param   array $args
-     * @return  int packet identificator
+     * @param   int    $cmd
+     * @param   string $command
+     * @return  int    packet identificator
      */
-    private function write(int $cmd, array $commands)
+    private function write(int $cmd, string $command)
     {
         // Get and increment the packet id
         $packID = ++$this->packID;
 
-        $this->args[$packID] = $commands;
-
         // Put our packet together
-        $data = \pack("VV", $packID, $cmd);
-
-        foreach ($commands as $command) {
-            $data .= $command . \chr(0);
-        }
+        $data = \pack("VV", $packID, $cmd) . $command . \chr(0);
 
         // Prefix the packet size
         $data = \pack("V", \strlen($data)) . $data;
@@ -144,7 +132,6 @@ class MinecraftHandler implements IMinecraftHandler
     }
 
     /**
-     * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
     private function packetRead($packID)
@@ -162,12 +149,7 @@ class MinecraftHandler implements IMinecraftHandler
                 //Read the packet back
                 $packet = \fread($this->fsock, $size["Size"]);
             }
-            $unpack = "V1ID/V1Response";
-            $length = 0;
-            foreach ($this->args[$packID] as &$argId) {
-                $unpack .= "/a*" . $argId;
-            }
-            \array_push($retarray, \unpack($unpack, $packet));
+            \array_push($retarray, \unpack("V1ID/V1Response/a*CMD", $packet));
         }
         return $retarray;
     }
@@ -182,17 +164,12 @@ class MinecraftHandler implements IMinecraftHandler
 
         foreach ($Packets as $pack) {
             if (isset($ret[$pack['ID']])) {
-                foreach ($this->args[$packID] as &$argId) {
-                    $ret[$pack['ID']][$argId] += \rtrim($pack[$argId]);
-                }
+                $ret[$pack['ID']]['CMD'] += \rtrim($pack['CMD']);
             } else {
                 $ret[$pack['ID']] = [
                     'Response' => $pack['Response'],
-                    'Length'   => \count($this->args[$packID])
+                    'CMD' => $pack['CMD']
                 ];
-                foreach ($this->args[$packID] as &$argId) {
-                    $ret[$pack['ID']] += [$argId => \rtrim($pack[$argId])];
-                }
             }
         }
         return $ret;
@@ -202,45 +179,19 @@ class MinecraftHandler implements IMinecraftHandler
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function execute(string ...$commands)
+    public function execute(string $command)
     {
-        if (\is_array($commands)) {
-            return $this->executeArray($commands);
-        } else {
-            return $this->executeArray(array($commands));
-        }
+        return $this->write(2, $command);
     }
 
     /**
      * @inheritDoc
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    public function executeArray(array $commands)
+    public function call(string $command)
     {
-        return $this->write(2, $commands);
-    }
-
-    /**
-     * @inheritDoc
-     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
-     */
-    public function call(string ...$commands)
-    {
-        if (\is_array($commands)) {
-            return $this->callArray($commands);
-        } else {
-            return $this->callArray(array($commands));
-        }
-    }
-
-    /**
-     * @inheritDoc
-     * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
-     */
-    public function callArray(array $commands)
-    {
-        $packID = $this->executeArray($commands);
-
+        $packID = $this->execute($command);
+        
         $ret = $this->parseResult($packID);
 
         return $ret[$packID];

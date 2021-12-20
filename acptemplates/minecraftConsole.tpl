@@ -24,67 +24,47 @@
 	</div>
 {/if}
 
-{if $errorType == 'cantConnect'}
-	<div class="error">
-		<p>{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}</p>
-		{if $errorMessage|isset}
-			<p>({$errorMessage})</p>
-		{/if}
-	</div>
-{else if $errorType == 'cantRead'}
-	<div class="error">
-		<p>{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}</p>
-		{if $errorMessage|isset}
-			<p>({$errorMessage})</p>
-		{/if}
-	</div>
-{else if $errorType == 'proxyError'}
-	<div class="error">
-		<p>{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}</p>
-		{if $errorMessage|isset}
-			<p>({$errorMessage})</p>
-		{/if}
-	</div>
-{else}
-	{if $response|isset}
+{if $response|isset}
 	<div class="section">
 		<dt><label for="response">{lang}wcf.page.minecraftConsole.response{/lang}</label></dt>
 		<dd>
 			<textarea type="text" id="response" name="response" style="resize: vertical; max-height: 20rem; min-height: 5rem" readonly >{$response}</textarea>
 		</dd>
 	</div>
-	{/if}
-
-	<form method="post" action="{link controller='MinecraftConsole' id=$minecraftID}{/link}">
-		<div class="section">
-			<dl{if $errorField == 'command'} class="formError"{/if}>
-				<dt><label for="command">{lang}wcf.page.minecraftConsole.command{/lang}</label></dt>
-				<dd>
-   					<input type="text" id="command" name="command" class="long" required autofocus>
-   					{if $errorField == 'command'}
-   						<small class="innerError">
-   							{if $errorType == 'empty'}
-   								{lang}wcf.global.form.error.empty{/lang}
-   							{else}
-								{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}
-							{/if}
-						</small>
-					{/if}
-					<small>{lang}wcf.page.minecraftConsole.command.description{/lang}</small>
-				</dd>
-			</dl>
-
-			{event name='dataFields'}
-		</div>
-
-		{event name='sections'}
-
-		<div class="formSubmit">
-			<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s">
-			{csrfToken}
-		</div>
-	</form>
 {/if}
+
+<form method="post" action="{link controller='MinecraftConsole' id=$minecraftID}{/link}">
+	<div class="section">
+		<dl{if $errorField == 'command'} class="formError"{/if}>
+			<dt><label for="command">{lang}wcf.page.minecraftConsole.command{/lang}</label></dt>
+			<dd>
+				<input type="text" id="command" name="command" class="long" required autofocus />
+				{if $errorField == 'command'}
+					<small class="innerError">
+						{if $errorType == 'empty'}
+								<p>{lang}wcf.global.form.error.empty{/lang}</p>
+						{else}
+							<p>{lang}wcf.page.minecraftConsole.error.{@$errorType}{/lang}</p>
+							{if $errorMessage|isset}
+								<p>({$errorMessage})</p>
+							{/if}
+						{/if}
+					</small>
+				{/if}
+				<small>{lang}wcf.page.minecraftConsole.command.description{/lang}</small>
+			</dd>
+		</dl>
+
+		{event name='dataFields'}
+	</div>
+
+	{event name='sections'}
+
+	<div class="formSubmit">
+		<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s">
+		{csrfToken}
+	</div>
+</form>
 
 <div class="section tabularBox">
 	<a href="https://minecraft.fandom.com/wiki/Commands" target="_blank">{lang}wcf.page.minecraftConsole.commandListDefault{/lang}</a><br />
