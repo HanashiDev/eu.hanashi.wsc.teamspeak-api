@@ -59,11 +59,11 @@ class MinecraftProxyHandler extends MinecraftHandler
         $this->proxyDebug['StatusMessage'] = $matches[3];
 
         if ($this->proxyDebug['Version'] !== '1.0' && $this->proxyDebug['Version'] !== '1.1') {
-            throw new MinecraftException(sprintf("Incorrect HTTP version. Expected 1.0 or 1.1, got '%s'.", $this->proxyDebug['Version']));
+            throw new MinecraftException(\sprintf('Incorrect HTTP version. Expected 1.0 or 1.1, got \'%s\'.', $this->proxyDebug['Version']));
         }
 
         if (!(200 <= $this->proxyDebug['StatusCode'] && $this->proxyDebug['StatusCode'] < 300)) {
-            throw new MinecraftException(sprintf("Status code '%d' does not indicate success. (%s)", $this->proxyDebug['StatusCode'], $this->proxyDebug['StatusMessage']));
+            throw new MinecraftException(\sprintf('Status code \'%1$d\' does not indicate success. (%2$s)', $this->proxyDebug['StatusCode'], $this->proxyDebug['StatusMessage']));
         }
 
         while (($line = @\fgets($this->fsock)) !== "\r\n") {
