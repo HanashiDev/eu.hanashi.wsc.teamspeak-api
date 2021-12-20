@@ -77,7 +77,7 @@ class MinecraftAddForm extends AbstractFormBuilderForm
                                     \wcf\functions\exception\logThrowable($e);
                                 }
                                 switch ($e->getCode()) {
-                                    case 100;
+                                    case 100:
                                         $field->addValidationError(
                                             new FormFieldValidationError('proxyError', 'wcf.page.minecraftAdd.proxyErrorDynamic', ['msg' => $e->getMessage()])
                                         );

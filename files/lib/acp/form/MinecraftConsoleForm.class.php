@@ -81,7 +81,7 @@ class MinecraftConsoleForm extends AbstractForm
             $this->connection = $this->minecraft->getConnection();
         } catch (MinecraftException $e) {
             switch ($e->getCode()) {
-                case 100;
+                case 100:
                     $this->errorType = 'proxyError';
                     break;
                 default:
