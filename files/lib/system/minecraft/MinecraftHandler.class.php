@@ -168,7 +168,7 @@ class MinecraftHandler implements IMinecraftHandler
             } else {
                 $ret[$pack['ID']] = [
                     'Response' => $pack['Response'],
-                    'CMD' => $pack['CMD']
+                    'CMD' => \rtrim($pack['CMD'])
                 ];
             }
         }
