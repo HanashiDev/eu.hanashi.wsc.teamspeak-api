@@ -43,8 +43,8 @@
 		<item name="wcf.page.minecraftAdd.rconPort.description"><![CDATA[standard port: 25575]]></item>
 		<item name="wcf.page.minecraftAdd.password"><![CDATA[Password]]></item>
 		<item name="wcf.page.minecraftAdd.cantConnect"><![CDATA[Could not connect to the server.]]></item>
-		<item name="wcf.page.minecraftAdd.cantConnectDynamic"><![CDATA[Could not connect to the Minecraft erver.<br>(Minecraft error: {$msg})]]></item>
-		<item name="wcf.page.minecraftAdd.proxyErrorDynamic"><![CDATA[Could not connect to the Minecraft erver.<br>(Minecraft error: {$msg})]]></item>
+		<item name="wcf.page.minecraftAdd.cantConnectDynamic"><![CDATA[Could not connect to the Minecraft server.<br>(Minecraft error: {$msg})]]></item>
+		<item name="wcf.page.minecraftAdd.proxyErrorDynamic"><![CDATA[Could not connect to the Minecraft server.<br>(Proxy error: {$msg})]]></item>
 		<item name="wcf.page.minecraftAdd.numberOutOfRange"><![CDATA[The value is out of range.]]></item>
 		<item name="wcf.page.minecraftAdd.notANumber"><![CDATA[That's not a valid number.]]></item>
 	</category>

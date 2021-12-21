@@ -59,7 +59,7 @@ class MinecraftConnectionHandler
      *     0 => 'say I am making a list of online players.'
      *     1 => 'list uuids',
      *     2 => 'say I made the list.'
-     * ]
+     * ];
      * $mc->callArray($commands);
      * </code>
      *
