@@ -4,6 +4,7 @@ namespace wcf\acp\form;
 
 use wcf\data\minecraft\Minecraft;
 use wcf\system\exception\IllegalLinkException;
+use wcf\util\CryptoUtil;
 
 /**
  * MinecraftEdit Form class
@@ -34,5 +35,16 @@ class MinecraftEditForm extends MinecraftAddForm
         if (!$this->formObject->minecraftID) {
             throw new IllegalLinkException();
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setFormObjectData()
+    {
+        parent::setFormObjectData();
+
+        $passwordField = $this->form->getNodeById('password');
+        $passwordField->value('');
     }
 }

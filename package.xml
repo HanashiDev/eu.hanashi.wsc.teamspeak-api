@@ -34,35 +34,6 @@
         <instruction type="option" />
         <instruction type="script">acp/install_de.xxschrandxx.wsc.minecraft-api_1.0.0.php</instruction>
         <instruction type="script">acp/update_de.xxschrandxx.wsc.minecraft-api_1.0.2.php</instruction>
-    </instructions>
-    <instructions type="update" fromversion="1.0.0">
-		<!-- files -->
-        <instruction type="file" />
-    </instructions>
-    <instructions type="update" fromversion="1.0.1">
-		<!-- files -->
-        <instruction type="file" />
-		<!-- templates -->
-		<instruction type="acpTemplate" />
-		<!-- language -->
-        <instruction type="language"/>
-		<!-- config -->
-        <instruction type="script">acp/update_de.xxschrandxx.wsc.minecraft-api_1.0.2.php</instruction>
-    </instructions>
-    <instructions type="update" fromversion="1.0.2">
-		<!-- files -->
-        <instruction type="file" />
-    </instructions>
-    <instructions type="update" fromversion="1.0.3">
-		<!-- files -->
-        <instruction type="file" />
-    </instructions>
-    <instructions type="update" fromversion="1.0.4">
-		<!-- files -->
-        <instruction type="file" />
-		<!-- templates -->
-        <instruction type="acpTemplate" />
-		<!-- language -->
-        <instruction type="language"/>
+        <instruction type="script">acp/update_de.xxschrandxx.wsc.minecraft-api_1.0.7.php</instruction>
     </instructions>
 </package>

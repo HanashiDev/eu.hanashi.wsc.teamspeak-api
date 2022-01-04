@@ -6,6 +6,7 @@ use wcf\data\DatabaseObject;
 use wcf\system\exception\MinecraftException;
 use wcf\system\minecraft\IMinecraftHandler;
 use wcf\system\minecraft\MinecraftConnectionHandler;
+use wcf\util\CryptoUtil;
 
 /**
  * Minecraft Data class
@@ -41,8 +42,18 @@ class Minecraft extends DatabaseObject
     public function getConnection()
     {
         if ($this->connection === null) {
-            $this->connection = new MinecraftConnectionHandler($this->hostname, $this->rconPort, $this->password);
+            $this->connection = new MinecraftConnectionHandler($this->hostname, $this->rconPort, $this->getPassword());
         }
         return $this->connection;
+    }
+
+    /**
+     * getPassword
+     *
+     * @return string password
+     */
+    public function getPassword()
+    {
+        return CryptoUtil::getValueFromSignedString($this->password);
     }
 }
