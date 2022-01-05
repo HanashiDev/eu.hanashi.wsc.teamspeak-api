@@ -3,7 +3,6 @@
 namespace wcf\data\minecraft;
 
 use wcf\data\AbstractDatabaseObjectAction;
-use wcf\util\CryptoUtil;
 
 /**
  * Minecraft Action class
@@ -39,10 +38,6 @@ class MinecraftAction extends AbstractDatabaseObjectAction
      */
     public function create()
     {
-        if (!CryptoUtil::validateSignedString($this->parameters['data']['password'])) {
-            $this->parameters['data']['password'] = CryptoUtil::createSignedString($this->parameters['data']['password']);
-        }
-
         parent::create();
     }
 
@@ -51,12 +46,8 @@ class MinecraftAction extends AbstractDatabaseObjectAction
      */
     public function update()
     {
-        if (isset($this->parameters['data']['password'])) {
-            if (empty($this->parameters['data']['password'])) {
-                unset($this->parameters['data']['password']);
-            } else if (!CryptoUtil::validateSignedString($this->parameters['data']['password'])) {
-                $this->parameters['data']['password'] = CryptoUtil::createSignedString($this->parameters['data']['password']);
-            }
+        if (isset($this->parameters['data']['password']) && empty($this->parameters['data']['password'])) {
+            unset($this->parameters['data']['password']);
         }
 
         parent::update();

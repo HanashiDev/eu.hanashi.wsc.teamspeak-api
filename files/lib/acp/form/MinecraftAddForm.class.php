@@ -13,7 +13,6 @@ use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
 use wcf\system\minecraft\MinecraftConnectionHandler;
-use wcf\util\CryptoUtil;
 
 /**
  * MinecraftAdd Form class
@@ -72,11 +71,7 @@ class MinecraftAddForm extends AbstractFormBuilderForm
                                 $password = $this->formObject->password;
                             }
                             try {
-                                if (CryptoUtil::validateSignedString($password)) {
-                                    new MinecraftConnectionHandler($field->getSaveValue(), $rconPortField->getSaveValue(), CryptoUtil::getValueFromSignedString($password));
-                                } else {
-                                    new MinecraftConnectionHandler($field->getSaveValue(), $rconPortField->getSaveValue(), $password);
-                                }
+                                new MinecraftConnectionHandler($field->getSaveValue(), $rconPortField->getSaveValue(), $password);
                             } catch (MinecraftException $e) {
                                 if (\ENABLE_DEBUG_MODE) {
                                     \wcf\functions\exception\logThrowable($e);
