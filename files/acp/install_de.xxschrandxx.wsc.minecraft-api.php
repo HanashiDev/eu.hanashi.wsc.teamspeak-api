@@ -2,6 +2,7 @@
 
 use wcf\system\database\table\column\MediumintDatabaseTableColumn;
 use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
+use wcf\system\database\table\column\ObjectIdDatabaseTableColumn;
 use wcf\system\database\table\column\VarcharDatabaseTableColumn;
 use wcf\system\database\table\DatabaseTable;
 use wcf\system\database\table\DatabaseTableChangeProcessor;
@@ -10,7 +11,7 @@ use wcf\system\WCF;
 $tables = [
     DatabaseTable::create('wcf1_minecraft')
         ->columns([
-            NotNullInt10DatabaseTableColumn::create('minecraftID')
+            ObjectIdDatabaseTableColumn::create('minecraftID')
                 ->autoIncrement(),
             VarcharDatabaseTableColumn::create('connectionName')
                 ->length(20),
@@ -24,6 +25,12 @@ $tables = [
                 ->length(50)
                 ->notNull(),
             NotNullInt10DatabaseTableColumn::create('creationDate'),
+            EnumDatabaseTableColumn::create('type')
+                ->enumValues(['vanilla', 'spigot', 'bungee']),
+        ])
+        ->indices([
+            DatabaseTablePrimaryIndex::create()
+                ->columns(['minecraftID']),
         ]),
 ];
 
