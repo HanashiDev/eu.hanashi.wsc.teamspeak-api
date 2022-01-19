@@ -22,7 +22,7 @@ class MinecraftHandler implements IMinecraftHandler
     /**
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
      */
-    protected $packID;
+    protected $packID = 0;
 
     /**
      * the hostname/ip of your Minecraft server
@@ -89,8 +89,10 @@ class MinecraftHandler implements IMinecraftHandler
 
         // Real response (id: -1 = failure)
         $ret = $this->packetRead($packID);
-        if ($ret[0]['ID'] == 1) {
-            return;
+        if ($ret[0]['ID'] == $packID) {
+            if ($ret[0]['Response'] == 2) {
+                return;
+            }
         }
         throw new MinecraftException("Wrong password.");
     }
@@ -109,17 +111,17 @@ class MinecraftHandler implements IMinecraftHandler
     /**
      * Writes the packat.
      * @see https://gist.github.com/tehbeard/1292348 Based on the work of tehbeard.
-     * @param   int    $cmd
+     * @param   int    $type
      * @param   string $command
      * @return  int    packet identificator
      */
-    private function write(int $cmd, string $command)
+    private function write(int $type, string $command)
     {
         // Get and increment the packet id
-        $packID = ++$this->packID;
+        $packID = $this->packID++;
 
         // Put our packet together
-        $data = \pack("VV", $packID, $cmd) . $command . \chr(0);
+        $data = \pack("VV", $packID, $type) . $command . \chr(0) . \chr(0);
 
         // Prefix the packet size
         $data = \pack("V", \strlen($data)) . $data;

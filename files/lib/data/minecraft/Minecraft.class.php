@@ -41,7 +41,7 @@ class Minecraft extends DatabaseObject
     public function getConnection()
     {
         if ($this->connection === null) {
-            $this->connection = new MinecraftConnectionHandler($this->hostname, $this->rconPort, $this->getPassword());
+            $this->connection = new MinecraftConnectionHandler($this->hostname, $this->rconPort, $this->password);
         }
         return $this->connection;
     }
