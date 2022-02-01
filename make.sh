@@ -20,6 +20,3 @@ done
 VERSION=`cat ./package.xml | grep -o '<version>*.*.*<\/version>'`
 VERSION=${VERSION//<version>/}
 VERSION=${VERSION//<\/version>/}
-
-
-phpDocumentor -d . -t docs/$VERSION
