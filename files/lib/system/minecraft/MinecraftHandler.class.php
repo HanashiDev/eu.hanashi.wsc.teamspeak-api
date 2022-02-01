@@ -43,6 +43,12 @@ class MinecraftHandler implements IMinecraftHandler
     protected $password;
 
     /**
+     * the answers
+     * @var array
+     */
+    protected $ret = [];
+
+    /**
      * @inheritDoc
      */
     public function __construct($hostname, $port, $password)
@@ -88,11 +94,9 @@ class MinecraftHandler implements IMinecraftHandler
         $packID = $this->write(3, $this->password);
 
         // Real response (id: -1 = failure)
-        $ret = $this->packetRead($packID);
-        if ($ret[0]['ID'] == $packID) {
-            if ($ret[0]['Response'] == 2) {
+        $this->ret += $this->packetRead($packID);
+        if ($this->ret[$packID]['Response'] == 2) {
                 return;
-            }
         }
         throw new MinecraftException("Wrong password.");
     }
@@ -165,16 +169,16 @@ class MinecraftHandler implements IMinecraftHandler
         $Packets = $this->packetRead($packID);
 
         foreach ($Packets as $pack) {
-            if (isset($ret[$pack['ID']])) {
-                $ret[$pack['ID']]['CMD'] += \rtrim($pack['CMD']);
+            if (isset($this->ret[$pack['ID']])) {
+                $this->ret[$pack['ID']]['CMD'] += \rtrim($pack['CMD']);
             } else {
-                $ret[$pack['ID']] = [
+                $this->ret[$pack['ID']] = [
                     'Response' => $pack['Response'],
                     'CMD' => \rtrim($pack['CMD'])
                 ];
             }
         }
-        return $ret;
+        return $this->ret[$packID];
     }
 
     /**
@@ -194,8 +198,6 @@ class MinecraftHandler implements IMinecraftHandler
     {
         $packID = $this->execute($command);
 
-        $ret = $this->parseResult($packID);
-
-        return $ret[$packID];
+        return $this->parseResult($packID);
     }
 }

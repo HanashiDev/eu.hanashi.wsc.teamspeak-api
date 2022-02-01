@@ -44,10 +44,20 @@ class MinecraftConnectionHandler
      *
      * @param   string     $command    method name
      * @return  array|null
+     * @throws MinecraftException
      */
     public function call($command)
     {
         return $this->minecraftHandler->call($command);
+    }
+
+    /**
+     * @param  int $packID
+     * @return array|null
+     * @throws MinecraftException
+     */
+    public function parseResult($packID) {
+        return $this->minecraftHandler->parseResult($packID);
     }
 
     /**
