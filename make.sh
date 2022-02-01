@@ -20,10 +20,3 @@ done
 VERSION=`cat ./package.xml | grep -o '<version>*.*.*<\/version>'`
 VERSION=${VERSION//<version>/}
 VERSION=${VERSION//<\/version>/}
-
-phpdox
-
-mkdir ./docs/$VERSION/
-mv ./tmp/docs/html/* ./docs/$VERSION/
-
-rm -R ./tmp/
