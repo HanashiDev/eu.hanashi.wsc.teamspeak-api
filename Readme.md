@@ -1,4 +1,5 @@
 Languages: [German](#----german) | [English](#----english)
+<p>Documentation: https://xxschrandxx.github.io/de.xxschrandxx.wsc.minecraft-api/.</p>
 <h1>
     English
 </h1>
