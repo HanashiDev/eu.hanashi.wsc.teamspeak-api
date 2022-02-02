@@ -63,7 +63,7 @@ class MinecraftAddForm extends AbstractFormBuilderForm
                         ->addValidator(new FormFieldValidator('hostnameCheck', function (TextFormField $field) {
                             /** @var IntegerFormField $rconPortField */
                             $rconPortField = $field->getDocument()->getNodeById('rconPort');
-                            /** @var TextFormField $passwordField */
+                            /** @var PasswordFormField $passwordField */
                             $passwordField = $field->getDocument()->getNodeById('password');
 
                             $password = $passwordField->getSaveValue();

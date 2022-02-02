@@ -22,16 +22,14 @@
     </excludedpackages>
 
     <instructions type="install">
-		<!-- files -->
         <instruction type="file" />
-		<!-- templates -->
 		<instruction type="acpTemplate" />
-		<!-- language -->
         <instruction type="language"/>
-		<!-- config -->
         <instruction type="acpMenu" />
         <instruction type="userGroupOption" />
         <instruction type="option" />
         <instruction type="script">acp/install_de.xxschrandxx.wsc.minecraft-api.php</instruction>
+    </instructions>
+    <instructions type="update">
     </instructions>
 </package>

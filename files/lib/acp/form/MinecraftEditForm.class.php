@@ -44,6 +44,7 @@ class MinecraftEditForm extends MinecraftAddForm
     {
         parent::setFormObjectData();
 
+        /** @var PasswordFormField $passwordField */
         $passwordField = $this->form->getNodeById('password');
         $passwordField->value('');
     }
