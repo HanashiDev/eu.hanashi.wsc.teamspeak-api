@@ -1,16 +1,17 @@
 <?php
 
+use wcf\system\database\table\column\EnumDatabaseTableColumn;
 use wcf\system\database\table\column\MediumintDatabaseTableColumn;
 use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
+use wcf\system\database\table\column\ObjectIdDatabaseTableColumn;
 use wcf\system\database\table\column\VarcharDatabaseTableColumn;
+use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
 use wcf\system\database\table\DatabaseTable;
-use wcf\system\database\table\DatabaseTableChangeProcessor;
-use wcf\system\WCF;
 
-$tables = [
+return [
     DatabaseTable::create('wcf1_minecraft')
         ->columns([
-            NotNullInt10DatabaseTableColumn::create('minecraftID')
+            ObjectIdDatabaseTableColumn::create('minecraftID')
                 ->autoIncrement(),
             VarcharDatabaseTableColumn::create('connectionName')
                 ->length(20),
@@ -24,11 +25,11 @@ $tables = [
                 ->length(50)
                 ->notNull(),
             NotNullInt10DatabaseTableColumn::create('creationDate'),
+            EnumDatabaseTableColumn::create('type')
+                ->enumValues(['vanilla', 'spigot', 'bungee']),
+        ])
+        ->indices([
+            DatabaseTablePrimaryIndex::create()
+                ->columns(['minecraftID']),
         ]),
 ];
-
-(new DatabaseTableChangeProcessor(
-    $this->installation->getPackage(),
-    $tables,
-    WCF::getDB()->getEditor()
-))->process();
