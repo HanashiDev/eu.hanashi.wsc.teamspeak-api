@@ -9,7 +9,7 @@ use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
 use wcf\system\database\table\DatabaseTable;
 
 return [
-    DatabaseTable::create('wcf1_minecraft')
+    DatabaseTable::create('wcf' . WCF_N . '_minecraft')
         ->columns([
             ObjectIdDatabaseTableColumn::create('minecraftID')
                 ->autoIncrement(),
