@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/language.xsd" languagecode="de">
+<language xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/language.xsd" languagecode="de">
 	<category name="wcf.acp.minecraftSelectOptionType">
 		<item name="wcf.acp.minecraftSelectOptionType.noBot"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} noch keinen Minecraft-Server hinzugefügt. Dies {if LANGUAGE_USE_INFORMAL_VARIANT}kannst du{else}können Sie{/if} unter <a href="{link controller="MinecraftAdd"}{/link}">Minecraft-Server hinzufügen</a> erledigen.]]></item>
 	</category>

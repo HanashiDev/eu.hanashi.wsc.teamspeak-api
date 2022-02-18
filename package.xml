@@ -33,5 +33,6 @@
 		<instruction type="database">acp/database/install_de.xxschrandxx.wsc.minecraft-api.php</instruction>
 	</instructions>
 	<instructions type="update">
+		<!-- TODO -->
 	</instructions>
 </package>
