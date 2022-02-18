@@ -56,7 +56,8 @@ class MinecraftConnectionHandler
      * @return array|null
      * @throws MinecraftException
      */
-    public function parseResult($packID) {
+    public function parseResult($packID)
+    {
         return $this->minecraftHandler->parseResult($packID);
     }
 
