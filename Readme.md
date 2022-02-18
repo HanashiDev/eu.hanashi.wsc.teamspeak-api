@@ -1,4 +1,5 @@
 Languages: [German](#----german) | [English](#----english)
+"Minecraft"™ is a trademark of Mojang Synergies AB. This Resource ist not affiliate with Mojang.
 <p>Documentation: https://xxschrandxx.github.io/de.xxschrandxx.wsc.minecraft-api/.</p>
 <h1>
     English
