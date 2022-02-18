@@ -2,7 +2,8 @@
     <ul class="scrollableCheckboxList" id="{$option->optionName}" style="height: 100px;">
         {foreach from=$minecraftList item=minecraft}
             <li>
-                <label><input type="checkbox" name="values[{$option->optionName}][]" value="{@$minecraft->minecraftID}"{if $minecraft->minecraftID|in_array:$value} checked{/if}> {$minecraft->connectionName}</label>
+                <label><input type="checkbox" name="values[{$option->optionName}][]" value="{@$minecraft->minecraftID}"
+                        {if $minecraft->minecraftID|in_array:$value} checked{/if}> {$minecraft->connectionName}</label>
             </li>
         {/foreach}
     </ul>
@@ -18,7 +19,7 @@
                 'wcf.global.filter.visibility.highlightActive': '{jslang}wcf.global.filter.visibility.highlightActive{/jslang}',
                 'wcf.global.filter.visibility.showAll': '{jslang}wcf.global.filter.visibility.showAll{/jslang}'
             });
-            
+
             new UiItemListFilter('{$option->optionName|encodeJS}');
         });
     </script>

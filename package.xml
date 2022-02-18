@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package name="de.xxschrarndxx.wsc.minecraft-api" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/package.xsd">
-    <packageinformation>
-        <packagename><![CDATA[Minecraft API]]></packagename>
-        <packagename language="de"><![CDATA[Minecraft-API]]></packagename>
-        <packagedescription><![CDATA[API for Minecraft RCON. Based on <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
-        <packagedescription language="de"><![CDATA[API für Minecraft RCON. Basierend auf der Arbeit <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
-        <version>1.0.7 dev 1</version>
-        <date>2021-11-08</date>
-    </packageinformation>
+<package name="de.xxschrarndxx.wsc.minecraft-api"
+	xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/package.xsd">
+	<packageinformation>
+		<packagename><![CDATA[Minecraft API]]></packagename>
+		<packagename language="de"><![CDATA[Minecraft-API]]></packagename>
+		<packagedescription><![CDATA[API for Minecraft RCON. Based on <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
+		<packagedescription language="de"><![CDATA[API für Minecraft RCON. Basierend auf der Arbeit <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
+		<version>1.0.7 dev 1</version>
+		<date>2021-11-08</date>
+	</packageinformation>
 
-    <authorinformation>
-        <author><![CDATA[xXSchrandXx]]></author>
-    </authorinformation>
+	<authorinformation>
+		<author><![CDATA[xXSchrandXx]]></author>
+	</authorinformation>
 
-    <requiredpackages>
-        <requiredpackage minversion="5.4.8">com.woltlab.wcf</requiredpackage>
-    </requiredpackages>
+	<requiredpackages>
+		<requiredpackage minversion="5.4.8">com.woltlab.wcf</requiredpackage>
+	</requiredpackages>
 
-    <excludedpackages>
-        <excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
-    </excludedpackages>
+	<excludedpackages>
+		<excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+	</excludedpackages>
 
-    <instructions type="install">
-        <instruction type="file" />
+	<instructions type="install">
+		<instruction type="file" />
 		<instruction type="acpTemplate" />
-        <instruction type="language"/>
-        <instruction type="acpMenu" />
-        <instruction type="userGroupOption" />
-        <instruction type="option" />
-        <instruction type="database">acp/database/install_de.xxschrandxx.wsc.minecraft-api.php</instruction>
-    </instructions>
-    <instructions type="update">
-    </instructions>
+		<instruction type="language"/>
+		<instruction type="acpMenu" />
+		<instruction type="userGroupOption" />
+		<instruction type="option" />
+		<instruction type="database">acp/database/install_de.xxschrandxx.wsc.minecraft-api.php</instruction>
+	</instructions>
+	<instructions type="update">
+	</instructions>
 </package>

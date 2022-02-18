@@ -33,7 +33,7 @@ class MinecraftAddForm extends AbstractFormBuilderForm
      */
     public $activeMenuItem = 'wcf.acp.menu.link.configuration.minecraft.minecraftList.add';
 
-     /**
+    /**
      * @inheritDoc
      */
     public $objectActionClass = MinecraftAction::class;
