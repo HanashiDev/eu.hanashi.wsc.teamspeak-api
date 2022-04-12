@@ -8,9 +8,9 @@ use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
 use wcf\system\database\table\DatabaseTable;
 
 return [
-    DatabaseTable::create('minecraft')
+    DatabaseTable::create('wcf' . WCF_N . '_minecraft')
         ->columns([
-            ObjectIdDatabaseTableColumn::create('wcf' . WCF_N . '_minecraftID'),
+            ObjectIdDatabaseTableColumn::create('minecraftID'),
             VarcharDatabaseTableColumn::create('name')
                 ->length(20),
             NotNullVarchar255DatabaseTableColumn::create('url'),
