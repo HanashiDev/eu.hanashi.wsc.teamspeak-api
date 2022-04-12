@@ -3,9 +3,7 @@
 namespace wcf\data\minecraft;
 
 use wcf\data\DatabaseObject;
-use wcf\system\exception\MinecraftException;
-use wcf\system\minecraft\IMinecraftHandler;
-use wcf\system\minecraft\MinecraftConnectionHandler;
+use wcf\system\minecraft\MinecraftHandler;
 
 /**
  * Minecraft Data class
@@ -26,6 +24,19 @@ class Minecraft extends DatabaseObject
      */
     protected static $databaseTableIndexName = 'minecraftID';
 
+    /*
+     * ObjectIdDatabaseTableColumn $minecraftID
+     * VarcharDatabaseTableColumn $name length = 20
+     *
+     * NotNullVarchar255DatabaseTableColumn $url length = 255
+     * EnumDatabaseTableColumn $type ['spigot', 'bungee']
+     *
+     * VarcharDatabaseTableColumn $user length = 255
+     * VarcharDatabaseTableColumn $password length = 255
+
+     * NotNullInt10DatabaseTableColumn $creationDate
+     */
+
     /**
      * minecrraft connection
      *
@@ -41,7 +52,7 @@ class Minecraft extends DatabaseObject
     public function getConnection()
     {
         if ($this->connection === null) {
-            $this->connection = new MinecraftConnectionHandler($this->hostname, $this->rconPort, $this->password);
+            $this->connection = new MinecraftHandler($this->url, $this->user, $this->password);
         }
         return $this->connection;
     }

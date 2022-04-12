@@ -2,7 +2,7 @@
 <language xmlns="https://www.woltlab.com"
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/language.xsd" languagecode="en">
 	<category name="wcf.acp.minecraftSelectOptionType">
-		<item name="wcf.acp.minecraftSelectOptionType.noBot"><![CDATA[You haven't added a Minecraft server yet. You can do this under <a href="{link controller="MinecraftAdd"}{/link}">add Minecraft server</a>.]]></item>
+		<item name="wcf.acp.minecraftSelectOptionType.noServer"><![CDATA[You haven't added a Minecraft server yet. You can do this under <a href="{link controller="MinecraftAdd"}{/link}">add Minecraft server</a>.]]></item>
 	</category>
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.minecraft"><![CDATA[Minecraft]]></item>
@@ -19,47 +19,26 @@
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList"><![CDATA[Server]]></item>
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.add"><![CDATA[add Minecraft server]]></item>
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.edit"><![CDATA[edit Minecraft server]]></item>
-		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftConsole"><![CDATA[Console]]></item>
-	</category>
-	<category name="wcf.global.button">
-		<item name="wcf.global.button.console"><![CDATA[Console]]></item>
 	</category>
 	<category name="wcf.page.minecraftList">
+		<item name="wcf.page.minecraftList.button.status"><![CDATA[Check status]]></item>
+		<item name="wcf.page.minecraftList.button.status.result"><![CDATA[Response]]></item>
 		<item name="wcf.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
-		<item name="wcf.page.minecraftList.connectionName"><![CDATA[Connection name]]></item>
-		<item name="wcf.page.minecraftList.type"><![CDATA[Type]]></item>
-		<item name="wcf.page.minecraftList.hostname"><![CDATA[Server address]]></item>
-		<item name="wcf.page.minecraftList.rconPort"><![CDATA[RCON port]]></item>
-		<item name="wcf.page.minecraftList.username"><![CDATA[Username]]></item>
+		<item name="wcf.page.minecraftList.name"><![CDATA[Name]]></item>
+		<item name="wcf.page.minecraftList.url"><![CDATA[URL]]></item>
 		<item name="wcf.page.minecraftList.creationDate"><![CDATA[Creation date]]></item>
 	</category>
 	<category name="wcf.page.minecraftAdd">
-		<item name="wcf.page.minecraftAdd.connectionName"><![CDATA[Connection name]]></item>
-		<item name="wcf.page.minecraftAdd.connectionName.description"><![CDATA[Enter a connection name to be able to identify the connection in the overview again.]]></item>
-		<item name="wcf.page.minecraftAdd.hostname"><![CDATA[Server address]]></item>
-		<item name="wcf.page.minecraftAdd.hostname.description"><![CDATA[Enter the server address or IP of the Minecraft server.]]></item>
-		<item name="wcf.page.minecraftAdd.type"><![CDATA[Type of server.]]></item>
-		<item name="wcf.page.minecraftAdd.type.description"><![CDATA[What kind of server is used. (Bukkit and paper are included in spigot)]]></item>
-		<item name="wcf.page.minecraftAdd.rconPort"><![CDATA[RCON port]]></item>
-		<item name="wcf.page.minecraftAdd.rconPort.description"><![CDATA[standard port: 25575]]></item>
+		<item name="wcf.page.minecraftAdd.name"><![CDATA[Connection name]]></item>
+		<item name="wcf.page.minecraftAdd.name.description"><![CDATA[Enter a connection name to be able to identify the connection in the overview again.]]></item>
+		<item name="wcf.page.minecraftAdd.url"><![CDATA[URL]]></item>
+		<item name="wcf.page.minecraftAdd.url.description"><![CDATA[Enter the URL to the API.]]></item>
+		<item name="wcf.page.minecraftAdd.user"><![CDATA[User]]></item>
 		<item name="wcf.page.minecraftAdd.password"><![CDATA[Password]]></item>
+
+		<item name="wcf.page.minecraftAdd.wrongPassword"><![CDATA[User and/or password not accepted]]></item>
 		<item name="wcf.page.minecraftAdd.cantConnect"><![CDATA[Could not connect to the server.]]></item>
 		<item name="wcf.page.minecraftAdd.cantConnectDynamic"><![CDATA[Could not connect to the Minecraft server.<br>(Minecraft error: {$msg})]]></item>
-		<item name="wcf.page.minecraftAdd.proxyErrorDynamic"><![CDATA[Could not connect to the Minecraft server.<br>(Proxy error: {$msg})]]></item>
-		<item name="wcf.page.minecraftAdd.numberOutOfRange"><![CDATA[The value is out of range.]]></item>
-		<item name="wcf.page.minecraftAdd.notANumber"><![CDATA[That's not a valid number.]]></item>
-	</category>
-	<category name="wcf.page.minecraftConsole">
-		<item name="wcf.page.minecraftConsole.proxyDebug"><![CDATA[Proxy-Debug:]]></item>
-		<item name="wcf.page.minecraftConsole.response"><![CDATA[Response from the server:]]></item>
-		<item name="wcf.page.minecraftConsole.command"><![CDATA[Command:]]></item>
-		<item name="wcf.page.minecraftConsole.command.description"><![CDATA[The command to be executed.]]></item>
-		<item name="wcf.page.minecraftConsole.error.cantConnect"><![CDATA[Could not connect to the Minecraft server.]]></item>
-		<item name="wcf.page.minecraftConsole.error.cantRead"><![CDATA[Couldn't decipher the response from the Minecraft server.]]></item>
-		<item name="wcf.page.minecraftConsole.error.proxyError"><![CDATA[Proxy failure. Activate debug mode for more proxy-information.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListDefault"><![CDATA[List of every Minecraft command.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListBukkit"><![CDATA[List of every Bukkit command.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListSpigot"><![CDATA[List of every Spigot command.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListBungeeCord"><![CDATA[List of every BungeeCord command.]]></item>
+		<item name="wcf.page.minecraftAdd.tooManyConnectionsDynamic"><![CDATA[Could not connect to the Minecraft server.<br>(Wait until {$time} o'clock)]]></item>
 	</category>
 </language>

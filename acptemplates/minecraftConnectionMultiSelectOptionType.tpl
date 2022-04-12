@@ -3,7 +3,7 @@
         {foreach from=$minecraftList item=minecraft}
             <li>
                 <label><input type="checkbox" name="values[{$option->optionName}][]" value="{@$minecraft->minecraftID}"
-                        {if $minecraft->minecraftID|in_array:$value} checked{/if}> {$minecraft->connectionName}</label>
+                        {if $minecraft->minecraftID|in_array:$value} checked{/if}> {$minecraft->name}</label>
             </li>
         {/foreach}
     </ul>
@@ -24,5 +24,5 @@
         });
     </script>
 {else}
-    <p class="info">{lang}wcf.acp.minecraftSelectOptionType.noBot{/lang}</p>
+    <p class="info">{lang}wcf.acp.minecraftSelectOptionType.noServer{/lang}</p>
 {/if}

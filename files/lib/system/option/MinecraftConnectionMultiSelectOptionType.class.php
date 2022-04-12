@@ -26,7 +26,7 @@ class MinecraftConnectionMultiSelectOptionType extends AbstractOptionType
     public function getFormElement(Option $option, $value)
     {
         $minecraftList = new MinecraftList();
-        $minecraftList->sqlOrderBy = 'connectionName ASC';
+        $minecraftList->sqlOrderBy = 'name ASC';
         $minecraftList->readObjects();
 
         WCF::getTPL()->assign([

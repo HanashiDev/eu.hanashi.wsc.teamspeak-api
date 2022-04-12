@@ -4,7 +4,7 @@ namespace wcf\acp\form;
 
 use wcf\data\minecraft\Minecraft;
 use wcf\system\exception\IllegalLinkException;
-use wcf\util\CryptoUtil;
+use wcf\system\form\builder\field\PasswordFormField;
 
 /**
  * MinecraftEdit Form class
@@ -15,6 +15,7 @@ use wcf\util\CryptoUtil;
  */
 class MinecraftEditForm extends MinecraftAddForm
 {
+
     /**
      * @inheritDoc
      */

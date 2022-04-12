@@ -3,12 +3,12 @@
 	xmlns="https://www.woltlab.com"
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/package.xsd">
 	<packageinformation>
-		<packagename><![CDATA[Minecraft API]]></packagename>
+		<packagename><![CDATA[Minecraft-API]]></packagename>
 		<packagename language="de"><![CDATA[Minecraft-API]]></packagename>
-		<packagedescription><![CDATA[API for Minecraft RCON. Based on <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
-		<packagedescription language="de"><![CDATA[API für Minecraft RCON. Basierend auf der Arbeit <a href="https://hanashi.dev/filebase/file/25-teamspeak-api/">TeamSpeak-API by Hanashi Developement</a>.]]></packagedescription>
-		<version>1.0.7 dev 1</version>
-		<date>2021-11-08</date>
+		<packagedescription><![CDATA[API for Minecraft through WSC-Minecraft-Bridge.]]></packagedescription>
+		<packagedescription language="de"><![CDATA[API für Minecraft durch WSC-Minecraft-Bridge.]]></packagedescription>
+		<version>2.0.0</version>
+		<date>2022-03-21</date>
 	</packageinformation>
 
 	<authorinformation>
@@ -20,8 +20,17 @@
 	</requiredpackages>
 
 	<excludedpackages>
-		<excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+		<excludedpackage version="5.5.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
+
+	<instructions type="update">
+		<!-- TODO -->
+		<instruction type="file" />
+		<instruction type="acpTemplate" />
+		<instruction type="language"/>
+		<instruction type="database">acp/database/update_de.xxschrarndxx.wsc.minecraft-api_2.0.0.php</instruction>
+		<instruction type="database">acp/database/install_de.xxschrarndxx.wsc.minecraft-api.php</instruction>
+	</instructions>
 
 	<instructions type="install">
 		<instruction type="file" />
@@ -30,9 +39,6 @@
 		<instruction type="acpMenu" />
 		<instruction type="userGroupOption" />
 		<instruction type="option" />
-		<instruction type="database">acp/database/install_de.xxschrandxx.wsc.minecraft-api.php</instruction>
-	</instructions>
-	<instructions type="update">
-		<!-- TODO -->
+		<instruction type="database">acp/database/install_de.xxschrarndxx.wsc.minecraft-api.php</instruction>
 	</instructions>
 </package>

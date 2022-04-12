@@ -2,8 +2,13 @@
 
 namespace wcf\system\minecraft;
 
+use GuzzleHttp\Exception\GuzzleException;
+use InvalidArgumentException;
+use Psr\Http\Message\ResponseInterface;
+use wcf\data\minecraft\Minecraft;
 use wcf\data\minecraft\MinecraftList;
 use wcf\system\exception\MinecraftException;
+use wcf\system\exception\UserInputException;
 use wcf\system\SingletonFactory;
 
 /**
@@ -15,25 +20,25 @@ use wcf\system\SingletonFactory;
  */
 abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
 {
-
     /**
      * list of minecraft ids
+     * Override with minecraft ids to use.
      *
      * @var array
      */
-    protected $minecraftIDs = [];
+    protected array $minecraftIDs = [];
 
     /**
      * list of minecrafts
      *
-     * @var array
+     * @var array[Minecraft]
      */
-    protected $minecrafts = [];
+    protected array $minecrafts = [];
 
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -48,62 +53,58 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
     }
 
     /**
-     * get minecraft
-     *
+     * get {@link Minecraft} with given id
      * @param  int $minecraftID
-     * @return Minecraft
+     * @return Minecraft|null
+     * @throws InvalidArgumentException Weather Minecraft with id is found
      */
-    public function getMinecraft($minecraftID)
+    public function getMinecraft(int $minecraftID): ?Minecraft
     {
         if (empty($this->minecrafts[$minecraftID])) {
-            if (ENABLE_DEBUG_MODE) {
-                throw new MinecraftException('found no minecraft with this id');
-            }
             return null;
+        } else {
+            return $this->minecrafts[$minecraftID];
         }
-        return $this->minecrafts[$minecraftID];
     }
 
-    public function getMinecrafts()
+    /**
+     * get list of managed minecraft
+     * @return array[Minecraft]
+     */
+    public function getMinecrafts(): array
     {
         return $this->minecrafts;
     }
 
     /**
-     * execute a command
-     *
-     * @param  int $minecraftID
-     * @param  string $command
-     * @return array
+     * call method on minecrafts
+     * @param string $httpMethod Method to call
+     * @param string $method Method to call
+     * @param array $args Arguments for method
+     * @param ?int $minecraftID MinecraftID to call
+     * @return array|ResponseInterface|null
+     * @throws GuzzleException
+     * @throws MinecraftException
+     * @see \wcf\system\minecraft\IMinecraftHandler#call
      */
-    public function execute($minecraftID, $command)
+    public function call(string $httpMethod, string $method = '', array $args = [], ?int $minecraftID = null)
     {
-        if (empty($this->minecrafts[$minecraftID])) {
-            if (ENABLE_DEBUG_MODE) {
-                throw new MinecraftException('found no minecraft with this id');
+        if ($minecraftID === null) {
+            $results = [];
+            foreach ($this->minecraftIDs as $minecraftID) {
+                try {
+                    $results[$minecraftID] = $this->call($httpMethod, $method, $args, $minecraftID);
+                } catch (GuzzleException | MinecraftException $e) {
+                    $results[$minecraftID] = null;
+                }
             }
-            return [];
-        }
-
-        return $this->minecrafts[$minecraftID]->getConnection()->execute($command);
-    }
-
-    /**
-     * call a command
-     *
-     * @param  int $minecraftID
-     * @param  string $command
-     * @return array
-     */
-    public function call($minecraftID, $command)
-    {
-        if (empty($this->minecrafts[$minecraftID])) {
-            if (ENABLE_DEBUG_MODE) {
-                throw new MinecraftException('found no minecraft with this id');
+            return $results;
+        } else {
+            if (empty($this->minecrafts[$minecraftID])) {
+                return null;
+            } else {
+                return $this->minecrafts[$minecraftID]->getConnection()->call($httpMethod, $method, $args);
             }
-            return [];
         }
-
-        return $this->minecrafts[$minecraftID]->getConnection()->call($command);
     }
 }

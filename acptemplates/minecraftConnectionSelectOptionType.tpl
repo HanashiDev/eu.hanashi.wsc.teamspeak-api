@@ -3,9 +3,9 @@
         <option></option>
         {foreach from=$minecraftList item=minecraft}
             <option value="{@$minecraft->minecraftID}" {if $minecraft->minecraftID == $value} selected{/if}>
-                {$minecraft->connectionName}</option>
+                {$minecraft->name}</option>
         {/foreach}
     </select>
 {else}
-    <p class="info">{lang}wcf.acp.minecraftSelectOptionType.noBot{/lang}</p>
+    <p class="info">{lang}wcf.acp.minecraftSelectOptionType.noServer{/lang}</p>
 {/if}

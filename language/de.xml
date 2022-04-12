@@ -2,7 +2,7 @@
 <language xmlns="https://www.woltlab.com"
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/language.xsd" languagecode="de">
 	<category name="wcf.acp.minecraftSelectOptionType">
-		<item name="wcf.acp.minecraftSelectOptionType.noBot"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} noch keinen Minecraft-Server hinzugefügt. Dies {if LANGUAGE_USE_INFORMAL_VARIANT}kannst du{else}können Sie{/if} unter <a href="{link controller="MinecraftAdd"}{/link}">Minecraft-Server hinzufügen</a> erledigen.]]></item>
+		<item name="wcf.acp.minecraftSelectOptionType.noServer"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} noch keinen Minecraft-Server hinzugefügt. Dies {if LANGUAGE_USE_INFORMAL_VARIANT}kannst du{else}können Sie{/if} unter <a href="{link controller="MinecraftAdd"}{/link}">Minecraft-Server hinzufügen</a> erledigen.]]></item>
 	</category>
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.minecraft"><![CDATA[Minecraft]]></item>
@@ -11,7 +11,7 @@
 		<item name="wcf.acp.group.option.category.user.minecraft"><![CDATA[Minecraft]]></item>
 		<item name="wcf.acp.group.option.category.mod.minecraft"><![CDATA[Minecraft]]></item>
 		<item name="wcf.acp.group.option.category.admin.minecraft"><![CDATA[Minecraft]]></item>
-		<item name="wcf.acp.group.option.admin.minecraft.canManageConnection"><![CDATA[Kann Server-RCON-Verbindungen verwalten]]></item>
+		<item name="wcf.acp.group.option.admin.minecraft.canManageConnection"><![CDATA[Kann Minecraft-API Server-Verbindungen verwalten]]></item>
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.configuration.minecraft"><![CDATA[Minecraft]]></item>
@@ -19,47 +19,29 @@
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList"><![CDATA[Server]]></item>
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.add"><![CDATA[Minecraft-Server hinzufügen]]></item>
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.edit"><![CDATA[Minecraft-Server bearbeiten]]></item>
-		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftConsole"><![CDATA[Konsole]]></item>
 	</category>
 	<category name="wcf.page.minecraftList">
+		<item name="wcf.page.minecraftList.button.status"><![CDATA[Status überprüfen]]></item>
+		<item name="wcf.page.minecraftList.button.status.result"><![CDATA[Antwort]]></item>
 		<item name="wcf.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
-		<item name="wcf.page.minecraftList.connectionName"><![CDATA[Verbindungs-Name]]></item>
-		<item name="wcf.page.minecraftList.type"><![CDATA[Typ]]></item>
-		<item name="wcf.page.minecraftList.hostname"><![CDATA[Server-Adresse]]></item>
-		<item name="wcf.page.minecraftList.rconPort"><![CDATA[RCON-Port]]></item>
-		<item name="wcf.page.minecraftList.username"><![CDATA[Benutzername]]></item>
+		<item name="wcf.page.minecraftList.name"><![CDATA[Verbindungs-Name]]></item>
+		<item name="wcf.page.minecraftList.url"><![CDATA[URL]]></item>
 		<item name="wcf.page.minecraftList.creationDate"><![CDATA[Erstelldatum]]></item>
 	</category>
 	<category name="wcf.global.button">
 		<item name="wcf.global.button.console"><![CDATA[Konsole]]></item>
 	</category>
 	<category name="wcf.page.minecraftAdd">
-		<item name="wcf.page.minecraftAdd.connectionName"><![CDATA[Verbindungs-Name]]></item>
-		<item name="wcf.page.minecraftAdd.connectionName.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} einen Verbindungsnamen ein um die Verbindung in der Übersicht wieder identifizieren zu können.]]></item>
-		<item name="wcf.page.minecraftAdd.hostname"><![CDATA[Server-Adresse]]></item>
-		<item name="wcf.page.minecraftAdd.hostname.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die Server-Adresse oder die IP des Minecraft-Servers an.]]></item>
-		<item name="wcf.page.minecraftAdd.type"><![CDATA[Type des Servers.]]></item>
-		<item name="wcf.page.minecraftAdd.type.description"><![CDATA[Welche Art von Server verwendet wird. (Bukkit und Paper sind in Spigot enthalten)]]></item>
-		<item name="wcf.page.minecraftAdd.rconPort"><![CDATA[RCON-Port]]></item>
-		<item name="wcf.page.minecraftAdd.rconPort.description"><![CDATA[Standard-Port: 25575]]></item>
+		<item name="wcf.page.minecraftAdd.name"><![CDATA[Verbindungs-Name]]></item>
+		<item name="wcf.page.minecraftAdd.name.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} einen Verbindungsnamen ein um die Verbindung in der Übersicht wieder identifizieren zu können.]]></item>
+		<item name="wcf.page.minecraftAdd.url"><![CDATA[URL]]></item>
+		<item name="wcf.page.minecraftAdd.url.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die URL zur API an.]]></item>
+		<item name="wcf.page.minecraftAdd.user"><![CDATA[Benutzer]]></item>
 		<item name="wcf.page.minecraftAdd.password"><![CDATA[Passwort]]></item>
+
+		<item name="wcf.page.minecraftAdd.wrongPassword"><![CDATA[Benutzer und / oder Passwort nicht akzeptiert]]></item>
 		<item name="wcf.page.minecraftAdd.cantConnect"><![CDATA[Konnte nicht mit dem Server verbinden.]]></item>
 		<item name="wcf.page.minecraftAdd.cantConnectDynamic"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.<br>(Minecraft-Meldung: {$msg})]]></item>
-		<item name="wcf.page.minecraftAdd.proxyErrorDynamic"><![CDATA[Konnte nicht mit dem Proxy-Server verbinden.<br>(Proxy-Meldung: {$msg})]]></item>
-		<item name="wcf.page.minecraftAdd.numberOutOfRange"><![CDATA[Der Wert ist außerhalb des Gültigkeitsbereichs.]]></item>
-		<item name="wcf.page.minecraftAdd.notANumber"><![CDATA[Das ist keine gültige Nummer.]]></item>
-	</category>
-	<category name="wcf.page.minecraftConsole">
-		<item name="wcf.page.minecraftConsole.proxyDebug"><![CDATA[Proxy-Debug:]]></item>
-		<item name="wcf.page.minecraftConsole.response"><![CDATA[Antwort des Servers:]]></item>
-		<item name="wcf.page.minecraftConsole.command"><![CDATA[Befehl:]]></item>
-		<item name="wcf.page.minecraftConsole.command.description"><![CDATA[Der Befehl, der ausgeführt werden soll.]]></item>
-		<item name="wcf.page.minecraftConsole.error.cantConnect"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.]]></item>
-		<item name="wcf.page.minecraftConsole.error.cantRead"><![CDATA[Konnte die Antwort des Minecraft-Servers nicht entziffern.]]></item>
-		<item name="wcf.page.minecraftConsole.error.proxyError"><![CDATA[Proxyfehler. Aktiviere den Debug-Modus für mehr Proxy-Informationen.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListDefault"><![CDATA[Liste aller Minecraft Befehle.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListBukkit"><![CDATA[Liste aller Bukkit Befehle.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListSpigot"><![CDATA[Liste aller Spigot Befehle.]]></item>
-		<item name="wcf.page.minecraftConsole.commandListBungeeCord"><![CDATA[Liste aller BungeeCord Befehle.]]></item>
+		<item name="wcf.page.minecraftAdd.tooManyConnectionsDynamic"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.<br>(Warte bis {$time} Uhr)]]></item>
 	</category>
 </language>

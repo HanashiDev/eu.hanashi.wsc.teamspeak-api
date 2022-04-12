@@ -30,10 +30,8 @@
                 <tr>
                     <th></th>
                     <th>{lang}wcf.page.minecraftList.minecraftID{/lang}</th>
-                    <th>{lang}wcf.page.minecraftList.connectionName{/lang}</th>
-                    <th>{lang}wcf.page.minecraftList.type{/lang}</th>
-                    <th>{lang}wcf.page.minecraftList.hostname{/lang}</th>
-                    <th>{lang}wcf.page.minecraftList.rconPort{/lang}</th>
+                    <th>{lang}wcf.page.minecraftList.name{/lang}</th>
+					<th>{lang}wcf.page.minecraftList.url{/lang}</th>
                     <th>{lang}wcf.page.minecraftList.creationDate{/lang}</th>
                 </tr>
             </thead>
@@ -42,19 +40,18 @@
                     <tr class="jsObjectActionObject" data-object-id="{@$object->minecraftID}">
                         <td class="columnIcon">
                             <a href="{link controller='MinecraftEdit' id=$object->minecraftID}{/link}"
-                                title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span
-                                    class="icon icon24 fa-pencil"></span></a>
-                            {objectAction action="delete" objectTitle=$object->connectionName}
-                            <a href="{link controller='MinecraftConsole' id=$object->minecraftID}{/link}"
-                                title="{lang}wcf.global.button.console{/lang}" class="jsTooltip"><span
-                                    class="icon icon24 fa-terminal"></span></a>
+                                title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
+								<span class="icon icon16 fa-pencil"></span>
+							</a>
+                            {objectAction action="delete" objectTitle=$object->name}
+							<a href="#" title="{lang}wcf.page.minecraftList.button.status{/lang}" class="minecraftStatusButton jsTooltip">
+								<span class="icon icon16 fa-wifi"></span>
+							</a>
                             {event name='rowButtons'}
                         </td>
                         <td class="columnID">{#$object->minecraftID}</td>
-                        <td class="columnTitle">{$object->connectionName}</td>
-                        <td class="columnText">{$object->type}</td>
-                        <td class="columnText">{$object->hostname}</td>
-                        <td class="columnText">{$object->rconPort}</td>
+                        <td class="columnTitle">{$object->name}</td>
+                        <td class="columnText">{$object->url}</td>
                         <td class="columnDate">{@$object->creationDate|time}</td>
                     </tr>
                 {/foreach}
@@ -66,3 +63,12 @@
 {/if}
 
 {include file='footer'}
+
+<script data-relocate="true">
+	require(["xXSchrandXx/Minecraft/MinecraftStatus", "Language"], function(MinecraftStatus, Language) {
+		Language.addObject({
+			'wcf.page.minecraftList.button.status.result': '{lang}wcf.page.minecraftList.button.status.result{/lang}'
+		});
+		new MinecraftStatus.default();
+	});
+</script>
