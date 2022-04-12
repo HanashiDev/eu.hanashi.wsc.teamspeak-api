@@ -10,7 +10,7 @@ use wcf\system\database\table\DatabaseTable;
 return [
     DatabaseTable::create('minecraft')
         ->columns([
-            ObjectIdDatabaseTableColumn::create('minecraftID'),
+            ObjectIdDatabaseTableColumn::create('wcf' . WCF_N . '_minecraftID'),
             VarcharDatabaseTableColumn::create('name')
                 ->length(20),
             NotNullVarchar255DatabaseTableColumn::create('url'),

@@ -3,6 +3,6 @@
 use wcf\system\database\table\DatabaseTable;
 
 return [
-    DatabaseTable::create('minecraft')
+    DatabaseTable::create('wcf' . WCF_N . '_minecraft')
         ->drop()
 ];
