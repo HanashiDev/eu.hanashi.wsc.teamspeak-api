@@ -24,7 +24,6 @@
 	</excludedpackages>
 
 	<instructions type="update">
-		<!-- TODO -->
 		<instruction type="file" />
 		<instruction type="acpTemplate" />
 		<instruction type="language"/>
