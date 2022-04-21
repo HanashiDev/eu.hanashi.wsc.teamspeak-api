@@ -1,38 +1,38 @@
-Languages: [German](#----german) | [English](#----english)
+Quicklinks: [General](#general) | [API](#api) | [Links](#links) | [License]https://github.com/xXSchrandXx/de.xxschrarndxx.wsc.minecraft-api/blob/main/LICENSE)
+
 "Minecraft"™ is a trademark of Mojang Synergies AB. This Resource ist not affiliate with Mojang.
-<p>Documentation: https://xxschrandxx.github.io/de.xxschrandxx.wsc.minecraft-api/.</p>
-<h1>
-    English
-</h1>
-<h2>
-	General
-</h2>
-<h3>
-	Plugin description
-</h3>
-<p>This plugin is an interface between other plugins and Minecraft servers.</p>
-<p>Minecraft API is mostly relevant to developers. It allows you to send and get data of your Minecraft server.</p>
-<h3>
-	Links
-</h3>
-<p>GitHub: <a href="https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api">xXSchrandXx/de.xxschrandxx.wsc.minecraft-api</a></p>
 
-TODO
+# General
+## Description
+> TODO
+## Installation
+> TODO
+## Configration
+> TODO
+# API
+> TODO
+# Links
+## GitHub
+* [xXSchrandXx/de.xxschrandxx.wsc.minecraft-api](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api)
+* [xXSchrandXx/de.xxschrandxx.wsc.minecraft-linker](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-linker)
+* [xXSchrandXx/de.xxschrandxx.wsc.minecraft-sync](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-sync)
+* [xXSchrandXx/de.xxschrandxx.wsc.minecraft-profile](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-profile)
+* [xXSchrandXx/WSC-Minecraft-Bridge](https://github.com/xXSchrandXx/WSC-Minecraft-Bridge)
+* [xXSchrandXx/WSC-Minecraft-Authenticator](https://github.com/xXSchrandXx/WSC-Minecraft-Authenticator)
 
-<h1>
-    German
-</h1>
-<h2>
-	Allgemeines
-</h2>
-<h3>
-	Plugin-Beschreibung
-</h3>
-<p>Dieses Plugin ist eine Schnittstelle zwischen anderen Plugins und Minecraft-Servern.</p>
-<p>Minecraft-API ist vor allem relevant für Entwickler. Es ermöglicht Ihnen Daten zu senden und zu empfangen.</p>
-<h3>
-	Links
-</h3>
-<p>Github: <a href="https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api">xXSchrandXx/de.xxschrandxx.wsc.minecraft-api</a></p>
-
-TODO
+## WoltLab
+* [Plugin-Store/Minecraft-API](https://www.woltlab.com/pluginstore/file/7077-minecraft-api/)
+* [Plugin-Store/Minecraft-Linker](https://www.woltlab.com/pluginstore/file/7093-minecraft-linker/)
+## Spigot
+* [Resources/WSC-Minecraft-Bridge](https://www.spigotmc.org/resources/wsc-minecraft-bridge.100716/)
+* [Resources/WSC-Minecraft-Authenticator](https://www.spigotmc.org/resources/wsc-minecraft-authenticator.101169/)
+## JavaDocs
+* [Docs/wscbridge](https://maven.gamestrike.de/docs/wscbridge/)
+* [Docs/wscauthenticator](https://maven.gamestrike.de/docs/wscauthenticator/)
+## Maven
+```XML
+<repository>
+	<id>schrand-repo</id>
+	<url>https://maven.gamestrike.de/mvn/</url>
+</repository>
+```
