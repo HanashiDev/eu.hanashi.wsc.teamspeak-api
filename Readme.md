@@ -4,13 +4,55 @@ Quicklinks: [General](#general) | [API](#api) | [Links](#links) | [License]https
 
 # General
 ## Description
-> TODO
-## Installation
-> TODO
-## Configration
-> TODO
+This plugin is an interface between other plugins and Minecraft servers. Minecraft API is mostly relevant to developers. It allows you to send and get data of your Minecraft server.
+## Requirements
+[WSC-Minecraft-Bridge](#links) installed on your Bukkit- / Spigot- / BungeeCord-Server.
 # API
-> TODO
+## package.xml
+```XML
+<requiredpackage minversion="2.0.0">de.xxschrarndxx.wsc.minecraft-api</requiredpackage >
+```
+## API-Example:
+```PHP
+use wcf\data\minecraft\Minecraft;
+use GuzzleHttp\Exception\GuzzleException;
+
+/**
+ * ID des Minecraft-Eintrages im ACP.
+ * 
+ * @var int
+ */
+$id = 1;
+
+/**
+ * DatabaseObject der Minecraft-ID.
+ * 
+ * @var Minecraft
+ */
+$minecraft = new Minecraft($id);
+
+/**
+ * ConnectionHandler des Minecraft-Servers.
+ * 
+ * @var MinecraftConnectionHandler
+ */
+$connection = $minecraft->getConnection();
+
+/**
+ * Antwort auf den gesendeten Befehl.
+ * 
+ * @var ?ResponseInterface
+ */
+$response = null;
+
+try {
+    $response = $connection->call(string 'GET');
+} catch (GuzzleException $e) {
+    if (\ENABLE_DEBUG_MODE) {
+        \wcf\functions\exception\logThrowable($e);
+    }
+}
+```
 # Links
 ## GitHub
 * [xXSchrandXx/de.xxschrandxx.wsc.minecraft-api](https://github.com/xXSchrandXx/de.xxschrandxx.wsc.minecraft-api)
