@@ -46,7 +46,7 @@ $connection = $minecraft->getConnection();
 $response = null;
 
 try {
-    $response = $connection->call(string 'GET');
+    $response = $connection->call('POST', 'path', ['foo' => 'bar']);
 } catch (GuzzleException $e) {
     if (\ENABLE_DEBUG_MODE) {
         \wcf\functions\exception\logThrowable($e);
