@@ -23,7 +23,7 @@
 		<excludedpackage version="5.5.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
 
-	<instructions type="update">
+	<instructions fromversion="1.0.6" type="update">
 		<instruction type="file" />
 		<instruction type="acpTemplate" />
 		<instruction type="language"/>
