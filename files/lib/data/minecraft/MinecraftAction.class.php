@@ -71,7 +71,7 @@ class MinecraftAction extends AbstractDatabaseObjectAction
         }
     }
 
-    // TODO turn into html
+    // TODO turn response into html
     /**
      * Checking status of server.
      * @return array
@@ -119,7 +119,7 @@ class MinecraftAction extends AbstractDatabaseObjectAction
                     'status' => $e->getMessage(),
                     'statusCode' => $e->getCode()
                 ];
-            } 
+            }
         }
         return $responses;
     }
