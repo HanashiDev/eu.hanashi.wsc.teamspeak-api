@@ -93,7 +93,8 @@ class MinecraftAction extends AbstractDatabaseObjectAction
                             $time = DateUtil::getDateTimeByTimestamp(TIME_NOW + (int) $e->getResponse()->getHeaderLine('Retry-After'));
                             $responses[$minecraftID] = [
                                 'status' => $e->getMessage() . " wait until " . DateUtil::format($time, DateUtil::TIME_FORMAT),
-                                'statusCode' => $e->getCode()
+                                'statusCode' => $e->getCode(),
+                                'Retry-After' => DateUtil::format($time, DateUtil::TIME_FORMAT)
                             ];
                         } else {
                             $responses[$minecraftID] =  [
