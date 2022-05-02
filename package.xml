@@ -7,7 +7,7 @@
 		<packagename language="de"><![CDATA[Minecraft-API]]></packagename>
 		<packagedescription><![CDATA[API for Minecraft through WSC-Minecraft-Bridge.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[API für Minecraft durch WSC-Minecraft-Bridge.]]></packagedescription>
-		<version>2.0.0</version>
+		<version>2.0.1 dev 1</version>
 		<date>2022-03-21</date>
 	</packageinformation>
 
@@ -23,12 +23,8 @@
 		<excludedpackage version="5.5.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
 
-	<instructions fromversion="1.0.6" type="update">
-		<instruction type="file" />
-		<instruction type="acpTemplate" />
-		<instruction type="language"/>
-		<instruction type="database">acp/database/update_de.xxschrarndxx.wsc.minecraft-api_2.0.0.php</instruction>
-		<instruction type="database">acp/database/install_de.xxschrarndxx.wsc.minecraft-api.php</instruction>
+	<instructions fromversion="2.0.0" type="update">
+		<!-- TODO -->
 	</instructions>
 
 	<instructions type="install">
