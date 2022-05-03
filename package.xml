@@ -8,7 +8,7 @@
 		<packagedescription><![CDATA[API for Minecraft through WSC-Minecraft-Bridge.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[API für Minecraft durch WSC-Minecraft-Bridge.]]></packagedescription>
 		<version>2.0.0 pl 1</version>
-		<date>2022-05-02</date>
+		<date>2022-05-03</date>
 	</packageinformation>
 
 	<authorinformation>
@@ -21,8 +21,8 @@
 
 	<excludedpackages>
 		<excludedpackage version="5.5.0 Alpha 1">com.woltlab.wcf</excludedpackage>
-		<excludedpackage>de.fabihome.minecraft.rcon.api</excludedpackage>
-		<excludedpackage>de.atrox-dev.minecraft.server</excludedpackage>
+		<excludedpackage version="*">de.fabihome.minecraft.rcon.api</excludedpackage>
+		<excludedpackage version="*">de.atrox-dev.minecraft.server</excludedpackage>
 	</excludedpackages>
 
 	<instructions fromversion="2.0.0" type="update">
