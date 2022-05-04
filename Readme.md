@@ -68,6 +68,8 @@ try {
 ## Spigot
 * [Resources/WSC-Minecraft-Bridge](https://www.spigotmc.org/resources/wsc-minecraft-bridge.100716/)
 * [Resources/WSC-Minecraft-Authenticator](https://www.spigotmc.org/resources/wsc-minecraft-authenticator.101169/)
+## Donate
+* [PayPal](https://www.paypal.com/donate/?hosted_button_id=RFYYT7QSAU7YJ)
 ## JavaDocs
 * [Docs/wscbridge](https://maven.gamestrike.de/docs/wscbridge/)
 * [Docs/wscauthenticator](https://maven.gamestrike.de/docs/wscauthenticator/)
