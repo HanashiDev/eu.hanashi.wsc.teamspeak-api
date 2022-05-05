@@ -2,6 +2,8 @@
 
 namespace wcf\system\minecraft;
 
+use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use wcf\system\io\HttpFactory;
 use wcf\util\StringUtil;
@@ -54,5 +56,30 @@ class MinecraftHandler implements IMinecraftHandler
             'json' => $args
         ];
         return $client->request($httpMethod, $requestUrl, $options);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function callRequest(RequestInterface $request): ?ResponseInterface
+    {
+        /** @var \GuzzleHttp\ClientInterface */
+        $client = HttpFactory::getDefaultClient();
+
+        // Set Uri information
+        /** @var \Psr\Http\Message\UriInterface */
+        $baseUri = new Uri($this->url);
+
+        /** @var \Psr\Http\Message\UriInterface */
+        $uri = $baseUri->withPath($request->getUri()->getPath());
+
+        /** @var \Psr\Http\Message\RequestInterface */
+        $request = $request->withUri($uri);
+
+        // Set Auth information
+        /** @var \Psr\Http\Message\RequestInterface */
+        $request = $request->withAddedHeader('Authorization', 'Basic' . base64_encode($this->user . ':' . $this->password));
+
+        return $client->send($request);
     }
 }

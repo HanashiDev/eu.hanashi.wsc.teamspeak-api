@@ -4,6 +4,7 @@ namespace wcf\system\minecraft;
 
 use GuzzleHttp\Exception\GuzzleException;
 use InvalidArgumentException;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use wcf\data\minecraft\Minecraft;
 use wcf\data\minecraft\MinecraftList;
@@ -106,5 +107,35 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
                 return $this->minecrafts[$minecraftID]->getConnection()->call($httpMethod, $method, $args);
             }
         }
+    }
+
+    /**
+     * call request on minecrafts
+     * @param RequestInterface $request Request to call
+     * @param ?int $minecraftID MinecraftID to call
+     * @return array|ResponseInterface|null
+     * @throws GuzzleException
+     * @throws MinecraftException
+     * @see \wcf\system\minecraft\IMinecraftHandler#callRequest
+     */
+    public function callRequest(RequestInterface $request, ?int $minecraftID = null)
+    {
+        if ($minecraftID === null) {
+            $results = [];
+            foreach ($this->minecraftIDs as $minecraftID) {
+                try {
+                    $results[$minecraftID] = $this->callRequest($request, $minecraftID);
+                } catch (GuzzleException | MinecraftException $e) {
+                    $results[$minecraftID] = null;
+                }
+            }
+            return $results;
+        } else {
+            if (empty($this->minecrafts[$minecraftID])) {
+                return null;
+            } else {
+                return $this->minecrafts[$minecraftID]->getConnection()->callRequest($request);
+            }
+        } 
     }
 }

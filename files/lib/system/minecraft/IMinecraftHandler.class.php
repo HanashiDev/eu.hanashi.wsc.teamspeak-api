@@ -3,8 +3,8 @@
 namespace wcf\system\minecraft;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use wcf\system\exception\MinecraftException;
 
 /**
  * MinecraftHandler interface
@@ -28,8 +28,17 @@ interface IMinecraftHandler
      * @param string $httpMethod Method to call
      * @param string $method Method to call
      * @param array $args Arguments for method
-     * @return ResponseInterface|null
+     * @return ?ResponseInterface
      * @throws GuzzleException
      */
     public function call(string $httpMethod, string $method = '', array $args = []): ?ResponseInterface;
+
+    /**
+     * Call request on Minecraft.
+     * @param RequestInterface $request Request to call
+     * @return ?ResponseInterface
+     * @throws GuzzleException
+     * @throws InvalidArgumentException
+     */
+    public function callRequest(RequestInterface $request): ?ResponseInterface;
 }
