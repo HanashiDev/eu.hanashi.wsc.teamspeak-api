@@ -136,6 +136,6 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
             } else {
                 return $this->minecrafts[$minecraftID]->getConnection()->callRequest($request);
             }
-        } 
+        }
     }
 }
