@@ -11,7 +11,7 @@ use wcf\data\DatabaseObjectEditor;
  * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
  * @package  WoltLabSuite\Core\Data\Minecraft
  */
-class MinecraftEditor extends DatabaseObjectEditor
+class MinecraftEditor extends DatabaseObjectEditor implements Minecraft
 {
     /**
      * @inheritDoc
