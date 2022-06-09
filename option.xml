@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="https://www.woltlab.com"
-	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/option.xsd">
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/option.xsd">
 	<import>
 		<categories>
 			<category name="minecraft">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package name="de.xxschrarndxx.wsc.minecraft-api"
 	xmlns="https://www.woltlab.com"
-	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.4/package.xsd">
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/package.xsd">
 	<packageinformation>
 		<packagename><![CDATA[Minecraft-API]]></packagename>
 		<packagename language="de"><![CDATA[Minecraft-API]]></packagename>
