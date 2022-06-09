@@ -26,7 +26,6 @@
 	</excludedpackages>
 
 	<instructions fromversion="2.0.0 pl 1" type="update">
-		<!-- TODO -->
 		<void />
 	</instructions>
 
