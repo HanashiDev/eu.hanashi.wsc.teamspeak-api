@@ -62,7 +62,7 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
         if (!array_key_exists($minecraftID, $this->getMinecrafts())) {
             throw new InvalidArgumentException("Unknown server with id " . $minecraftID);
         }
-        return $this->getMinecrafts()[$minecraftID];;
+        return $this->getMinecrafts()[$minecraftID];
     }
 
     /**
