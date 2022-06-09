@@ -6,7 +6,6 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use wcf\data\minecraft\MinecraftAction;
 use wcf\form\AbstractFormBuilderForm;
-use wcf\system\exception\MinecraftException;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\PasswordFormField;
