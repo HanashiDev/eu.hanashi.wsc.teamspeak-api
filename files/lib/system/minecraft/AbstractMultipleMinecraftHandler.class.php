@@ -4,12 +4,10 @@ namespace wcf\system\minecraft;
 
 use GuzzleHttp\Exception\GuzzleException;
 use InvalidArgumentException;
+use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use wcf\data\minecraft\Minecraft;
 use wcf\data\minecraft\MinecraftList;
-use wcf\system\exception\MinecraftException;
-use wcf\system\exception\UserInputException;
 use wcf\system\SingletonFactory;
 
 /**
@@ -32,7 +30,7 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
     /**
      * list of minecrafts
      *
-     * @var array[Minecraft]
+     * @var Minecraft[]
      */
     protected array $minecrafts = [];
 
@@ -56,21 +54,20 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
     /**
      * get {@link Minecraft} with given id
      * @param  int $minecraftID
-     * @return Minecraft|null
+     * @return Minecraft
      * @throws InvalidArgumentException Weather Minecraft with id is found
      */
-    public function getMinecraft(int $minecraftID): ?Minecraft
+    public function getMinecraft(int $minecraftID): Minecraft
     {
-        if (empty($this->minecrafts[$minecraftID])) {
-            return null;
-        } else {
-            return $this->minecrafts[$minecraftID];
+        if (!array_key_exists($minecraftID, $this->getMinecrafts())) {
+            throw new InvalidArgumentException("Unknown server with id " . $minecraftID);
         }
+        return $this->getMinecrafts()[$minecraftID];;
     }
 
     /**
      * get list of managed minecraft
-     * @return array[Minecraft]
+     * @return Minecraft[]
      */
     public function getMinecrafts(): array
     {
@@ -83,10 +80,10 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
      * @param string $method Method to call
      * @param array $args Arguments for method
      * @param ?int $minecraftID MinecraftID to call
-     * @return array|ResponseInterface|null
+     * @return ResponseInterface|ResponseInterface[] weather minecraftID is returns one or multiple
      * @throws GuzzleException
-     * @throws MinecraftException
-     * @see \wcf\system\minecraft\IMinecraftHandler#call
+     * @throws InvalidArgumentException
+     * @see \wcf\system\minecraft\IMinecraftHandler#call(string $httpMethod, string $method = '', array $args = [])
      */
     public function call(string $httpMethod, string $method = '', array $args = [], ?int $minecraftID = null)
     {
@@ -95,17 +92,13 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
             foreach ($this->minecraftIDs as $minecraftID) {
                 try {
                     $results[$minecraftID] = $this->call($httpMethod, $method, $args, $minecraftID);
-                } catch (GuzzleException | MinecraftException $e) {
-                    $results[$minecraftID] = null;
+                } catch (GuzzleException | InvalidArgumentException $e) {
+                    $results[$minecraftID] = new JsonResponse(['status' => $e->getMessage(), 'statusCode' => $e->getCode()], $e->getCode());
                 }
             }
             return $results;
         } else {
-            if (empty($this->minecrafts[$minecraftID])) {
-                return null;
-            } else {
-                return $this->minecrafts[$minecraftID]->getConnection()->call($httpMethod, $method, $args);
-            }
+            return $this->getMinecraft($minecraftID)->getConnection()->call($httpMethod, $method, $args);
         }
     }
 
@@ -113,10 +106,9 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
      * call request on minecrafts
      * @param RequestInterface $request Request to call
      * @param ?int $minecraftID MinecraftID to call
-     * @return array|ResponseInterface|null
+     * @return ResponseInterface|ResponseInterface[] weather minecraftID is returns one or multiple
      * @throws GuzzleException
-     * @throws MinecraftException
-     * @see \wcf\system\minecraft\IMinecraftHandler#callRequest
+     * @see \wcf\system\minecraft\IMinecraftHandler#callRequest(RequestInterface $request)
      */
     public function callRequest(RequestInterface $request, ?int $minecraftID = null)
     {
@@ -125,17 +117,13 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
             foreach ($this->minecraftIDs as $minecraftID) {
                 try {
                     $results[$minecraftID] = $this->callRequest($request, $minecraftID);
-                } catch (GuzzleException | MinecraftException $e) {
-                    $results[$minecraftID] = null;
+                } catch (GuzzleException | InvalidArgumentException $e) {
+                    $results[$minecraftID] = new JsonResponse(['status' => $e->getMessage(), 'statusCode' => $e->getCode()], $e->getCode());
                 }
             }
             return $results;
         } else {
-            if (empty($this->minecrafts[$minecraftID])) {
-                return null;
-            } else {
-                return $this->minecrafts[$minecraftID]->getConnection()->callRequest($request);
-            }
+            return $this->getMinecraft($minecraftID)->getConnection()->callRequest($request);
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace wcf\data\minecraft;
 
 use wcf\data\DatabaseObject;
+use wcf\system\minecraft\IMinecraftHandler;
 use wcf\system\minecraft\MinecraftHandler;
 
 /**
@@ -49,7 +50,7 @@ class Minecraft extends DatabaseObject
      *
      * @return IMinecraftHandler
      */
-    public function getConnection()
+    public function getConnection(): IMinecraftHandler
     {
         if ($this->connection === null) {
             $this->connection = new MinecraftHandler($this->url, $this->user, $this->password);

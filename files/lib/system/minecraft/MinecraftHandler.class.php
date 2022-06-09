@@ -2,11 +2,11 @@
 
 namespace wcf\system\minecraft;
 
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use wcf\system\io\HttpFactory;
-use wcf\util\StringUtil;
 
 /**
  * MinecraftHandler class
@@ -38,12 +38,12 @@ class MinecraftHandler implements IMinecraftHandler
     /**
      * @inheritDoc
      */
-    public function call(string $httpMethod, string $method = '', array $args = []): ?ResponseInterface
+    public function call(string $httpMethod, string $method = '', array $args = []): ResponseInterface
     {
         /** @var \GuzzleHttp\ClientInterface */
         $client = HttpFactory::getDefaultClient();
-        if (StringUtil::endsWith($this->url, '/')) {
-//        if (str_ends_with($this->url, '/')) {
+
+        if (str_ends_with($this->url, '/')) {
             $requestUrl = $this->url . $method;
         } else {
             $requestUrl = $this->url . '/' . $method;
@@ -55,13 +55,20 @@ class MinecraftHandler implements IMinecraftHandler
             ],
             'json' => $args
         ];
-        return $client->request($httpMethod, $requestUrl, $options);
+        /** @var ResponseInterface */
+        $response = $client->request($httpMethod, $requestUrl, $options);
+
+        if ($response->getHeader('Content-Type') === 'application/json') {
+            throw new GuzzleException('Unsupported Media Type: Content-Type is not application/json', 415);
+        }
+
+        return $response;
     }
 
     /**
      * @inheritDoc
      */
-    public function callRequest(RequestInterface $request): ?ResponseInterface
+    public function callRequest(RequestInterface $request): ResponseInterface
     {
         /** @var \GuzzleHttp\ClientInterface */
         $client = HttpFactory::getDefaultClient();
@@ -80,6 +87,13 @@ class MinecraftHandler implements IMinecraftHandler
         /** @var \Psr\Http\Message\RequestInterface */
         $request = $request->withAddedHeader('Authorization', 'Basic' . base64_encode($this->user . ':' . $this->password));
 
-        return $client->send($request);
+        /** @var ResponseInterface */
+        $response = $client->send($request);
+
+        if ($response->getHeader('Content-Type') === 'application/json') {
+            throw new GuzzleException('Unsupported Media Type: Content-Type is not application/json', 415);
+        }
+
+        return $response;
     }
 }

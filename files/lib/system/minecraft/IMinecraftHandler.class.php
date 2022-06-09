@@ -28,17 +28,17 @@ interface IMinecraftHandler
      * @param string $httpMethod Method to call
      * @param string $method Method to call
      * @param array $args Arguments for method
-     * @return ?ResponseInterface
-     * @throws GuzzleException
+     * @return ResponseInterface
+     * @throws GuzzleException {@link GuzzleHttp\ClientInterface#request(string $method, $uri, array $options = [])}
      */
-    public function call(string $httpMethod, string $method = '', array $args = []): ?ResponseInterface;
+    public function call(string $httpMethod, string $method = '', array $args = []): ResponseInterface;
 
     /**
      * Call request on Minecraft.
      * @param RequestInterface $request Request to call
-     * @return ?ResponseInterface
-     * @throws GuzzleException
-     * @throws InvalidArgumentException
+     * @return ResponseInterface
+     * @throws GuzzleException {@link GuzzleHttp\ClientInterface#send(RequestInterface $request, array $options = [])}
+     * @throws InvalidArgumentException {@link Psr\Http\Message\RequestInterface#withHeader($name, $value)}
      */
-    public function callRequest(RequestInterface $request): ?ResponseInterface;
+    public function callRequest(RequestInterface $request): ResponseInterface;
 }
