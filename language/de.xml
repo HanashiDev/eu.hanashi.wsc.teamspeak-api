@@ -36,7 +36,7 @@
 		<item name="wcf.page.minecraftAdd.name"><![CDATA[Verbindungs-Name]]></item>
 		<item name="wcf.page.minecraftAdd.name.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} einen Verbindungsnamen ein um die Verbindung in der Übersicht wieder identifizieren zu können.]]></item>
 		<item name="wcf.page.minecraftAdd.url"><![CDATA[URL]]></item>
-		<item name="wcf.page.minecraftAdd.url.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die URL zur API an. Es ist erforderlich, dass <a href="https://www.spigotmc.org/resources/wsc-minecraft-bridge.100716/">WSC-Minecraft-Bridge</a> installiert ist.]]></item>
+		<item name="wcf.page.minecraftAdd.url.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die URL zur API an. Es ist erforderlich, dass <a class="externalURL" href="https://www.spigotmc.org/resources/wsc-minecraft-bridge.100716/">WSC-Minecraft-Bridge</a> installiert ist.]]></item>
 		<item name="wcf.page.minecraftAdd.user"><![CDATA[Benutzer]]></item>
 		<item name="wcf.page.minecraftAdd.password"><![CDATA[Passwort]]></item>
 
