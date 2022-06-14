@@ -126,4 +126,40 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
             return $this->getMinecraft($minecraftID)->getConnection()->callRequest($request);
         }
     }
+
+    /**
+     * Broadcasts the given message
+     * @param string $message The message to send
+     * @param string $hover The hovermessage to show
+     * @param ?int $minecraftID MinecraftID to call
+     * @return ResponseInterface|ResponseInterface[] weather minecraftID is returns one or multiple
+     * @throws GuzzleException
+     * @see \wcf\system\minecraft\AbstractMultipleMinecraftHandler#call(string $httpMethod, string $method = '', array $args = [], ?int $minecraftID = null)
+     */
+    public function broadcast(string $message, string $hover, ?int $minecraftID = null)
+    {
+        return $this->call('POST', 'broadcast', [
+            'message' => $message,
+            'hover' => $hover
+        ], $minecraftID);
+    }
+
+    /**
+     * Sends the given message to given uuid
+     * @param string $uuid
+     * @param string $message The message to send
+     * @param string $hover
+     * @param ?int $minecraftID MinecraftID to call
+     * @return ResponseInterface|ResponseInterface[] weather minecraftID is returns one or multiple
+     * @throws GuzzleException
+     * @see \wcf\system\minecraft\AbstractMultipleMinecraftHandler#call(string $httpMethod, string $method = '', array $args = [], ?int $minecraftID = null)
+     */
+    public function message(string $uuid, string $message, string $hover = '', ?int $minecraftID = null)
+    {
+        return $this->call('POST', 'message', [
+            'uuid' => $uuid,
+            'message' => $message,
+            'hover' => $hover
+        ], $minecraftID);
+    }
 }
