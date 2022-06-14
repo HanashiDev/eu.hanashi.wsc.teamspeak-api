@@ -30,7 +30,6 @@ class Minecraft extends DatabaseObject
      * VarcharDatabaseTableColumn $name length = 20
      *
      * NotNullVarchar255DatabaseTableColumn $url length = 255
-     * EnumDatabaseTableColumn $type ['spigot', 'bungee']
      *
      * VarcharDatabaseTableColumn $user length = 255
      * VarcharDatabaseTableColumn $password length = 255
