@@ -25,6 +25,10 @@
 		<excludedpackage version="*">de.atrox-dev.minecraft.server</excludedpackage>
 	</excludedpackages>
 
+	<instructions fromversion="2.0.0 pl 2" type="update">
+		<instruction type="file" />
+	</instructions>
+
 	<instructions fromversion="2.0.0 pl 1" type="update">
 		<instruction type="file" />
 	</instructions>
