@@ -27,10 +27,10 @@ const UUID_PATTERN = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB
  *
  * @author   xXSchrandXx
  * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
- * @package  WoltLabSuite\Core\System\Util
+ * @package  WoltLabSuite\Core\Util
  * @see https://wiki.vg/Mojang_API
  */
-class MojangUtil extends SingletonFactory
+class MojangUtil
 {
     /**
      * Check weather given uuid is a valid uuid
@@ -44,20 +44,6 @@ class MojangUtil extends SingletonFactory
     }
 
     /**
-     * @var PsrClientInterface&ClientInterface
-     * @see HttpFactory#getDefaultClient()
-     */
-    protected $client;
-
-    /**
-     * @inheritDoc
-     */
-    public function init()
-    {
-        $this->client = HttpFactory::getDefaultClient();
-    }
-
-    /**
      * Valid httpMethods
      * @var array
      */
@@ -67,6 +53,12 @@ class MojangUtil extends SingletonFactory
         'PUT',
         'DELETE'
     ];
+
+    /**
+     * @var PsrClientInterface&ClientInterface
+     * @see HttpFactory#getDefaultClient()
+     */
+    protected $client = null;
 
     /**
      * @return ResponseInterface&PsrResponseInterface
@@ -83,7 +75,7 @@ class MojangUtil extends SingletonFactory
 
         // Check uri
         if (!array_key_exists(URL, $args)) {
-            throw new BadMethodCallException('Uri not given.');
+            throw new BadMethodCallException('Url not given.');
         } else if (!(is_string($args[URL]) || $args[URL] instanceof UriInterface)) {
             throw new BadMethodCallException('Url not string or UriInterface');
         }
@@ -111,6 +103,12 @@ class MojangUtil extends SingletonFactory
             throw new BadMethodCallException('Unknown http version.');
         }
 
+        // Get client
+        if ($this->client === null) {
+            $this->client = HttpFactory::getDefaultClient();
+        }
+
+        // Create request
         $request = new Request($httpMethod, $args[URL], $args[HEADERS], $args[BODY], $args[VERSION]);
         if ($this->client instanceof ClientInterface) {
             return $this->client->send($request);
