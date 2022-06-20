@@ -28,7 +28,8 @@ const VERSION = 'version';
  * @package  WoltLabSuite\Core\System\Util
  * @see https://wiki.vg/Mojang_API
  */
-class MojangUtil extends SingletonFactory {
+class MojangUtil extends SingletonFactory
+{
 
     /**
      * @var PsrClientInterface&ClientInterface
@@ -49,7 +50,6 @@ class MojangUtil extends SingletonFactory {
     ];
 
     /**
-     * 
      * @return ResponseInterface&PsrResponseInterface
      * @throws BadMethodCallException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -65,8 +65,8 @@ class MojangUtil extends SingletonFactory {
         // Check uri
         if (!array_key_exists(URL, $args)) {
             throw new BadMethodCallException('Uri not given.');
-        } else if ($args[URL] instanceof string || $args[URL] instanceof UriInterface) {
-
+        } else if (!($args[URL] instanceof string || $args[URL] instanceof UriInterface)) {
+            throw new BadMethodCallException('Url not string or UriInterface');
         }
 
         // Check headers
@@ -81,7 +81,7 @@ class MojangUtil extends SingletonFactory {
             $args[BODY] = null;
         } else if (is_array($args[BODY])) {
             $args[BODY] = JSON::encode($args[BODY]);
-        } else if ($args[BODY] instanceof string || $args[BODY] instanceof resource || $args[BODY] instanceof StreamInterface) {
+        } else if (!($args[BODY] instanceof string || $args[BODY] instanceof resource || $args[BODY] instanceof StreamInterface)) {
             throw new BadMethodCallException('Unknown body.');
         }
 
