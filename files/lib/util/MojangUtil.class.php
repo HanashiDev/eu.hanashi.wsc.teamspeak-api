@@ -12,6 +12,7 @@ use Psr\Http\Client\ClientInterface as PsrClientInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
+use wcf\util\ImageUtil;
 use wcf\util\JSON;
 
 const URL = 'url';
@@ -68,6 +69,7 @@ class MojangUtil
     protected function __call($httpMethod, $args)
     {
         // Check method
+        $httpMethod = strtoupper($httpMethod);
         if (!in_array($httpMethod, $this->functions)) {
             throw new BadMethodCallException('Unknown http method.');
         }
@@ -305,14 +307,13 @@ class MojangUtil
     /**
      * @see https://wiki.vg/Mojang_API#Upload_Skin
      */
-    private function uploadSkin(string $bearerToken, $data)
+    public function uploadSkin(string $bearerToken, StreamInterface $data, string $format = 'png')
     {
-        // TODO How to upload a file?
         return $this->POST([
             URL => new Uri("https://api.minecraftservices.com/minecraft/profile/skins"),
             HEADERS => [
                 'Authorization' => "Bearer $bearerToken",
-                ''
+                'Content-Type' => "image/$format"
             ],
             BODY => $data
         ]);
