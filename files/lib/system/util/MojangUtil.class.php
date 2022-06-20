@@ -20,6 +20,8 @@ const HEADERS = 'headers';
 const BODY = 'body';
 const VERSION = 'version';
 
+const UUID_PATTERN = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$';
+
 /**
  * MojangUtil class
  *
@@ -30,6 +32,16 @@ const VERSION = 'version';
  */
 class MojangUtil extends SingletonFactory
 {
+    /**
+     * Check weather given uuid is a valid uuid
+     * @param string $uuid uuid to check
+     * @return int|false
+     * @see \preg_match
+     */
+    public static function validUUID(string $uuid)
+    {
+        return \preg_match('/' . UUID_PATTERN . '/', $uuid);
+    }
 
     /**
      * @var PsrClientInterface&ClientInterface
@@ -65,7 +77,7 @@ class MojangUtil extends SingletonFactory
         // Check uri
         if (!array_key_exists(URL, $args)) {
             throw new BadMethodCallException('Uri not given.');
-        } else if (!($args[URL] instanceof string || $args[URL] instanceof UriInterface)) {
+        } else if (!(is_string($args[URL]) || $args[URL] instanceof UriInterface)) {
             throw new BadMethodCallException('Url not string or UriInterface');
         }
 
@@ -81,7 +93,7 @@ class MojangUtil extends SingletonFactory
             $args[BODY] = null;
         } else if (is_array($args[BODY])) {
             $args[BODY] = JSON::encode($args[BODY]);
-        } else if (!($args[BODY] instanceof string || $args[BODY] instanceof resource || $args[BODY] instanceof StreamInterface)) {
+        } else if (!( is_string($args[BODY]) || is_resource($args[BODY]) || $args[BODY] instanceof StreamInterface)) {
             throw new BadMethodCallException('Unknown body.');
         }
 
@@ -129,21 +141,30 @@ class MojangUtil extends SingletonFactory
     }
 
     /**
+     * @param string $uuid
+     * @throws BadMethodCallException on invalid uuid
      * @see https://wiki.vg/Mojang_API#UUID_to_Name_History
      */
     public function nameHistory(string $uuid)
     {
-        // TODO check UUID format
+        if (!self::validUUID($uuid)) {
+            throw new BadMethodCallException('Given uuid not valid.');
+        }
         return $this->GET([
             URL => new Uri("https://api.mojang.com/user/profiles/$uuid/names")
         ]);
     }
 
     /**
+     * @param string $uuid
+     * @throws BadMethodCallException on invalid uuid
      * @see https://wiki.vg/Mojang_API#UUID_to_Profile_and_Skin.2FCape
      */
     public function uuidToProfile(string $uuid)
     {
+        if (!self::validUUID($uuid)) {
+            throw new BadMethodCallException('Given uuid not valid.');
+        }
         return $this->GET([
             URL => new Uri("https://sessionserver.mojang.com/session/minecraft/profile/$uuid")
         ]);
@@ -294,10 +315,15 @@ class MojangUtil extends SingletonFactory
     }
 
     /**
+     * @param string $uuid
+     * @throws BadMethodCallException on invalid uuid
      * @see https://wiki.vg/Mojang_API#Reset_Skin
      */
     public function resetSkin(string $uuid, string $bearerToken)
     {
+        if (!self::validUUID($uuid)) {
+            throw new BadMethodCallException('Given uuid not valid.');
+        }
         return $this->DELETE([
             URL => new Uri("https://api.mojang.com/user/profile/$uuid/skin"),
             HEADERS => [
