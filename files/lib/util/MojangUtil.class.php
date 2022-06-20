@@ -49,11 +49,18 @@ class MojangUtil extends SingletonFactory
      */
     protected $client;
 
+    /**
+     * @inheritDoc
+     */
     public function init()
     {
         $this->client = HttpFactory::getDefaultClient();
     }
 
+    /**
+     * Valid httpMethods
+     * @var array
+     */
     protected $functions = [
         'GET',
         'POST',
