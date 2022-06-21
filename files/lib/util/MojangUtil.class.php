@@ -187,6 +187,123 @@ class MojangUtil
     }
 
     /**
+     * @see https://wiki.vg/Authentication
+     */
+    public function authStatus()
+    {
+        return $this->GET([
+            URL => new Uri("https://authserver.mojang.com/")
+        ]);
+    }
+
+    /**
+     * @see https://wiki.vg/Authentication#Authenticate
+     */
+    public function authenticate(string $name, string $password, ?string $clientToken = null, bool $requestUser = false)
+    {
+        $body = [
+            'agent' => [
+                'name' => 'Minecraft',
+                'version' => 1
+            ],
+            'username' => $name,
+            'password' => $password,
+            'requestUser' => $requestUser
+        ];
+        if ($clientToken !== null) {
+            $body['clientToken'] = $clientToken;
+        }
+        return $this->POST([
+            URL => new Uri("https://authserver.mojang.com/authenticate"),
+            HEADERS => [
+                'Content-Type' => 'application/json'
+            ],
+            BODY => $body
+        ]);
+    }
+
+    /**
+     * @see https://wiki.vg/Authentication#Refresh
+     */
+    public function refresh(string $accessToken, ?string $clientToken = null, ?int $selectedProfileId = null, ?int $selectedProfileName = null, bool $requestUser = false)
+    {
+        $body = [
+            'accessToken' => $accessToken,
+            'requestUser' => $requestUser
+        ];
+        if ($selectedProfileId !== null && $selectedProfileName !== null) {
+            $body['selectedProfile'] = [
+                'id' => $selectedProfileId,
+                'name' => $selectedProfileName
+            ];
+        }
+        return $this->POST([
+            URL => new Uri("https://authserver.mojang.com/refresh"),
+            HEADERS => [
+                'Content-Type' => 'application/json'
+            ],
+            BODY => $body
+        ]);
+    }
+
+    /**
+     * @see https://wiki.vg/Authentication#Validate
+     */
+    public function validate(string $accessToken, ?string $clientToken = null)
+    {
+        $body = [
+            'accessToken' => $accessToken
+        ];
+        if ($clientToken !== null) {
+            $body['clientToken'] = $clientToken;
+        }
+        return $this->POST([
+            URL => new Uri("https://authserver.mojang.com/validate"),
+            HEADERS => [
+                'Content-Type' => 'application/json'
+            ],
+            BODY => $body
+        ]);
+    }
+
+    /**
+     * @see https://wiki.vg/Authentication#Signout
+     */
+    public function signout(string $name, string $password)
+    {
+        return $this->POST([
+            URL => new Uri("https://authserver.mojang.com/signout"),
+            HEADERS => [
+                'Content-Type' => 'application/json'
+            ],
+            BODY => [
+                'username' => $name,
+                'password' => $password
+            ]
+        ]);
+    }
+
+    /**
+     * @see https://wiki.vg/Authentication#Invalidate
+     */
+    public function invalidate(string $accessToken, ?string $clientToken = null)
+    {
+        $body = [
+            'accessToken' => $accessToken
+        ];
+        if ($clientToken !== null) {
+            $body['clientToken'] = $clientToken;
+        }
+        return $this->POST([
+            URL => new Uri("https://authserver.mojang.com/invalidate"),
+            HEADERS => [
+                'Content-Type' => 'application/json'
+            ],
+            BODY => $body
+        ]);
+    }
+
+    /**
      * @see https://wiki.vg/Mojang_API#Profile_Information
      */
     public function profile(string $bearerToken)
