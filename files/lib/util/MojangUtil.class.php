@@ -12,7 +12,6 @@ use Psr\Http\Client\ClientInterface as PsrClientInterface;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
-use wcf\util\ImageUtil;
 use wcf\util\JSON;
 
 const URL = 'url';
