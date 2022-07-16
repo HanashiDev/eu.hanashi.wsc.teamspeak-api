@@ -23,6 +23,11 @@ class MinecraftAction extends AbstractDatabaseObjectAction
     /**
      * @inheritDoc
      */
+    protected $className = MinecraftEditor::class;
+
+    /**
+     * @inheritDoc
+     */
     protected $permissionsCreate = ['admin.minecraft.canManageConnection'];
 
     /**

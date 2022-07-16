@@ -7,10 +7,12 @@ Quicklinks: [General](#general) | [API](#api) | [Links](#links) | [License](http
 This plugin is an interface between other plugins and Minecraft servers. Minecraft API is mostly relevant to developers. It allows you to send and get data of your Minecraft server.
 ## Requirements
 [WSC-Minecraft-Bridge](#links) installed on your Bukkit- / Spigot- / BungeeCord-Server.
+# Setup
+[Link to setup information](https://github.com/xXSchrandXx/de.xxschrarndxx.wsc.minecraft-api/blob/main/Setup.md)
 # API
 ## package.xml
 ```XML
-<requiredpackage minversion="2.0.0">de.xxschrarndxx.wsc.minecraft-api</requiredpackage >
+<requiredpackage minversion="{$version}">de.xxschrarndxx.wsc.minecraft-api</requiredpackage >
 ```
 ## API-Example:
 ```PHP
