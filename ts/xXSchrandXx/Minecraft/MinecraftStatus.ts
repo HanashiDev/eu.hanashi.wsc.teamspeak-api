@@ -42,7 +42,7 @@ export class MinecraftStatus {
                             }
                         }
                     }
-                }, JSON.stringify(data['returnValues'][objectID]));
+                }, data['returnValues'][objectID]);
             }
         });
     }

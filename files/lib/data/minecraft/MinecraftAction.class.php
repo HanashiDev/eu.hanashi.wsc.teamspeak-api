@@ -127,6 +127,10 @@ class MinecraftAction extends AbstractDatabaseObjectAction
                 ];
             }
         }
-        return $responses;
+        $templates = [];
+        foreach ($responses as $minecraftID => $response) {
+            $templates[$minecraftID] = WCF::getTPL()->fetch('minecraftStatus', 'wcf', $response);
+        }
+        return $templates;
     }
 }
