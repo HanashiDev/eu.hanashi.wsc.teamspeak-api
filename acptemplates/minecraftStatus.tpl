@@ -1,11 +1,10 @@
 {if $statusCode === 200}
-	<p>applicationDescription: {$applicationDescription}</p>
-	<p>{$platformName}</p>
-	<p>{$platformVersion}</p>
-	<p>{$applicationAuthor}</p>
-	<p>{$version}</p>
-	<p>{$modules}</p>
+	<p>{lang}wcf.page.minecraftList.button.status.result.applicationDescription{/lang}: {$applicationDescription}</p>
+	<p>{lang}wcf.page.minecraftList.button.status.result.version{/lang}: {$version}</p>
+	<p>{lang}wcf.page.minecraftList.button.status.result.platformName{/lang}: {$platformName}</p>
+	<p>{lang}wcf.page.minecraftList.button.status.result.platformVersion{/lang}: {$platformVersion}</p>
 	{hascontent}
+		<p>{lang}wcf.page.minecraftList.button.status.result.modules{/lang}: </p>
 		<ul>
 			{content}
 				{foreach from=$modules item=item}
@@ -15,6 +14,7 @@
 			{/content}
 		</ul>
 	{/hascontent}
+	<p>{lang}wcf.page.minecraftList.button.status.result.applicationAuthor{/lang}: {$applicationAuthor}</p>
 {else}
 	<p>{lang}wcf.page.minecraftList.button.status.result.connectionFailed{/lang}</p>
 	<p>{$statusCode}: {$status}</p>

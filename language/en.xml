@@ -24,6 +24,13 @@
 	<category name="wcf.page.minecraftList">
 		<item name="wcf.page.minecraftList.button.status"><![CDATA[Check status]]></item>
 		<item name="wcf.page.minecraftList.button.status.result"><![CDATA[Response]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.applicationDescription"><![CDATA[Name]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.version"><![CDATA[Version]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.platformName"><![CDATA[Platformname]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.platformVersion"><![CDATA[Platformversion]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.modules"><![CDATA[Modules]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.applicationAuthor"><![CDATA[Author]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.connectionFailed"><![CDATA[Connection Failed.]]></item>
 		<item name="wcf.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
 		<item name="wcf.page.minecraftList.name"><![CDATA[Name]]></item>
 		<item name="wcf.page.minecraftList.url"><![CDATA[URL]]></item>

@@ -34,7 +34,7 @@ export class MinecraftStatus {
                     _dialogSetup: () => {
                         return {
                             id: 'minecraftStatusDialog',
-                            source: null,
+                            source: data['returnValues'][objectID],
                             options: {
                                 onShow: function(): void {
                                     setTitle('minecraftStatusDialog', Language.get('wcf.page.minecraftList.button.status.result'));
@@ -42,7 +42,7 @@ export class MinecraftStatus {
                             }
                         }
                     }
-                }, data['returnValues'][objectID]);
+                });
             }
         });
     }

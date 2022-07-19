@@ -10,6 +10,7 @@ use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 use wcf\util\DateUtil;
 use wcf\util\JSON;
+use wcf\util\StringUtil;
 
 /**
  * Minecraft Action class
@@ -131,7 +132,9 @@ class MinecraftAction extends AbstractDatabaseObjectAction
         foreach ($responses as $minecraftID => $response) {
             $variables = $response;
             $variables['minecraftID'] = $minecraftID;
-            $templates[$minecraftID] = WCF::getTPL()->fetch('minecraftStatus', 'wcf', $variables);
+            $tmpTemplate = WCF::getTPL()->fetch('minecraftStatus', 'wcf', $variables);
+            $template = \str_replace(["\\", "\n", "\t", "\r"], '', StringUtil::unifyNewlines($tmpTemplate));
+            $templates[$minecraftID] = $template;
         }
         return $templates;
     }
