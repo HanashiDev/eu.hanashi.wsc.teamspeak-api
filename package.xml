@@ -26,16 +26,20 @@
 	</excludedpackages>
 
 	<instructions fromversion="2.0.0 pl 2" type="update">
+		<instruction type="acpTemplate" />
 		<instruction type="file" />
+		<instruction type="language"/>
 	</instructions>
 
 	<instructions fromversion="2.0.0 pl 1" type="update">
+		<instruction type="acpTemplate" />
 		<instruction type="file" />
+		<instruction type="language"/>
 	</instructions>
 
 	<instructions type="install">
-		<instruction type="file" />
 		<instruction type="acpTemplate" />
+		<instruction type="file" />
 		<instruction type="language"/>
 		<instruction type="acpMenu" />
 		<instruction type="userGroupOption" />

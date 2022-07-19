@@ -24,6 +24,7 @@
 	<category name="wcf.page.minecraftList">
 		<item name="wcf.page.minecraftList.button.status"><![CDATA[Status überprüfen]]></item>
 		<item name="wcf.page.minecraftList.button.status.result"><![CDATA[Antwort]]></item>
+		<item name="wcf.page.minecraftList.button.status.result.connectionFailed"><![CDATA[]]></item>
 		<item name="wcf.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
 		<item name="wcf.page.minecraftList.name"><![CDATA[Verbindungs-Name]]></item>
 		<item name="wcf.page.minecraftList.url"><![CDATA[URL]]></item>
