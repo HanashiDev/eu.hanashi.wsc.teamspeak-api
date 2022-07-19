@@ -44,9 +44,9 @@
 								<span class="icon icon16 fa-pencil"></span>
 							</a>
                             {objectAction action="delete" objectTitle=$object->name}
-							<a href="#" title="{lang}wcf.page.minecraftList.button.status{/lang}" class="minecraftStatusButton jsTooltip">
-								<span class="icon icon16 fa-wifi"></span>
-							</a>
+							<span class="icon icon16 fa-wifi minecraftStatusButton pointer jsTooltip" 
+								title="{lang}wcf.page.minecraftList.button.status{/lang}">
+							</span>
                             {event name='rowButtons'}
                         </td>
                         <td class="columnID">{#$object->minecraftID}</td>
