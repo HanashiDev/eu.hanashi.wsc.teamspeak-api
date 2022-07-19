@@ -1,4 +1,4 @@
-{if $statusCode === 200}
+{if $statusCode == 200}
 	<p>{lang}wcf.page.minecraftList.button.status.result.applicationDescription{/lang}: {$applicationDescription}</p>
 	<p>{lang}wcf.page.minecraftList.button.status.result.version{/lang}: {$version}</p>
 	<p>{lang}wcf.page.minecraftList.button.status.result.platformName{/lang}: {$platformName}</p>
@@ -15,6 +15,9 @@
 		</ul>
 	{/hascontent}
 	<p>{lang}wcf.page.minecraftList.button.status.result.applicationAuthor{/lang}: {$applicationAuthor}</p>
+{elseif $statusCode == 0}
+	<p>{lang}wcf.page.minecraftList.button.status.result.connectionFailed{/lang}</p>
+	<p>{$status}</p>
 {else}
 	<p>{lang}wcf.page.minecraftList.button.status.result.connectionFailed{/lang}</p>
 	<p>{$statusCode}: {$status}</p>
