@@ -28,9 +28,9 @@ class MojangUtil
     const HEADERS = 'headers';
     const BODY = 'body';
     const VERSION = 'version';
-    
+
     const UUID_PATTERN = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$';
-    
+
     /**
      * Check weather given uuid is a valid uuid
      * @param string $uuid uuid to check
