@@ -14,13 +14,6 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 use wcf\util\JSON;
 
-const URL = 'url';
-const HEADERS = 'headers';
-const BODY = 'body';
-const VERSION = 'version';
-
-const UUID_PATTERN = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$';
-
 /**
  * MojangUtil class
  *
@@ -31,6 +24,13 @@ const UUID_PATTERN = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB
  */
 class MojangUtil
 {
+    const URL = 'url';
+    const HEADERS = 'headers';
+    const BODY = 'body';
+    const VERSION = 'version';
+    
+    const UUID_PATTERN = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$';
+    
     /**
      * Check weather given uuid is a valid uuid
      * @param string $uuid uuid to check
@@ -39,7 +39,7 @@ class MojangUtil
      */
     public static function validUUID(string $uuid)
     {
-        return \preg_match('/' . UUID_PATTERN . '/', $uuid);
+        return \preg_match('/' . self::UUID_PATTERN . '/', $uuid);
     }
 
     /**
@@ -74,32 +74,32 @@ class MojangUtil
         }
 
         // Check uri
-        if (!array_key_exists(URL, $args)) {
+        if (!array_key_exists(self::URL, $args)) {
             throw new BadMethodCallException('Url not given.');
-        } else if (!(is_string($args[URL]) || $args[URL] instanceof UriInterface)) {
+        } else if (!(is_string($args[self::URL]) || $args[self::URL] instanceof UriInterface)) {
             throw new BadMethodCallException('Url not string or UriInterface');
         }
 
         // Check headers
-        if (!array_key_exists(HEADERS, $args)) {
-            $args[HEADERS] = [];
-        } else if (!is_array($args[HEADERS])) {
+        if (!array_key_exists(self::HEADERS, $args)) {
+            $args[self::HEADERS] = [];
+        } else if (!is_array($args[self::HEADERS])) {
             throw new BadMethodCallException('Header is no array.');
         }
 
         // Check body
-        if (!array_key_exists(BODY, $args)) {
-            $args[BODY] = null;
-        } else if (is_array($args[BODY])) {
-            $args[BODY] = JSON::encode($args[BODY]);
-        } else if (!( is_string($args[BODY]) || is_resource($args[BODY]) || $args[BODY] instanceof StreamInterface)) {
+        if (!array_key_exists(self::BODY, $args)) {
+            $args[self::BODY] = null;
+        } else if (is_array($args[self::BODY])) {
+            $args[self::BODY] = JSON::encode($args[self::BODY]);
+        } else if (!( is_string($args[self::BODY]) || is_resource($args[self::BODY]) || $args[self::BODY] instanceof StreamInterface)) {
             throw new BadMethodCallException('Unknown body.');
         }
 
         // Check version
-        if (!array_key_exists(VERSION, $args)) {
-            $args[VERSION] = '1.1';
-        } else if ($args[VERSION] !== '1.0' || $args[VERSION] !== '1.1') {
+        if (!array_key_exists(self::VERSION, $args)) {
+            $args[self::VERSION] = '1.1';
+        } else if ($args[self::VERSION] !== '1.0' || $args[self::VERSION] !== '1.1') {
             throw new BadMethodCallException('Unknown http version.');
         }
 
@@ -109,7 +109,7 @@ class MojangUtil
         }
 
         // Create request
-        $request = new Request($httpMethod, $args[URL], $args[HEADERS], $args[BODY], $args[VERSION]);
+        $request = new Request($httpMethod, $args[self::URL], $args[self::HEADERS], $args[self::BODY], $args[self::VERSION]);
         if ($this->client instanceof ClientInterface) {
             return $this->client->send($request);
         } else {
@@ -127,7 +127,7 @@ class MojangUtil
             $url .= "?at=$timestamp";
         }
         return $this->GET([
-            URL => new Uri($url)
+            self::URL => new Uri($url)
         ]);
     }
 
@@ -137,11 +137,11 @@ class MojangUtil
     public function namesToUUIDs(array $names)
     {
         return $this->POST([
-            URL => new Uri("https://api.mojang.com/profiles/minecraft"),
-            HEADERS => [
+            self::URL => new Uri("https://api.mojang.com/profiles/minecraft"),
+            self::HEADERS => [
                 'Content-Type' => 'application/json'
             ],
-            BODY => $names
+            self::BODY => $names
         ]);
     }
 
@@ -156,7 +156,7 @@ class MojangUtil
             throw new BadMethodCallException('Given uuid not valid.');
         }
         return $this->GET([
-            URL => new Uri("https://api.mojang.com/user/profiles/$uuid/names")
+            self::URL => new Uri("https://api.mojang.com/user/profiles/$uuid/names")
         ]);
     }
 
@@ -171,7 +171,7 @@ class MojangUtil
             throw new BadMethodCallException('Given uuid not valid.');
         }
         return $this->GET([
-            URL => new Uri("https://sessionserver.mojang.com/session/minecraft/profile/$uuid")
+            self::URL => new Uri("https://sessionserver.mojang.com/session/minecraft/profile/$uuid")
         ]);
     }
 
@@ -181,7 +181,7 @@ class MojangUtil
     public function blockedServer()
     {
         return $this->GET([
-            URL => new Uri("https://sessionserver.mojang.com/blockedservers")
+            self::URL => new Uri("https://sessionserver.mojang.com/blockedservers")
         ]);
     }
 
@@ -191,7 +191,7 @@ class MojangUtil
     public function authStatus()
     {
         return $this->GET([
-            URL => new Uri("https://authserver.mojang.com/")
+            self::URL => new Uri("https://authserver.mojang.com/")
         ]);
     }
 
@@ -213,11 +213,11 @@ class MojangUtil
             $body['clientToken'] = $clientToken;
         }
         return $this->POST([
-            URL => new Uri("https://authserver.mojang.com/authenticate"),
-            HEADERS => [
+            self::URL => new Uri("https://authserver.mojang.com/authenticate"),
+            self::HEADERS => [
                 'Content-Type' => 'application/json'
             ],
-            BODY => $body
+            self::BODY => $body
         ]);
     }
 
@@ -237,11 +237,11 @@ class MojangUtil
             ];
         }
         return $this->POST([
-            URL => new Uri("https://authserver.mojang.com/refresh"),
-            HEADERS => [
+            self::URL => new Uri("https://authserver.mojang.com/refresh"),
+            self::HEADERS => [
                 'Content-Type' => 'application/json'
             ],
-            BODY => $body
+            self::BODY => $body
         ]);
     }
 
@@ -257,11 +257,11 @@ class MojangUtil
             $body['clientToken'] = $clientToken;
         }
         return $this->POST([
-            URL => new Uri("https://authserver.mojang.com/validate"),
-            HEADERS => [
+            self::URL => new Uri("https://authserver.mojang.com/validate"),
+            self::HEADERS => [
                 'Content-Type' => 'application/json'
             ],
-            BODY => $body
+            self::BODY => $body
         ]);
     }
 
@@ -271,11 +271,11 @@ class MojangUtil
     public function signout(string $name, string $password)
     {
         return $this->POST([
-            URL => new Uri("https://authserver.mojang.com/signout"),
-            HEADERS => [
+            self::URL => new Uri("https://authserver.mojang.com/signout"),
+            self::HEADERS => [
                 'Content-Type' => 'application/json'
             ],
-            BODY => [
+            self::BODY => [
                 'username' => $name,
                 'password' => $password
             ]
@@ -294,11 +294,11 @@ class MojangUtil
             $body['clientToken'] = $clientToken;
         }
         return $this->POST([
-            URL => new Uri("https://authserver.mojang.com/invalidate"),
-            HEADERS => [
+            self::URL => new Uri("https://authserver.mojang.com/invalidate"),
+            self::HEADERS => [
                 'Content-Type' => 'application/json'
             ],
-            BODY => $body
+            self::BODY => $body
         ]);
     }
 
@@ -308,8 +308,8 @@ class MojangUtil
     public function profile(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -321,8 +321,8 @@ class MojangUtil
     public function playerAttributes(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/player/attributes"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/player/attributes"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -334,8 +334,8 @@ class MojangUtil
     public function playerBlocklist(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/privacy/blocklist"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/privacy/blocklist"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -347,8 +347,8 @@ class MojangUtil
     public function playerCertificates(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/player/certificates"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/player/certificates"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -360,8 +360,8 @@ class MojangUtil
     public function playerNameChangeInformation(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile/namechange"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile/namechange"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -373,8 +373,8 @@ class MojangUtil
     public function checkProtuctVoucher(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/productvoucher/giftcode"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/productvoucher/giftcode"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -386,8 +386,8 @@ class MojangUtil
     public function nameAvailability(string $name, string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile/name/$name/available"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile/name/$name/available"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -399,8 +399,8 @@ class MojangUtil
     public function changeName(string $name, string $bearerToken)
     {
         return $this->PUT([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile/name/$name"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile/name/$name"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -412,8 +412,8 @@ class MojangUtil
     public function changeSkin(string $variant, string $url)
     {
         return $this->POST([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile/skins"),
-            BODY => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile/skins"),
+            self::BODY => [
                 'variant' => $variant,
                 'url' => $url
             ]
@@ -426,12 +426,12 @@ class MojangUtil
     public function uploadSkin(string $bearerToken, StreamInterface $data, string $format = 'png')
     {
         return $this->POST([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile/skins"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile/skins"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken",
                 'Content-Type' => "image/$format"
             ],
-            BODY => $data
+            self::BODY => $data
         ]);
     }
 
@@ -446,8 +446,8 @@ class MojangUtil
             throw new BadMethodCallException('Given uuid not valid.');
         }
         return $this->DELETE([
-            URL => new Uri("https://api.mojang.com/user/profile/$uuid/skin"),
-            HEADERS => [
+            self::URL => new Uri("https://api.mojang.com/user/profile/$uuid/skin"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -459,8 +459,8 @@ class MojangUtil
     public function hideCape(string $bearerToken)
     {
         return $this->DELETE([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile/capes/active"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile/capes/active"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -472,12 +472,12 @@ class MojangUtil
     public function showCape(string $id, string $bearerToken)
     {
         return $this->PUT([
-            URL => new Uri("https://api.minecraftservices.com/minecraft/profile/capes/active"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/minecraft/profile/capes/active"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken",
                 'Content-Type' => 'application/json'
             ],
-            BODY => [
+            self::BODY => [
                 'capeId' => $id
             ]
         ]);
@@ -489,8 +489,8 @@ class MojangUtil
     public function verifySecurityLocation(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.mojang.com/user/security/location"),
-            HEADERS => [
+            self::URL => new Uri("https://api.mojang.com/user/security/location"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -502,8 +502,8 @@ class MojangUtil
     public function getSecurityQuerstions(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.mojang.com/user/security/challenges"),
-            HEADERS => [
+            self::URL => new Uri("https://api.mojang.com/user/security/challenges"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken"
             ]
         ]);
@@ -515,12 +515,12 @@ class MojangUtil
     public function sendSecurityAnswers(array $payload, string $bearerToken)
     {
         return $this->POST([
-            URL => new Uri("https://api.mojang.com/user/security/location"),
-            HEADERS => [
+            self::URL => new Uri("https://api.mojang.com/user/security/location"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken",
                 'Content-Type' => 'application/json'
             ],
-            BODY => $payload
+            self::BODY => $payload
         ]);
     }
 
@@ -530,8 +530,8 @@ class MojangUtil
     public function getAccountMigrationInformation(string $bearerToken)
     {
         return $this->GET([
-            URL => new Uri("https://api.minecraftservices.com/rollout/v1/msamigration"),
-            HEADERS => [
+            self::URL => new Uri("https://api.minecraftservices.com/rollout/v1/msamigration"),
+            self::HEADERS => [
                 'Authorization' => "Bearer $bearerToken",
                 'Content-Type' => 'application/json'
             ]
