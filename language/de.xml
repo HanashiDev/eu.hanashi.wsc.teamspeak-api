@@ -22,34 +22,14 @@
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.edit"><![CDATA[Minecraft-Server bearbeiten]]></item>
 	</category>
 	<category name="wcf.page.minecraftList">
-		<item name="wcf.page.minecraftList.button.status"><![CDATA[Status überprüfen]]></item>
-		<item name="wcf.page.minecraftList.button.status.result"><![CDATA[Antwort]]></item>
-		<item name="wcf.page.minecraftList.button.status.result.applicationDescription"><![CDATA[Name]]></item>
-		<item name="wcf.page.minecraftList.button.status.result.version"><![CDATA[Version]]></item>
-		<item name="wcf.page.minecraftList.button.status.result.platformName"><![CDATA[Platformname]]></item>
-		<item name="wcf.page.minecraftList.button.status.result.platformVersion"><![CDATA[Platformversion]]></item>
-		<item name="wcf.page.minecraftList.button.status.result.modules"><![CDATA[Module]]></item>
-		<item name="wcf.page.minecraftList.button.status.result.applicationAuthor"><![CDATA[Author]]></item>
-		<item name="wcf.page.minecraftList.button.status.result.connectionFailed"><![CDATA[Verbindung fehlgeschlagen.]]></item>
 		<item name="wcf.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
 		<item name="wcf.page.minecraftList.name"><![CDATA[Verbindungs-Name]]></item>
-		<item name="wcf.page.minecraftList.url"><![CDATA[URL]]></item>
 		<item name="wcf.page.minecraftList.creationDate"><![CDATA[Erstelldatum]]></item>
-	</category>
-	<category name="wcf.global.button">
-		<item name="wcf.global.button.console"><![CDATA[Konsole]]></item>
 	</category>
 	<category name="wcf.page.minecraftAdd">
 		<item name="wcf.page.minecraftAdd.name"><![CDATA[Verbindungs-Name]]></item>
 		<item name="wcf.page.minecraftAdd.name.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} einen Verbindungsnamen ein um die Verbindung in der Übersicht wieder identifizieren zu können.]]></item>
-		<item name="wcf.page.minecraftAdd.url"><![CDATA[URL]]></item>
-		<item name="wcf.page.minecraftAdd.url.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} die URL zur API an. Es ist erforderlich, dass <a class="externalURL" href="https://www.spigotmc.org/resources/wsc-minecraft-bridge.100716/">WSC-Minecraft-Bridge</a> installiert ist.]]></item>
 		<item name="wcf.page.minecraftAdd.user"><![CDATA[Benutzer]]></item>
 		<item name="wcf.page.minecraftAdd.password"><![CDATA[Passwort]]></item>
-
-		<item name="wcf.page.minecraftAdd.wrongPassword"><![CDATA[Benutzer und / oder Passwort nicht akzeptiert]]></item>
-		<item name="wcf.page.minecraftAdd.cantConnect"><![CDATA[Konnte nicht mit dem Server verbinden.]]></item>
-		<item name="wcf.page.minecraftAdd.cantConnectDynamic"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.<br>(Minecraft-Meldung: {$msg})]]></item>
-		<item name="wcf.page.minecraftAdd.tooManyConnectionsDynamic"><![CDATA[Konnte nicht mit dem Minecraft-Server verbinden.<br>(Warte bis {$time} Uhr)]]></item>
 	</category>
 </language>

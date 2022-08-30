@@ -10,15 +10,7 @@ use wcf\system\database\table\DatabaseTable;
 return [
     DatabaseTable::create('wcf_minecraft')
         ->columns([
-            ObjectIdDatabaseTableColumn::create('minecraftID'),
-            VarcharDatabaseTableColumn::create('name')
-                ->length(20),
-            NotNullVarchar255DatabaseTableColumn::create('user'),
-            NotNullVarchar255DatabaseTableColumn::create('password'),
-            NotNullInt10DatabaseTableColumn::create('creationDate')
-        ])
-        ->indices([
-            DatabaseTablePrimaryIndex::create()
-                ->columns(['minecraftID'])
+            NotNullVarchar255DatabaseTableColumn::create('url')
+                ->drop()
         ])
 ];

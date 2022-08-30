@@ -2,9 +2,6 @@
 PACKAGE_NAME=de.xxschrarndxx.wsc.minecraft-api
 PACKAGE_TYPES=(acptemplates files)
 
-rm -rf files/js/*
-tsc
-
 for i in "${PACKAGE_TYPES[@]}"
 do
     rm -rf ${i}.tar

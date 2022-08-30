@@ -6,6 +6,22 @@
 			<category name="minecraft">
 				<parent/>
 			</category>
+			<category name="minecraft_floodgate">
+				<parent>minecraft</parent>
+			</category>
 		</categories>
+		<options>
+			<option name="minecraft_floodgate_resettime">
+				<categoryname>minecraft_floodgate</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>10</defaultvalue>
+				<suffix>minutes</suffix>
+			</option>
+			<option name="minecraft_floodgate_maxrequests">
+				<categoryname>minecraft_floodgate</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>600</defaultvalue>
+			</option>
+		</options>
 	</import>
 </data>
