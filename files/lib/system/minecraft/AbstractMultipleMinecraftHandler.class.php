@@ -22,14 +22,12 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
     /**
      * list of minecraft ids
      * Override with minecraft ids to use.
-     *
-     * @var array
+     * @var int[]
      */
     protected array $minecraftIDs = [];
 
     /**
      * list of minecrafts
-     *
      * @var Minecraft[]
      */
     protected array $minecrafts = [];
@@ -49,6 +47,15 @@ abstract class AbstractMultipleMinecraftHandler extends SingletonFactory
         $minecraftList->setObjectIDs($this->minecraftIDs);
         $minecraftList->readObjects();
         $this->minecrafts = $minecraftList->getObjects();
+    }
+
+    /**
+     * get list of managed minecraft ids
+     * @return int[]
+     */
+    public function getMinecraftIDs()
+    {
+        return $this->minecraftIDs;
     }
 
     /**
