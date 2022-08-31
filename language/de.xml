@@ -7,6 +7,10 @@
 	</category>
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.option.category.minecraft_floodgate"><![CDATA[Floodgate]]></item>
+		<item name="wcf.acp.option.minecraft_floodgate_resettime"><![CDATA[Resetzeit]]></item>
+		<item name="wcf.acp.option.minecraft_floodgate_maxrequests"><![CDATA[Maximale Anfragen]]></item>
+		<item name="wcf.acp.option.minecraft_floodgate_maxrequests.description"><![CDATA[Setze <kbd>-1</kbd> zum deaktivieren.]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.category.user.minecraft"><![CDATA[Minecraft]]></item>
