@@ -9,10 +9,8 @@ use wcf\data\user\minecraft\MinecraftUserList;
 use wcf\data\user\User;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
-use wcf\system\exception\UserInputException;
 use wcf\system\flood\FloodControl;
 use wcf\system\request\RouteHandler;
-use wcf\system\WCF;
 
 /**
  * MinecraftPasswordCheck action class
@@ -21,7 +19,7 @@ use wcf\system\WCF;
  * @license  Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
  * @package  WoltLabSuite\Core\Action
  */
-class AbstractMinecraftAction extends AbstractAction
+abstract class AbstractMinecraftAction extends AbstractAction
 {
 
     private string $floodgate = 'de.xxschrarndxx.wsc.minecraft-api.floodgate';
@@ -38,7 +36,7 @@ class AbstractMinecraftAction extends AbstractAction
     public function __run()
     {
         if (!RouteHandler::getInstance()->secureConnection()) {
-            return $this->send('SSL Certificate Required', 496, false);
+            return $this->send('SSL Certificate Required', 496);
         }
 
         // Flood control
@@ -145,6 +143,10 @@ class AbstractMinecraftAction extends AbstractAction
         }
     }
 
+    /**
+     * Gets the User from given UUID.
+     * @param string $uuid UUID
+     */
     protected function getUser(string $uuid): User
     {
         $minecraftUserList = new MinecraftUserList();
@@ -155,7 +157,15 @@ class AbstractMinecraftAction extends AbstractAction
         return new User($minecraftUser->userID);
     }
 
-    protected function send($status, $statusCode, $data = [], $headers = [], $encodingOptions = JsonResponse::DEFAULT_JSON_FLAGS): JsonResponse
+    /**
+     * Creates the JSON-Response
+     * @param string $status Status-Message
+     * @param int $statusCode Status-Code (between {@link JsonResponse::MIN_STATUS_CODE_VALUE} and {@link JsonResponse::MAX_STATUS_CODE_VALUE})
+     * @param array $data JSON-Data
+     * @param array $headers Headers
+     * @param int $encodingOptions {@link JsonResponse::DEFAULT_JSON_FLAGS}
+     */
+    protected function send(string $status, int $statusCode = 200, array $data = [], array $headers = [], int $encodingOptions = JsonResponse::DEFAULT_JSON_FLAGS): JsonResponse
     {
         if ($statusCode < JsonResponse::MIN_STATUS_CODE_VALUE &&
             $statusCode > JsonResponse::MAX_STATUS_CODE_VALUE) {
