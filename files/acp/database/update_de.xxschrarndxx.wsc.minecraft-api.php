@@ -8,7 +8,7 @@ use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
 use wcf\system\database\table\DatabaseTable;
 
 return [
-    DatabaseTable::create('wcf_minecraft')
+    DatabaseTable::create('wcf1_minecraft')
         ->columns([
             NotNullVarchar255DatabaseTableColumn::create('url')
                 ->drop()
