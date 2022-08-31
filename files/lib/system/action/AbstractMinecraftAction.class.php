@@ -11,6 +11,8 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
 use wcf\system\flood\FloodControl;
+use wcf\system\request\RouteHandler;
+use wcf\system\WCF;
 
 /**
  * MinecraftPasswordCheck action class
@@ -35,17 +37,17 @@ class AbstractMinecraftAction extends AbstractAction
      */
     public function __run()
     {
-        if (empty($_SERVER['HTTPS'])) {
+        if (!RouteHandler::getInstance()->secureConnection()) {
             return $this->send('SSL Certificate Required', 496, false);
         }
 
         // Flood control
         if (MINECRAFT_FLOODGATE_MAXREQUESTS > 0) {
-            FloodControl::getInstance()->registerContent($this->d);
+            FloodControl::getInstance()->registerContent($this->floodgate);
 
             $secs = MINECRAFT_FLOODGATE_RESETTIME * 60;
             $time = \ceil(TIME_NOW / $secs) * $secs;
-            $data = FloodControl::getInstance()->countContent($this->d, new \DateInterval('PT' . MINECRAFT_FLOODGATE_RESETTIME . 'M'), $time);
+            $data = FloodControl::getInstance()->countContent($this->floodgate, new \DateInterval('PT' . MINECRAFT_FLOODGATE_RESETTIME . 'M'), $time);
             if ($data['count'] > MINECRAFT_FLOODGATE_MAXREQUESTS) {
                 return $this->send('Too Many Requests.', 429, [], ['retryAfter' => $time - TIME_NOW]);
             }
