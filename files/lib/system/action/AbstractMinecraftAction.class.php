@@ -157,7 +157,8 @@ class AbstractMinecraftAction extends AbstractAction
 
     protected function send($status, $statusCode, $data = [], $headers = [], $encodingOptions = JsonResponse::DEFAULT_JSON_FLAGS): JsonResponse
     {
-        if ($statusCode < 100 && $statusCode > 599) {
+        if ($statusCode < JsonResponse::MIN_STATUS_CODE_VALUE &&
+            $statusCode > JsonResponse::MAX_STATUS_CODE_VALUE) {
             $statusCode = 400;
         }
         if (!array_key_exists('status', $data)) {
