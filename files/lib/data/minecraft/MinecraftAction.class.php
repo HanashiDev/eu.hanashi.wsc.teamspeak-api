@@ -2,15 +2,7 @@
 
 namespace wcf\data\minecraft;
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 use wcf\data\AbstractDatabaseObjectAction;
-use wcf\system\exception\PermissionDeniedException;
-use wcf\system\exception\SystemException;
-use wcf\system\WCF;
-use wcf\util\DateUtil;
-use wcf\util\JSON;
-use wcf\util\StringUtil;
 
 /**
  * Minecraft Action class

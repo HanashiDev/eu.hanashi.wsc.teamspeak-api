@@ -3,8 +3,6 @@
 namespace wcf\data\minecraft;
 
 use wcf\data\DatabaseObject;
-use wcf\system\minecraft\IMinecraftHandler;
-use wcf\system\minecraft\MinecraftHandler;
 
 /**
  * Minecraft Data class

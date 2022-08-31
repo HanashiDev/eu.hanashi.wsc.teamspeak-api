@@ -2,20 +2,11 @@
 
 namespace wcf\acp\form;
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 use wcf\data\minecraft\MinecraftAction;
 use wcf\form\AbstractFormBuilderForm;
-use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\PasswordFormField;
 use wcf\system\form\builder\field\TextFormField;
-use wcf\system\form\builder\field\UrlFormField;
-use wcf\system\form\builder\field\validation\FormFieldValidationError;
-use wcf\system\form\builder\field\validation\FormFieldValidator;
-use wcf\system\minecraft\MinecraftHandler;
-use wcf\util\DateUtil;
-use wcf\util\JSON;
 
 /**
  * MinecraftAdd Form class

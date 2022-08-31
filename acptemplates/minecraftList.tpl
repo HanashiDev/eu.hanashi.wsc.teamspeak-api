@@ -31,7 +31,6 @@
                     <th></th>
                     <th>{lang}wcf.page.minecraftList.minecraftID{/lang}</th>
                     <th>{lang}wcf.page.minecraftList.name{/lang}</th>
-					<th>{lang}wcf.page.minecraftList.url{/lang}</th>
                     <th>{lang}wcf.page.minecraftList.creationDate{/lang}</th>
                 </tr>
             </thead>
@@ -44,14 +43,10 @@
 								<span class="icon icon16 fa-pencil"></span>
 							</a>
                             {objectAction action="delete" objectTitle=$object->name}
-							<span class="icon icon16 fa-wifi minecraftStatusButton pointer jsTooltip" 
-								title="{lang}wcf.page.minecraftList.button.status{/lang}">
-							</span>
                             {event name='rowButtons'}
                         </td>
                         <td class="columnID">{#$object->minecraftID}</td>
                         <td class="columnTitle">{$object->name}</td>
-                        <td class="columnText">{$object->url}</td>
                         <td class="columnDate">{@$object->creationDate|time}</td>
                     </tr>
                 {/foreach}
@@ -63,12 +58,3 @@
 {/if}
 
 {include file='footer'}
-
-<script data-relocate="true">
-	require(["xXSchrandXx/Minecraft/MinecraftStatus", "Language"], function(MinecraftStatus, Language) {
-		Language.addObject({
-			'wcf.page.minecraftList.button.status.result': '{lang}wcf.page.minecraftList.button.status.result{/lang}'
-		});
-		new MinecraftStatus.default();
-	});
-</script>
