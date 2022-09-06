@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/5.4/objectType.xsd">
 	<import>
 		<type>
-			<name>de.xxschranrdxx.wsc.minecraft-api.floodgate</name>
+			<name>de.xxschrarndxx.wsc.minecraft-api.floodgate</name>
 			<definitionname>com.woltlab.wcf.floodControl</definitionname>
 		</type>
 	</import>
