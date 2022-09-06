@@ -71,6 +71,8 @@ abstract class AbstractMinecraftAction extends AbstractAction
      */
     public function readParameters()
     {
+        parent::readParameters();
+
         // validate minecraftID
         if (!array_key_exists('minecraftID', $_POST)) {
             if (ENABLE_DEBUG_MODE) {
@@ -87,6 +89,7 @@ abstract class AbstractMinecraftAction extends AbstractAction
                 return $this->send('Bad Request.', 401);
             }
         }
+
         if (!in_array($this->minecraftID, $this->availableMinecraftIDs)) {
             if (ENABLE_DEBUG_MODE) {
                 return $this->send('Bad Request. Requests not enabled for given \'minecraftID\'.', 401);
@@ -94,6 +97,8 @@ abstract class AbstractMinecraftAction extends AbstractAction
                 return $this->send('Bad Request.', 401);
             }
         }
+
+        // set minecraft
         $this->minecraft = new Minecraft($this->minecraftID);
         if ($this->minecraft === null) {
             if (ENABLE_DEBUG_MODE) {
@@ -134,8 +139,6 @@ abstract class AbstractMinecraftAction extends AbstractAction
                 return $this->send('Bad Request.', 400);
             }
         }
-
-        parent::readParameters();
     }
 
     /**
@@ -174,7 +177,7 @@ abstract class AbstractMinecraftAction extends AbstractAction
      * @param int $encodingOptions {@link JsonResponse::DEFAULT_JSON_FLAGS}
      * @throws Exception\InvalidArgumentException if unable to encode the $data to JSON or not valid $statusCode.
      */
-    protected function send(string $status = '', int $statusCode = 200, array $data = [], array $headers = [], int $encodingOptions = JsonResponse::DEFAULT_JSON_FLAGS): JsonResponse
+    protected function send(string $status = 'OK', int $statusCode = 200, array $data = [], array $headers = [], int $encodingOptions = JsonResponse::DEFAULT_JSON_FLAGS): JsonResponse
     {
         if (!array_key_exists('status', $data)) {
             $data['status'] = $status;
