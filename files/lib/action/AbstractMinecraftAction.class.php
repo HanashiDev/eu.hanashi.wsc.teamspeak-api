@@ -3,11 +3,11 @@
 namespace wcf\action;
 
 use Laminas\Diactoros\Response\JsonResponse;
+use Laminas\Stdlib\ResponseInterface;
 use wcf\data\minecraft\Minecraft;
 use wcf\data\user\minecraft\MinecraftUser;
 use wcf\data\user\minecraft\MinecraftUserList;
 use wcf\data\user\User;
-use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\flood\FloodControl;
 use wcf\system\request\RouteHandler;
@@ -25,10 +25,22 @@ abstract class AbstractMinecraftAction extends AbstractAction
     private string $floodgate = 'de.xxschrarndxx.wsc.minecraft-api.floodgate';
 
     /**
-     * MinecraftID the request came from.
+     * List of available minecraftIDs
+     * @var int[]
+     */
+    protected array $availableMinecraftIDs;
+
+    /**
+     * Minecraft ID
+     * @var int
+     */
+    protected int $minecraftID;
+
+    /**
+     * Minecraft the request came from.
      * @var Minecraft
      */
-    protected $minecraft;
+    protected Minecraft $minecraft;
 
     /**
      * @inheritDoc
@@ -67,14 +79,22 @@ abstract class AbstractMinecraftAction extends AbstractAction
                 return $this->send('Bad Request.', 401);
             }
         }
-        if (!is_int($_POST['minecraftID'])) {
+        $this->minecraftID = intval($_POST['minecraftID']);
+        if ($this->minecraftID === 0) {
             if (ENABLE_DEBUG_MODE) {
                 return $this->send('Bad Request. \'minecraftID\' is no int.', 401);
             } else {
                 return $this->send('Bad Request.', 401);
             }
         }
-        $this->minecraft = new Minecraft($_POST['minecraftID']);
+        if (!in_array($this->minecraftID, $this->availableMinecraftIDs)) {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send('Bad Request. Requests not enabled for given \'minecraftID\'.', 401);
+            } else {
+                return $this->send('Bad Request.', 401);
+            }
+        }
+        $this->minecraft = new Minecraft($this->minecraftID);
         if ($this->minecraft === null) {
             if (ENABLE_DEBUG_MODE) {
                 return $this->send('Bad Request. Unknown \'minecraftID\'.', 401);
@@ -132,18 +152,6 @@ abstract class AbstractMinecraftAction extends AbstractAction
     }
 
     /**
-     * @inheritDoc
-     */
-    public function execute()
-    {
-        try {
-            parent::execute();
-        } catch (PermissionDeniedException | IllegalLinkException $e) {
-            return $this->send($e->getMessage(), $e->getCode());
-        }
-    }
-
-    /**
      * Gets the User from given UUID.
      * @param string $uuid UUID
      */
@@ -164,13 +172,10 @@ abstract class AbstractMinecraftAction extends AbstractAction
      * @param array $data JSON-Data
      * @param array $headers Headers
      * @param int $encodingOptions {@link JsonResponse::DEFAULT_JSON_FLAGS}
+     * @throws Exception\InvalidArgumentException if unable to encode the $data to JSON or not valid $statusCode.
      */
-    protected function send(string $status, int $statusCode = 200, array $data = [], array $headers = [], int $encodingOptions = JsonResponse::DEFAULT_JSON_FLAGS): JsonResponse
+    protected function send(string $status = '', int $statusCode = 200, array $data = [], array $headers = [], int $encodingOptions = JsonResponse::DEFAULT_JSON_FLAGS): JsonResponse
     {
-        if ($statusCode < JsonResponse::MIN_STATUS_CODE_VALUE &&
-            $statusCode > JsonResponse::MAX_STATUS_CODE_VALUE) {
-            $statusCode = 400;
-        }
         if (!array_key_exists('status', $data)) {
             $data['status'] = $status;
         }
