@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\system\util;
+namespace wcf\util;
 
 use BadMethodCallException;
 use wcf\system\io\HttpFactory;
