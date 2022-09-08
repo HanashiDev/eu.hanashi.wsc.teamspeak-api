@@ -41,6 +41,7 @@ abstract class AbstractMinecraftAction extends AbstractAction
     protected Minecraft $minecraft;
 
     /**
+     * Request headers
      * @var false|array
      */
     protected $headers;

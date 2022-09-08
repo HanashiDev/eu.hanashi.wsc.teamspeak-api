@@ -47,7 +47,7 @@
                         </td>
                         <td class="columnID">{#$object->getObjectID()}</td>
                         <td class="columnTitle">{$object->getName()}</td>
-                        <td class="columnDate">{@$object->getCreatdDate()|time}</td>
+                        <td class="columnDate">{@$object->getCreatedTimestamp()|time}</td>
                     </tr>
                 {/foreach}
             </tbody>

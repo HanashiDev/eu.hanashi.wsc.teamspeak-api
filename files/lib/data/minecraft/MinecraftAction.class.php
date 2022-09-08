@@ -55,5 +55,4 @@ class MinecraftAction extends AbstractDatabaseObjectAction
 
         parent::update();
     }
-
 }

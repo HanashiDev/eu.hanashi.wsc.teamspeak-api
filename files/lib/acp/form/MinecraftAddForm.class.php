@@ -36,7 +36,7 @@ class MinecraftAddForm extends AbstractFormBuilderForm
      * @inheritDoc
      */
     public $objectActionClass = MinecraftAction::class;
-    
+
     /**
      * @var \wcf\data\minecraft\Minecraft
      */
