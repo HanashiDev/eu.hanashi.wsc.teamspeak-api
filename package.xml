@@ -25,16 +25,6 @@
 		<excludedpackage version="*">de.atrox-dev.minecraft.server</excludedpackage>
 	</excludedpackages>
 
-	<instructions fromversion="2.1.1" type="update">
-		<!-- TODO -->
-		<instruction type="acpTemplate" />
-		<instruction type="file" />
-		<instruction type="language" />
-		<instruction type="option" />
-		<instruction type="objectType" />
-		<instruction type="database">acp/database/update_de.xxschrarndxx.wsc.minecraft-api_3.0.0.php</instruction>
-	</instructions>
-
 	<instructions type="install">
 		<instruction type="acpTemplate" />
 		<instruction type="file" />

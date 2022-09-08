@@ -2,11 +2,16 @@
 
 namespace wcf\acp\form;
 
+use wcf\data\IStorableObject;
+use wcf\data\minecraft\Minecraft;
 use wcf\data\minecraft\MinecraftAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
+use wcf\system\form\builder\data\processor\VoidFormDataProcessor;
 use wcf\system\form\builder\field\PasswordFormField;
 use wcf\system\form\builder\field\TextFormField;
+use wcf\system\form\builder\IFormDocument;
 
 /**
  * MinecraftAdd Form class
@@ -31,6 +36,11 @@ class MinecraftAddForm extends AbstractFormBuilderForm
      * @inheritDoc
      */
     public $objectActionClass = MinecraftAction::class;
+    
+    /**
+     * @var \wcf\data\minecraft\Minecraft
+     */
+    public $formObject;
 
     /**
      * @inheritDoc
@@ -43,16 +53,17 @@ class MinecraftAddForm extends AbstractFormBuilderForm
             FormContainer::create('data')
                 ->appendChildren([
                     TextFormField::create('name')
-                        ->label('wcf.page.minecraftAdd.name')
-                        ->description('wcf.page.minecraftAdd.name.description')
+                        ->label('wcf.acp.form.minecraftAdd.name')
+                        ->description('wcf.acp.form.minecraftAdd.name.description')
                         ->value('Default')
                         ->maximumLength(20)
                         ->required(),
                     TextFormField::create('user')
-                        ->label('wcf.page.minecraftAdd.user')
+                        ->label('wcf.acp.form.minecraftAdd.user')
+                        ->placeholder()
                         ->required(),
                     PasswordFormField::create('password')
-                        ->label('wcf.page.minecraftAdd.password')
+                        ->label('wcf.acp.form.minecraftAdd.password')
                         ->placeholder(($this->formAction == 'edit') ? 'wcf.acp.updateServer.loginPassword.noChange' : '')
                         ->required($this->formAction !== 'edit')
                 ])
@@ -67,6 +78,28 @@ class MinecraftAddForm extends AbstractFormBuilderForm
         if ($this->formAction == 'create') {
             $this->additionalFields['creationDate'] = TIME_NOW;
         }
+
+        $user = $this->form->getData()['data']['user'];
+
+        $password = $this->form->getData()['data']['password'];
+        if ($this->formAction == 'edit' && empty($password)) {
+            $password = $this->formObject->getPassword();
+        }
+
+        $this->additionalFields['auth'] = \base64_encode($user . ':' . $password);
+
+        $this->form->getDataHandler()->addProcessor(
+            new VoidFormDataProcessor(
+                'user',
+                true
+            )
+        );
+        $this->form->getDataHandler()->addProcessor(
+            new VoidFormDataProcessor(
+                'password',
+                true
+            )
+        );
 
         parent::save();
     }

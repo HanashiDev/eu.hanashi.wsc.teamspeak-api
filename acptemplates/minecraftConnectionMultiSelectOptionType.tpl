@@ -2,8 +2,8 @@
     <ul class="scrollableCheckboxList" id="{$option->optionName}" style="height: 100px;">
         {foreach from=$minecraftList item=minecraft}
             <li>
-                <label><input type="checkbox" name="values[{$option->optionName}][]" value="{@$minecraft->minecraftID}"
-                        {if $minecraft->minecraftID|in_array:$value} checked{/if}> {$minecraft->name}</label>
+                <label><input type="checkbox" name="values[{$option->optionName}][]" value="{@$minecraft->getObjectID()}"
+                        {if $minecraft->getObjectID()|in_array:$value} checked{/if}> {$minecraft->getName()}</label>
             </li>
         {/foreach}
     </ul>

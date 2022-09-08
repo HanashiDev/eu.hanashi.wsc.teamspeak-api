@@ -52,7 +52,7 @@ class MinecraftConnectionMultiSelectOptionType extends AbstractOptionType
         $minecraftList->readObjectIDs();
 
         foreach ($newValue as $value) {
-            if (!\in_array($value, $minecraftList->objectIDs)) {
+            if (!\in_array($value, $minecraftList->getObjectIDs())) {
                 throw new UserInputException($option->optionName);
             }
         }

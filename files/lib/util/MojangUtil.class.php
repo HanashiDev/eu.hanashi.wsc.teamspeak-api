@@ -15,7 +15,7 @@ use Psr\Http\Message\UriInterface;
 use wcf\util\JSON;
 
 /**
- * MojangUtil class
+ * Mojang util class
  *
  * @author   xXSchrandXx
  * @license  Creative Commons Zero v1.0 Universal (http://creativecommons.org/publicdomain/zero/1.0/)
@@ -28,19 +28,6 @@ class MojangUtil
     const HEADERS = 'headers';
     const BODY = 'body';
     const VERSION = 'version';
-
-    const UUID_PATTERN = '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$';
-
-    /**
-     * Check weather given uuid is a valid uuid
-     * @param string $uuid uuid to check
-     * @return int|false
-     * @see \preg_match
-     */
-    public static function validUUID(string $uuid)
-    {
-        return \preg_match('/' . self::UUID_PATTERN . '/', $uuid);
-    }
 
     /**
      * Valid httpMethods
@@ -152,7 +139,7 @@ class MojangUtil
      */
     public function nameHistory(string $uuid)
     {
-        if (!self::validUUID($uuid)) {
+        if (!MinecraftUtil::validUUID($uuid)) {
             throw new BadMethodCallException('Given uuid not valid.');
         }
         return $this->GET([
@@ -167,7 +154,7 @@ class MojangUtil
      */
     public function uuidToProfile(string $uuid)
     {
-        if (!self::validUUID($uuid)) {
+        if (!MinecraftUtil::validUUID($uuid)) {
             throw new BadMethodCallException('Given uuid not valid.');
         }
         return $this->GET([
@@ -442,7 +429,7 @@ class MojangUtil
      */
     public function resetSkin(string $uuid, string $bearerToken)
     {
-        if (!self::validUUID($uuid)) {
+        if (!MinecraftUtil::validUUID($uuid)) {
             throw new BadMethodCallException('Given uuid not valid.');
         }
         return $this->DELETE([

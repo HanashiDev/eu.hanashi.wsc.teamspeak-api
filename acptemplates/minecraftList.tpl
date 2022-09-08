@@ -36,18 +36,18 @@
             </thead>
             <tbody>
                 {foreach from=$objects item=object}
-                    <tr class="jsObjectActionObject" data-object-id="{@$object->minecraftID}">
+                    <tr class="jsObjectActionObject" data-object-id="{@$object->getObjectID()}">
                         <td class="columnIcon">
-                            <a href="{link controller='MinecraftEdit' id=$object->minecraftID}{/link}"
+                            <a href="{link controller='MinecraftEdit' id=$object->getObjectID()}{/link}"
                                 title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
 								<span class="icon icon16 fa-pencil"></span>
 							</a>
-                            {objectAction action="delete" objectTitle=$object->name}
+                            {objectAction action="delete" objectTitle=$object->getName()}
                             {event name='rowButtons'}
                         </td>
-                        <td class="columnID">{#$object->minecraftID}</td>
-                        <td class="columnTitle">{$object->name}</td>
-                        <td class="columnDate">{@$object->creationDate|time}</td>
+                        <td class="columnID">{#$object->getObjectID()}</td>
+                        <td class="columnTitle">{$object->getName()}</td>
+                        <td class="columnDate">{@$object->getCreatdDate()|time}</td>
                     </tr>
                 {/foreach}
             </tbody>

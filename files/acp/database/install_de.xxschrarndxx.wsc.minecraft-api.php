@@ -13,8 +13,7 @@ return [
             ObjectIdDatabaseTableColumn::create('minecraftID'),
             VarcharDatabaseTableColumn::create('name')
                 ->length(20),
-            NotNullVarchar255DatabaseTableColumn::create('user'),
-            NotNullVarchar255DatabaseTableColumn::create('password'),
+            NotNullVarchar255DatabaseTableColumn::create('auth'),
             NotNullInt10DatabaseTableColumn::create('creationDate')
         ])
         ->indices([

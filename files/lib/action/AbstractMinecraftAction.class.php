@@ -5,9 +5,7 @@ namespace wcf\action;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\Stdlib\ResponseInterface;
 use wcf\data\minecraft\Minecraft;
-use wcf\data\user\minecraft\MinecraftUser;
-use wcf\data\user\minecraft\MinecraftUserList;
-use wcf\data\user\User;
+use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\flood\FloodControl;
 use wcf\system\request\RouteHandler;
@@ -34,13 +32,18 @@ abstract class AbstractMinecraftAction extends AbstractAction
      * Minecraft ID
      * @var int
      */
-    protected int $minecraftID;
+    protected int $minecraftID = 0;
 
     /**
      * Minecraft the request came from.
      * @var Minecraft
      */
     protected Minecraft $minecraft;
+
+    /**
+     * @var false|array
+     */
+    protected $headers;
 
     /**
      * @inheritDoc
@@ -63,80 +66,68 @@ abstract class AbstractMinecraftAction extends AbstractAction
             }
         }
 
-        return parent::__run();
+        $this->headers = getallheaders();
+
+        if (!is_array($this->headers) || empty($this->headers)) {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send('Bad Request. Could not read headers.', 500);
+            } else {
+                return $this->send('Bad Request.', 500);
+            }
+        }
+
+        $result = $this->readHeaders();
+        if ($result !== null) {
+            return $result;
+        }
+        $result = $this->readParameters();
+        if ($result !== null) {
+            return $result;
+        }
+        try {
+            $result = parent::execute();
+        } catch (PermissionDeniedException $e) {
+            $result = $this->send($e->getMessage(), 401);
+        } catch (IllegalLinkException $e) {
+            $result = $this->send($e->getMessage(), 404);
+        }
+        if ($result === null) {
+            return $this->send('Internal Error.', 500);
+        }
+        return $result;
     }
 
     /**
-     * @inheritDoc
+     * Reads header
+     * @return ?ResponseInterface
      */
-    public function readParameters()
+    public function readHeaders()
     {
-        parent::readParameters();
+        // validate Authorization
+        if (!array_key_exists('Authorization', $this->headers)) {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send('Bad Request. Missing \'Authorization\' in headers.', 401);
+            } else {
+                return $this->send('Bad Request.', 401);
+            }
+        }
 
         // validate minecraftID
-        if (!array_key_exists('minecraftID', $_POST)) {
+        if (!array_key_exists('Minecraft-Id', $this->headers)) {
             if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Missing \'minecraftID\'.', 401);
-            } else {
-                return $this->send('Bad Request.', 401);
-            }
-        }
-        $this->minecraftID = intval($_POST['minecraftID']);
-        if ($this->minecraftID === 0) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. \'minecraftID\' is no int.', 401);
+                return $this->send('Bad Request. Missing \'Minecraft-ID\' in headers.', 401);
             } else {
                 return $this->send('Bad Request.', 401);
             }
         }
 
-        if (!in_array($this->minecraftID, $this->availableMinecraftIDs)) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Requests not enabled for given \'minecraftID\'.', 401);
-            } else {
-                return $this->send('Bad Request.', 401);
-            }
-        }
-
-        // set minecraft
+        $this->minecraftID = (int)$this->headers['Minecraft-Id'];
         $this->minecraft = new Minecraft($this->minecraftID);
-        if ($this->minecraft === null) {
+        if (!$this->minecraft->getObjectID()) {
             if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Unknown \'minecraftID\'.', 401);
+                return $this->send('Bad Request. Unknown \'Minecraft-Id\'.', 401);
             } else {
                 return $this->send('Bad Request.', 401);
-            }
-        }
-
-        // validate user
-        if (!array_key_exists('user', $_POST)) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Missing \'user\'.', 401);
-            } else {
-                return $this->send('Bad Request.', 401);
-            }
-        }
-        if (!is_string($_POST['user'])) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. \'user\' is no string.', 401);
-            } else {
-                return $this->send('Bad Request.', 401);
-            }
-        }
-
-        // validate password
-        if (!array_key_exists('password', $_POST)) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Missing \'password\'.', 401);
-            } else {
-                return $this->send('Bad Request.', 400);
-            }
-        }
-        if (!is_string($_POST['password'])) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. \'password\' no string.', 401);
-            } else {
-                return $this->send('Bad Request.', 400);
             }
         }
     }
@@ -148,24 +139,13 @@ abstract class AbstractMinecraftAction extends AbstractAction
     {
         parent::checkPermissions();
 
-        if (!hash_equals($this->minecraft->user, $_POST['user']) ||
-            !hash_equals($this->minecraft->password, $_POST['password'])) {
+        $auth = \explode(' ', $this->headers['Authorization'], 2);
+        if ($auth[0] !== 'Basic') {
             throw new PermissionDeniedException();
         }
-    }
-
-    /**
-     * Gets the User from given UUID.
-     * @param string $uuid UUID
-     */
-    protected function getUser(string $uuid): User
-    {
-        $minecraftUserList = new MinecraftUserList();
-        $minecraftUserList->getConditionBuilder()->add('minecraftUUID = ?', [$uuid]);
-        $minecraftUserList->readObjects();
-        /** @var MinecraftUser */
-        $minecraftUser = $minecraftUserList->getSingleObject();
-        return new User($minecraftUser->userID);
+        if (!$this->minecraft->check($auth[1])) {
+            throw new PermissionDeniedException();
+        }
     }
 
     /**

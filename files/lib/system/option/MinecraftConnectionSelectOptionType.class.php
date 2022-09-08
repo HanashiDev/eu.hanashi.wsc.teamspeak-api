@@ -43,7 +43,7 @@ class MinecraftConnectionSelectOptionType extends AbstractOptionType
     {
         if (!empty($newValue)) {
             $minecraft = new Minecraft($newValue);
-            if (!$minecraft->minecraftID) {
+            if (!$minecraft->getObjectID()) {
                 throw new UserInputException($option->optionName);
             }
         }

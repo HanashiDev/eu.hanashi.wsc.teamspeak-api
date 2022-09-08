@@ -2,6 +2,7 @@
 
 namespace wcf\acp\page;
 
+use wcf\data\minecraft\Minecraft;
 use wcf\data\minecraft\MinecraftList;
 use wcf\page\MultipleLinkPage;
 
@@ -22,15 +23,19 @@ class MinecraftListPage extends MultipleLinkPage
     /**
      * @inheritDoc
      */
-    public $sortField = 'minecraftID';
-
-    /**
-     * @inheritDoc
-     */
     public $sortOrder = 'ASC';
 
     /**
      * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.configuration.minecraft.minecraftList';
+
+    /**
+     * @inheritDoc
+     */
+    public function __run()
+    {
+        $this->sortField = Minecraft::getDatabaseTableIndexName();
+        parent::__run();
+    }
 }
