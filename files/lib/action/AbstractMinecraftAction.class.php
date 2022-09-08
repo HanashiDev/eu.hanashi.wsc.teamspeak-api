@@ -3,7 +3,6 @@
 namespace wcf\action;
 
 use Laminas\Diactoros\Response\JsonResponse;
-use Laminas\Stdlib\ResponseInterface;
 use SystemException;
 use wcf\data\minecraft\Minecraft;
 use wcf\system\exception\IllegalLinkException;
@@ -49,15 +48,33 @@ abstract class AbstractMinecraftAction extends AbstractAction
     protected $headers;
 
     /**
-     * Request data
+     * Request json data
      * @var array
      */
-    protected $data = [];
+    protected $json = [];
+
+    /**
+     * Returns decoded Request-JSON
+     * @return array
+     */
+    public function getJSON()
+    {
+        return $this->json;
+    }
+
+    /**
+     * Returns request data
+     * @return string|int
+     */
+    public function getData(string $name)
+    {
+        return $this->getJSON()[$name];
+    }
 
     /**
      * @inheritDoc
      */
-    public function __run()
+    public function __run(): JsonResponse
     {
         if (!RouteHandler::getInstance()->secureConnection()) {
             return $this->send('SSL Certificate Required', 496);
@@ -94,11 +111,11 @@ abstract class AbstractMinecraftAction extends AbstractAction
             return $result;
         }
         try {
-            $result = parent::execute();
+            $result = $this->execute();
         } catch (PermissionDeniedException $e) {
-            $result = $this->send($e->getMessage(), 401);
+            return $this->send($e->getMessage(), 401);
         } catch (IllegalLinkException $e) {
-            $result = $this->send($e->getMessage(), 404);
+            return $this->send($e->getMessage(), 404);
         }
         if ($result === null) {
             return $this->send('Internal Error.', 500);
@@ -108,9 +125,9 @@ abstract class AbstractMinecraftAction extends AbstractAction
 
     /**
      * Reads header
-     * @return ?ResponseInterface
+     * @return ?JsonResponse
      */
-    public function readHeaders()
+    public function readHeaders(): ?JsonResponse
     {
         // validate Authorization
         if (!array_key_exists('Authorization', $this->headers)) {
@@ -148,24 +165,27 @@ abstract class AbstractMinecraftAction extends AbstractAction
                 return $this->send('Bad Request.', 400);
             }
         }
-        if ($this->headers !== 'application/json') {
+        if ($this->headers['Content-Type'] !== 'application/json') {
             if (ENABLE_DEBUG_MODE) {
                 return $this->send('Bad Request. Wrong \'Content-Type\'.', 400);
             } else {
                 return $this->send('Bad Request.', 400);
             }
         }
+
+        return null;
     }
 
     /**
-     * @inheritDoc
+     * Reads the given parameters.
+     * @return ?JsonResponse
      */
-    public function readParameters()
+    public function readParameters(): ?JsonResponse
     {
         parent::readParameters();
 
         try {
-            $this->data = JSON::decode($_POST);
+            $this->json = JSON::decode(file_get_contents('php://input'));
         } catch (SystemException $e) {
             if (ENABLE_DEBUG_MODE) {
                 return $this->send($e->getMessage(), 400);
@@ -173,6 +193,8 @@ abstract class AbstractMinecraftAction extends AbstractAction
                 return $this->send('Bad Request.', 400);
             }
         }
+
+        return null;
     }
 
     /**
@@ -189,6 +211,16 @@ abstract class AbstractMinecraftAction extends AbstractAction
         if (!$this->minecraft->check($auth[1])) {
             throw new PermissionDeniedException();
         }
+    }
+
+    /**
+     * Executes this action.
+     * @return ?JsonResponse
+     */
+    public function execute(): ?JsonResponse
+    {
+        parent::execute();
+        return null;
     }
 
     /**
