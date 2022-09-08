@@ -4,11 +4,13 @@ namespace wcf\action;
 
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\Stdlib\ResponseInterface;
+use SystemException;
 use wcf\data\minecraft\Minecraft;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\flood\FloodControl;
 use wcf\system\request\RouteHandler;
+use wcf\util\JSON;
 
 /**
  * MinecraftPasswordCheck action class
@@ -45,6 +47,12 @@ abstract class AbstractMinecraftAction extends AbstractAction
      * @var false|array
      */
     protected $headers;
+
+    /**
+     * Request data
+     * @var array
+     */
+    protected $data = [];
 
     /**
      * @inheritDoc
@@ -107,18 +115,18 @@ abstract class AbstractMinecraftAction extends AbstractAction
         // validate Authorization
         if (!array_key_exists('Authorization', $this->headers)) {
             if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Missing \'Authorization\' in headers.', 401);
+                return $this->send('Bad Request. Missing \'Authorization\' in headers.', 400);
             } else {
-                return $this->send('Bad Request.', 401);
+                return $this->send('Bad Request.', 400);
             }
         }
 
         // validate minecraftID
         if (!array_key_exists('Minecraft-Id', $this->headers)) {
             if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Missing \'Minecraft-ID\' in headers.', 401);
+                return $this->send('Bad Request. Missing \'Minecraft-ID\' in headers.', 400);
             } else {
-                return $this->send('Bad Request.', 401);
+                return $this->send('Bad Request.', 400);
             }
         }
 
@@ -126,9 +134,43 @@ abstract class AbstractMinecraftAction extends AbstractAction
         $this->minecraft = new Minecraft($this->minecraftID);
         if (!$this->minecraft->getObjectID()) {
             if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Unknown \'Minecraft-Id\'.', 401);
+                return $this->send('Bad Request. Unknown \'Minecraft-Id\'.', 400);
             } else {
-                return $this->send('Bad Request.', 401);
+                return $this->send('Bad Request.', 400);
+            }
+        }
+
+        // validate Content-Type
+        if (!array_key_exists('Content-Type', $this->headers)) {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send('Bad Request. Missing \'Content-Type\' in headers.', 400);
+            } else {
+                return $this->send('Bad Request.', 400);
+            }
+        }
+        if ($this->headers !== 'application/json') {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send('Bad Request. Wrong \'Content-Type\'.', 400);
+            } else {
+                return $this->send('Bad Request.', 400);
+            }
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function readParameters()
+    {
+        parent::readParameters();
+
+        try {
+            $this->data = JSON::decode($_POST);
+        } catch (SystemException $e) {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send($e->getMessage(), 400);
+            } else {
+                return $this->send('Bad Request.', 400);
             }
         }
     }
