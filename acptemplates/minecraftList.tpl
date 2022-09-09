@@ -29,9 +29,9 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>{lang}wcf.page.minecraftList.minecraftID{/lang}</th>
-                    <th>{lang}wcf.page.minecraftList.name{/lang}</th>
-                    <th>{lang}wcf.page.minecraftList.creationDate{/lang}</th>
+                    <th>{lang}wcf.acp.page.minecraftList.minecraftID{/lang}</th>
+                    <th>{lang}wcf.acp.page.minecraftList.name{/lang}</th>
+                    <th>{lang}wcf.acp.page.minecraftList.creationDate{/lang}</th>
                 </tr>
             </thead>
             <tbody>
