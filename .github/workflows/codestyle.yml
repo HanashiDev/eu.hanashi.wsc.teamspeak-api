@@ -1,13 +1,20 @@
-name: PHPCS check
+name: Code Style
 
 on:
   push:
+  pull_request:
 
 jobs:
-  phpcs:
-      name: PHPCS
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@master
-        - name: PHPCS check
-          uses: chekalsky/phpcs-action@master
+  php:
+    name: PHP
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup PHP with tools
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: ctype, dom, exif, gd, gmp, hash, intl, json, libxml, mbstring, opcache, pcre, pdo, pdo_mysql, zlib
+        tools: cs2pr, phpcs
+    - name: phpcs
+      run: phpcs -n -q --report=checkstyle | cs2pr
