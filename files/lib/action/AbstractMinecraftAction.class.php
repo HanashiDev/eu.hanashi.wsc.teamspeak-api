@@ -92,6 +92,35 @@ abstract class AbstractMinecraftAction extends AbstractAction
             }
         }
 
+        if (!array_key_exists('id', $_REQUEST)) {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send('Bad Request. Missing \'id\'.', 400);
+            } else {
+                return $this->send('Bad Request.', 400);
+            }
+        }
+
+        $this->minecraftID = (int)$_REQUEST['id'];
+
+        if (isset($this->availableMinecraftIDs)) {
+            if (!in_array($this->minecraftID, $this->availableMinecraftIDs)) {
+                if (ENABLE_DEBUG_MODE) {
+                    return $this->send('Bad Request. Unknown \'Minecraft-Id\'.', 400);
+                } else {
+                    return $this->send('Bad Request.', 400);
+                }
+            }
+        }
+
+        $this->minecraft = new Minecraft($this->minecraftID);
+        if (!$this->minecraft->getObjectID()) {
+            if (ENABLE_DEBUG_MODE) {
+                return $this->send('Bad Request. Unknown \'Minecraft-Id\'.', 400);
+            } else {
+                return $this->send('Bad Request.', 400);
+            }
+        }
+
         $this->headers = getallheaders();
 
         if (!is_array($this->headers) || empty($this->headers)) {
@@ -133,25 +162,6 @@ abstract class AbstractMinecraftAction extends AbstractAction
         if (!array_key_exists('Authorization', $this->headers)) {
             if (ENABLE_DEBUG_MODE) {
                 return $this->send('Bad Request. Missing \'Authorization\' in headers.', 400);
-            } else {
-                return $this->send('Bad Request.', 400);
-            }
-        }
-
-        // validate minecraftID
-        if (!array_key_exists('Minecraft-Id', $this->headers)) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Missing \'Minecraft-ID\' in headers.', 400);
-            } else {
-                return $this->send('Bad Request.', 400);
-            }
-        }
-
-        $this->minecraftID = (int)$this->headers['Minecraft-Id'];
-        $this->minecraft = new Minecraft($this->minecraftID);
-        if (!$this->minecraft->getObjectID()) {
-            if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Unknown \'Minecraft-Id\'.', 400);
             } else {
                 return $this->send('Bad Request.', 400);
             }
