@@ -92,6 +92,7 @@ abstract class AbstractMinecraftAction extends AbstractAction
             }
         }
 
+        // validate minecraftID
         if (!array_key_exists('id', $_REQUEST)) {
             if (ENABLE_DEBUG_MODE) {
                 return $this->send('Bad Request. Missing \'id\'.', 400);
