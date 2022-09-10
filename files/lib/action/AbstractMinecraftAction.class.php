@@ -20,7 +20,6 @@ use wcf\util\JSON;
  */
 abstract class AbstractMinecraftAction extends AbstractAction
 {
-
     private string $floodgate = 'de.xxschrarndxx.wsc.minecraft-api.floodgate';
 
     /**

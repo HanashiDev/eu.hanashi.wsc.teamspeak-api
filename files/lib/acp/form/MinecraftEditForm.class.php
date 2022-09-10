@@ -18,7 +18,6 @@ use wcf\system\form\builder\IFormDocument;
  */
 class MinecraftEditForm extends MinecraftAddForm
 {
-
     /**
      * @inheritDoc
      */
