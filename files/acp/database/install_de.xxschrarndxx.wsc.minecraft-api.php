@@ -11,7 +11,7 @@ return [
     DatabaseTable::create('wcf1_minecraft')
         ->columns([
             ObjectIdDatabaseTableColumn::create('minecraftID'),
-            VarcharDatabaseTableColumn::create('name')
+            VarcharDatabaseTableColumn::create('title')
                 ->length(20),
             NotNullVarchar255DatabaseTableColumn::create('auth'),
             NotNullInt10DatabaseTableColumn::create('creationDate')

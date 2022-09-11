@@ -3,7 +3,7 @@
         {foreach from=$minecraftList item=minecraft}
             <li>
                 <label><input type="checkbox" name="values[{$option->optionName}][]" value="{@$minecraft->getObjectID()}"
-                        {if $minecraft->getObjectID()|in_array:$value} checked{/if}> {$minecraft->getName()}</label>
+                        {if $minecraft->getObjectID()|in_array:$value} checked{/if}> {$minecraft->getTitle()}</label>
             </li>
         {/foreach}
     </ul>

@@ -2,16 +2,13 @@
 
 namespace wcf\acp\form;
 
-use wcf\data\IStorableObject;
-use wcf\data\minecraft\Minecraft;
 use wcf\data\minecraft\MinecraftAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
-use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
 use wcf\system\form\builder\data\processor\VoidFormDataProcessor;
 use wcf\system\form\builder\field\PasswordFormField;
 use wcf\system\form\builder\field\TextFormField;
-use wcf\system\form\builder\IFormDocument;
+use wcf\system\form\builder\field\TitleFormField;
 
 /**
  * MinecraftAdd Form class
@@ -52,9 +49,7 @@ class MinecraftAddForm extends AbstractFormBuilderForm
         $this->form->appendChild(
             FormContainer::create('data')
                 ->appendChildren([
-                    TextFormField::create('name')
-                        ->label('wcf.acp.form.minecraftAdd.name')
-                        ->description('wcf.acp.form.minecraftAdd.name.description')
+                    TitleFormField::create()
                         ->value('Default')
                         ->maximumLength(20)
                         ->required(),

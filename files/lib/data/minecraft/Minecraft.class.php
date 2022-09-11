@@ -25,12 +25,12 @@ class Minecraft extends DatabaseObject
     protected static $databaseTableIndexName = 'minecraftID';
 
     /**
-     * Returns name
+     * Returns title
      * @return ?string
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**

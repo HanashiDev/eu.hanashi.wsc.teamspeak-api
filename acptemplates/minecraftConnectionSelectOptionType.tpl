@@ -3,7 +3,7 @@
         <option></option>
         {foreach from=$minecraftList item=minecraft}
             <option value="{@$minecraft->getObjectID()}" {if $minecraft->getObjectID() == $value} selected{/if}>
-                {$minecraft->name}</option>
+                {$minecraft->getTitle()}</option>
         {/foreach}
     </select>
 {else}

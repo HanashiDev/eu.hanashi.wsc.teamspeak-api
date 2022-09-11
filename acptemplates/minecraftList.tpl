@@ -30,7 +30,7 @@
                 <tr>
                     <th></th>
                     <th>{lang}wcf.acp.page.minecraftList.minecraftID{/lang}</th>
-                    <th>{lang}wcf.acp.page.minecraftList.name{/lang}</th>
+                    <th>{lang}wcf.global.title{/lang}</th>
                     <th>{lang}wcf.acp.page.minecraftList.creationDate{/lang}</th>
                 </tr>
             </thead>
@@ -42,11 +42,11 @@
                                 title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
 								<span class="icon icon16 fa-pencil"></span>
 							</a>
-                            {objectAction action="delete" objectTitle=$object->getName()}
+                            {objectAction action="delete" objectTitle=$object->getTitle()}
                             {event name='rowButtons'}
                         </td>
                         <td class="columnID">{#$object->getObjectID()}</td>
-                        <td class="columnTitle">{$object->getName()}</td>
+                        <td class="columnTitle">{$object->getTitle()}</td>
                         <td class="columnDate">{@$object->getCreatedTimestamp()|time}</td>
                     </tr>
                 {/foreach}
