@@ -26,7 +26,6 @@
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.edit"><![CDATA[Minecraft-Server bearbeiten]]></item>
 	</category>
 	<category name="wcf.acp.page">
-		<item name="wcf.acp.page.minecraftList.minecraftID"><![CDATA[ID]]></item>
 		<item name="wcf.acp.page.minecraftList.name"><![CDATA[Verbindungs-Name]]></item>
 		<item name="wcf.acp.page.minecraftList.creationDate"><![CDATA[Erstelldatum]]></item>
 	</category>

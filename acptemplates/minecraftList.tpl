@@ -29,7 +29,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>{lang}wcf.acp.page.minecraftList.minecraftID{/lang}</th>
+                    <th>{lang}wcf.global.objectID{/lang}</th>
                     <th>{lang}wcf.global.title{/lang}</th>
                     <th>{lang}wcf.acp.page.minecraftList.creationDate{/lang}</th>
                 </tr>
