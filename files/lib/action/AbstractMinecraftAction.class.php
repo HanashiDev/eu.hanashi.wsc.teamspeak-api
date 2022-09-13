@@ -73,7 +73,7 @@ abstract class AbstractMinecraftAction extends AbstractAction
     /**
      * @inheritDoc
      */
-    public function __run(): JsonResponse
+    public function __run(): ?JsonResponse
     {
         if (!RouteHandler::getInstance()->secureConnection()) {
             return $this->send('SSL Certificate Required', 496);
@@ -125,9 +125,9 @@ abstract class AbstractMinecraftAction extends AbstractAction
 
         if (!is_array($this->headers) || empty($this->headers)) {
             if (ENABLE_DEBUG_MODE) {
-                return $this->send('Bad Request. Could not read headers.', 500);
+                return $this->send('Bad Request. Could not read headers.', 400);
             } else {
-                return $this->send('Bad Request.', 500);
+                return $this->send('Bad Request.', 400);
             }
         }
 
@@ -249,6 +249,9 @@ abstract class AbstractMinecraftAction extends AbstractAction
         }
         if (!array_key_exists('statusCode', $data)) {
             $data['statusCode'] = $statusCode;
+        }
+        if (!array_key_exists('status', $headers)) {
+            $headers['status-message'] = [$status];
         }
         return new JsonResponse($data, $statusCode, $headers, $encodingOptions);
     }
