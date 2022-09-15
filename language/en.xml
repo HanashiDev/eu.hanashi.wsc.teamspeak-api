@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language languagecode="en"
+	xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
+	<category name="wcf.acp.minecraftSelectOptionType">
+		<item name="wcf.acp.minecraftSelectOptionType.noServer"><![CDATA[You have not yet added a Minecraft server. You can do this at <a href="{link controller="MinecraftAdd"}{/link}">Add Minecraft-Server</a>.]]></item>
+	</category>
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.option.category.minecraft_floodgate"><![CDATA[Floodgate]]></item>
+		<item name="wcf.acp.option.minecraft_floodgate_resettime"><![CDATA[Reset-time]]></item>
+		<item name="wcf.acp.option.minecraft_floodgate_maxrequests"><![CDATA[Maximum Requests]]></item>
+		<item name="wcf.acp.option.minecraft_floodgate_maxrequests.description"><![CDATA[Set <kbd>-1</kbd> to disable.]]></item>
+	</category>
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.user.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.group.option.category.mod.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.group.option.category.admin.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.group.option.admin.minecraft.canManageConnection"><![CDATA[Can manage Minecraft-API connections.]]></item>
+	</category>
+	<category name="wcf.acp.menu">
+		<item name="wcf.acp.menu.link.configuration.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.menu.link.management.minecraft"><![CDATA[Minecraft]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList"><![CDATA[Server]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.add"><![CDATA[Add Minecraft-Server]]></item>
+		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.edit"><![CDATA[Edit Minecraft-Server]]></item>
+	</category>
+	<category name="wcf.acp.page">
+		<item name="wcf.acp.page.minecraftList.creationDate"><![CDATA[Creation date]]></item>
+	</category>
+	<category name="wcf.acp.form">
+		<item name="wcf.acp.form.minecraftAdd.user"><![CDATA[User]]></item>
+		<item name="wcf.acp.form.minecraftAdd.password"><![CDATA[Password]]></item>
+	</category>
+</language>

@@ -16,7 +16,7 @@
 		<item name="wcf.acp.group.option.category.user.minecraft"><![CDATA[Minecraft]]></item>
 		<item name="wcf.acp.group.option.category.mod.minecraft"><![CDATA[Minecraft]]></item>
 		<item name="wcf.acp.group.option.category.admin.minecraft"><![CDATA[Minecraft]]></item>
-		<item name="wcf.acp.group.option.admin.minecraft.canManageConnection"><![CDATA[Kann Minecraft-API Server-Verbindungen verwalten]]></item>
+		<item name="wcf.acp.group.option.admin.minecraft.canManageConnection"><![CDATA[Kann Minecraft-API Verbindungen verwalten.]]></item>
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.configuration.minecraft"><![CDATA[Minecraft]]></item>
@@ -26,12 +26,9 @@
 		<item name="wcf.acp.menu.link.configuration.minecraft.minecraftList.edit"><![CDATA[Minecraft-Server bearbeiten]]></item>
 	</category>
 	<category name="wcf.acp.page">
-		<item name="wcf.acp.page.minecraftList.name"><![CDATA[Verbindungs-Name]]></item>
 		<item name="wcf.acp.page.minecraftList.creationDate"><![CDATA[Erstelldatum]]></item>
 	</category>
 	<category name="wcf.acp.form">
-		<item name="wcf.acp.form.minecraftAdd.name"><![CDATA[Verbindungs-Name]]></item>
-		<item name="wcf.acp.form.minecraftAdd.name.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gib{else}Geben Sie{/if} einen Verbindungsnamen ein um die Verbindung in der Übersicht wieder identifizieren zu können.]]></item>
 		<item name="wcf.acp.form.minecraftAdd.user"><![CDATA[Benutzer]]></item>
 		<item name="wcf.acp.form.minecraftAdd.password"><![CDATA[Passwort]]></item>
 	</category>
