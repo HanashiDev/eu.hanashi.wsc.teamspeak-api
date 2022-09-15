@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 PACKAGE_NAME=de.xxschrarndxx.wsc.minecraft-api
 PACKAGE_TYPES=(acptemplates files)
 

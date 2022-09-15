@@ -7,7 +7,7 @@
 		<packagename language="de"><![CDATA[Minecraft-API]]></packagename>
 		<packagedescription><![CDATA[API for Minecraft through WSC-Minecraft-Bridge.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[API für Minecraft durch WSC-Minecraft-Bridge.]]></packagedescription>
-		<version>3.0.0 dev 1</version>
+		<version>3.0.0</version>
 		<date>2022-08-30</date>
 	</packageinformation>
 
