@@ -2,6 +2,7 @@
 
 namespace wcf\acp\form;
 
+use Exception;
 use wcf\data\teamspeak\TeamspeakAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\TeamSpeakException;
@@ -27,9 +28,9 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
      */
     public $activeMenuItem = 'wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add';
 
-     /**
-     * @inheritDoc
-     */
+    /**
+    * @inheritDoc
+    */
     public $objectActionClass = TeamspeakAction::class;
 
     /**
@@ -73,7 +74,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
 
                             try {
                                 $ts = new TeamSpeakConnectionHandler($field->getSaveValue(), $queryPortField->getSaveValue(), $usernameField->getSaveValue(), $password, $virtualServerPortField->getSaveValue(), $queryTypeField->getSaveValue());
-                                if (in_array($queryTypeField->getSaveValue(), ['http', 'https'])) {
+                                if (\in_array($queryTypeField->getSaveValue(), ['http', 'https'])) {
                                     $ts->serverinfo();
                                 }
                             } catch (TeamSpeakException $e) {
@@ -83,7 +84,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                                 $field->addValidationError(
                                     new FormFieldValidationError('cantConnect', 'wcf.page.teamspeakAdd.cantConnectDynamic', ['msg' => $e->getMessage()])
                                 );
-                            } catch (\Exception $e) {
+                            } catch (Exception $e) {
                                 if (\ENABLE_DEBUG_MODE) {
                                     \wcf\functions\exception\logThrowable($e);
                                 }
@@ -99,7 +100,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                             'raw' => 'raw',
                             'ssh' => 'ssh',
                             'http' => 'http',
-                            'https' => 'https'
+                            'https' => 'https',
                         ])
                         ->required(),
                     IntegerFormField::create('queryPort')
@@ -133,7 +134,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                         ->label('wcf.page.teamspeakAdd.displayName')
                         ->description('wcf.page.teamspeakAdd.displayName.description')
                         ->value('WoltLab Suite')
-                        ->required()
+                        ->required(),
                 ])
         );
     }

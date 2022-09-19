@@ -12,7 +12,6 @@ namespace wcf\system\teamspeak;
  */
 class TeamSpeakHttpsHandler extends TeamSpeakHttpHandler
 {
-
     /**
      * @inheritDoc
      */

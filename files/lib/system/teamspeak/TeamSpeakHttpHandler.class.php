@@ -103,7 +103,7 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
     {
         if (!$this->httpClient) {
             $this->httpClient = HttpFactory::makeClient([
-                RequestOptions::TIMEOUT => 2
+                RequestOptions::TIMEOUT => 2,
             ]);
         }
 
@@ -118,22 +118,25 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         $url = $this->protocol . '://' . $this->hostname . ':' . $this->port . '/' . $this->virtualServerID . '/' . $command;
 
         $headers = [
-            'x-api-key' => $this->apiKey
+            'x-api-key' => $this->apiKey,
         ];
 
         $request = new Request('GET', $url, $headers);
         try {
             $response = $this->getHttpClient()->send($request);
+
             return (string)$response->getBody();
         } catch (BadResponseException $e) {
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
             }
+
             return (string)$e->getResponse()->getBody();
         } catch (GuzzleException $e) {
             if (\ENABLE_DEBUG_MODE) {
                 \wcf\functions\exception\logThrowable($e);
             }
+
             return '';
         }
     }
@@ -152,18 +155,19 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
     public function call($method, $args)
     {
         $command = $method;
-        if (count($args)) {
+        if (\count($args)) {
             $arguments = [];
             foreach ($args[0] as $key => $value) {
-                if (is_numeric($key)) {
+                if (\is_numeric($key)) {
                     $arguments[] = $value;
                 } else {
-                    $arguments[] = urlencode($key) . '=' . urlencode($value);
+                    $arguments[] = \urlencode($key) . '=' . \urlencode($value);
                 }
             }
-            $command = $command . '?' . implode('&', $arguments);
+            $command = $command . '?' . \implode('&', $arguments);
         }
         $result = $this->execute($command);
+
         return $this->parseResult($result);
     }
 
@@ -175,7 +179,7 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         try {
             $resultArr = JSON::decode($result);
             if (empty($resultArr['status']['message'])) {
-                throw new TeamSpeakException('Unknown teamspeak result: ' . print_r($result, true));
+                throw new TeamSpeakException('Unknown teamspeak result: ' . \print_r($result, true));
             }
             if ($resultArr['status']['message'] != 'ok') {
                 throw new TeamSpeakException($resultArr['status']['message']);

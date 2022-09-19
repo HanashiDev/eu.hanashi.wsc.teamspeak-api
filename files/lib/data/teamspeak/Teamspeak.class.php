@@ -43,7 +43,7 @@ class Teamspeak extends DatabaseObject
     {
         if ($this->connection === null) {
             $this->connection = new TeamSpeakConnectionHandler($this->hostname, $this->queryPort, $this->username, $this->password, $this->virtualServerPort, $this->queryType);
-            if (!in_array($this->queryType, ['http', 'https'])) {
+            if (!\in_array($this->queryType, ['http', 'https'])) {
                 $this->connection->use(['port' => $this->virtualServerPort]);
                 if (!empty($this->displayName)) {
                     // Wenn Namen vergeben ist, dann hinten eine Nummer dran hängen, maximal 20 Versuche
@@ -61,6 +61,7 @@ class Teamspeak extends DatabaseObject
                 }
             }
         }
+
         return $this->connection;
     }
 }

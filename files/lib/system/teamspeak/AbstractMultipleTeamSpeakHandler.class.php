@@ -8,7 +8,6 @@ use wcf\system\SingletonFactory;
 
 abstract class AbstractMultipleTeamSpeakHandler extends SingletonFactory
 {
-
     /**
      * list of teamspeak ids
      *
@@ -52,8 +51,10 @@ abstract class AbstractMultipleTeamSpeakHandler extends SingletonFactory
             if (ENABLE_DEBUG_MODE) {
                 throw new TeamSpeakException('found no teamspeak with this id');
             }
+
             return null;
         }
+
         return $this->teamspeaks[$teamspeakID];
     }
 
@@ -76,13 +77,14 @@ abstract class AbstractMultipleTeamSpeakHandler extends SingletonFactory
             if (ENABLE_DEBUG_MODE) {
                 throw new TeamSpeakException('found no teamspeak with this id');
             }
+
             return [];
         }
 
-        if (count($args) > 0) {
-            return $this->teamspeaks[$teamspeakID]->getConnection()->$method($args[0]);
+        if (\count($args) > 0) {
+            return $this->teamspeaks[$teamspeakID]->getConnection()->{$method}($args[0]);
         } else {
-            return $this->teamspeaks[$teamspeakID]->getConnection()->$method();
+            return $this->teamspeaks[$teamspeakID]->getConnection()->{$method}();
         }
     }
 }

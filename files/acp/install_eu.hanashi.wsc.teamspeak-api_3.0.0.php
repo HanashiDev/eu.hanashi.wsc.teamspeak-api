@@ -19,7 +19,7 @@ $tables = [
                 ->length(50)
                 ->notNull(),
             EnumDatabaseTableColumn::create('queryType')
-                ->enumValues(['raw','ssh','http','https'])
+                ->enumValues(['raw', 'ssh', 'http', 'https'])
                 ->notNull(),
             MediumintDatabaseTableColumn::create('queryPort')
                 ->length(5)
