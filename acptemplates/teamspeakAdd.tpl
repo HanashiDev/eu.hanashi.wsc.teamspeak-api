@@ -5,7 +5,7 @@
 		<h1 class="contentTitle">{lang}wcf.acp.menu.link.configuration.teamspeak.teamspeakList.{$action}{/lang}</h1>
 	</div>
 
-    <nav class="contentHeaderNavigation">
+	<nav class="contentHeaderNavigation">
 		<ul>
 			<li><a href="{link controller='TeamspeakList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.acp.menu.link.configuration.teamspeak.teamspeakList{/lang}</span></a></li>
 			{event name='contentHeaderNavigation'}
