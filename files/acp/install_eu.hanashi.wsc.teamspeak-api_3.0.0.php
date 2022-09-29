@@ -6,6 +6,7 @@ use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
 use wcf\system\database\table\column\VarcharDatabaseTableColumn;
 use wcf\system\database\table\DatabaseTable;
 use wcf\system\database\table\DatabaseTableChangeProcessor;
+use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
 use wcf\system\WCF;
 
 $tables = [
@@ -35,6 +36,10 @@ $tables = [
             VarcharDatabaseTableColumn::create('displayName')
                 ->length(50),
             NotNullInt10DatabaseTableColumn::create('creationDate'),
+        ])
+        ->indices([
+            DatabaseTablePrimaryIndex::create()
+                ->columns(['teamspeakID']),
         ]),
 ];
 
