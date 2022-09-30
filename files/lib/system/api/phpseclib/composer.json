@@ -1,4 +1,9 @@
 {
+    "config": {
+        "platform": {
+            "php": "7.2.24"
+        }
+    },
     "require": {
         "phpseclib/phpseclib": "~3.0"
     },
@@ -19,6 +24,7 @@
         "scssphp/scssphp": "dev-woltlab-1.4",
         "symfony/css-selector": "v5.2.7",
         "symfony/polyfill-mbstring": "v1.22.1",
-        "true/punycode": "v2.1.1"
+        "true/punycode": "v2.1.1",
+        "paragonie/random_compat": "*"
     }
 }

@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '72224666c72ab3fdc6577da1bd8e9f6f4973be6d',
+        'reference' => 'b48925e5be5ca9bb84f62b1ff879704293190658',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '72224666c72ab3fdc6577da1bd8e9f6f4973be6d',
+            'reference' => 'b48925e5be5ca9bb84f62b1ff879704293190658',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -62,13 +62,10 @@
             ),
         ),
         'paragonie/random_compat' => array(
-            'pretty_version' => 'v9.99.100',
-            'version' => '9.99.100.0',
-            'reference' => '996434e5492cb4c3edcb9168db6fbb1359ef965a',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../paragonie/random_compat',
-            'aliases' => array(),
             'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
         ),
         'pear/net_idna2' => array(
             'dev_requirement' => false,
