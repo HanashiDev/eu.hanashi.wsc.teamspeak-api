@@ -32,8 +32,9 @@ class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
         WCF::getTPL()->assign([
             'teamspeakList' => $teamspeakList,
             'option' => $option,
-            'value' => !is_array($value) ? explode("\n", $value) : $value
+            'value' => !\is_array($value) ? \explode("\n", $value) : $value,
         ]);
+
         return WCF::getTPL()->fetch('teamSpeakConnectionMultiSelectOptionType');
     }
 
@@ -42,7 +43,7 @@ class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
      */
     public function validate(Option $option, $newValue)
     {
-        if (!is_array($newValue)) {
+        if (!\is_array($newValue)) {
             $newValue = [];
         }
         $newValue = ArrayUtil::toIntegerArray($newValue);
@@ -52,7 +53,7 @@ class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
         $teamspeakList->readObjectIDs();
 
         foreach ($newValue as $value) {
-            if (!in_array($value, $teamspeakList->objectIDs)) {
+            if (!\in_array($value, $teamspeakList->objectIDs)) {
                 throw new UserInputException($option->optionName);
             }
         }
@@ -63,9 +64,10 @@ class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
      */
     public function getData(Option $option, $newValue)
     {
-        if (!is_array($newValue)) {
+        if (!\is_array($newValue)) {
             $newValue = [];
         }
-        return implode("\n", ArrayUtil::toIntegerArray(StringUtil::unifyNewlines($newValue)));
+
+        return \implode("\n", ArrayUtil::toIntegerArray(StringUtil::unifyNewlines($newValue)));
     }
 }

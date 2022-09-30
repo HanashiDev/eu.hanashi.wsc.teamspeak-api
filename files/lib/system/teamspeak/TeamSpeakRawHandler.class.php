@@ -122,14 +122,14 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
             if (!StringUtil::startsWith($replyLine, 'error')) {
                 continue;
             }
-            $errorRows = explode(' ', $replyLine);
+            $errorRows = \explode(' ', $replyLine);
             $error = [];
             foreach ($errorRows as $errorRow) {
                 if ($errorRow == 'error') {
                     continue;
                 }
-                $errorColumns = explode('=', $errorRow, 2);
-                if (count($errorColumns) != 2) {
+                $errorColumns = \explode('=', $errorRow, 2);
+                if (\count($errorColumns) != 2) {
                     continue;
                 }
                 $error[$errorColumns[0]] = TeamSpeakUtil::unescape($errorColumns[1]);
@@ -137,8 +137,10 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
             if (!empty($error['msg']) && $error['msg'] == 'ok') {
                 return false;
             }
+
             return $error;
         }
+
         return false;
     }
 
@@ -155,7 +157,7 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
         do {
             $line = StringUtil::trim($this->queryObj->gets());
             $result[] = $line;
-        } while ($line && substr($line, 0, 5) != "error");
+        } while ($line && \substr($line, 0, 5) != "error");
 
         return $result;
     }

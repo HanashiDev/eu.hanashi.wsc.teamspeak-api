@@ -21,11 +21,11 @@ abstract class AbstractTeamSpeakQueryHandler implements ITeamSpeakHandler
     public function call($method, $args)
     {
         $command = $method;
-        if (count($args) > 0) {
+        if (\count($args) > 0) {
             foreach ($args as $arg) {
-                if (is_array($arg)) {
+                if (\is_array($arg)) {
                     foreach ($arg as $key => $val) {
-                        if (is_numeric($key)) {
+                        if (\is_numeric($key)) {
                             $command .= ' ' . $val;
                         } else {
                             $command .= ' ' . $key . '=' . TeamSpeakUtil::escape($val);
@@ -37,6 +37,7 @@ abstract class AbstractTeamSpeakQueryHandler implements ITeamSpeakHandler
             }
         }
         $result = $this->execute($command);
+
         return $this->parseResult($result);
     }
 
@@ -49,29 +50,30 @@ abstract class AbstractTeamSpeakQueryHandler implements ITeamSpeakHandler
         $error = [];
 
         foreach ($result as $resultPart) {
-            $resultSplitted = explode('|', $resultPart);
+            $resultSplitted = \explode('|', $resultPart);
             foreach ($resultSplitted as $resultRow) {
                 $row = [];
-                $rowSplitted = explode(' ', $resultRow);
-                if (count($rowSplitted) == 0) {
+                $rowSplitted = \explode(' ', $resultRow);
+                if (\count($rowSplitted) == 0) {
                     continue;
                 }
                 if ($rowSplitted[0] == 'error') {
                     $error = $this->parseRow($rowSplitted);
                 } else {
                     $row = $this->parseRow($rowSplitted);
-                    if (count($row) > 0) {
+                    if (\count($row) > 0) {
                         $resultArr[] = $row;
                     }
                 }
             }
         }
         if (empty($error['msg'])) {
-            throw new TeamSpeakException('Unknown teamspeak result: ' . print_r($result, true));
+            throw new TeamSpeakException('Unknown teamspeak result: ' . \print_r($result, true));
         }
         if ($error['msg'] != 'ok') {
             throw new TeamSpeakException($error['msg']);
         }
+
         return $resultArr;
     }
 
@@ -85,11 +87,12 @@ abstract class AbstractTeamSpeakQueryHandler implements ITeamSpeakHandler
     {
         $rowArr = [];
         foreach ($row as $column) {
-            $columnSplitted = explode('=', $column, 2);
-            if (count($columnSplitted) > 1) {
+            $columnSplitted = \explode('=', $column, 2);
+            if (\count($columnSplitted) > 1) {
                 $rowArr[$columnSplitted[0]] = TeamSpeakUtil::unescape($columnSplitted[1]);
             }
         }
+
         return $rowArr;
     }
 }

@@ -89,7 +89,7 @@ class Filetransfer
         $this->sock->write($ftkey);
 
         // upload file with blocks
-        $size = filesize($filepath);
+        $size = \filesize($filepath);
         $pack = 4096;
         $file = new File($filepath, 'r');
 

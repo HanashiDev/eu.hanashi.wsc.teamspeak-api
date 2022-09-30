@@ -112,13 +112,13 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
         if (!$this->queryObj) {
             throw new TeamSpeakException('Opening Shell failed');
         }
-        stream_set_blocking($this->queryObj, true);
+        \stream_set_blocking($this->queryObj, true);
 
-        $header = StringUtil::trim(stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r"));
+        $header = StringUtil::trim(\stream_get_line($this->queryObj, \PHP_INT_MAX, "\n\r"));
         if ($header != 'TS3') {
             throw new TeamSpeakException('Not a TeamSpeak server');
         }
-        $motd = StringUtil::trim(stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r"));
+        $motd = StringUtil::trim(\stream_get_line($this->queryObj, \PHP_INT_MAX, "\n\r"));
     }
 
     /**
@@ -127,14 +127,14 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
     public function execute($command)
     {
         $result = [];
-        fwrite($this->queryObj, $command . "\n");
+        \fwrite($this->queryObj, $command . "\n");
         if ($command == 'quit') {
             return [];
         }
         do {
-            $line = StringUtil::trim(stream_get_line($this->queryObj, PHP_INT_MAX, "\n\r"));
+            $line = StringUtil::trim(\stream_get_line($this->queryObj, \PHP_INT_MAX, "\n\r"));
             $result[] = $line;
-        } while ($line && substr($line, 0, 5) != "error");
+        } while ($line && \substr($line, 0, 5) != "error");
 
         return $result;
     }

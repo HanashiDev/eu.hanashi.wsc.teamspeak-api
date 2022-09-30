@@ -2,6 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
+use Exception;
 use phpseclib3\Net\SSH2;
 use wcf\system\exception\ErrorException;
 use wcf\system\exception\TeamSpeakException;
@@ -73,7 +74,7 @@ class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
         if ($this->queryObj) {
             try {
                 $this->execute('quit');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // do nothing
             }
         }
@@ -128,7 +129,7 @@ class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
         do {
             $line = StringUtil::trim($this->queryObj->read("\n"));
             $result[] = $line;
-        } while ($line && substr($line, 0, 5) != "error");
+        } while ($line && \substr($line, 0, 5) != "error");
 
         return $result;
     }

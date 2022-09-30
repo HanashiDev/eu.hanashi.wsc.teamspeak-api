@@ -50,7 +50,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
 
         $this->hostname = $teamspeak->hostname;
         $this->tsObj = new \wcf\system\teamspeak\TeamSpeakConnectionHandler($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->virtualServerPort, $teamspeak->queryType);
-        if (in_array($teamspeak->queryType, ['http', 'https'])) {
+        if (\in_array($teamspeak->queryType, ['http', 'https'])) {
             return;
         }
 
@@ -81,10 +81,10 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
      */
     public function __call($method, $args)
     {
-        if (count($args) > 0) {
-            return $this->tsObj->$method($args[0]);
+        if (\count($args) > 0) {
+            return $this->tsObj->{$method}($args[0]);
         } else {
-            return $this->tsObj->$method();
+            return $this->tsObj->{$method}();
         }
     }
 
@@ -111,11 +111,11 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
      */
     public function uploadFile($channelID, $filepath, $filename, $path = '/', $channelPassword = '', $overwrite = true, $resume = false)
     {
-        if (!file_exists($filepath)) {
+        if (!\file_exists($filepath)) {
             throw new TeamSpeakException('cant find file on local storage');
         }
 
-        $size = filesize($filepath);
+        $size = \filesize($filepath);
 
         $reply = $this->ftinitupload([
             'clientftfid' => CryptoUtil::randomInt(1, 10000),
@@ -124,9 +124,9 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
             'cpw' => $channelPassword,
             'size' => $size,
             'overwrite' => ($overwrite ? 1 : 0),
-            'resume' => ($resume ? 1 : 0)
+            'resume' => ($resume ? 1 : 0),
         ]);
-        if (count($reply) != 1 || empty($reply[0]) || empty($reply[0]['port'])) {
+        if (\count($reply) != 1 || empty($reply[0]) || empty($reply[0]['port'])) {
             throw new TeamSpeakException('could not create file');
         }
         $filetransfer = new Filetransfer($this->hostname, $reply[0]['port']);
@@ -151,17 +151,18 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
             'name' => $path . $filename,
             'cid' => $channelID,
             'cpw' => $channelPassword,
-            'seekpos' => 0
+            'seekpos' => 0,
         ]);
-        if (count($reply) < 1 || count($reply) > 2 || empty($reply[0]) || (count($reply) == 1 && empty($reply[0]['port'])) || (count($reply) == 2 && empty($reply[1]['port']))) {
+        if (\count($reply) < 1 || \count($reply) > 2 || empty($reply[0]) || (\count($reply) == 1 && empty($reply[0]['port'])) || (\count($reply) == 2 && empty($reply[1]['port']))) {
             throw new TeamSpeakException('could not find file');
         }
 
         $replyTmp = $reply[0];
-        if (count($reply) == 2) {
+        if (\count($reply) == 2) {
             $replyTmp = $reply[1];
         }
         $filetransfer = new Filetransfer($this->hostname, $replyTmp['port']);
+
         return $filetransfer->download($replyTmp['ftkey'], $replyTmp['size']);
     }
 
@@ -174,9 +175,10 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
     public function createSnapshot()
     {
         $result = $this->tsObj->execute('serversnapshotcreate', true);
-        if (count($result) != 2) {
+        if (\count($result) != 2) {
             throw new TeamSpeakException('could not create snapshot');
         }
+
         return $result[0];
     }
 

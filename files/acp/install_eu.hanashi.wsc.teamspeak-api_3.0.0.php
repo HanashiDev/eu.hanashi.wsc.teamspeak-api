@@ -6,6 +6,7 @@ use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
 use wcf\system\database\table\column\VarcharDatabaseTableColumn;
 use wcf\system\database\table\DatabaseTable;
 use wcf\system\database\table\DatabaseTableChangeProcessor;
+use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
 use wcf\system\WCF;
 
 $tables = [
@@ -19,7 +20,7 @@ $tables = [
                 ->length(50)
                 ->notNull(),
             EnumDatabaseTableColumn::create('queryType')
-                ->enumValues(['raw','ssh','http','https'])
+                ->enumValues(['raw', 'ssh', 'http', 'https'])
                 ->notNull(),
             MediumintDatabaseTableColumn::create('queryPort')
                 ->length(5)
@@ -35,6 +36,10 @@ $tables = [
             VarcharDatabaseTableColumn::create('displayName')
                 ->length(50),
             NotNullInt10DatabaseTableColumn::create('creationDate'),
+        ])
+        ->indices([
+            DatabaseTablePrimaryIndex::create()
+                ->columns(['teamspeakID']),
         ]),
 ];
 

@@ -31,8 +31,9 @@ class TeamSpeakConnectionSelectOptionType extends AbstractOptionType
         WCF::getTPL()->assign([
             'teamspeakList' => $teamspeakList,
             'option' => $option,
-            'value' => $value
+            'value' => $value,
         ]);
+
         return WCF::getTPL()->fetch('teamSpeakConnectionSelectOptionType');
     }
 

@@ -5,7 +5,7 @@
 		<h1 class="contentTitle">{lang}wcf.acp.menu.link.configuration.teamspeak.teamspeakList.{$action}{/lang}</h1>
 	</div>
 
-    <nav class="contentHeaderNavigation">
+	<nav class="contentHeaderNavigation">
 		<ul>
 			<li><a href="{link controller='TeamspeakList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.acp.menu.link.configuration.teamspeak.teamspeakList{/lang}</span></a></li>
 			{event name='contentHeaderNavigation'}
@@ -16,7 +16,7 @@
 {@$form->getHtml()}
 
 <script data-relocate="true">
-	require(["Hanashi/TeamSpeak/ServerAdd", "Language"], function(ServerAdd, Language) {
+	require(["Hanashi/TeamSpeak/ServerAdd", "Language"], function({ ServerAdd }, Language) {
 		Language.addObject({
 			'wcf.page.teamspeakAdd.virtualServerPort': '{lang}wcf.page.teamspeakAdd.virtualServerPort{/lang}',
 			'wcf.page.teamspeakAdd.virtualServerPort.description': '{lang}wcf.page.teamspeakAdd.virtualServerPort.description{/lang}',
@@ -25,7 +25,7 @@
 			'wcf.page.teamspeakAdd.password': '{lang}wcf.page.teamspeakAdd.password{/lang}',
 			'wcf.page.teamspeakAdd.apiKey': '{lang}wcf.page.teamspeakAdd.apiKey{/lang}'
 		});
-		new ServerAdd.default();
+		new ServerAdd();
 	});
 </script>
 

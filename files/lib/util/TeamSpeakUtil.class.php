@@ -19,13 +19,14 @@ class TeamSpeakUtil
      * @param   string  $key        sorted by this key
      * @param   mixed   $sort       the sort order (default: SORT_ASC)
      */
-    public static function arraySort($array, $key, $sort = SORT_ASC)
+    public static function arraySort($array, $key, $sort = \SORT_ASC)
     {
         $indexes = [];
         foreach ($array as $rowKey => $row) {
             $indexes[$rowKey] = $row[$key];
         }
-        array_multisort($indexes, $sort, $array);
+        \array_multisort($indexes, $sort, $array);
+
         return $array;
     }
 
@@ -40,7 +41,7 @@ class TeamSpeakUtil
      */
     public static function getChilds($array, $searchKey, $searchValue, $childColumnName = 'cid', $level = 1)
     {
-        $childKeys = array_keys(array_column($array, $searchKey), $searchValue);
+        $childKeys = \array_keys(\array_column($array, $searchKey), $searchValue);
         $childs = [];
 
         foreach ($childKeys as $childKey) {
@@ -61,9 +62,10 @@ class TeamSpeakUtil
      */
     public static function escape($rawString)
     {
-        $originalChars = ["\\", '/', ' ', '|', "\a", "\b", "\f", "\n", "\r", "\t", "\v"];
+        $originalChars = ["\\", '/', ' ', '|', "\\a", "\\b", "\f", "\n", "\r", "\t", "\v"];
         $escapedChars = ['\\', '\/', '\s', '\p', '\a', '\b', '\f', '\n', '\r', '\t', '\v'];
-        return str_replace($originalChars, $escapedChars, $rawString);
+
+        return \str_replace($originalChars, $escapedChars, $rawString);
     }
 
     /**
@@ -75,8 +77,9 @@ class TeamSpeakUtil
     public static function unescape($escapedString)
     {
         $escapedChars = ['\\', '\/', '\s', '\p', '\a', '\b', '\f', '\n', '\r', '\t', '\v'];
-        $originalChars = ["\\", '/', ' ', '|', "\a", "\b", "\f", "\n", "\r", "\t", "\v"];
-        return str_replace($escapedChars, $originalChars, $escapedString);
+        $originalChars = ["\\", '/', ' ', '|', "\\a", "\\b", "\f", "\n", "\r", "\t", "\v"];
+
+        return \str_replace($escapedChars, $originalChars, $escapedString);
     }
 
     /**
@@ -87,14 +90,14 @@ class TeamSpeakUtil
      */
     public static function strbin($str)
     {
-        if (!is_string($str)) {
+        if (!\is_string($str)) {
             return false;
         }
 
         $ret = '';
-        for ($i = 0; $i < strlen($str); $i++) {
-            $temp = decbin(ord($str[$i]));
-            $ret .= str_repeat("0", 8 - strlen($temp)) . $temp;
+        for ($i = 0; $i < \strlen($str); $i++) {
+            $temp = \decbin(\ord($str[$i]));
+            $ret .= \str_repeat("0", 8 - \strlen($temp)) . $temp;
         }
 
         return $ret;
@@ -109,12 +112,13 @@ class TeamSpeakUtil
     public static function generateClientBase64UID($clientUID)
     {
         $chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
-        $binaryArr = str_split(self::strbin(base64_decode($clientUID)), 4);
+        $binaryArr = \str_split(self::strbin(\base64_decode($clientUID)), 4);
 
         $ret = '';
         foreach ($binaryArr as $binary) {
-            $ret .= $chars[bindec($binary)];
+            $ret .= $chars[\bindec($binary)];
         }
+
         return $ret;
     }
 
@@ -126,6 +130,6 @@ class TeamSpeakUtil
      */
     public static function getCorrectIconID($iconID)
     {
-        return ($iconID < 0) ? (pow(2, 32)) - ($iconID * -1) : $iconID;
+        return ($iconID < 0) ? (2 ** 32) - ($iconID * -1) : $iconID;
     }
 }
