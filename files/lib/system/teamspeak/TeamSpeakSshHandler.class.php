@@ -85,7 +85,7 @@ class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
      */
     public function connect()
     {
-        require_once(WCF_DIR . 'lib/system/api/phpseclib/autoload.php');
+        require_once(WCF_DIR . 'lib/system/api/phpseclib/vendor/autoload.php');
         $this->queryObj = new SSH2($this->hostname, $this->port);
 
         if (!$this->queryObj) {
