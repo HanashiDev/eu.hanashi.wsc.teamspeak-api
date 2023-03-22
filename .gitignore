@@ -3,5 +3,4 @@
 .DS_Store
 anleitung.txt
 node_modules/
-files/js/*
 *.cache
