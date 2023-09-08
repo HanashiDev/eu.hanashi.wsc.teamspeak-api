@@ -9,7 +9,7 @@
         "typescript": "~4.7"
     },
     "dependencies": {
-        "@woltlab/wcf": "https://github.com/WoltLab/WCF.git#5.5"
+        "@woltlab/wcf": "https://github.com/WoltLab/WCF.git#master"
     },
     "scripts": {
         "test": "npx eslint \"ts/**\"",
