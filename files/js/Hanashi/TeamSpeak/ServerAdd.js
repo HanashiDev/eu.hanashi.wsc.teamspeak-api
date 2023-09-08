@@ -1,36 +1,13 @@
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, exports, Language) {
+define(["require", "exports", "tslib", "WoltLabSuite/Core/Language"], function (require, exports, tslib_1, Language) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ServerAdd = void 0;
-    Language = __importStar(Language);
+    Language = tslib_1.__importStar(Language);
     class ServerAdd {
         constructor() {
-            var _a;
-            (_a = document
-                .getElementById("queryType")) === null || _a === void 0 ? void 0 : _a.addEventListener("change", (ev) => this.changeQueryType(ev));
+            document
+                .getElementById("queryType")
+                ?.addEventListener("change", (ev) => this.changeQueryType(ev));
         }
         changeQueryType(e) {
             const target = e.target;
@@ -52,18 +29,18 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             if (virtualServerPortContainer != null) {
                 const virtualServerPortLabel = virtualServerPortContainer.querySelector('label[for="virtualServerPort"]');
                 if (virtualServerPortLabel != null) {
-                    virtualServerPortLabel.innerHTML = Language.get(serverPortText);
+                    virtualServerPortLabel.innerHTML = Language.getPhrase(serverPortText);
                 }
                 const virtualServerPorDescriptionSmall = virtualServerPortContainer.querySelector("small:not(.innerError)");
                 if (virtualServerPorDescriptionSmall != null) {
-                    virtualServerPorDescriptionSmall.innerHTML = Language.get(serverPortDescriptionText);
+                    virtualServerPorDescriptionSmall.innerHTML = Language.getPhrase(serverPortDescriptionText);
                 }
             }
             const passwordContainer = document.getElementById("passwordContainer");
             if (passwordContainer != null) {
                 const passwordLabel = passwordContainer.querySelector('label[for="password"]');
                 if (passwordLabel != null) {
-                    passwordLabel.innerHTML = Language.get(passwordText);
+                    passwordLabel.innerHTML = Language.getPhrase(passwordText);
                 }
             }
             const virtualServerPort = document.getElementById("virtualServerPort");

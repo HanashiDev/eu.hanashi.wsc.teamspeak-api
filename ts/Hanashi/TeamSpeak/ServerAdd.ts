@@ -36,12 +36,12 @@ export class ServerAdd {
         'label[for="virtualServerPort"]'
       );
       if (virtualServerPortLabel != null) {
-        virtualServerPortLabel.innerHTML = Language.get(serverPortText);
+        virtualServerPortLabel.innerHTML = Language.getPhrase(serverPortText);
       }
       const virtualServerPorDescriptionSmall =
         virtualServerPortContainer.querySelector("small:not(.innerError)");
       if (virtualServerPorDescriptionSmall != null) {
-        virtualServerPorDescriptionSmall.innerHTML = Language.get(
+        virtualServerPorDescriptionSmall.innerHTML = Language.getPhrase(
           serverPortDescriptionText
         );
       }
@@ -53,7 +53,7 @@ export class ServerAdd {
         'label[for="password"]'
       );
       if (passwordLabel != null) {
-        passwordLabel.innerHTML = Language.get(passwordText);
+        passwordLabel.innerHTML = Language.getPhrase(passwordText);
       }
     }
 
