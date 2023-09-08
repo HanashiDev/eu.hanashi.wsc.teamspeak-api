@@ -9,20 +9,20 @@ updates:
     directory: "/files/lib/system/api/phpseclib/" # Location of package manifests
     schedule:
       interval: "daily"
-    target-branch: "next"
+    target-branch: "main"
     reviewers:
       - "Hanashi"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
      interval: "daily"
-    target-branch: "next"
+    target-branch: "main"
     reviewers:
       - "Hanashi"
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-    target-branch: "next"
+    target-branch: "main"
     reviewers:
       - "Hanashi"
