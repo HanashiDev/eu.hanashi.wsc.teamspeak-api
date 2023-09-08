@@ -31,5 +31,6 @@
 	</instructions>
 	<instructions type="update" fromversion="3.0.2">
 		<instruction type="file"/>
+		<instruction type="acpTemplate"/>
 	</instructions>
 </package>
