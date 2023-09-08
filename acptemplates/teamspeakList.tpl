@@ -13,7 +13,7 @@
 	
 	<nav class="contentHeaderNavigation">
 		<ul>
-			<li><a href="{link controller='TeamspeakAdd'}{/link}" class="button"><span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add{/lang}</span></a></li>
+			<li><a href="{link controller='TeamspeakAdd'}{/link}" class="button">{icon size=16 name='plus'} <span>{lang}wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add{/lang}</span></a></li>
 			{event name='contentHeaderNavigation'}
 		</ul>
 	</nav>
@@ -48,8 +48,8 @@
 				{foreach from=$objects item=object}
 					<tr class="jsRow">
 						<td class="columnIcon">
-							<a href="{link controller='TeamspeakEdit' id=$object->teamspeakID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip"><span class="icon icon24 fa-pencil"></span></a>
-							<a href="#" class="jsDeleteButton jsTooltip" title="{lang}wcf.global.button.delete{/lang}" data-confirm-message-html="{lang __encode=true}wcf.page.teamspeakList.removeConnectionQuestion{/lang}" data-object-id="{@$object->teamspeakID}"><span class="icon icon24 fa-times"></span></a>
+							<a href="{link controller='TeamspeakEdit' id=$object->teamspeakID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">{icon size=16 name='pencil'}</a>
+							<a href="#" class="jsDeleteButton jsTooltip" title="{lang}wcf.global.button.delete{/lang}" data-confirm-message-html="{lang __encode=true}wcf.page.teamspeakList.removeConnectionQuestion{/lang}" data-object-id="{@$object->teamspeakID}">{icon size=16 name='times'}</a>
 							{event name='rowButtons'}
 						</td>
 						<td class="columnID">{#$object->teamspeakID}</td>

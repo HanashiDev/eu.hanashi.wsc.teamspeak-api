@@ -2,6 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
+use SensitiveParameter;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\io\RemoteFile;
@@ -56,8 +57,13 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
     /**
      * @inheritDoc
      */
-    public function __construct($hostname, $port, $username, $password)
-    {
+    public function __construct(
+        $hostname,
+        $port,
+        $username,
+        #[SensitiveParameter]
+        $password
+    ) {
         $this->hostname = $hostname;
         $this->port = $port;
         $this->username = $username;
@@ -103,8 +109,11 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
     /**
      * @inheritDoc
      */
-    public function login($username, $password)
-    {
+    public function login(
+        $username,
+        #[SensitiveParameter]
+        $password
+    ) {
         $replyLines = $this->execute('login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password=' . TeamSpeakUtil::escape($password));
         $error = $this->getError($replyLines);
         if ($error !== false && !empty($error['msg'])) {
@@ -119,7 +128,7 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
     protected function getError(array $replyLines)
     {
         foreach ($replyLines as $replyLine) {
-            if (!StringUtil::startsWith($replyLine, 'error')) {
+            if (!str_starts_with($replyLine, 'error')) {
                 continue;
             }
             $errorRows = \explode(' ', $replyLine);

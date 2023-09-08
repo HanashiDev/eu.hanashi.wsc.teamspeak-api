@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use SensitiveParameter;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\io\HttpFactory;
@@ -65,8 +66,13 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
     /**
      * @inheritDoc
      */
-    public function __construct($hostname, $port, $username, $password)
-    {
+    public function __construct(
+        $hostname,
+        $port,
+        $username,
+        #[SensitiveParameter]
+        $password
+    ) {
         $this->hostname = $hostname;
         $this->port = $port;
         $this->apiKey = $password;
@@ -144,8 +150,11 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
     /**
      * @inheritDoc
      */
-    public function login($username, $password)
-    {
+    public function login(
+        $username,
+        #[SensitiveParameter]
+        $password
+    ) {
         // nothing to do
     }
 

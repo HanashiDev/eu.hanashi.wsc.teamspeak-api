@@ -9,11 +9,11 @@ use wcf\system\exception\TeamSpeakException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\dependency\ValueFormFieldDependency;
 use wcf\system\form\builder\field\IntegerFormField;
+use wcf\system\form\builder\field\PasswordFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
-use wcf\system\teamspeak\SecretFormField;
 use wcf\system\teamspeak\TeamSpeakConnectionHandler;
 
 class TeamspeakAddForm extends AbstractFormBuilderForm
@@ -126,8 +126,10 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                         )
                         ->value('serveradmin')
                         ->required(),
-                    SecretFormField::create('password')
+                    PasswordFormField::create('password')
                         ->label('wcf.page.teamspeakAdd.password')
+                        ->addFieldClass('long')
+                        ->removeFieldClass('medium')
                         ->placeholder(($this->formAction == 'edit') ? 'wcf.acp.updateServer.loginPassword.noChange' : '')
                         ->required(($this->formAction == 'edit') ? false : true),
                     TextFormField::create('displayName')

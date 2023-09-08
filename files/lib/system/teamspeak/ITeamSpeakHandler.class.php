@@ -2,6 +2,8 @@
 
 namespace wcf\system\teamspeak;
 
+use SensitiveParameter;
+
 interface ITeamSpeakHandler
 {
     /**
@@ -12,7 +14,13 @@ interface ITeamSpeakHandler
      * @param   string  $username       Username of server query (standard: serveradmin)
      * @param   string  $password       Password of server query
      */
-    public function __construct($hostname, $port, $username, $password);
+    public function __construct(
+        $hostname,
+        $port,
+        $username,
+        #[SensitiveParameter]
+        $password
+    );
 
     /**
      * destruct of TeamSpeak class
@@ -39,7 +47,11 @@ interface ITeamSpeakHandler
      * @param   string  $username       Username of server query (standard: serveradmin)
      * @param   string  $password       Password of server query
      */
-    public function login($username, $password);
+    public function login(
+        $username,
+        #[SensitiveParameter]
+        $password
+    );
 
     /**
      * execute a command from server query
