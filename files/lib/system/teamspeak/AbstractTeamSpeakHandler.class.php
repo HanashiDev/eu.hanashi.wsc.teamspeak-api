@@ -6,7 +6,6 @@ use SensitiveParameter;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\SingletonFactory;
-use wcf\util\CryptoUtil;
 
 /**
 * Handler for saved TeamSpeak connection
@@ -28,7 +27,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
     /**
      * TeamSpeak server instance
      *
-     * @var TeamSpeak
+     * @var TeamSpeakConnectionHandler
      */
     protected $tsObj;
 
@@ -50,7 +49,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
         }
 
         $this->hostname = $teamspeak->hostname;
-        $this->tsObj = new \wcf\system\teamspeak\TeamSpeakConnectionHandler($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->virtualServerPort, $teamspeak->queryType);
+        $this->tsObj = new TeamSpeakConnectionHandler($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->virtualServerPort, $teamspeak->queryType);
         if (\in_array($teamspeak->queryType, ['http', 'https'])) {
             return;
         }
@@ -127,7 +126,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
         $size = \filesize($filepath);
 
         $reply = $this->ftinitupload([
-            'clientftfid' => CryptoUtil::randomInt(1, 10000),
+            'clientftfid' => random_int(1, 10000),
             'name' => $path . $filename,
             'cid' => $channelID,
             'cpw' => $channelPassword,
@@ -161,7 +160,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
         $channelPassword = ''
     ) {
         $reply = $this->ftinitdownload([
-            'clientftfid' => CryptoUtil::randomInt(1, 10000),
+            'clientftfid' => random_int(1, 10000),
             'name' => $path . $filename,
             'cid' => $channelID,
             'cpw' => $channelPassword,
