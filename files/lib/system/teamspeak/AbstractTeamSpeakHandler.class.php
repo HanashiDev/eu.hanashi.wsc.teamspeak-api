@@ -126,7 +126,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
         $size = \filesize($filepath);
 
         $reply = $this->ftinitupload([
-            'clientftfid' => random_int(1, 10000),
+            'clientftfid' => \random_int(1, 10000),
             'name' => $path . $filename,
             'cid' => $channelID,
             'cpw' => $channelPassword,
@@ -160,7 +160,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
         $channelPassword = ''
     ) {
         $reply = $this->ftinitdownload([
-            'clientftfid' => random_int(1, 10000),
+            'clientftfid' => \random_int(1, 10000),
             'name' => $path . $filename,
             'cid' => $channelID,
             'cpw' => $channelPassword,
