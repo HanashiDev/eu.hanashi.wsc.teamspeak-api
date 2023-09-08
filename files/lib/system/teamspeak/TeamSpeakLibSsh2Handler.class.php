@@ -2,6 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
+use SensitiveParameter;
 use wcf\system\exception\ErrorException;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
@@ -61,8 +62,13 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
     /**
      * @inheritDoc
      */
-    public function __construct($hostname, $port, $username, $password)
-    {
+    public function __construct(
+        $hostname,
+        $port,
+        $username,
+        #[SensitiveParameter]
+        $password
+    ) {
         $this->hostname = $hostname;
         $this->port = $port;
         $this->username = $username;
@@ -103,8 +109,11 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
     /**
      * @inheritDoc
      */
-    public function login($username, $password)
-    {
+    public function login(
+        $username,
+        #[SensitiveParameter]
+        $password
+    ) {
         if (!ssh2_auth_password($this->connection, $username, $password)) {
             throw new TeamSpeakException('Authentication failed...');
         }

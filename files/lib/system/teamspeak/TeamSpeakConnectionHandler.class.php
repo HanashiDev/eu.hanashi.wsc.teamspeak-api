@@ -2,6 +2,8 @@
 
 namespace wcf\system\teamspeak;
 
+use SensitiveParameter;
+
 /**
 * Api for connection with TeamSpeak server query.
 *
@@ -40,8 +42,15 @@ class TeamSpeakConnectionHandler
      * @param   int     $virtualServerPort  virtual server port or id
      * @param   string  $queryProtocol  Select the query protocol (raw = use raw server query; ssh = use ssh server query)
      */
-    public function __construct($hostname, $port, $username, $password, $virtualServerPort, $queryProtocol = 'raw')
-    {
+    public function __construct(
+        $hostname,
+        $port,
+        $username,
+        #[SensitiveParameter]
+        $password,
+        $virtualServerPort,
+        $queryProtocol = 'raw'
+    ) {
         $this->queryProtocol = $queryProtocol;
 
         if ($queryProtocol == 'raw') {

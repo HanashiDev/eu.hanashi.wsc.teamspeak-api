@@ -2,6 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
+use SensitiveParameter;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\system\exception\TeamSpeakException;
 use wcf\system\SingletonFactory;
@@ -109,8 +110,16 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
      * @param   boolean $resume             resume file upload if canceled
      * @throws  TeamSpeakException
      */
-    public function uploadFile($channelID, $filepath, $filename, $path = '/', $channelPassword = '', $overwrite = true, $resume = false)
-    {
+    public function uploadFile(
+        $channelID,
+        $filepath,
+        $filename,
+        $path = '/',
+        #[SensitiveParameter]
+        $channelPassword = '',
+        $overwrite = true,
+        $resume = false
+    ) {
         if (!\file_exists($filepath)) {
             throw new TeamSpeakException('cant find file on local storage');
         }
@@ -144,8 +153,13 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
      * @return  string  file path to temporary downloaded file
      * @throws  TeamSpeakException
      */
-    public function downloadFile($channelID, $filename, $path = '/', $channelPassword = '')
-    {
+    public function downloadFile(
+        $channelID,
+        $filename,
+        $path = '/',
+        #[SensitiveParameter]
+        $channelPassword = ''
+    ) {
         $reply = $this->ftinitdownload([
             'clientftfid' => CryptoUtil::randomInt(1, 10000),
             'name' => $path . $filename,
