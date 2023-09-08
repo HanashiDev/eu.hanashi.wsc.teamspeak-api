@@ -7,7 +7,6 @@ use wcf\data\teamspeak\TeamspeakList;
 use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
-use wcf\util\StringUtil;
 
 /**
  * custom option type for multiple teamspeak connections
@@ -68,6 +67,6 @@ class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
             $newValue = [];
         }
 
-        return \implode("\n", ArrayUtil::toIntegerArray(StringUtil::unifyNewlines($newValue)));
+        return \implode("\n", ArrayUtil::toIntegerArray($newValue));
     }
 }
