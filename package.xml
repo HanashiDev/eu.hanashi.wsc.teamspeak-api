@@ -27,7 +27,7 @@
 		<instruction type="acpMenu"/>
 		<instruction type="userGroupOption"/>
 		<instruction type="option"/>
-		<instruction type="script">acp/install_eu.hanashi.wsc.teamspeak-api_3.0.0.php</instruction>
+		<instruction type="database">acp/database/install_eu.hanashi.wsc.teamspeak-api.php</instruction>
 	</instructions>
 	<instructions type="update" fromversion="3.0.2">
 		<instruction type="file"/>

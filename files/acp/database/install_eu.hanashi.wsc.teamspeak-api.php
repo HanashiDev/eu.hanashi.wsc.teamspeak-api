@@ -5,11 +5,9 @@ use wcf\system\database\table\column\MediumintDatabaseTableColumn;
 use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
 use wcf\system\database\table\column\VarcharDatabaseTableColumn;
 use wcf\system\database\table\DatabaseTable;
-use wcf\system\database\table\DatabaseTableChangeProcessor;
 use wcf\system\database\table\index\DatabaseTablePrimaryIndex;
-use wcf\system\WCF;
 
-$tables = [
+return [
     DatabaseTable::create('wcf1_teamspeak')
         ->columns([
             NotNullInt10DatabaseTableColumn::create('teamspeakID')
@@ -42,9 +40,3 @@ $tables = [
                 ->columns(['teamspeakID']),
         ]),
 ];
-
-(new DatabaseTableChangeProcessor(
-    $this->installation->getPackage(),
-    $tables,
-    WCF::getDB()->getEditor()
-))->process();
