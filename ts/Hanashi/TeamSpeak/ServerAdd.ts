@@ -29,11 +29,11 @@ export class ServerAdd {
     }
 
     const virtualServerPortContainer = document.getElementById(
-      "virtualServerPortContainer"
+      "virtualServerPortContainer",
     );
     if (virtualServerPortContainer != null) {
       const virtualServerPortLabel = virtualServerPortContainer.querySelector(
-        'label[for="virtualServerPort"]'
+        'label[for="virtualServerPort"]',
       );
       if (virtualServerPortLabel != null) {
         virtualServerPortLabel.innerHTML = Language.getPhrase(serverPortText);
@@ -42,7 +42,7 @@ export class ServerAdd {
         virtualServerPortContainer.querySelector("small:not(.innerError)");
       if (virtualServerPorDescriptionSmall != null) {
         virtualServerPorDescriptionSmall.innerHTML = Language.getPhrase(
-          serverPortDescriptionText
+          serverPortDescriptionText,
         );
       }
     }
@@ -50,7 +50,7 @@ export class ServerAdd {
     const passwordContainer = document.getElementById("passwordContainer");
     if (passwordContainer != null) {
       const passwordLabel = passwordContainer.querySelector(
-        'label[for="password"]'
+        'label[for="password"]',
       );
       if (passwordLabel != null) {
         passwordLabel.innerHTML = Language.getPhrase(passwordText);
@@ -58,14 +58,14 @@ export class ServerAdd {
     }
 
     const virtualServerPort = document.getElementById(
-      "virtualServerPort"
+      "virtualServerPort",
     ) as HTMLInputElement | null;
     if (virtualServerPort != null) {
       virtualServerPort.value = serverPort;
     }
 
     const queryPortField: HTMLInputElement | null = document.getElementById(
-      "queryPort"
+      "queryPort",
     ) as HTMLInputElement | null;
     if (queryPortField != null) {
       if (target.value == "raw") {
