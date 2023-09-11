@@ -1,30 +1,45 @@
 {
     "config": {
         "platform": {
-            "php": "7.2.24"
+            "php": "8.1.2"
         }
     },
     "require": {
         "phpseclib/phpseclib": "^3.0"
     },
     "replace": {
-        "chrisjean/php-ico": "1.0.4",
+        "cuyz/valinor": "1.6.0",
+        "dragonmantank/cron-expression": "v3.3.3",
         "erusev/parsedown": "1.7.4",
-        "ezyang/htmlpurifier": "v4.13.0",
-        "guzzlehttp/guzzle": "dev-7.3.0-woltlab",
-        "guzzlehttp/promises": "1.4.1",
-        "guzzlehttp/psr7": "1.9.0",
-        "paragonie/constant_time_encoding": "v2.4.0",
-        "pear/net_idna2": "v0.2.0",
-        "pear/pear_exception": "v1.0.2",
-        "pelago/emogrifier": "v5.0.1",
-        "psr/http-client": "1.0.1",
-        "psr/http-message": "1.0.1",
+        "ezyang/htmlpurifier": "v4.16.0",
+        "guzzlehttp/guzzle": "7.8.0",
+        "guzzlehttp/promises": "2.0.1",
+        "guzzlehttp/psr7": "2.6.1",
+        "laminas/laminas-diactoros": "3.2.0",
+        "laminas/laminas-httphandlerrunner": "2.9.0",
+        "laminas/laminas-progressbar": "2.12.0",
+        "laminas/laminas-stdlib": "3.17.0",
+        "paragonie/constant_time_encoding": "v2.6.3",
+        "pelago/emogrifier": "v7.0.0",
+        "psr/clock": "1.0.0",
+        "psr/event-dispatcher": "1.0.0",
+        "psr/http-client": "1.0.2",
+        "psr/http-factory": "1.0.2",
+        "psr/http-message": "2.0",
+        "psr/http-server-handler": "1.0.2",
+        "psr/http-server-middleware": "1.0.2",
+        "psr/log": "3.0.0",
+        "psr/simple-cache": "3.0.0",
         "ralouphie/getallheaders": "3.0.3",
-        "scssphp/scssphp": "dev-woltlab-1.4",
-        "symfony/css-selector": "v5.2.7",
-        "symfony/polyfill-mbstring": "v1.22.1",
-        "true/punycode": "v2.1.1",
+        "sabberworm/php-css-parser": "8.4.0",
+        "scssphp/scssphp": "v1.11.0",
+        "sebastian/diff": "5.0.3",
+        "symfony/css-selector": "v6.3.2",
+        "symfony/deprecation-contracts": "v3.3.0",
+        "symfony/polyfill-php82": "v1.28.0",
+        "symfony/polyfill-php83": "v1.28.0",
+        "webmozart/assert": "1.11.0",
+        "willdurand/negotiation": "3.1.0",
         "paragonie/random_compat": "*"
     }
 }

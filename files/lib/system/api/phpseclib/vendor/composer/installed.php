@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-next',
-        'version' => 'dev-next',
-        'reference' => 'dc99052d132c6682e1df55687f5573db576f4266',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'ba73946513f9bc5b64af6e98a42dc0ea40882a80',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,18 +11,24 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-next',
-            'version' => 'dev-next',
-            'reference' => 'dc99052d132c6682e1df55687f5573db576f4266',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'ba73946513f9bc5b64af6e98a42dc0ea40882a80',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'chrisjean/php-ico' => array(
+        'cuyz/valinor' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '1.0.4',
+                0 => '1.6.0',
+            ),
+        ),
+        'dragonmantank/cron-expression' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v3.3.3',
             ),
         ),
         'erusev/parsedown' => array(
@@ -34,31 +40,55 @@
         'ezyang/htmlpurifier' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'v4.13.0',
+                0 => 'v4.16.0',
             ),
         ),
         'guzzlehttp/guzzle' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'dev-7.3.0-woltlab',
+                0 => '7.8.0',
             ),
         ),
         'guzzlehttp/promises' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '1.4.1',
+                0 => '2.0.1',
             ),
         ),
         'guzzlehttp/psr7' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '1.9.0',
+                0 => '2.6.1',
+            ),
+        ),
+        'laminas/laminas-diactoros' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '3.2.0',
+            ),
+        ),
+        'laminas/laminas-httphandlerrunner' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.9.0',
+            ),
+        ),
+        'laminas/laminas-progressbar' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.12.0',
+            ),
+        ),
+        'laminas/laminas-stdlib' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '3.17.0',
             ),
         ),
         'paragonie/constant_time_encoding' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'v2.4.0',
+                0 => 'v2.6.3',
             ),
         ),
         'paragonie/random_compat' => array(
@@ -67,22 +97,10 @@
                 0 => '*',
             ),
         ),
-        'pear/net_idna2' => array(
-            'dev_requirement' => false,
-            'replaced' => array(
-                0 => 'v0.2.0',
-            ),
-        ),
-        'pear/pear_exception' => array(
-            'dev_requirement' => false,
-            'replaced' => array(
-                0 => 'v1.0.2',
-            ),
-        ),
         'pelago/emogrifier' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'v5.0.1',
+                0 => 'v7.0.0',
             ),
         ),
         'phpseclib/phpseclib' => array(
@@ -94,16 +112,58 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'psr/clock' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.0.0',
+            ),
+        ),
+        'psr/event-dispatcher' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.0.0',
+            ),
+        ),
         'psr/http-client' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '1.0.1',
+                0 => '1.0.2',
+            ),
+        ),
+        'psr/http-factory' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.0.2',
             ),
         ),
         'psr/http-message' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '1.0.1',
+                0 => '2.0',
+            ),
+        ),
+        'psr/http-server-handler' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.0.2',
+            ),
+        ),
+        'psr/http-server-middleware' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.0.2',
+            ),
+        ),
+        'psr/log' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '3.0.0',
+            ),
+        ),
+        'psr/simple-cache' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '3.0.0',
             ),
         ),
         'ralouphie/getallheaders' => array(
@@ -112,28 +172,58 @@
                 0 => '3.0.3',
             ),
         ),
+        'sabberworm/php-css-parser' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '8.4.0',
+            ),
+        ),
         'scssphp/scssphp' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'dev-woltlab-1.4',
+                0 => 'v1.11.0',
+            ),
+        ),
+        'sebastian/diff' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '5.0.3',
             ),
         ),
         'symfony/css-selector' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'v5.2.7',
+                0 => 'v6.3.2',
             ),
         ),
-        'symfony/polyfill-mbstring' => array(
+        'symfony/deprecation-contracts' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'v1.22.1',
+                0 => 'v3.3.0',
             ),
         ),
-        'true/punycode' => array(
+        'symfony/polyfill-php82' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'v2.1.1',
+                0 => 'v1.28.0',
+            ),
+        ),
+        'symfony/polyfill-php83' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v1.28.0',
+            ),
+        ),
+        'webmozart/assert' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.11.0',
+            ),
+        ),
+        'willdurand/negotiation' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '3.1.0',
             ),
         ),
     ),
