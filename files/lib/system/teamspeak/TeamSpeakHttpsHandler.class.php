@@ -10,7 +10,7 @@ namespace wcf\system\teamspeak;
  * @license Freie Lizenz (https://hanashi.eu/freie-lizenz/)
  * @package WoltLabSuite\Core\System\TeamSpeak
  */
-class TeamSpeakHttpsHandler extends TeamSpeakHttpHandler
+final class TeamSpeakHttpsHandler extends TeamSpeakHttpHandler
 {
     /**
      * @inheritDoc

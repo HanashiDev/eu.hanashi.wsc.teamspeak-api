@@ -15,7 +15,7 @@ use wcf\data\AbstractDatabaseObjectAction;
  * @method  TeamspeakEditor[]    getObjects()
  * @method  TeamspeakEditor  getSingleObject()
  */
-class TeamspeakAction extends AbstractDatabaseObjectAction
+final class TeamspeakAction extends AbstractDatabaseObjectAction
 {
     /**
      * @inheritDoc

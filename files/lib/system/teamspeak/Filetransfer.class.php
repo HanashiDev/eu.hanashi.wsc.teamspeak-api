@@ -15,7 +15,7 @@ use wcf\util\FileUtil;
 * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package  WoltLabSuite\Core\System\TeamSpeak
 */
-class Filetransfer
+final class Filetransfer
 {
     /**
      * the hostname/ip of your TeamSpeak server

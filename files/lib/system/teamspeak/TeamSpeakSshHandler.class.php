@@ -17,7 +17,7 @@ use wcf\util\StringUtil;
 * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package  WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
+final class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
 {
     /**
      * the hostname/ip of your TeamSpeak server

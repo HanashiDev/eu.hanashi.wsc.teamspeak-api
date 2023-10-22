@@ -10,7 +10,7 @@ namespace wcf\util;
 * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package  WoltLabSuite\Core\Util
 */
-class TeamSpeakUtil
+final class TeamSpeakUtil
 {
     /**
      * sort an multidimensional array by key

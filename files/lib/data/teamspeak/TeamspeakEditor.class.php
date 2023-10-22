@@ -15,7 +15,7 @@ use wcf\data\DatabaseObjectEditor;
  * @method  Teamspeak    getDecoratedObject()
  * @mixin   Teamspeak
  */
-class TeamspeakEditor extends DatabaseObjectEditor
+final class TeamspeakEditor extends DatabaseObjectEditor
 {
     /**
      * @inheritDoc

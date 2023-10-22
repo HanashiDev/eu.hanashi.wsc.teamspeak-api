@@ -12,7 +12,7 @@ use SensitiveParameter;
 * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package  WoltLabSuite\Core\System\TeamSpeak
 */
-class TeamSpeakConnectionHandler
+final class TeamSpeakConnectionHandler
 {
     /**
      * server query object

@@ -17,7 +17,7 @@ use wcf\util\ArrayUtil;
  * @license Freie Lizenz (https://hanashi.eu/freie-lizenz/)
  * @package WoltLabSuite\Core\System\Option
  */
-class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
+final class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
 {
     /**
      * @inheritDoc

@@ -18,6 +18,6 @@ use wcf\data\DatabaseObjectList;
  * @method  Teamspeak|null   search($objectID)
  * @property    Teamspeak[] $objects
  */
-class TeamspeakList extends DatabaseObjectList
+final class TeamspeakList extends DatabaseObjectList
 {
 }

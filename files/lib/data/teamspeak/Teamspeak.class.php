@@ -26,7 +26,7 @@ use wcf\system\teamspeak\TeamSpeakConnectionHandler;
  * @property-read   string|null $displayName
  * @property-read   int $creationDate
  */
-class Teamspeak extends DatabaseObject
+final class Teamspeak extends DatabaseObject
 {
     /**
      * @inheritDoc

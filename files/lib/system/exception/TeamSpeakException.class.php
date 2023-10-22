@@ -12,6 +12,6 @@ use Exception;
 * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
 * @package  WoltLabSuite\Core\System\Exception
 */
-class TeamSpeakException extends Exception
+final class TeamSpeakException extends Exception
 {
 }
