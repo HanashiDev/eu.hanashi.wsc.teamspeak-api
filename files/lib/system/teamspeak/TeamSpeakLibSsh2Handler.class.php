@@ -8,13 +8,13 @@ use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
 
 /**
-* Api for connection with TeamSpeak ssh server query with libssh2.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
+ * Api for connection with TeamSpeak ssh server query with libssh2.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
 final class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
 {
     /**

@@ -10,13 +10,13 @@ use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
 
 /**
-* Api for connection with TeamSpeak ssh server query.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
+ * Api for connection with TeamSpeak ssh server query.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
 final class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
 {
     /**

@@ -10,13 +10,13 @@ use wcf\util\StringUtil;
 use wcf\util\TeamSpeakUtil;
 
 /**
-* Api for connection with TeamSpeak raw server query.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
+ * Api for connection with TeamSpeak raw server query.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
 final class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
 {
     /**

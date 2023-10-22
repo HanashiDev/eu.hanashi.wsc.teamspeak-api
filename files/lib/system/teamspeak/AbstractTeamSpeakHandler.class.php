@@ -8,13 +8,13 @@ use wcf\system\exception\TeamSpeakException;
 use wcf\system\SingletonFactory;
 
 /**
-* Handler for saved TeamSpeak connection
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
+ * Handler for saved TeamSpeak connection
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
 abstract class AbstractTeamSpeakHandler extends SingletonFactory
 {
     /**

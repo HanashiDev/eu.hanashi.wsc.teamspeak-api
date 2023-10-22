@@ -3,13 +3,13 @@
 namespace wcf\util;
 
 /**
-* TeamSpeak utils
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\Util
-*/
+ * TeamSpeak utils
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\Util
+ */
 final class TeamSpeakUtil
 {
     /**

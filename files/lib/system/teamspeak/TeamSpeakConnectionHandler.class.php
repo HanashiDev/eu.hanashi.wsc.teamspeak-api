@@ -5,13 +5,13 @@ namespace wcf\system\teamspeak;
 use SensitiveParameter;
 
 /**
-* Api for connection with TeamSpeak server query.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
+ * Api for connection with TeamSpeak server query.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
 final class TeamSpeakConnectionHandler
 {
     /**
