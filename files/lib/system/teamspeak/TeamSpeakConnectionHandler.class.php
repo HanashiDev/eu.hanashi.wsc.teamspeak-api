@@ -5,14 +5,14 @@ namespace wcf\system\teamspeak;
 use SensitiveParameter;
 
 /**
-* Api for connection with TeamSpeak server query.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
-class TeamSpeakConnectionHandler
+ * Api for connection with TeamSpeak server query.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
+final class TeamSpeakConnectionHandler
 {
     /**
      * server query object
@@ -36,11 +36,13 @@ class TeamSpeakConnectionHandler
      * construct for TeamSpeak class
      *
      * @param   string  $hostname       the hostname/ip of your TeamSpeak server
-     * @param   int     $port           the server query port of your TeamSpeak server (standard: raw = 10011; ssh = 10022)
+     * @param   int     $port           the server query port of your TeamSpeak server (standard: raw = 10011;
+     *                                  ssh = 10022)
      * @param   string  $username       Username of server query (standard: serveradmin)
      * @param   string  $password       Password of server query
      * @param   int     $virtualServerPort  virtual server port or id
-     * @param   string  $queryProtocol  Select the query protocol (raw = use raw server query; ssh = use ssh server query)
+     * @param   string  $queryProtocol  Select the query protocol (raw = use raw server query; ssh = use ssh server
+     *                                  query)
      */
     public function __construct(
         $hostname,
@@ -56,7 +58,11 @@ class TeamSpeakConnectionHandler
         if ($queryProtocol == 'raw') {
             $this->teamSpeakHandler = new TeamSpeakRawHandler($hostname, $port, $username, $password);
         } elseif ($queryProtocol == 'ssh') {
-            if (\function_exists('ssh2_connect') && \function_exists('ssh2_auth_password') && \function_exists('ssh2_shell')) {
+            if (
+                \function_exists('ssh2_connect')
+                && \function_exists('ssh2_auth_password')
+                && \function_exists('ssh2_shell')
+            ) {
                 $this->teamSpeakHandler = new TeamSpeakLibSsh2Handler($hostname, $port, $username, $password);
             } else {
                 $this->teamSpeakHandler = new TeamSpeakSshHandler($hostname, $port, $username, $password);

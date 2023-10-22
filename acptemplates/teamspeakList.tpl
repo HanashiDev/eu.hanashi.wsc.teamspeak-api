@@ -1,11 +1,5 @@
 {include file='header' pageTitle='wcf.acp.menu.link.configuration.teamspeak.teamspeakList'}
 
-<script data-relocate="true">
-	$(function() {
-		new WCF.Action.Delete('wcf\\data\\teamspeak\\TeamspeakAction', $('.jsRow'));
-	});
-</script>
-
 <header class="contentHeader">
 	<div class="contentHeaderTitle">
 		<h1 class="contentTitle">{lang}wcf.acp.menu.link.configuration.teamspeak.teamspeakList{/lang}</h1>
@@ -29,7 +23,7 @@
 
 {if $objects|count}
 	<div class="section tabularBox">
-		<table class="table">
+		<table class="table jsObjectActionContainer" data-object-action-class-name="wcf\data\teamspeak\TeamspeakAction">
 			<thead>
 				<tr>
 					<th></th>
@@ -46,10 +40,10 @@
 			</thead>
 			<tbody>
 				{foreach from=$objects item=object}
-					<tr class="jsRow">
+					<tr class="jsObjectActionObject" data-object-id="{$object->teamspeakID}">
 						<td class="columnIcon">
 							<a href="{link controller='TeamspeakEdit' id=$object->teamspeakID}{/link}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">{icon size=16 name='pencil'}</a>
-							<a href="#" class="jsDeleteButton jsTooltip" title="{lang}wcf.global.button.delete{/lang}" data-confirm-message-html="{lang __encode=true}wcf.page.teamspeakList.removeConnectionQuestion{/lang}" data-object-id="{@$object->teamspeakID}">{icon size=16 name='times'}</a>
+							{objectAction action="delete" objectTitle=$object->connectionName}
 							{event name='rowButtons'}
 						</td>
 						<td class="columnID">{#$object->teamspeakID}</td>

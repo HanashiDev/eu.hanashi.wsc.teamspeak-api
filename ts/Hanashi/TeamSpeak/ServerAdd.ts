@@ -2,9 +2,9 @@ import * as Language from "WoltLabSuite/Core/Language";
 
 export class ServerAdd {
   constructor() {
-    document
-      .getElementById("queryType")
-      ?.addEventListener("change", (ev) => this.changeQueryType(ev));
+    document.getElementById("queryType")?.addEventListener("change", (ev) => {
+      this.changeQueryType(ev);
+    });
   }
 
   protected changeQueryType(e: Event): void {

@@ -3,14 +3,14 @@
 namespace wcf\util;
 
 /**
-* TeamSpeak utils
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\Util
-*/
-class TeamSpeakUtil
+ * TeamSpeak utils
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\Util
+ */
+final class TeamSpeakUtil
 {
     /**
      * sort an multidimensional array by key
@@ -46,7 +46,13 @@ class TeamSpeakUtil
 
         foreach ($childKeys as $childKey) {
             $child = $array[$childKey];
-            $child['childs'] = self::getChilds($array, $searchKey, $child[$childColumnName], $childColumnName, $level + 1);
+            $child['childs'] = self::getChilds(
+                $array,
+                $searchKey,
+                $child[$childColumnName],
+                $childColumnName,
+                $level + 1
+            );
             $child['level'] = $level;
             $childs[] = $child;
         }

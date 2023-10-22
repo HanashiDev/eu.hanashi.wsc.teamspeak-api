@@ -10,14 +10,14 @@ use wcf\util\StringUtil;
 use wcf\util\TeamSpeakUtil;
 
 /**
-* Api for connection with TeamSpeak raw server query.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
-class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
+ * Api for connection with TeamSpeak raw server query.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
+final class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
 {
     /**
      * the hostname/ip of your TeamSpeak server
@@ -114,7 +114,10 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
         #[SensitiveParameter]
         $password
     ) {
-        $replyLines = $this->execute('login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password=' . TeamSpeakUtil::escape($password));
+        $replyLines = $this->execute(
+            'login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password='
+            . TeamSpeakUtil::escape($password)
+        );
         $error = $this->getError($replyLines);
         if ($error !== false && !empty($error['msg'])) {
             $msg = $error['msg'];
@@ -128,7 +131,7 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
     protected function getError(array $replyLines)
     {
         foreach ($replyLines as $replyLine) {
-            if (!str_starts_with($replyLine, 'error')) {
+            if (!\str_starts_with($replyLine, 'error')) {
                 continue;
             }
             $errorRows = \explode(' ', $replyLine);

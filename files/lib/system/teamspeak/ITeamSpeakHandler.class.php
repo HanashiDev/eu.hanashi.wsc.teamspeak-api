@@ -10,7 +10,8 @@ interface ITeamSpeakHandler
      * construct for TeamSpeak class
      *
      * @param   string  $hostname       the hostname/ip of your TeamSpeak server
-     * @param   int     $port           the server query port of your TeamSpeak server (standard: raw = 10011; ssh = 10022)
+     * @param   int     $port           the server query port of your TeamSpeak server (standard: raw = 10011;
+     *                                  ssh = 10022)
      * @param   string  $username       Username of server query (standard: serveradmin)
      * @param   string  $password       Password of server query
      */

@@ -2,7 +2,9 @@
 
 namespace wcf\acp\form;
 
+use CuyZ\Valinor\Mapper\MappingError;
 use wcf\data\teamspeak\Teamspeak;
+use wcf\http\Helper;
 use wcf\system\exception\IllegalLinkException;
 
 class TeamspeakEditForm extends TeamspeakAddForm
@@ -19,12 +21,21 @@ class TeamspeakEditForm extends TeamspeakAddForm
     {
         parent::readParameters();
 
-        $teamspeakID = 0;
-        if (isset($_REQUEST['id'])) {
-            $teamspeakID = (int)$_REQUEST['id'];
-        }
-        $this->formObject = new Teamspeak($teamspeakID);
-        if (!$this->formObject->teamspeakID) {
+        try {
+            $queryParameters = Helper::mapQueryParameters(
+                $_GET,
+                <<<'EOT'
+                    array {
+                        id: positive-int
+                    }
+                    EOT
+            );
+            $this->formObject = new Teamspeak($queryParameters['id']);
+
+            if (!$this->formObject->teamspeakID) {
+                throw new IllegalLinkException();
+            }
+        } catch (MappingError) {
             throw new IllegalLinkException();
         }
     }

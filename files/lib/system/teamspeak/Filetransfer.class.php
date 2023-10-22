@@ -8,14 +8,14 @@ use wcf\system\io\RemoteFile;
 use wcf\util\FileUtil;
 
 /**
-* Api for connection with TeamSpeak filetransfer server.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
-class Filetransfer
+ * Api for connection with TeamSpeak filetransfer server.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
+final class Filetransfer
 {
     /**
      * the hostname/ip of your TeamSpeak server

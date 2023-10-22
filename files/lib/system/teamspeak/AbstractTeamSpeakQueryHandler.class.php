@@ -6,13 +6,13 @@ use wcf\system\exception\TeamSpeakException;
 use wcf\util\TeamSpeakUtil;
 
 /**
-* Handler for TeamSpeak connection
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
+ * Handler for TeamSpeak connection
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
 abstract class AbstractTeamSpeakQueryHandler implements ITeamSpeakHandler
 {
     /**

@@ -17,7 +17,7 @@ use wcf\system\WCF;
  * @license Freie Lizenz (https://hanashi.eu/freie-lizenz/)
  * @package WoltLabSuite\Core\System\Option
  */
-class TeamSpeakConnectionSelectOptionType extends AbstractOptionType
+final class TeamSpeakConnectionSelectOptionType extends AbstractOptionType
 {
     /**
      * @inheritDoc

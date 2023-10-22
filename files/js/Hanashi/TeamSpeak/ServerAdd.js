@@ -5,9 +5,9 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Language"], function (
     Language = tslib_1.__importStar(Language);
     class ServerAdd {
         constructor() {
-            document
-                .getElementById("queryType")
-                ?.addEventListener("change", (ev) => this.changeQueryType(ev));
+            document.getElementById("queryType")?.addEventListener("change", (ev) => {
+                this.changeQueryType(ev);
+            });
         }
         changeQueryType(e) {
             const target = e.target;

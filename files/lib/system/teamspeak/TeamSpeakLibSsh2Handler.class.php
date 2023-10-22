@@ -8,14 +8,14 @@ use wcf\system\exception\TeamSpeakException;
 use wcf\util\StringUtil;
 
 /**
-* Api for connection with TeamSpeak ssh server query with libssh2.
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\System\TeamSpeak
-*/
-class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
+ * Api for connection with TeamSpeak ssh server query with libssh2.
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\System\TeamSpeak
+ */
+final class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
 {
     /**
      * the hostname/ip of your TeamSpeak server
@@ -93,7 +93,7 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
     public function connect()
     {
         try {
-            $this->connection = ssh2_connect($this->hostname, $this->port);
+            $this->connection = \ssh2_connect($this->hostname, $this->port);
         } catch (ErrorException $e) {
             throw new TeamSpeakException('Connection failed');
         }
@@ -114,10 +114,10 @@ class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
         #[SensitiveParameter]
         $password
     ) {
-        if (!ssh2_auth_password($this->connection, $username, $password)) {
+        if (!\ssh2_auth_password($this->connection, $username, $password)) {
             throw new TeamSpeakException('Authentication failed...');
         }
-        $this->queryObj = ssh2_shell($this->connection, 'raw');
+        $this->queryObj = \ssh2_shell($this->connection, 'raw');
         if (!$this->queryObj) {
             throw new TeamSpeakException('Opening Shell failed');
         }

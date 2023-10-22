@@ -73,7 +73,14 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                             }
 
                             try {
-                                $ts = new TeamSpeakConnectionHandler($field->getSaveValue(), $queryPortField->getSaveValue(), $usernameField->getSaveValue(), $password, $virtualServerPortField->getSaveValue(), $queryTypeField->getSaveValue());
+                                $ts = new TeamSpeakConnectionHandler(
+                                    $field->getSaveValue(),
+                                    $queryPortField->getSaveValue(),
+                                    $usernameField->getSaveValue(),
+                                    $password,
+                                    $virtualServerPortField->getSaveValue(),
+                                    $queryTypeField->getSaveValue()
+                                );
                                 if (\in_array($queryTypeField->getSaveValue(), ['http', 'https'])) {
                                     $ts->serverinfo();
                                 }
@@ -82,7 +89,11 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                                     \wcf\functions\exception\logThrowable($e);
                                 }
                                 $field->addValidationError(
-                                    new FormFieldValidationError('cantConnect', 'wcf.page.teamspeakAdd.cantConnectDynamic', ['msg' => $e->getMessage()])
+                                    new FormFieldValidationError(
+                                        'cantConnect',
+                                        'wcf.page.teamspeakAdd.cantConnectDynamic',
+                                        ['msg' => $e->getMessage()]
+                                    )
                                 );
                             } catch (Exception $e) {
                                 if (\ENABLE_DEBUG_MODE) {
@@ -130,7 +141,9 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
                         ->label('wcf.page.teamspeakAdd.password')
                         ->addFieldClass('long')
                         ->removeFieldClass('medium')
-                        ->placeholder(($this->formAction == 'edit') ? 'wcf.acp.updateServer.loginPassword.noChange' : '')
+                        ->placeholder(
+                            ($this->formAction == 'edit') ? 'wcf.acp.updateServer.loginPassword.noChange' : ''
+                        )
                         ->required(($this->formAction == 'edit') ? false : true),
                     TextFormField::create('displayName')
                         ->label('wcf.page.teamspeakAdd.displayName')

@@ -121,7 +121,8 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
      */
     public function execute($command)
     {
-        $url = $this->protocol . '://' . $this->hostname . ':' . $this->port . '/' . $this->virtualServerID . '/' . $command;
+        $url = $this->protocol . '://' . $this->hostname . ':' . $this->port . '/' . $this->virtualServerID
+                . '/' . $command;
 
         $headers = [
             'x-api-key' => $this->apiKey,
