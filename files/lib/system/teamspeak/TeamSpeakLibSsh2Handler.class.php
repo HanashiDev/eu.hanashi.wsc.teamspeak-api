@@ -93,7 +93,7 @@ final class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
     public function connect()
     {
         try {
-            $this->connection = ssh2_connect($this->hostname, $this->port);
+            $this->connection = \ssh2_connect($this->hostname, $this->port);
         } catch (ErrorException $e) {
             throw new TeamSpeakException('Connection failed');
         }
@@ -114,10 +114,10 @@ final class TeamSpeakLibSsh2Handler extends AbstractTeamSpeakQueryHandler
         #[SensitiveParameter]
         $password
     ) {
-        if (!ssh2_auth_password($this->connection, $username, $password)) {
+        if (!\ssh2_auth_password($this->connection, $username, $password)) {
             throw new TeamSpeakException('Authentication failed...');
         }
-        $this->queryObj = ssh2_shell($this->connection, 'raw');
+        $this->queryObj = \ssh2_shell($this->connection, 'raw');
         if (!$this->queryObj) {
             throw new TeamSpeakException('Opening Shell failed');
         }
