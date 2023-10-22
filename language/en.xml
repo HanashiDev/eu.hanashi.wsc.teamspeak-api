@@ -1,58 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/language.xsd" languagecode="en">
-	<category name="wcf.acp.teamSpeakSelectOptionType">
-		<item name="wcf.acp.teamSpeakSelectOptionType.noBot"><![CDATA[You haven't added a TeamSpeak server yet. You can do this under <a href="{link controller="TeamspeakAdd"}{/link}">add TeamSpeak server</a>.]]></item>
-	</category>
-	<category name="wcf.acp.option">
-		<item name="wcf.acp.option.category.teamspeak"><![CDATA[TeamSpeak]]></item>
-	</category>
-	<category name="wcf.acp.group">
-		<item name="wcf.acp.group.option.category.user.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.group.option.category.mod.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.group.option.category.admin.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.group.option.admin.teamspeak.canManageConnection"><![CDATA[Can manage server query connections]]></item>
-	</category>
-	<category name="wcf.acp.menu">
-		<item name="wcf.acp.menu.link.configuration.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.menu.link.management.teamspeak"><![CDATA[TeamSpeak]]></item>
-		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList"><![CDATA[Server]]></item>
-		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add"><![CDATA[add TeamSpeak server]]></item>
-		<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.edit"><![CDATA[edit TeamSpeak server]]></item>
-	</category>
-	<category name="wcf.page.teamspeakList">
-		<item name="wcf.page.teamspeakList.teamspeakID"><![CDATA[ID]]></item>
-		<item name="wcf.page.teamspeakList.connectionName"><![CDATA[Connection name]]></item>
-		<item name="wcf.page.teamspeakList.hostname"><![CDATA[Server address]]></item>
-		<item name="wcf.page.teamspeakList.queryType"><![CDATA[Query type]]></item>
-		<item name="wcf.page.teamspeakList.queryPort"><![CDATA[Query port]]></item>
-		<item name="wcf.page.teamspeakList.virtualServerPort"><![CDATA[Virtual server port]]></item>
-		<item name="wcf.page.teamspeakList.username"><![CDATA[Username]]></item>
-		<item name="wcf.page.teamspeakList.displayName"><![CDATA[Displayname]]></item>
-		<item name="wcf.page.teamspeakList.creationDate"><![CDATA[Creation date]]></item>
-		<item name="wcf.page.teamspeakList.removeConnectionQuestion"><![CDATA[Do you really want to delete the server connection?]]></item>
-	</category>
-	<category name="wcf.page.teamspeakAdd">
-		<item name="wcf.page.teamspeakAdd.connectionName"><![CDATA[Connection name]]></item>
-		<item name="wcf.page.teamspeakAdd.connectionName.description"><![CDATA[Enter a connection name to be able to identify the connection in the overview again.]]></item>
-		<item name="wcf.page.teamspeakAdd.hostname"><![CDATA[Server address]]></item>
-		<item name="wcf.page.teamspeakAdd.hostname.description"><![CDATA[Enter the server address or IP of the TeamSpeak server.]]></item>
-		<item name="wcf.page.teamspeakAdd.queryType"><![CDATA[Query type]]></item>
-		<item name="wcf.page.teamspeakAdd.queryType.description"><![CDATA[Select a server query type.]]></item>
-		<item name="wcf.page.teamspeakAdd.queryPort"><![CDATA[Query port]]></item>
-		<item name="wcf.page.teamspeakAdd.queryPort.description"><![CDATA[RAW standard port: 10011; SSH standard port: 10022; HTTP standard port: 10080; HTTPS standard port: 10443]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerPort"><![CDATA[Virtual server port]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerPort.description"><![CDATA[Standard port: 9987]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerID"><![CDATA[Virtual server ID]]></item>
-		<item name="wcf.page.teamspeakAdd.virtualServerID.description"><![CDATA[Standard ID: 1]]></item>
-		<item name="wcf.page.teamspeakAdd.username"><![CDATA[Username]]></item>
-		<item name="wcf.page.teamspeakAdd.password"><![CDATA[Password]]></item>
-		<item name="wcf.page.teamspeakAdd.apiKey"><![CDATA[API Key]]></item>
-		<item name="wcf.page.teamspeakAdd.displayName"><![CDATA[Displayname]]></item>
-		<item name="wcf.page.teamspeakAdd.displayName.description"><![CDATA[Select a name to be displayed on the TeamSpeak server. If this field is empty, the server query is displayed by default as "serveradmin from x.x.x.x".]]></item>
-		<item name="wcf.page.teamspeakAdd.cantConnect"><![CDATA[Could not connect to the TeamSpeak server.]]></item>
-		<item name="wcf.page.teamspeakAdd.cantConnectDynamic"><![CDATA[Could not connect to the TeamSpeak server.<br>(TeamSpeak error: {$msg})]]></item>
-		<item name="wcf.page.teamspeakAdd.invalidQueryType"><![CDATA[No valid query type.]]></item>
-		<item name="wcf.page.teamspeakAdd.numberOutOfRange"><![CDATA[The value is out of range.]]></item>
-		<item name="wcf.page.teamspeakAdd.notANumber"><![CDATA[That's not a valid number.]]></item>
-	</category>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/language.xsd" languagecode="en">
+	<import>
+		<category name="wcf.acp.teamSpeakSelectOptionType">
+			<item name="wcf.acp.teamSpeakSelectOptionType.noBot"><![CDATA[You haven't added a TeamSpeak server yet. You can do this under <a href="{link controller="TeamspeakAdd"}{/link}">add TeamSpeak server</a>.]]></item>
+		</category>
+		<category name="wcf.acp.option">
+			<item name="wcf.acp.option.category.teamspeak"><![CDATA[TeamSpeak]]></item>
+		</category>
+		<category name="wcf.acp.group">
+			<item name="wcf.acp.group.option.category.user.teamspeak"><![CDATA[TeamSpeak]]></item>
+			<item name="wcf.acp.group.option.category.mod.teamspeak"><![CDATA[TeamSpeak]]></item>
+			<item name="wcf.acp.group.option.category.admin.teamspeak"><![CDATA[TeamSpeak]]></item>
+			<item name="wcf.acp.group.option.admin.teamspeak.canManageConnection"><![CDATA[Can manage server query connections]]></item>
+		</category>
+		<category name="wcf.acp.menu">
+			<item name="wcf.acp.menu.link.configuration.teamspeak"><![CDATA[TeamSpeak]]></item>
+			<item name="wcf.acp.menu.link.management.teamspeak"><![CDATA[TeamSpeak]]></item>
+			<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList"><![CDATA[Server]]></item>
+			<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add"><![CDATA[add TeamSpeak server]]></item>
+			<item name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.edit"><![CDATA[edit TeamSpeak server]]></item>
+		</category>
+		<category name="wcf.page.teamspeakList">
+			<item name="wcf.page.teamspeakList.teamspeakID"><![CDATA[ID]]></item>
+			<item name="wcf.page.teamspeakList.connectionName"><![CDATA[Connection name]]></item>
+			<item name="wcf.page.teamspeakList.hostname"><![CDATA[Server address]]></item>
+			<item name="wcf.page.teamspeakList.queryType"><![CDATA[Query type]]></item>
+			<item name="wcf.page.teamspeakList.queryPort"><![CDATA[Query port]]></item>
+			<item name="wcf.page.teamspeakList.virtualServerPort"><![CDATA[Virtual server port]]></item>
+			<item name="wcf.page.teamspeakList.username"><![CDATA[Username]]></item>
+			<item name="wcf.page.teamspeakList.displayName"><![CDATA[Displayname]]></item>
+			<item name="wcf.page.teamspeakList.creationDate"><![CDATA[Creation date]]></item>
+			<item name="wcf.page.teamspeakList.removeConnectionQuestion"><![CDATA[Do you really want to delete the server connection?]]></item>
+		</category>
+		<category name="wcf.page.teamspeakAdd">
+			<item name="wcf.page.teamspeakAdd.connectionName"><![CDATA[Connection name]]></item>
+			<item name="wcf.page.teamspeakAdd.connectionName.description"><![CDATA[Enter a connection name to be able to identify the connection in the overview again.]]></item>
+			<item name="wcf.page.teamspeakAdd.hostname"><![CDATA[Server address]]></item>
+			<item name="wcf.page.teamspeakAdd.hostname.description"><![CDATA[Enter the server address or IP of the TeamSpeak server.]]></item>
+			<item name="wcf.page.teamspeakAdd.queryType"><![CDATA[Query type]]></item>
+			<item name="wcf.page.teamspeakAdd.queryType.description"><![CDATA[Select a server query type.]]></item>
+			<item name="wcf.page.teamspeakAdd.queryPort"><![CDATA[Query port]]></item>
+			<item name="wcf.page.teamspeakAdd.queryPort.description"><![CDATA[RAW standard port: 10011; SSH standard port: 10022; HTTP standard port: 10080; HTTPS standard port: 10443]]></item>
+			<item name="wcf.page.teamspeakAdd.virtualServerPort"><![CDATA[Virtual server port]]></item>
+			<item name="wcf.page.teamspeakAdd.virtualServerPort.description"><![CDATA[Standard port: 9987]]></item>
+			<item name="wcf.page.teamspeakAdd.virtualServerID"><![CDATA[Virtual server ID]]></item>
+			<item name="wcf.page.teamspeakAdd.virtualServerID.description"><![CDATA[Standard ID: 1]]></item>
+			<item name="wcf.page.teamspeakAdd.username"><![CDATA[Username]]></item>
+			<item name="wcf.page.teamspeakAdd.password"><![CDATA[Password]]></item>
+			<item name="wcf.page.teamspeakAdd.apiKey"><![CDATA[API Key]]></item>
+			<item name="wcf.page.teamspeakAdd.displayName"><![CDATA[Displayname]]></item>
+			<item name="wcf.page.teamspeakAdd.displayName.description"><![CDATA[Select a name to be displayed on the TeamSpeak server. If this field is empty, the server query is displayed by default as "serveradmin from x.x.x.x".]]></item>
+			<item name="wcf.page.teamspeakAdd.cantConnect"><![CDATA[Could not connect to the TeamSpeak server.]]></item>
+			<item name="wcf.page.teamspeakAdd.cantConnectDynamic"><![CDATA[Could not connect to the TeamSpeak server.<br>(TeamSpeak error: {$msg})]]></item>
+			<item name="wcf.page.teamspeakAdd.invalidQueryType"><![CDATA[No valid query type.]]></item>
+			<item name="wcf.page.teamspeakAdd.numberOutOfRange"><![CDATA[The value is out of range.]]></item>
+			<item name="wcf.page.teamspeakAdd.notANumber"><![CDATA[That's not a valid number.]]></item>
+		</category>
+	</import>
 </language>
