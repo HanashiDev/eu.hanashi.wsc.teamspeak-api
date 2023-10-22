@@ -46,7 +46,13 @@ class TeamSpeakUtil
 
         foreach ($childKeys as $childKey) {
             $child = $array[$childKey];
-            $child['childs'] = self::getChilds($array, $searchKey, $child[$childColumnName], $childColumnName, $level + 1);
+            $child['childs'] = self::getChilds(
+                $array,
+                $searchKey,
+                $child[$childColumnName],
+                $childColumnName,
+                $level + 1
+            );
             $child['level'] = $level;
             $childs[] = $child;
         }

@@ -49,7 +49,14 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
         }
 
         $this->hostname = $teamspeak->hostname;
-        $this->tsObj = new TeamSpeakConnectionHandler($teamspeak->hostname, $teamspeak->queryPort, $teamspeak->username, $teamspeak->password, $teamspeak->virtualServerPort, $teamspeak->queryType);
+        $this->tsObj = new TeamSpeakConnectionHandler(
+            $teamspeak->hostname,
+            $teamspeak->queryPort,
+            $teamspeak->username,
+            $teamspeak->password,
+            $teamspeak->virtualServerPort,
+            $teamspeak->queryType
+        );
         if (\in_array($teamspeak->queryType, ['http', 'https'])) {
             return;
         }
@@ -166,7 +173,19 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
             'cpw' => $channelPassword,
             'seekpos' => 0,
         ]);
-        if (\count($reply) < 1 || \count($reply) > 2 || empty($reply[0]) || (\count($reply) == 1 && empty($reply[0]['port'])) || (\count($reply) == 2 && empty($reply[1]['port']))) {
+        if (
+            \count($reply) < 1
+            || \count($reply) > 2
+            || empty($reply[0])
+            || (
+                \count($reply) == 1
+                && empty($reply[0]['port'])
+            )
+            || (
+                \count($reply) == 2
+                && empty($reply[1]['port'])
+            )
+        ) {
             throw new TeamSpeakException('could not find file');
         }
 

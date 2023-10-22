@@ -53,7 +53,14 @@ class Teamspeak extends DatabaseObject
     public function getConnection()
     {
         if ($this->connection === null) {
-            $this->connection = new TeamSpeakConnectionHandler($this->hostname, $this->queryPort, $this->username, $this->password, $this->virtualServerPort, $this->queryType);
+            $this->connection = new TeamSpeakConnectionHandler(
+                $this->hostname,
+                $this->queryPort,
+                $this->username,
+                $this->password,
+                $this->virtualServerPort,
+                $this->queryType
+            );
             if (!\in_array($this->queryType, ['http', 'https'])) {
                 $this->connection->use(['port' => $this->virtualServerPort]);
                 if (!empty($this->displayName)) {

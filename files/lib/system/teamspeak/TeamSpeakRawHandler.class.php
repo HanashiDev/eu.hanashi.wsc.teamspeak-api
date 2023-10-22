@@ -114,7 +114,10 @@ class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
         #[SensitiveParameter]
         $password
     ) {
-        $replyLines = $this->execute('login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password=' . TeamSpeakUtil::escape($password));
+        $replyLines = $this->execute(
+            'login client_login_name=' . TeamSpeakUtil::escape($username) . ' client_login_password='
+            . TeamSpeakUtil::escape($password)
+        );
         $error = $this->getError($replyLines);
         if ($error !== false && !empty($error['msg'])) {
             $msg = $error['msg'];
