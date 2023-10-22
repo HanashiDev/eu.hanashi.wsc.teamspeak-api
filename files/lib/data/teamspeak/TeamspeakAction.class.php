@@ -5,13 +5,16 @@ namespace wcf\data\teamspeak;
 use wcf\data\AbstractDatabaseObjectAction;
 
 /**
-* TeamSpeak data action class
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\Data\TeamSpeak
-*/
+ * TeamSpeak data action class
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\Data\TeamSpeak
+ *
+ * @method  TeamspeakEditor[]    getObjects()
+ * @method  TeamspeakEditor  getSingleObject()
+ */
 class TeamspeakAction extends AbstractDatabaseObjectAction
 {
     /**

@@ -3,4 +3,5 @@
 .DS_Store
 anleitung.txt
 node_modules/
+.phpcs-cache
 *.cache

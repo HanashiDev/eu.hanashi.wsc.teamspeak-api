@@ -8,13 +8,24 @@ use wcf\system\teamspeak\ITeamSpeakHandler;
 use wcf\system\teamspeak\TeamSpeakConnectionHandler;
 
 /**
-* TeamSpeak data class
-*
-* @author   Peter Lohse <hanashi@hanashi.eu>
-* @copyright    Hanashi
-* @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
-* @package  WoltLabSuite\Core\Data\TeamSpeak
-*/
+ * TeamSpeak data class
+ *
+ * @author   Peter Lohse <hanashi@hanashi.eu>
+ * @copyright    Hanashi
+ * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
+ * @package  WoltLabSuite\Core\Data\TeamSpeak
+ *
+ * @property-read   int $userID
+ * @property-read   string|null $connectionName
+ * @property-read   string $hostname
+ * @property-read   string $queryType
+ * @property-read   int $queryPort
+ * @property-read   int $virtualServerPort
+ * @property-read   string|null $username
+ * @property-read   string $password
+ * @property-read   string|null $displayName
+ * @property-read   int $creationDate
+ */
 class Teamspeak extends DatabaseObject
 {
     /**
