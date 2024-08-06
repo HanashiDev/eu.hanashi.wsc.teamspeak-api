@@ -33,7 +33,7 @@ abstract class AbstractMultipleTeamSpeakHandler extends SingletonFactory
             return;
         }
 
-        $teamspeakList = new TeamSpeakList();
+        $teamspeakList = new TeamspeakList();
         $teamspeakList->setObjectIDs($this->teamspeakIDs);
         $teamspeakList->readObjects();
         $this->teamspeaks = $teamspeakList->getObjects();
