@@ -2,6 +2,7 @@
 
 namespace wcf\data\teamspeak;
 
+use Override;
 use wcf\data\AbstractDatabaseObjectAction;
 
 /**
@@ -37,9 +38,7 @@ final class TeamspeakAction extends AbstractDatabaseObjectAction
      */
     protected $requireACP = ['create', 'delete', 'update'];
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function update()
     {
         if (isset($this->parameters['data']['password']) && empty($this->parameters['data']['password'])) {

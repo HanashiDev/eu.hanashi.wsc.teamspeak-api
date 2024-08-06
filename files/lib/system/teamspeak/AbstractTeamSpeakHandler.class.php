@@ -2,6 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
+use Override;
 use SensitiveParameter;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\system\exception\TeamSpeakException;
@@ -38,9 +39,7 @@ abstract class AbstractTeamSpeakHandler extends SingletonFactory
      */
     protected $hostname;
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function init()
     {
         $teamspeak = new Teamspeak($this->teamspeakID);

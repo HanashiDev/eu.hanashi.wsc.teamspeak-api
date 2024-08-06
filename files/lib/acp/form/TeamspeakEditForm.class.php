@@ -3,6 +3,7 @@
 namespace wcf\acp\form;
 
 use CuyZ\Valinor\Mapper\MappingError;
+use Override;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\http\Helper;
 use wcf\system\exception\IllegalLinkException;
@@ -14,9 +15,7 @@ class TeamspeakEditForm extends TeamspeakAddForm
      */
     public $formAction = 'edit';
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function readParameters()
     {
         parent::readParameters();

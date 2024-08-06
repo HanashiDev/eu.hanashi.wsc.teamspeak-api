@@ -3,6 +3,7 @@
 namespace wcf\acp\form;
 
 use Exception;
+use Override;
 use wcf\data\teamspeak\TeamspeakAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\TeamSpeakException;
@@ -33,9 +34,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
     */
     public $objectActionClass = TeamspeakAction::class;
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     protected function createForm()
     {
         parent::createForm();
@@ -154,9 +153,7 @@ class TeamspeakAddForm extends AbstractFormBuilderForm
         );
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function save()
     {
         if ($this->formAction == 'create') {

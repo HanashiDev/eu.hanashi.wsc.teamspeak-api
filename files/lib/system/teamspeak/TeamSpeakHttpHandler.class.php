@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use Override;
 use SensitiveParameter;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
@@ -63,9 +64,7 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
      */
     private $httpClient;
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function __construct(
         $hostname,
         $port,
@@ -89,17 +88,13 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         $this->virtualServerID = $serverID;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function __destruct()
     {
         // nothing to do
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function connect()
     {
         // nothing to do
@@ -116,9 +111,7 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         return $this->httpClient;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function execute($command)
     {
         $url = $this->protocol . '://' . $this->hostname . ':' . $this->port . '/' . $this->virtualServerID
@@ -148,9 +141,7 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         }
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function login(
         $username,
         #[SensitiveParameter]
@@ -159,9 +150,7 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         // nothing to do
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function call($method, $args)
     {
         $command = $method;
@@ -181,9 +170,7 @@ class TeamSpeakHttpHandler extends AbstractTeamSpeakQueryHandler
         return $this->parseResult($result);
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function parseResult($result)
     {
         try {
