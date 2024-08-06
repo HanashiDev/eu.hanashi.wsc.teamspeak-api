@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/acpMenu.xsd">
-	<import>
-		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak">
-			<parent>wcf.acp.menu.link.configuration</parent>
-		</acpmenuitem>
-		<acpmenuitem name="wcf.acp.menu.link.management.teamspeak">
-			<parent>wcf.acp.menu.link.management</parent>
-		</acpmenuitem>
-		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList">
-			<controller>wcf\acp\page\TeamspeakListPage</controller>
-			<parent>wcf.acp.menu.link.configuration.teamspeak</parent>
-			<permissions>admin.teamspeak.canManageConnection</permissions>
-		</acpmenuitem>
-		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add">
-			<controller>wcf\acp\form\TeamspeakAddForm</controller>
-			<parent>wcf.acp.menu.link.configuration.teamspeak.teamspeakList</parent>
-			<permissions>admin.teamspeak.canManageConnection</permissions>
-			<icon>plus</icon>
-		</acpmenuitem>
-	</import>
+	<delete>
+		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList.add"/>
+		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak.teamspeakList"/>
+		<acpmenuitem name="wcf.acp.menu.link.management.teamspeak"/>
+		<acpmenuitem name="wcf.acp.menu.link.configuration.teamspeak"/>
+	</delete>
 </data>
