@@ -16,15 +16,14 @@
 {@$form->getHtml()}
 
 <script data-relocate="true">
-	require(["Hanashi/TeamSpeak/ServerAdd", "Language"], function({ ServerAdd }, Language) {
-		Language.addObject({
-			'wcf.page.teamspeakAdd.virtualServerPort': '{lang}wcf.page.teamspeakAdd.virtualServerPort{/lang}',
-			'wcf.page.teamspeakAdd.virtualServerPort.description': '{lang}wcf.page.teamspeakAdd.virtualServerPort.description{/lang}',
-			'wcf.page.teamspeakAdd.virtualServerID': '{lang}wcf.page.teamspeakAdd.virtualServerID{/lang}',
-			'wcf.page.teamspeakAdd.virtualServerID.description': '{lang}wcf.page.teamspeakAdd.virtualServerID.description{/lang}',
-			'wcf.page.teamspeakAdd.password': '{lang}wcf.page.teamspeakAdd.password{/lang}',
-			'wcf.page.teamspeakAdd.apiKey': '{lang}wcf.page.teamspeakAdd.apiKey{/lang}'
-		});
+	require(["Hanashi/TeamSpeak/ServerAdd"], function({ ServerAdd }) {
+		{jsphrase name='wcf.page.teamspeakAdd.virtualServerPort'}
+		{jsphrase name='wcf.page.teamspeakAdd.virtualServerPort.description'}
+		{jsphrase name='wcf.page.teamspeakAdd.virtualServerID'}
+		{jsphrase name='wcf.page.teamspeakAdd.virtualServerID.description'}
+		{jsphrase name='wcf.page.teamspeakAdd.password'}
+		{jsphrase name='wcf.page.teamspeakAdd.apiKey'}
+
 		new ServerAdd();
 	});
 </script>
