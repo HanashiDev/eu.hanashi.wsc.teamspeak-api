@@ -13,7 +13,7 @@
 	</nav>
 </header>
 
-{@$form->getHtml()}
+{unsafe:$form->getHtml()}
 
 <script data-relocate="true">
 	require(["Hanashi/TeamSpeak/ServerAdd"], function({ ServerAdd }) {

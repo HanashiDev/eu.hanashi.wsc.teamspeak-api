@@ -2,7 +2,7 @@
 	<ul class="scrollableCheckboxList" id="{$option->optionName}" style="height: 100px;">
 		{foreach from=$teamspeakList item=teamspeak}
 			<li>
-				<label><input type="checkbox" name="values[{$option->optionName}][]" value="{@$teamspeak->teamspeakID}"{if $teamspeak->teamspeakID|in_array:$value} checked{/if}> {$teamspeak->connectionName}</label>
+				<label><input type="checkbox" name="values[{$option->optionName}][]" value="{unsafe:$teamspeak->teamspeakID}"{if $teamspeak->teamspeakID|in_array:$value} checked{/if}> {$teamspeak->connectionName}</label>
 			</li>
 		{/foreach}
 	</ul>
