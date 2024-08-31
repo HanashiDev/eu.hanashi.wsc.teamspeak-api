@@ -2,6 +2,7 @@
 
 namespace wcf\system\option;
 
+use Override;
 use wcf\data\option\Option;
 use wcf\data\teamspeak\TeamspeakList;
 use wcf\system\exception\UserInputException;
@@ -19,9 +20,7 @@ use wcf\util\ArrayUtil;
  */
 final class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
 {
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function getFormElement(Option $option, $value)
     {
         $teamspeakList = new TeamspeakList();
@@ -37,9 +36,7 @@ final class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
         return WCF::getTPL()->fetch('teamSpeakConnectionMultiSelectOptionType');
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function validate(Option $option, $newValue)
     {
         if (!\is_array($newValue)) {
@@ -58,9 +55,7 @@ final class TeamSpeakConnectionMultiSelectOptionType extends AbstractOptionType
         }
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function getData(Option $option, $newValue)
     {
         if (!\is_array($newValue)) {

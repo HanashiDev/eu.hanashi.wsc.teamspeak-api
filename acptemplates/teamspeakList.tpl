@@ -54,7 +54,7 @@
 						<td class="columnText">{$object->virtualServerPort}</td>
 						<td class="columnText">{$object->username}</td>
 						<td class="columnText">{$object->displayName}</td>
-						<td class="columnDate">{@$object->creationDate|time}</td>
+						<td class="columnDate">{time time=$object->creationDate}</td>
 					</tr>
 				{/foreach}
 			</tbody>

@@ -2,6 +2,7 @@
 
 namespace wcf\system\option;
 
+use Override;
 use wcf\data\option\Option;
 use wcf\data\teamspeak\Teamspeak;
 use wcf\data\teamspeak\TeamspeakList;
@@ -19,9 +20,7 @@ use wcf\system\WCF;
  */
 final class TeamSpeakConnectionSelectOptionType extends AbstractOptionType
 {
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function getFormElement(Option $option, $value)
     {
         $teamspeakList = new TeamspeakList();
@@ -37,9 +36,7 @@ final class TeamSpeakConnectionSelectOptionType extends AbstractOptionType
         return WCF::getTPL()->fetch('teamSpeakConnectionSelectOptionType');
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function validate(Option $option, $newValue)
     {
         if (!empty($newValue)) {

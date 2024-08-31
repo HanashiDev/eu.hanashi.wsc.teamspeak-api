@@ -3,6 +3,7 @@
 namespace wcf\system\teamspeak;
 
 use Exception;
+use Override;
 use phpseclib3\Net\SSH2;
 use SensitiveParameter;
 use wcf\system\exception\ErrorException;
@@ -54,9 +55,7 @@ final class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
      */
     protected $queryObj;
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function __construct(
         $hostname,
         $port,
@@ -72,9 +71,7 @@ final class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
         $this->connect();
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function __destruct()
     {
         if ($this->queryObj) {
@@ -86,9 +83,7 @@ final class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
         }
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function connect()
     {
         require_once(WCF_DIR . 'lib/system/api/phpseclib/vendor/autoload.php');
@@ -102,9 +97,7 @@ final class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
         $this->login($this->username, $this->password);
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function login(
         $username,
         #[SensitiveParameter]
@@ -124,9 +117,7 @@ final class TeamSpeakSshHandler extends AbstractTeamSpeakQueryHandler
         $motd = StringUtil::trim($this->queryObj->read("\n"));
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function execute($command)
     {
         $result = [];

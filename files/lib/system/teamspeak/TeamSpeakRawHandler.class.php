@@ -2,6 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
+use Override;
 use SensitiveParameter;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\TeamSpeakException;
@@ -54,9 +55,7 @@ final class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
      */
     public $queryObj;
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function __construct(
         $hostname,
         $port,
@@ -72,9 +71,7 @@ final class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
         $this->connect();
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function __destruct()
     {
         if ($this->queryObj) {
@@ -82,9 +79,7 @@ final class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
         }
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function connect()
     {
         try {
@@ -106,9 +101,7 @@ final class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
         $this->login($this->username, $this->password);
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function login(
         $username,
         #[SensitiveParameter]
@@ -156,9 +149,7 @@ final class TeamSpeakRawHandler extends AbstractTeamSpeakQueryHandler
         return false;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function execute($command)
     {
         $result = [];

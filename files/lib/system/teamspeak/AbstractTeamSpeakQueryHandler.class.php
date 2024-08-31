@@ -2,6 +2,7 @@
 
 namespace wcf\system\teamspeak;
 
+use Override;
 use wcf\system\exception\TeamSpeakException;
 use wcf\util\TeamSpeakUtil;
 
@@ -15,9 +16,7 @@ use wcf\util\TeamSpeakUtil;
  */
 abstract class AbstractTeamSpeakQueryHandler implements ITeamSpeakHandler
 {
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function call($method, $args)
     {
         $command = $method;
@@ -41,9 +40,7 @@ abstract class AbstractTeamSpeakQueryHandler implements ITeamSpeakHandler
         return $this->parseResult($result);
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[Override]
     public function parseResult($result)
     {
         $resultArr = [];

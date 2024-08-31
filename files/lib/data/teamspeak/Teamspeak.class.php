@@ -15,7 +15,7 @@ use wcf\system\teamspeak\TeamSpeakConnectionHandler;
  * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
  * @package  WoltLabSuite\Core\Data\TeamSpeak
  *
- * @property-read   int $userID
+ * @property-read   int $teamspeakID
  * @property-read   string|null $connectionName
  * @property-read   string $hostname
  * @property-read   string $queryType
