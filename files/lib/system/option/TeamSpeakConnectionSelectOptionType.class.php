@@ -33,7 +33,7 @@ final class TeamSpeakConnectionSelectOptionType extends AbstractOptionType
             'value' => $value,
         ]);
 
-        return WCF::getTPL()->fetch('teamSpeakConnectionSelectOptionType');
+        return WCF::getTPL()->render('wcf', 'teamSpeakConnectionSelectOptionType', []);
     }
 
     #[Override]
