@@ -26,7 +26,7 @@ final class TeamspeakListPage extends AbstractGridViewPage
      * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.configuration.teamspeak.teamspeakList';
-    
+
     #[Override]
     protected function createGridView(): AbstractGridView
     {
