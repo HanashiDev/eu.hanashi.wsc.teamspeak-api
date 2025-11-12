@@ -3,6 +3,8 @@
 use wcf\acp\form\TeamspeakAddForm;
 use wcf\acp\page\TeamspeakListPage;
 use wcf\event\acp\menu\item\ItemCollecting;
+use wcf\event\endpoint\ControllerCollecting;
+use wcf\system\endpoint\controller\hanashi\teamspeak\DeleteTeamspeak;
 use wcf\system\event\EventHandler;
 use wcf\system\menu\acp\AcpMenuItem;
 use wcf\system\request\LinkHandler;
@@ -48,4 +50,11 @@ return static function (): void {
             );
         }
     });
+
+    EventHandler::getInstance()->register(
+        ControllerCollecting::class,
+        static function (ControllerCollecting $event) {
+            $event->register(new DeleteTeamspeak());
+        }
+    );
 };

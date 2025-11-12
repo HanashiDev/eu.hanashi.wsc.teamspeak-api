@@ -2,8 +2,10 @@
 
 namespace wcf\acp\page;
 
-use wcf\data\teamspeak\TeamspeakList;
-use wcf\page\MultipleLinkPage;
+use Override;
+use wcf\page\AbstractGridViewPage;
+use wcf\system\gridView\AbstractGridView;
+use wcf\system\gridView\admin\TeamspeakGridView;
 
 /**
  * list page for all saved teamspeak connections
@@ -13,25 +15,21 @@ use wcf\page\MultipleLinkPage;
  * @license  Freie Lizenz (https://hanashi.eu/freie-lizenz/)
  * @package  WoltLabSuite\Core\Acp\Page
  */
-class TeamspeakListPage extends MultipleLinkPage
+final class TeamspeakListPage extends AbstractGridViewPage
 {
     /**
      * @inheritDoc
      */
-    public $objectListClassName = TeamspeakList::class;
-
-    /**
-     * @inheritDoc
-     */
-    public $sortField = 'teamspeakID';
-
-    /**
-     * @inheritDoc
-     */
-    public $sortOrder = 'ASC';
+    public $neededPermissions = ['admin.teamspeak.canManageConnection'];
 
     /**
      * @inheritDoc
      */
     public $activeMenuItem = 'wcf.acp.menu.link.configuration.teamspeak.teamspeakList';
+
+    #[Override]
+    protected function createGridView(): AbstractGridView
+    {
+        return new TeamspeakGridView();
+    }
 }
