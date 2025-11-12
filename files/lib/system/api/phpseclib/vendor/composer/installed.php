@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'd6a7c03f966f5a23428e715651d121576eabbe2e',
+        'pretty_version' => '3.2.x-dev',
+        'version' => '3.2.9999999.9999999-dev',
+        'reference' => '481797819e53fc718ee3ed5c05aa1ca2e2dbbe4d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'd6a7c03f966f5a23428e715651d121576eabbe2e',
+            'pretty_version' => '3.2.x-dev',
+            'version' => '3.2.9999999.9999999-dev',
+            'reference' => '481797819e53fc718ee3ed5c05aa1ca2e2dbbe4d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -104,9 +104,9 @@
             ),
         ),
         'phpseclib/phpseclib' => array(
-            'pretty_version' => '3.0.42',
-            'version' => '3.0.42.0',
-            'reference' => 'db92f1b1987b12b13f248fe76c3a52cadb67bb98',
+            'pretty_version' => '3.0.47',
+            'version' => '3.0.47.0',
+            'reference' => '9d6ca36a6c2dd434765b1071b2644a1c683b385d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpseclib/phpseclib',
             'aliases' => array(),
