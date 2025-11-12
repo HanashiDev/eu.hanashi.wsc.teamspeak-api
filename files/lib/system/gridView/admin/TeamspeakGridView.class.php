@@ -7,14 +7,14 @@ use wcf\acp\form\TeamspeakEditForm;
 use wcf\data\DatabaseObjectList;
 use wcf\data\teamspeak\TeamspeakList;
 use wcf\system\gridView\AbstractGridView;
-use wcf\system\gridView\filter\TextFilter;
-use wcf\system\gridView\filter\TimeFilter;
 use wcf\system\gridView\GridViewColumn;
 use wcf\system\gridView\renderer\ObjectIdColumnRenderer;
 use wcf\system\gridView\renderer\TimeColumnRenderer;
 use wcf\system\interaction\admin\TeamspeakInteractions;
 use wcf\system\interaction\Divider;
 use wcf\system\interaction\EditInteraction;
+use wcf\system\view\filter\TextFilter;
+use wcf\system\view\filter\TimeFilter;
 use wcf\system\WCF;
 
 final class TeamspeakGridView extends AbstractGridView
@@ -30,11 +30,11 @@ final class TeamspeakGridView extends AbstractGridView
                 ->label('wcf.page.teamspeakList.connectionName')
                 ->titleColumn()
                 ->sortable()
-                ->filter(new TextFilter()),
+                ->filter(TextFilter::class),
             GridViewColumn::for('hostname')
                 ->label('wcf.page.teamspeakList.hostname')
                 ->sortable()
-                ->filter(new TextFilter()),
+                ->filter(TextFilter::class),
             GridViewColumn::for('queryType')
                 ->label('wcf.page.teamspeakList.queryType')
                 ->sortable(),
@@ -47,16 +47,16 @@ final class TeamspeakGridView extends AbstractGridView
             GridViewColumn::for('username')
                 ->label('wcf.page.teamspeakList.username')
                 ->sortable()
-                ->filter(new TextFilter()),
+                ->filter(TextFilter::class),
             GridViewColumn::for('displayName')
                 ->label('wcf.page.teamspeakList.displayName')
                 ->sortable()
-                ->filter(new TextFilter()),
+                ->filter(TextFilter::class),
             GridViewColumn::for('creationDate')
                 ->label('wcf.page.teamspeakList.creationDate')
                 ->renderer(new TimeColumnRenderer())
                 ->sortable()
-                ->filter(new TimeFilter()),
+                ->filter(TimeFilter::class),
         ]);
 
         $provider = new TeamspeakInteractions();
