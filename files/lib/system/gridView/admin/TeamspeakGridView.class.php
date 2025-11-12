@@ -66,8 +66,8 @@ final class TeamspeakGridView extends AbstractGridView
         ]);
         $this->setInteractionProvider($provider);
 
-        $this->setSortField('teamspeakID');
-        $this->setSortOrder('ASC');
+        $this->setDefaultSortField('teamspeakID');
+        $this->setDefaultSortOrder('ASC');
     }
 
     #[Override]
